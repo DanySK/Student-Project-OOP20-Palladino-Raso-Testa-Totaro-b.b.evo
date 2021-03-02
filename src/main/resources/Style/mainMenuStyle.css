@@ -1,0 +1,47 @@
+.mainPanel {
+	-fx-background-image: url('/Immagini/mainMenuImg/bgMenu.jpg');
+	-fx-background-position: 1%;
+	-fx-background-repeat: stretch;
+}
+
+
+#lblTitle{
+	-fx-text-fill: #FFFFFF;
+	-fx-alignment: center;
+}
+
+
+
+#lblCoins{
+	-fx-text-fill: #FFFFFF;
+	-fx-alignment: center;
+}
+
+/* 
+HBox,VBox,BorderPane {
+	-fx-border-color: red;
+    -fx-border-insets: 5;
+    -fx-border-width: 3;
+    -fx-border-style: dashed;
+}
+AnchorPane {
+	-fx-border-color: blue;
+    -fx-border-insets: 5;
+    -fx-border-width: 3;
+    -fx-border-style: dashed;
+}*/
+
+.menuButton{
+	-fx-background-color: #FFFFFF;
+	-fx-text-fill: #000000;
+	-fx-background-radius : 50px;
+	-fx-padding: 10px;
+}
+
+.menuButton:hover{
+	-fx-background-color: #212121;
+	-fx-text-fill: #000000;
+	-fx-background-radius : 50px;
+}
+
+
