@@ -79,13 +79,28 @@ public class ControllerMainMenu implements Initializable {
             this.sceneController.switchScene("Settings", "/Layout/SettingsMenu.fxml", this.window.getWidth(),
                     this.window.getHeight());
         });
+
+        // Tutorial Listener
+        this.bntTutorial.setOnAction(event -> {
+            this.sceneController = new SceneControllerImpl((Stage) ((Node) event.getSource()).getScene().getWindow());
+            this.sceneController.switchScene("Tutorial", "/Layout/TutorialMenu.fxml", this.window.getWidth(),
+                    this.window.getHeight()); 
+        });
+
+        // Ranking Listener
+        this.btnRanking.setOnAction(event -> {
+            this.sceneController = new SceneControllerImpl((Stage) ((Node) event.getSource()).getScene().getWindow());
+            this.sceneController.switchScene("Tutorial", "/Layout/RankingMenu.fxml", this.window.getWidth(),
+                    this.window.getHeight()); 
+        });
     }
 
     private void loadAnimation() {
         final Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(1.00), evt -> this.lblCoins.setVisible(false)),
                 new KeyFrame(Duration.seconds(0.50), evt -> this.lblCoins.setVisible(true)));
-        timeline.setCycleCount(Animation.INDEFINITE);
+                timeline.setCycleCount(Animation.INDEFINITE);
+                timeline.play();
     }
 
     private void loadFont() {

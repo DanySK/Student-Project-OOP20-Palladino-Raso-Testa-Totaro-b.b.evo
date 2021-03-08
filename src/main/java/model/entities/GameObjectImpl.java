@@ -1,8 +1,6 @@
 package model.entities;
 
 import javafx.geometry.Bounds;
-import javafx.geometry.Point2D;
-import javafx.geometry.Point3D;
 import model.utilities.GameObjectType;
 import model.utilities.Position;
 
