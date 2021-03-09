@@ -1,0 +1,99 @@
+.mainPanel {
+	-fx-background-image: url('/images/settingsImg/bgMenuSettings.jpg');
+	-fx-background-position: 1%;
+}
+
+
+#lblTitle{
+	-fx-text-fill: #e40017;
+	-fx-alignment: center;
+}
+
+
+
+#lblCoins{
+	-fx-text-fill: #FFFFFF;
+	-fx-alignment: center;
+}
+
+/* 
+HBox,VBox,BorderPane {
+	-fx-border-color: red;
+    -fx-border-insets: 5;
+    -fx-border-width: 3;
+    -fx-border-style: dashed;
+}
+AnchorPane {
+	-fx-border-color: blue;
+    -fx-border-insets: 5;
+    -fx-border-width: 3;
+    -fx-border-style: dashed;
+}
+*/
+
+.menuButton{
+	-fx-background-color: #FFFFFF;
+	-fx-text-fill: #000000;
+	-fx-background-radius : 50px;
+}
+
+.menuButton:hover{
+	-fx-background-color: #212121;
+	-fx-text-fill: #000000;
+	-fx-background-radius : 50px;
+}
+
+/* Check box */
+.check-box .box {
+	
+	-fx-background-color: white;
+	-fx-border-color: #e40017;
+	-fx-border-radius: 3px; 
+
+}
+
+.check-box:selected .mark {
+
+	-fx-background-color: white;
+
+}
+
+.check-box:selected .box {
+
+	-fx-background-color: #e40017;
+}
+
+/* Radio Button  */
+
+.radio-button .radio {
+    -fx-border-width: 1px;
+	-fx-border-color: #e40017;
+    -fx-background-color: white;
+    -fx-background-image: null;
+    -fx-border-radius: 15px;
+    -fx-padding: 4px;
+}
+.radio-button .radio:selected {
+	-fx-border-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:armed {
+	-fx-border-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:determinate {
+	-fx-border-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:indeterminate {
+	-fx-border-color: white;
+    -fx-background-image: null;
+}
+.radio-button .dot {
+    -fx-background-radius: 50px;
+    -fx-padding: 8px;
+    -fx-mark-highlight-color:  #e40017 ;
+    -fx-mark-color:  #e40017 ;
+}
+
+
