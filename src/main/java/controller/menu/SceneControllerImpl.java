@@ -30,6 +30,7 @@ public class SceneControllerImpl implements SceneController {
                     final Scene newScene = new Scene(parent, width, height);
                     final Image cursor = new Image(this.getClass().getResourceAsStream(PersonalImages.CURSOR_PACMAN_IMG.getPath()));
                     newScene.setCursor(new ImageCursor(cursor, CURSOR_DIMENSION, CURSOR_DIMENSION));
+                    this.currentStage.getIcons().add(new Image(this.getClass().getResourceAsStream(PersonalImages.GAME_ICON_IMG.getPath())));
                     this.currentStage.setScene(newScene);
                     this.currentStage.setTitle(title);
                     this.currentStage.show();
