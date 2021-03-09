@@ -5,8 +5,7 @@ package view.settings;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import controller.menu.PersonalFonts;
-import controller.menu.PersonalViews;
+
 import controller.menu.SceneController;
 import controller.menu.SceneControllerImpl;
 import javafx.fxml.FXML;
@@ -22,6 +21,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import view.utilities.PersonalFonts;
+import view.utilities.PersonalViews;
 
 
 public class ControllerSettings implements Initializable {

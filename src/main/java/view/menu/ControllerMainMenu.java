@@ -3,9 +3,7 @@ package view.menu;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import controller.menu.PersonalFonts;
-import controller.menu.PersonalImages;
-import controller.menu.PersonalViews;
+
 import controller.menu.SceneController;
 import controller.menu.SceneControllerImpl;
 import javafx.animation.Animation;
@@ -25,6 +23,9 @@ import javafx.scene.text.Font;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import view.utilities.PersonalFonts;
+import view.utilities.PersonalImages;
+import view.utilities.PersonalViews;
 
 public class ControllerMainMenu implements Initializable {
 

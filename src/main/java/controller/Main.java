@@ -3,11 +3,12 @@ package controller;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 
-import controller.menu.PersonalViews;
+
 import controller.menu.SceneController;
 import controller.menu.SceneControllerImpl;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import view.utilities.PersonalViews;
 
 public class Main extends Application {
 

@@ -1,4 +1,4 @@
-package controller.menu;
+package view.utilities;
 
 public enum PersonalFonts {
     /**
