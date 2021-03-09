@@ -21,7 +21,12 @@ public enum PersonalImages {
     /**
      * Path for Ranking Image.
      */
-    RANKING_IMG("/Images/MainMenuImg/Video.png");
+    RANKING_IMG("/Images/MainMenuImg/Video.png"),
+
+    /**
+     * Path for Pacman Cursor Image.
+     */
+    CURSOR_PACMAN_IMG("/Images/Cursor/PacmanCursor.png");
 
     private String path;
 
