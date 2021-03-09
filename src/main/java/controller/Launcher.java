@@ -6,7 +6,7 @@ public class Launcher {
         /**
          * @param args
          */
-        public void main(final String[] args) {
+        public static void main(final String[] args) {
             LauncherImpl.launchApplication(Main.class, args);
         }
 }
