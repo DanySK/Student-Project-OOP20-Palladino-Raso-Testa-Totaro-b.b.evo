@@ -8,11 +8,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import view.utilities.PersonalImages;
 
 
 public class SceneControllerImpl implements SceneController {
 
-        private final int cursorDimesion = 30;
+        private static final int CURSOR_DIMENSION = 30;
         private final Stage currentStage;
 
         public SceneControllerImpl(final Stage primaryStage) {
@@ -27,8 +28,8 @@ public class SceneControllerImpl implements SceneController {
             try {
                     final Parent parent = FXMLLoader.load(getClass().getResource(url));
                     final Scene newScene = new Scene(parent, width, height);
-                    final Image cursor = new Image(this.getClass().getResourceAsStream("/Images/Cursor/PacmanCursor.png"));
-                    newScene.setCursor(new ImageCursor(cursor, this.cursorDimesion, this.cursorDimesion));
+                    final Image cursor = new Image(this.getClass().getResourceAsStream(PersonalImages.CURSOR_PACMAN_IMG.getPath()));
+                    newScene.setCursor(new ImageCursor(cursor, CURSOR_DIMENSION, CURSOR_DIMENSION));
                     this.currentStage.setScene(newScene);
                     this.currentStage.setTitle(title);
                     this.currentStage.show();
