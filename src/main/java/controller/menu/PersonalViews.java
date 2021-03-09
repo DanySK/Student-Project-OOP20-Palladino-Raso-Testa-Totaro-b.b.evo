@@ -2,15 +2,15 @@ package controller.menu;
 
 public enum PersonalViews {
 
-    SCENE_MAIN_MENU("/layout/MainMenu.fxml","BrickBreacker-EVO"),
-    SCENE_SETTINGS("/layout/SettingsMenu.fxml","Settings"),
-    SCENE_TUTORIAL("/layout/TutorialMenu.fxml","TUTORIAL"),
-    SCENE_RANKING("/layout/RankingMenu.fxml","RANKING");
+    SCENE_MAIN_MENU("/Layout/MainMenu.fxml", "BrickBreacker-EVO"),
+    SCENE_SETTINGS("/Layout/SettingsMenu.fxml", "Settings"),
+    SCENE_TUTORIAL("/Layout/TutorialMenu.fxml", "TUTORIAL"),
+    SCENE_RANKING("/Layout/RankingMenu.fxml", "RANKING");
 
     private String path;
     private String titleScene;
 
-    PersonalViews(String path,String titleScene) {
+    PersonalViews(final String path, final String titleScene) {
         this.path = path;
         this.titleScene = titleScene;
     }

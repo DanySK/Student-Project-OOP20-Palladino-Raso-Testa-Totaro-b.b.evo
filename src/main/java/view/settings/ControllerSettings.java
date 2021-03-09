@@ -61,6 +61,9 @@ public class ControllerSettings implements Initializable {
         private static final int SIZEFONT = 24;
 
 
+        /**
+         *
+         */
         @Override
         public void initialize(final URL location, final ResourceBundle resources) {
                 this.resizable();

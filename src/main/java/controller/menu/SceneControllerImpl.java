@@ -21,7 +21,7 @@ public class SceneControllerImpl implements SceneController {
 			Parent parent = FXMLLoader.load(getClass().getResource(url));
 
 			Scene newScene = new Scene(parent, width, height);
-			Image cursor = new Image(this.getClass().getResourceAsStream("/images/cursor/pacmanCursor.png"));
+			Image cursor = new Image(this.getClass().getResourceAsStream("res/Images/Cursor/PacmanCursor.png"));
 			newScene.setCursor(new ImageCursor(cursor));
 			this.currentStage.setScene(newScene);
 			this.currentStage.setTitle(title);

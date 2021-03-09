@@ -7,27 +7,27 @@ package model.utilities;
 public enum GameObjectType {
 
     /**
-     *  Represents a wall
+     *  Represents a wall.
      */
     WALL('0'),
     /**
-     *  Represents the ball
+     *  Represents the ball.
      */
     BALL('1'),
     /**
-     *  Represents a brick
+     *  Represents a brick.
      */
     BRICK('2'),
     /**
-     *  Represents the paddle
+     *  Represents the paddle.
      */
     PADDLE('3'),
     /**
-     *  Represents the powerup
+     *  Represents the powerup.
      */
     POWERUP('4'),
     /**
-     *  Represents the empty space
+     *  Represents the empty space.
      */
     EMPTY('5');
     private final char value;
@@ -37,7 +37,7 @@ public enum GameObjectType {
      * 
      * @param value
      */
-    private GameObjectType(char value) {
+    GameObjectType(final char value) {
         this.value = value;
     }
 
@@ -47,7 +47,7 @@ public enum GameObjectType {
     public char getValue() {
         return value;
     }
-    
+
     /**
      * @return a String for each GameObjectType
      */
@@ -70,5 +70,4 @@ public enum GameObjectType {
             return "";
         }
     }
-    
 }

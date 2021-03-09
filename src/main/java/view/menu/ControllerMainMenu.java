@@ -68,6 +68,9 @@ public class ControllerMainMenu implements Initializable {
     private static final int SIZEHEIGHT = 40;
 
 
+    /**
+     *
+     */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         this.resizable();

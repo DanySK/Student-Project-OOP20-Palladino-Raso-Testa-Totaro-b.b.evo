@@ -1,14 +1,14 @@
 package controller.menu;
 
 public enum PersonalImages {
-    PLAY_IMG("/images/mainMenuImg/btnPlay.png"),
-    SETTINGS_IMG("/images/mainMenuImg/settings.png"),
-    TUTORIAL_IMG("/images/mainMenuImg/credit-card.png"),
-    RANKING_IMG("/images/mainMenuImg/video.png");
+    PLAY_IMG("/Images/MainMenuImg/BtnPlay.png"),
+    SETTINGS_IMG("/Images/MainMenuImg/Settings.png"),
+    TUTORIAL_IMG("/Images/MainMenuImg/Credit-card.png"),
+    RANKING_IMG("/Images/MainMenuImg/Video.png");
 
     private String path;
 
-    PersonalImages(String path) {
+    PersonalImages(final String path) {
         this.path = path;
     }
 
