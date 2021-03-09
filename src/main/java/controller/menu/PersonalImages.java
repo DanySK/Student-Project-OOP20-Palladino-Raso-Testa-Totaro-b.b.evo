@@ -1,10 +1,10 @@
 package controller.menu;
 
 public enum PersonalImages {
-    PLAY_IMG("/res/Images/MainMenuImg/BtnPlay.png"),
-    SETTINGS_IMG("/res/Images/MainMenuImg/Settings.png"),
-    TUTORIAL_IMG("/res/Images/MainMenuImg/Credit-card.png"),
-    RANKING_IMG("/res/Images/MainMenuImg/Video.png");
+    PLAY_IMG("/Images/MainMenuImg/BtnPlay.png"),
+    SETTINGS_IMG("/Images/MainMenuImg/Settings.png"),
+    TUTORIAL_IMG("/Images/MainMenuImg/Credit-card.png"),
+    RANKING_IMG("/Images/MainMenuImg/Video.png");
 
     private String path;
 

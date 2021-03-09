@@ -4,12 +4,12 @@ public enum PersonalFonts {
     /**
      * Font of all button and label. 
      */
-    FONT_BUTTON("/res/Fonts/Staatliches-Regular.ttf"),
+    FONT_BUTTON("/Fonts/Staatliches-Regular.ttf"),
 
     /**
      * Font of all title.
      */
-    FONT_TITLE("/res/Fonts/BungeeShade-Regular.ttf");
+    FONT_TITLE("/Fonts/BungeeShade-Regular.ttf");
 
     private String path;
 
