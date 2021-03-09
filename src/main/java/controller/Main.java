@@ -11,29 +11,29 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-        private static final int MIN_WIDHT = 450;
-        private static final int MIN_HEIGHT = 550;
+    private static final int MIN_WIDHT = 450;
+    private static final int MIN_HEIGHT = 550;
 
-	@Override
-	public void start(final Stage primaryStage) throws Exception {
+    /**
+     *
+     */
+    @Override
+    public void start(final Stage primaryStage) throws Exception {
+        /*Get screen size */
+        final GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        final SceneController sceneController = new SceneControllerImpl(primaryStage);
 
-	    /*Get screen size */
-	    final GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        sceneController.switchScene(PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
+                PersonalViews.SCENE_MAIN_MENU.getPath(), 
+                graphicsDevice.getDisplayMode().getWidth() / 2, 
+                graphicsDevice.getDisplayMode().getHeight() / 2);
 
-	    final SceneController sceneController = new SceneControllerImpl(primaryStage);
+        primaryStage.setMinWidth(MIN_WIDHT);
+        primaryStage.setMinHeight(MIN_HEIGHT);
+    }
 
-	    sceneController.switchScene(PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
-	                                PersonalViews.SCENE_MAIN_MENU.getPath(), 
-	                                graphicsDevice.getDisplayMode().getWidth() / 2, 
-	                                graphicsDevice.getDisplayMode().getHeight() / 2);
-
-		primaryStage.setMinWidth(MIN_WIDHT);
-                primaryStage.setMinHeight(MIN_HEIGHT);
-
-	}
-	
-	public static void main(final String[] args) {
-		launch();
-	}
+    public static void main(final String[] args) {
+        launch();
+    }
 
 }
