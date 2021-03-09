@@ -1,5 +1,5 @@
 .mainPanel {
-	-fx-background-image: url('/Immagini/mainMenuImg/bgMenu.jpg');
+	-fx-background-image: url('/images/mainMenuImg/bgMenu.jpg');
 	-fx-background-position: 1%;
 	-fx-background-repeat: stretch;
 }

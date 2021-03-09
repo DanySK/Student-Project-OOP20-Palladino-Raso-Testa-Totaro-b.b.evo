@@ -1,8 +1,13 @@
-package controller.menu;
+package view.menu;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import controller.menu.PersonalFonts;
+import controller.menu.PersonalImages;
+import controller.menu.PersonalViews;
+import controller.menu.SceneController;
+import controller.menu.SceneControllerImpl;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -45,13 +50,13 @@ public class ControllerMainMenu implements Initializable {
     private VBox buttonContainer;
 
     @FXML
-    private Button bntPlay;
+    private Button btnPlay;
 
     @FXML
     private Button btnSettings;
 
     @FXML
-    private Button bntTutorial;
+    private Button btnTutorial;
 
     @FXML
     private Button btnRanking;
@@ -61,6 +66,7 @@ public class ControllerMainMenu implements Initializable {
     private static final int SIZEFONTCOIN = 24;
     private static final int SIZEWIDTH = 40;
     private static final int SIZEHEIGHT = 40;
+
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -76,22 +82,28 @@ public class ControllerMainMenu implements Initializable {
         // Settings Listener
         this.btnSettings.setOnAction(event -> {
             this.sceneController = new SceneControllerImpl((Stage) ((Node) event.getSource()).getScene().getWindow());
-            this.sceneController.switchScene("Settings", "/Layout/SettingsMenu.fxml", this.window.getWidth(),
-                    this.window.getHeight());
+            this.sceneController.switchScene(PersonalViews.SCENE_SETTINGS.getTitleScene(),
+                                             PersonalViews.SCENE_SETTINGS.getPath(), 
+                                             this.window.getWidth(),
+                                             this.window.getHeight());
         });
 
         // Tutorial Listener
-        this.bntTutorial.setOnAction(event -> {
+        this.btnTutorial.setOnAction(event -> {
             this.sceneController = new SceneControllerImpl((Stage) ((Node) event.getSource()).getScene().getWindow());
-            this.sceneController.switchScene("Tutorial", "/Layout/TutorialMenu.fxml", this.window.getWidth(),
-                    this.window.getHeight()); 
+            this.sceneController.switchScene(PersonalViews.SCENE_TUTORIAL.getTitleScene(), 
+                                             PersonalViews.SCENE_TUTORIAL.getPath(), 
+                                             this.window.getWidth(),
+                                             this.window.getHeight()); 
         });
 
         // Ranking Listener
         this.btnRanking.setOnAction(event -> {
             this.sceneController = new SceneControllerImpl((Stage) ((Node) event.getSource()).getScene().getWindow());
-            this.sceneController.switchScene("Tutorial", "/Layout/RankingMenu.fxml", this.window.getWidth(),
-                    this.window.getHeight()); 
+            this.sceneController.switchScene(PersonalViews.SCENE_RANKING.getTitleScene(), 
+                                             PersonalViews.SCENE_RANKING.getPath(), 
+                                             this.window.getWidth(),
+                                             this.window.getHeight()); 
         });
     }
 
@@ -105,45 +117,45 @@ public class ControllerMainMenu implements Initializable {
 
     private void loadFont() {
         this.lblTitle
-                .setFont(Font.loadFont(this.getClass().getResourceAsStream("/Font/BungeeShade-Regular.ttf"), SIZEFONT));
-        this.bntPlay
-                .setFont(Font.loadFont(this.getClass().getResourceAsStream("/Font/Staatliches-Regular.ttf"), SIZEFONT));
+                .setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_TITLE.getPath()), SIZEFONT));
+        this.btnPlay
+                .setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
         this.btnSettings
-                .setFont(Font.loadFont(this.getClass().getResourceAsStream("/Font/Staatliches-Regular.ttf"), SIZEFONT));
-        this.bntTutorial
-                .setFont(Font.loadFont(this.getClass().getResourceAsStream("/Font/Staatliches-Regular.ttf"), SIZEFONT));
+                .setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
+        this.btnTutorial
+                .setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
         this.btnRanking
-                .setFont(Font.loadFont(this.getClass().getResourceAsStream("/Font/Staatliches-Regular.ttf"), SIZEFONT));
+                .setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
         this.lblCoins.setFont(
-                Font.loadFont(this.getClass().getResourceAsStream("/Font/Staatliches-Regular.ttf"), SIZEFONTCOIN));
+                Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONTCOIN));
     }
 
     private void loadButtonImage() {
 
         // ButtonPlay
         final ImageView imgPlay = new ImageView(
-                new Image(this.getClass().getResourceAsStream("/Immagini/mainMenuImg/btnPlay.png")));
+                new Image(this.getClass().getResourceAsStream(PersonalImages.PLAY_IMG.getPath())));
         imgPlay.setFitWidth(SIZEWIDTH);
         imgPlay.setFitHeight(SIZEHEIGHT);
-        this.bntPlay.setGraphic(imgPlay);
+        this.btnPlay.setGraphic(imgPlay);
 
         // ButtonSettings
         final ImageView imgSettings = new ImageView(
-                new Image(this.getClass().getResourceAsStream("/Immagini/mainMenuImg/settings.png")));
+                new Image(this.getClass().getResourceAsStream(PersonalImages.SETTINGS_IMG.getPath())));
         imgSettings.setFitWidth(SIZEWIDTH);
         imgSettings.setFitHeight(SIZEHEIGHT);
         this.btnSettings.setGraphic(imgSettings);
 
         // ButtonTutorial
         final ImageView imgTutorial = new ImageView(
-                new Image(this.getClass().getResourceAsStream("/Immagini/mainMenuImg/credit-card.png")));
+                new Image(this.getClass().getResourceAsStream(PersonalImages.TUTORIAL_IMG.getPath())));
         imgTutorial.setFitWidth(SIZEWIDTH);
         imgTutorial.setFitHeight(SIZEHEIGHT);
-        this.bntTutorial.setGraphic(imgTutorial);
+        this.btnTutorial.setGraphic(imgTutorial);
 
         // ButtonRanking
         final ImageView imgRanking = new ImageView(
-                new Image(this.getClass().getResourceAsStream("/Immagini/mainMenuImg/video.png")));
+                new Image(this.getClass().getResourceAsStream(PersonalImages.RANKING_IMG.getPath())));
         imgRanking.setFitWidth(SIZEWIDTH);
         imgRanking.setFitHeight(SIZEHEIGHT);
         this.btnRanking.setGraphic(imgRanking);
@@ -151,9 +163,9 @@ public class ControllerMainMenu implements Initializable {
 
     private void resizable() {
 
-        this.bntPlay.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(2));
+        this.btnPlay.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(2));
         this.btnSettings.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(2));
-        this.bntTutorial.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(2));
+        this.btnTutorial.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(2));
         this.btnRanking.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(2));
 
         // Title

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="mainPanel" stylesheets="@../Style/mainMenuStyle.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.menu.ControllerMainMenu">
+<AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="mainPanel" stylesheets="@../Style/mainMenuStyle.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.menu.ControllerMainMenu">
    <children>
       <BorderPane fx:id="panel" stylesheets="@../Style/mainMenuStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -31,9 +31,9 @@
          <center>
             <VBox fx:id="buttonContainer" alignment="CENTER" spacing="10.0" stylesheets="@../Style/mainMenuStyle.css" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="bntPlay" mnemonicParsing="false" prefHeight="90.0" prefWidth="557.0" styleClass="menuButton" stylesheets="@../Style/mainMenuStyle.css" text="Play" />
+                  <Button fx:id="btnPlay" mnemonicParsing="false" prefHeight="90.0" prefWidth="557.0" styleClass="menuButton" stylesheets="@../Style/mainMenuStyle.css" text="Play" />
                   <Button fx:id="btnSettings" mnemonicParsing="false" prefHeight="90.0" prefWidth="557.0" styleClass="menuButton" stylesheets="@../Style/mainMenuStyle.css" text="Settings" />
-                  <Button fx:id="bntTutorial" mnemonicParsing="false" prefHeight="90.0" prefWidth="557.0" styleClass="menuButton" stylesheets="@../Style/mainMenuStyle.css" text="Tutorial" />
+                  <Button fx:id="btnTutorial" mnemonicParsing="false" prefHeight="90.0" prefWidth="557.0" styleClass="menuButton" stylesheets="@../Style/mainMenuStyle.css" text="Tutorial" />
                   <Button fx:id="btnRanking" mnemonicParsing="false" prefHeight="90.0" prefWidth="557.0" styleClass="menuButton" stylesheets="@../Style/mainMenuStyle.css" text="Ranking" />
                </children>
                <padding>

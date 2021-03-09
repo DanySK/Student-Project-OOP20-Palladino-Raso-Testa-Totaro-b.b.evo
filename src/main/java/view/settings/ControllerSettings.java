@@ -1,10 +1,12 @@
-package controller.settings;
+package view.settings;
 
 
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import controller.menu.PersonalFonts;
+import controller.menu.PersonalViews;
 import controller.menu.SceneController;
 import controller.menu.SceneControllerImpl;
 import javafx.fxml.FXML;
@@ -69,17 +71,20 @@ public class ControllerSettings implements Initializable {
         private void loadListener() {
                 this.btnBack.setOnAction(event -> {
                 this.sceneController = new SceneControllerImpl((Stage) ((Node) event.getSource()).getScene().getWindow());
-                this.sceneController.switchScene("BrickBreaker-EVO", "/Layout/MainMenu.fxml", this.window.getWidth(), this.window.getHeight());
+                this.sceneController.switchScene(PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
+                                                 PersonalViews.SCENE_MAIN_MENU.getPath(), 
+                                                 this.window.getWidth(), 
+                                                 this.window.getHeight());
                 });
         }
 
         private void loadFont() {
-                this.lblTitle.setFont(Font.loadFont(this.getClass().getResourceAsStream("/Font/BungeeShade-Regular.ttf"), SIZEFONTTITLE));
-                this.ckSoundFX.setFont(Font.loadFont(this.getClass().getResourceAsStream("/Font/Staatliches-Regular.ttf"), SIZEFONT));
-                this.ckSound.setFont(Font.loadFont(this.getClass().getResourceAsStream("/Font/Staatliches-Regular.ttf"), SIZEFONT));
-                this.rbUseLeftRight.setFont(Font.loadFont(this.getClass().getResourceAsStream("/Font/Staatliches-Regular.ttf"), SIZEFONT));
-                this.rbUseUpDown.setFont(Font.loadFont(this.getClass().getResourceAsStream("/Font/Staatliches-Regular.ttf"), SIZEFONT));
-                this.btnBack.setFont(Font.loadFont(this.getClass().getResourceAsStream("/Font/Staatliches-Regular.ttf"), SIZEFONT));
+                this.lblTitle.setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_TITLE.getPath()), SIZEFONTTITLE));
+                this.ckSoundFX.setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
+                this.ckSound.setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
+                this.rbUseLeftRight.setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
+                this.rbUseUpDown.setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
+                this.btnBack.setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
         }
 
         private void resizable() {
