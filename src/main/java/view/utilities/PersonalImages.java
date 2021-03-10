@@ -26,7 +26,17 @@ public enum PersonalImages {
     /**
      * Path for Pacman Cursor Image.
      */
-    CURSOR_PACMAN_IMG("/Images/Cursor/PacmanCursor.png");
+    CURSOR_PACMAN_IMG("/Images/Cursor/PacmanCursor.png"),
+
+    /**
+     * Path for Game Icon Cursor Image.
+     */
+    GAME_ICON_IMG("/Images/icon/GameIcon.png"),
+ 
+    /**
+     * Path for Game Video Tutorial.
+     */
+    TUTORIAL_VIDEO("/Images/video/Tutorial.mp4");
 
     private String path;
 

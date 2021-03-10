@@ -12,8 +12,8 @@ public class GameObjectImpl implements GameObj {
 
     private final int width;
     private final int height;
-    private Position position;
-    private final GameObjectType type;
+    protected Position position;
+    protected final GameObjectType type;
 
     public GameObjectImpl(final int width, final int height, final Position position, final GameObjectType type) {
         this.width = width;
@@ -22,30 +22,19 @@ public class GameObjectImpl implements GameObj {
         this.type = type;
     }
 
-    /**
-     *
-     */
     @Override
     public Bounds getBound() {
         return null;
     }
 
-    /**
-     *
-     */
     @Override
     public Position getPosition() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.position;
     }
 
-    /**
-     *
-     */
     @Override
     public GameObjectType getType() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.type;
     }
 
 }
