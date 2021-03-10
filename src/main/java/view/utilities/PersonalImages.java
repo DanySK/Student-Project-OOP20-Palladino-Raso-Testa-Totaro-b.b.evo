@@ -31,7 +31,12 @@ public enum PersonalImages {
     /**
      * Path for Game Icon Cursor Image.
      */
-    GAME_ICON_IMG("/Images/icon/GameIcon.png");
+    GAME_ICON_IMG("/Images/icon/GameIcon.png"),
+ 
+    /**
+     * Path for Game Video Tutorial.
+     */
+    TUTORIAL_VIDEO("/Images/video/Tutorial.mp4");
 
     private String path;
 
