@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import controller.menu.SceneController;
 import controller.menu.SceneControllerImpl;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -21,6 +22,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import view.utilities.PersonalFonts;
 import view.utilities.PersonalViews;
 
@@ -105,4 +107,5 @@ public class ControllerSettings implements Initializable {
 
                 this.lblTitle.setWrapText(true);
         }
+
 }
