@@ -48,18 +48,21 @@ AnchorPane {
 	
 	-fx-background-color: white;
 	-fx-border-color: #e40017;
-	-fx-border-radius: 3px; 
+	-fx-border-radius: 30px; 
+	-fx-background-radius : 30px;
 
 }
 
 .check-box:selected .mark {
-
+	
+	-fx-background-radius : 30px;
 	-fx-background-color: white;
 
 }
 
 .check-box:selected .box {
-
+	
+	-fx-background-radius : 30px;
 	-fx-background-color: #e40017;
 }
 

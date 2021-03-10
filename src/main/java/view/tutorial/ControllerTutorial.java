@@ -21,6 +21,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import view.utilities.PersonalFonts;
 import view.utilities.PersonalImages;
 import view.utilities.PersonalViews;
@@ -58,6 +59,9 @@ public class ControllerTutorial implements Initializable {
     private SceneController sceneController;
     private MediaPlayer player;
 
+     /**
+     *  Method that initialize all component of scene.
+     */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         try {
@@ -65,16 +69,17 @@ public class ControllerTutorial implements Initializable {
             this.loadFont();
             this.loadListener();
             this.resizable();
-        } catch (NullPointerException | MalformedURLException e) {
+        } catch (MalformedURLException e) {
             e.printStackTrace();
         }
     }
 
-    private void loadVideo() throws NullPointerException, MalformedURLException {
+    private void loadVideo() throws MalformedURLException {
         final URL videoUrl = new URL(new File(this.getClass().getResource(PersonalImages.TUTORIAL_VIDEO.getPath()).getFile()).toURI().toString());
         final Media media = new Media(videoUrl.toExternalForm());
         this.player = new MediaPlayer(media);
-        player.setAutoPlay(true);
+        this.player.setAutoPlay(true);
+        this.player.seek(Duration.INDEFINITE);
 
         // Add player at MediaView
         this.videoTutorial.setMediaPlayer(player);
@@ -95,6 +100,7 @@ public class ControllerTutorial implements Initializable {
                                              this.window.getHeight());
             player.stop();
         });
+
     }
 
     private void resizable() {
@@ -106,7 +112,7 @@ public class ControllerTutorial implements Initializable {
         this.videoTutorial.fitHeightProperty().bind(this.panel.heightProperty().divide(2));
         this.videoTutorial.fitWidthProperty().bind(this.panel.widthProperty().divide(2));
 
-        this.buttonBack.prefWidthProperty().bind(this.containerBackButton.widthProperty().divide(3));
+        this.buttonBack.prefWidthProperty().bind(this.containerBackButton.widthProperty().divide(4));
         this.buttonBack.prefHeightProperty().bind(this.containerBackButton.heightProperty().divide(4));
     }
 
