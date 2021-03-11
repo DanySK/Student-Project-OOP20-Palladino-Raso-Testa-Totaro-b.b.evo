@@ -3,6 +3,7 @@
 	-fx-background-position: 1%;
 }
 
+/* 
 HBox,VBox,BorderPane {
 	-fx-border-color: red;
     -fx-border-insets: 5;
@@ -15,6 +16,7 @@ AnchorPane {
     -fx-border-width: 3;
     -fx-border-style: dashed;
 }
+*/
 
 #lblTitle{
 	-fx-text-fill: #e40017;

@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import controller.menu.SceneController;
 import controller.menu.SceneControllerImpl;
+import controller.sound.SoundController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -25,6 +26,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import view.utilities.PersonalFonts;
 import view.utilities.PersonalImages;
+import view.utilities.PersonalSounds;
 import view.utilities.PersonalViews;
 
 public class ControllerMainMenu implements Initializable {
@@ -79,6 +81,7 @@ public class ControllerMainMenu implements Initializable {
         this.loadButtonImage();
         this.loadAnimation();
         this.loadListener();
+        this.loadMusic();
     }
 
     private void loadListener() {
@@ -90,6 +93,8 @@ public class ControllerMainMenu implements Initializable {
                                              PersonalViews.SCENE_SETTINGS.getPath(), 
                                              this.window.getWidth(),
                                              this.window.getHeight());
+            //Play Button CLick Sound
+            SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
         });
 
         // Tutorial Listener
@@ -98,7 +103,9 @@ public class ControllerMainMenu implements Initializable {
             this.sceneController.switchScene(PersonalViews.SCENE_TUTORIAL.getTitleScene(), 
                                              PersonalViews.SCENE_TUTORIAL.getPath(), 
                                              this.window.getWidth(),
-                                             this.window.getHeight()); 
+                                             this.window.getHeight());
+            //Play Button CLick Sound
+            SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
         });
 
         // Ranking Listener
@@ -107,7 +114,9 @@ public class ControllerMainMenu implements Initializable {
             this.sceneController.switchScene(PersonalViews.SCENE_RANKING.getTitleScene(), 
                                              PersonalViews.SCENE_RANKING.getPath(), 
                                              this.window.getWidth(),
-                                             this.window.getHeight()); 
+                                             this.window.getHeight());
+            //Play Button CLick Sound
+            SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
         });
     }
 
@@ -176,4 +185,8 @@ public class ControllerMainMenu implements Initializable {
         this.lblTitle.setWrapText(true);
     }
 
+    private void loadMusic() {
+        //Play Button CLick Sound
+        SoundController.playMusic(this.getClass().getResource(PersonalSounds.TETRIS_THEME.getPath()).getPath());
+    }
 }

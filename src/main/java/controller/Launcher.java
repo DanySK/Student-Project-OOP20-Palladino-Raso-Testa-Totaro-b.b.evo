@@ -1,9 +1,11 @@
 package controller;
 import com.sun.javafx.application.LauncherImpl;
 
-public class Launcher {
+public final class Launcher {
 
+    private Launcher() {
 
+    }
     /**
      * @param args
      */

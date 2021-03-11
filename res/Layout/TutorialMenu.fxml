@@ -18,7 +18,7 @@
                <children>
                   <Label fx:id="lblTitle" stylesheets="@../Style/tutorialStyle.css" text="BB">
                      <padding>
-                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                      </padding>
                      <font>
                         <Font size="48.0" />
@@ -27,16 +27,19 @@
                </HBox>
          </top>
          <bottom>
-            <HBox fx:id="containerBackButton" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@../Style/tutorialStyle.css" BorderPane.alignment="CENTER">
+            <HBox fx:id="containerBackButton" alignment="CENTER" stylesheets="@../Style/tutorialStyle.css" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="buttonBack" mnemonicParsing="false" stylesheets="@../Style/tutorialStyle.css" text="Back to Menù" />
+                  <Button fx:id="buttonBack" mnemonicParsing="false" stylesheets="@../Style/tutorialStyle.css" text="Back to Menù">
+                     <HBox.margin>
+                        <Insets bottom="20.0" />
+                     </HBox.margin></Button>
                </children>
             </HBox>
          </bottom>
          <center>
             <VBox fx:id="videoTutorialContainer" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" stylesheets="@../Style/tutorialStyle.css" BorderPane.alignment="CENTER">
                <children>
-                  <MediaView fx:id="videoTutorial" fitHeight="200.0" fitWidth="200.0" nodeOrientation="INHERIT">
+                  <MediaView fx:id="videoTutorial" fitHeight="200.0" fitWidth="200.0" nodeOrientation="INHERIT" styleClass="media">
                   </MediaView>
                </children>
             </VBox>

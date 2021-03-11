@@ -24,6 +24,11 @@ public enum PersonalImages {
     RANKING_IMG("/Images/MainMenuImg/Video.png"),
 
     /**
+     * Path for Back Image.
+     */
+    BACK_IMG("/Images/settingsImg/Back.png"),
+
+    /**
      * Path for Pacman Cursor Image.
      */
     CURSOR_PACMAN_IMG("/Images/Cursor/PacmanCursor.png"),

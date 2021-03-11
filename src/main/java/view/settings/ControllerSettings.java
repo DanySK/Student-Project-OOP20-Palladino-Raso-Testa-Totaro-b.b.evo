@@ -8,13 +8,17 @@ import java.util.ResourceBundle;
 
 import controller.menu.SceneController;
 import controller.menu.SceneControllerImpl;
+import controller.sound.SoundController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -22,6 +26,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import view.utilities.PersonalFonts;
+import view.utilities.PersonalImages;
+import view.utilities.PersonalSounds;
 import view.utilities.PersonalViews;
 
 
@@ -60,6 +66,8 @@ public class ControllerSettings implements Initializable {
         private SceneController sceneController;
         private static final int SIZEFONTTITLE = 64;
         private static final int SIZEFONT = 24;
+        private static final int SIZEWIDTH = 20;
+        private static final int SIZEHEIGHT = 20;
 
 
         /**
@@ -67,19 +75,59 @@ public class ControllerSettings implements Initializable {
          */
         @Override
         public void initialize(final URL location, final ResourceBundle resources) {
-                this.resizable();
-                this.loadFont();
-                this.loadListener();
+            this.resizable();
+            this.loadFont();
+            this.loadListener();
+            this.loadImage();
         }
-
+        private void loadImage() {
+            final ImageView imgPlay = new ImageView(
+                    new Image(this.getClass().getResourceAsStream(PersonalImages.BACK_IMG.getPath())));
+            imgPlay.setFitWidth(SIZEWIDTH);
+            imgPlay.setFitHeight(SIZEHEIGHT);
+            this.btnBack.setGraphic(imgPlay);
+        }
         private void loadListener() {
-                this.btnBack.setOnAction(event -> {
+
+            //Button back Listener
+            this.btnBack.setOnAction(event -> {
                 this.sceneController = new SceneControllerImpl((Stage) ((Node) event.getSource()).getScene().getWindow());
                 this.sceneController.switchScene(PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
                                                  PersonalViews.SCENE_MAIN_MENU.getPath(), 
                                                  this.window.getWidth(), 
                                                  this.window.getHeight());
-                });
+
+                //Play Button CLick Sound
+                SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
+
+                //Stop Music, and contiune the menù music
+                SoundController.stopMusic();
+             });
+
+            //CheckBox SoundFx Listener
+            this.ckSoundFX.selectedProperty().addListener((obs, oldV, newV) -> {
+
+                //Play Sound
+                SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_SPECIALBUTTON.getPath()).getPath());
+            });
+
+            this.ckSound.selectedProperty().addListener((obs, oldV, newV) -> {
+
+                //Play Sound
+                SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_SPECIALBUTTON.getPath()).getPath());
+            });
+
+            this.rbUseLeftRight.selectedProperty().addListener((obs, oldV, newV) -> {
+
+                //Play Sound
+                SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_SPECIALBUTTON.getPath()).getPath());
+            });
+
+            this.rbUseUpDown.selectedProperty().addListener((obs, oldV, newV) -> {
+
+                //Play Sound
+                SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_SPECIALBUTTON.getPath()).getPath());
+            });
         }
 
         private void loadFont() {
@@ -105,4 +153,5 @@ public class ControllerSettings implements Initializable {
 
                 this.lblTitle.setWrapText(true);
         }
+
 }
