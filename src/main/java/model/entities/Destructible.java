@@ -4,7 +4,7 @@ package model.entities;
  * A generic interface which represents an {@link GameObj} that can be destruct. 
  *
  */
-public interface Destructible extends GameObj{
+public interface Destructible extends GameObj {
 
     /**
      * Used to know the entity {@link GameObj} is destruct.

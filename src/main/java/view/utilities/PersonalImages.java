@@ -26,7 +26,7 @@ public enum PersonalImages {
     /**
      * Path for Back Image.
      */
-    BACK_IMG("/Images/settingsImg/Back.png"),
+    BACK_IMG("/Images/SettingsImg/Back.png"),
 
     /**
      * Path for Pacman Cursor Image.
@@ -36,12 +36,12 @@ public enum PersonalImages {
     /**
      * Path for Game Icon Cursor Image.
      */
-    GAME_ICON_IMG("/Images/icon/GameIcon.png"),
+    GAME_ICON_IMG("/Images/Icon/GameIcon.png"),
  
     /**
      * Path for Game Video Tutorial.
      */
-    TUTORIAL_VIDEO("/Images/video/Tutorial.mp4");
+    TUTORIAL_VIDEO("/Images/Video/Tutorial.mp4");
 
     private String path;
 

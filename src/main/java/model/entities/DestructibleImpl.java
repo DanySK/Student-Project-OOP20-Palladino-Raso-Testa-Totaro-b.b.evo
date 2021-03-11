@@ -4,12 +4,12 @@ import javafx.geometry.Bounds;
 import model.utilities.GameObjectType;
 import model.utilities.Position;
 
-public class DestructibleImpl extends GameObjectImpl implements Destructible{
+public class DestructibleImpl extends GameObjectImpl implements Destructible {
 
     private int durability;
     private Bounds bound;    
 
-    public DestructibleImpl(int width, int height, Position position, GameObjectType type, int durability) {
+    public DestructibleImpl(final int width, final int height, final Position position, final GameObjectType type, final int durability) {
         super(width, height, position, type);
         this.durability = durability;
     }
@@ -31,7 +31,7 @@ public class DestructibleImpl extends GameObjectImpl implements Destructible{
 
     @Override
     public Boolean isBroken() {
-        if(this.durability <= 0) {
+        if (this.durability <= 0) {
             return true;
         }
         return false;
@@ -45,7 +45,6 @@ public class DestructibleImpl extends GameObjectImpl implements Destructible{
     @Override
     public void decDurability() {
         this.durability--;
-        
     }
 
 }
