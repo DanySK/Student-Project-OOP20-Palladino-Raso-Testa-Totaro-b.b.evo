@@ -7,11 +7,14 @@ import java.util.ResourceBundle;
 
 import controller.menu.SceneController;
 import controller.menu.SceneControllerImpl;
+import controller.sound.SoundController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -24,6 +27,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import view.utilities.PersonalFonts;
 import view.utilities.PersonalImages;
+import view.utilities.PersonalSounds;
 import view.utilities.PersonalViews;
 
 
@@ -56,6 +60,8 @@ public class ControllerTutorial implements Initializable {
 
     private static final int SIZEFONTTITLE = 64;
     private static final int SIZEFONT = 24;
+    private static final int SIZEWIDTH = 20;
+    private static final int SIZEHEIGHT = 20;
     private SceneController sceneController;
     private MediaPlayer player;
 
@@ -69,12 +75,14 @@ public class ControllerTutorial implements Initializable {
             this.loadFont();
             this.loadListener();
             this.resizable();
+            this.loadImage();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
     }
 
     private void loadVideo() throws MalformedURLException {
+        SoundController.stopMusic();
         final URL videoUrl = new URL(new File(this.getClass().getResource(PersonalImages.TUTORIAL_VIDEO.getPath()).getFile()).toURI().toString());
         final Media media = new Media(videoUrl.toExternalForm());
         this.player = new MediaPlayer(media);
@@ -83,6 +91,14 @@ public class ControllerTutorial implements Initializable {
 
         // Add player at MediaView
         this.videoTutorial.setMediaPlayer(player);
+    }
+
+    private void loadImage() {
+        final ImageView imgPlay = new ImageView(
+                new Image(this.getClass().getResourceAsStream(PersonalImages.BACK_IMG.getPath())));
+        imgPlay.setFitWidth(SIZEWIDTH);
+        imgPlay.setFitHeight(SIZEHEIGHT);
+        this.buttonBack.setGraphic(imgPlay);
     }
 
     private void loadFont() {
@@ -98,6 +114,10 @@ public class ControllerTutorial implements Initializable {
                                              PersonalViews.SCENE_MAIN_MENU.getPath(), 
                                              this.window.getWidth(),
                                              this.window.getHeight());
+            //Play Button CLick Sound
+            SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
+
+            //Stop video
             player.stop();
         });
 
