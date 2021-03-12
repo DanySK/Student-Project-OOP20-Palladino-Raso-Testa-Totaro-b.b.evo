@@ -19,6 +19,9 @@ import javafx.scene.media.MediaPlayer;
 public final class SoundController {
 
     private static Clip clip;
+    private static boolean clipIsActived;
+
+    { clipIsActived = false; }
 
     private SoundController() {
 
@@ -36,20 +39,24 @@ public final class SoundController {
 
     public static void playMusic(final String path) {
             try {
-                final File musicPath = new File(path);
-                final var audio = AudioSystem.getAudioInputStream(musicPath);
-                clip = AudioSystem.getClip();
-                clip.open(audio);
-                clip.start();
-                clip.loop(Clip.LOOP_CONTINUOUSLY);
+                    if (!clipIsActived)  {
+                        final File musicPath = new File(path);
+                        final var audio = AudioSystem.getAudioInputStream(musicPath);
+                        clip = AudioSystem.getClip();
+                        clip.open(audio);
+                        clip.start();
+                        clip.loop(Clip.LOOP_CONTINUOUSLY);
+                        clipIsActived = true;
+                    }
+
+
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
                 e.printStackTrace();
             }
-
     }
 
     public static void stopMusic() {
-        System.out.println(clip.isActive());
+        clipIsActived = false;
         clip.stop();
     }
 }

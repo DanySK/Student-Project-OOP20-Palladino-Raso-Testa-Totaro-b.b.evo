@@ -62,6 +62,8 @@ public class ControllerTutorial implements Initializable {
     private static final int SIZEFONT = 24;
     private static final int SIZEWIDTH = 20;
     private static final int SIZEHEIGHT = 20;
+    private static final int CENTER_VIDEO_POSITION = 2;
+    private static final int CENTER_BUTTON_POSITION = 4;
     private SceneController sceneController;
     private MediaPlayer player;
 
@@ -82,9 +84,15 @@ public class ControllerTutorial implements Initializable {
     }
 
     private void loadVideo() throws MalformedURLException {
+
+        //Stop the menù music
         SoundController.stopMusic();
+
+        //Load the video
         final URL videoUrl = new URL(new File(this.getClass().getResource(PersonalImages.TUTORIAL_VIDEO.getPath()).getFile()).toURI().toString());
         final Media media = new Media(videoUrl.toExternalForm());
+
+        //Set video into player
         this.player = new MediaPlayer(media);
         this.player.setAutoPlay(true);
         this.player.seek(Duration.INDEFINITE);
@@ -119,6 +127,7 @@ public class ControllerTutorial implements Initializable {
 
             //Stop video
             player.stop();
+
         });
 
     }
@@ -129,11 +138,12 @@ public class ControllerTutorial implements Initializable {
         this.panel.prefHeightProperty().bind(this.window.heightProperty());
         this.panel.prefWidthProperty().bind(this.window.widthProperty());
 
-        this.videoTutorial.fitHeightProperty().bind(this.panel.heightProperty().divide(2));
-        this.videoTutorial.fitWidthProperty().bind(this.panel.widthProperty().divide(2));
+        this.videoTutorial.fitHeightProperty().bind(this.panel.heightProperty().divide(CENTER_VIDEO_POSITION));
+        this.videoTutorial.fitWidthProperty().bind(this.panel.widthProperty().divide(CENTER_VIDEO_POSITION));
 
-        this.buttonBack.prefWidthProperty().bind(this.containerBackButton.widthProperty().divide(4));
-        this.buttonBack.prefHeightProperty().bind(this.containerBackButton.heightProperty().divide(4));
+        this.buttonBack.prefWidthProperty().bind(this.containerBackButton.widthProperty().divide(CENTER_BUTTON_POSITION));
+        this.buttonBack.prefHeightProperty().bind(this.containerBackButton.heightProperty().divide(CENTER_BUTTON_POSITION));
+
     }
 
 }

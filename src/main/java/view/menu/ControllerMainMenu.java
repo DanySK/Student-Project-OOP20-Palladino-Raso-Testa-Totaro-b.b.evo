@@ -69,6 +69,7 @@ public class ControllerMainMenu implements Initializable {
     private static final int SIZEFONTCOIN = 24;
     private static final int SIZEWIDTH = 40;
     private static final int SIZEHEIGHT = 40;
+    private static final int CENTER_POSITION = 2;
 
 
     /**
@@ -176,10 +177,10 @@ public class ControllerMainMenu implements Initializable {
 
     private void resizable() {
 
-        this.btnPlay.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(2));
-        this.btnSettings.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(2));
-        this.btnTutorial.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(2));
-        this.btnRanking.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(2));
+        this.btnPlay.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(CENTER_POSITION));
+        this.btnSettings.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(CENTER_POSITION));
+        this.btnTutorial.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(CENTER_POSITION));
+        this.btnRanking.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(CENTER_POSITION));
 
         // Title
         this.lblTitle.setWrapText(true);

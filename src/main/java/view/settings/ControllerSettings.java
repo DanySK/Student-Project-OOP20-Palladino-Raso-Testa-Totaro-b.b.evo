@@ -11,7 +11,6 @@ import controller.menu.SceneControllerImpl;
 import controller.sound.SoundController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -68,6 +67,7 @@ public class ControllerSettings implements Initializable {
         private static final int SIZEFONT = 24;
         private static final int SIZEWIDTH = 20;
         private static final int SIZEHEIGHT = 20;
+        private static final int CENTER_POSITION = 3;
 
 
         /**
@@ -100,8 +100,6 @@ public class ControllerSettings implements Initializable {
                 //Play Button CLick Sound
                 SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
 
-                //Stop Music, and contiune the menù music
-                SoundController.stopMusic();
              });
 
             //CheckBox SoundFx Listener
@@ -145,11 +143,11 @@ public class ControllerSettings implements Initializable {
                 this.panel.prefHeightProperty().bind(this.window.heightProperty());
                 this.panel.prefWidthProperty().bind(this.window.widthProperty());
 
-                this.ckSoundFX.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(3));
-                this.ckSound.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(3));
-                this.rbUseLeftRight.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(3));
-                this.rbUseUpDown.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(3));
-                this.btnBack.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(3));
+                this.ckSoundFX.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(CENTER_POSITION));
+                this.ckSound.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(CENTER_POSITION));
+                this.rbUseLeftRight.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(CENTER_POSITION));
+                this.rbUseUpDown.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(CENTER_POSITION));
+                this.btnBack.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(CENTER_POSITION));
 
                 this.lblTitle.setWrapText(true);
         }
