@@ -1,6 +1,6 @@
 package model.entities;
 
-import javafx.geometry.Bounds;
+import javafx.scene.shape.Rectangle;
 import model.utilities.GameObjectType;
 import model.utilities.Position;
 
@@ -10,10 +10,10 @@ import model.utilities.Position;
  */
 public class GameObjectImpl implements GameObj {
 
-    private final int width;
-    private final int height;
-    protected Position position;
-    protected final GameObjectType type;
+    public final int width;
+    public final int height;
+    public Position position;
+    public final GameObjectType type;
 
     public GameObjectImpl(final int width, final int height, final Position position, final GameObjectType type) {
         this.width = width;
@@ -23,8 +23,8 @@ public class GameObjectImpl implements GameObj {
     }
 
     @Override
-    public Bounds getBound() {
-        return null;
+    public Rectangle getBound() {
+        return new Rectangle(position.getX(), position.getY(), width, height);
     }
 
     @Override

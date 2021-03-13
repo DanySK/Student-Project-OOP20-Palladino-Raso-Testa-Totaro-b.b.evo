@@ -1,6 +1,6 @@
 package model.entities;
 
-import javafx.geometry.Bounds;
+import javafx.scene.shape.Rectangle;
 import model.utilities.GameObjectType;
 import model.utilities.Position;
 
@@ -16,7 +16,7 @@ public interface GameObj {
      * 
      * @return the Bound that represents the occupied space.
      */
-    Bounds getBound();
+    Rectangle getBound();
     /**
      * Used to know the position of a GameObj in the game world.
      * 
