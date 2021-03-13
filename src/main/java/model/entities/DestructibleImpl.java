@@ -1,13 +1,12 @@
 package model.entities;
 
-import javafx.geometry.Bounds;
+import javafx.scene.shape.Rectangle;
 import model.utilities.GameObjectType;
 import model.utilities.Position;
 
 public class DestructibleImpl extends GameObjectImpl implements Destructible {
 
     private int durability;
-    private Bounds bound;    
 
     public DestructibleImpl(final int width, final int height, final Position position, final GameObjectType type, final int durability) {
         super(width, height, position, type);
@@ -15,8 +14,8 @@ public class DestructibleImpl extends GameObjectImpl implements Destructible {
     }
 
     @Override
-    public Bounds getBound() {
-        return bound;
+    public Rectangle getBound() {
+        return new Rectangle(position.getX(), position.getY(), width, height);
     }
 
     @Override
