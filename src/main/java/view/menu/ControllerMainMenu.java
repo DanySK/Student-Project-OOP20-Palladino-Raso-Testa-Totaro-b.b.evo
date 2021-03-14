@@ -4,8 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-import controller.menu.SceneController;
-import controller.menu.SceneControllerImpl;
+import controller.menu.SceneLoader;
 import controller.sound.SoundController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -64,7 +63,6 @@ public class ControllerMainMenu implements Initializable {
     @FXML
     private Button btnRanking;
 
-    private SceneController sceneController;
     private static final int SIZEFONT = 42;
     private static final int SIZEFONTCOIN = 24;
     private static final int SIZEWIDTH = 40;
@@ -89,33 +87,33 @@ public class ControllerMainMenu implements Initializable {
 
         // Settings Listener
         this.btnSettings.setOnAction(event -> {
-            this.sceneController = new SceneControllerImpl((Stage) ((Node) event.getSource()).getScene().getWindow());
-            this.sceneController.switchScene(PersonalViews.SCENE_SETTINGS.getTitleScene(),
-                                             PersonalViews.SCENE_SETTINGS.getPath(), 
-                                             this.window.getWidth(),
-                                             this.window.getHeight());
+            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                                     PersonalViews.SCENE_SETTINGS.getPath(), 
+                                     PersonalViews.SCENE_SETTINGS.getTitleScene(), 
+                                     this.window.getWidth(), 
+                                     this.window.getHeight());
             //Play Button CLick Sound
             SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
         });
 
         // Tutorial Listener
         this.btnTutorial.setOnAction(event -> {
-            this.sceneController = new SceneControllerImpl((Stage) ((Node) event.getSource()).getScene().getWindow());
-            this.sceneController.switchScene(PersonalViews.SCENE_TUTORIAL.getTitleScene(), 
-                                             PersonalViews.SCENE_TUTORIAL.getPath(), 
-                                             this.window.getWidth(),
-                                             this.window.getHeight());
+            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                                    PersonalViews.SCENE_TUTORIAL.getPath(), 
+                                    PersonalViews.SCENE_TUTORIAL.getTitleScene(), 
+                                    this.window.getWidth(), 
+                                    this.window.getHeight());
             //Play Button CLick Sound
             SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
         });
 
         // Ranking Listener
         this.btnRanking.setOnAction(event -> {
-            this.sceneController = new SceneControllerImpl((Stage) ((Node) event.getSource()).getScene().getWindow());
-            this.sceneController.switchScene(PersonalViews.SCENE_RANKING.getTitleScene(), 
-                                             PersonalViews.SCENE_RANKING.getPath(), 
-                                             this.window.getWidth(),
-                                             this.window.getHeight());
+            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                                    PersonalViews.SCENE_RANKING.getPath(), 
+                                    PersonalViews.SCENE_RANKING.getTitleScene(), 
+                                    this.window.getWidth(), 
+                                    this.window.getHeight());
             //Play Button CLick Sound
             SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
         });

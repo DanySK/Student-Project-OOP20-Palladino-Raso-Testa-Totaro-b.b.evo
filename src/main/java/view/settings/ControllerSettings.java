@@ -6,8 +6,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-import controller.menu.SceneController;
-import controller.menu.SceneControllerImpl;
+import controller.menu.SceneLoader;
 import controller.sound.SoundController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,7 +61,6 @@ public class ControllerSettings implements Initializable {
         @FXML
         private Button btnBack;
 
-        private SceneController sceneController;
         private static final int SIZEFONTTITLE = 64;
         private static final int SIZEFONT = 24;
         private static final int SIZEWIDTH = 20;
@@ -91,11 +89,11 @@ public class ControllerSettings implements Initializable {
 
             //Button back Listener
             this.btnBack.setOnAction(event -> {
-                this.sceneController = new SceneControllerImpl((Stage) ((Node) event.getSource()).getScene().getWindow());
-                this.sceneController.switchScene(PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
-                                                 PersonalViews.SCENE_MAIN_MENU.getPath(), 
-                                                 this.window.getWidth(), 
-                                                 this.window.getHeight());
+                SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                                        PersonalViews.SCENE_MAIN_MENU.getPath(), 
+                                        PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
+                                        this.window.getWidth(), 
+                                        this.window.getHeight());
 
                 //Play Button CLick Sound
                 SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());

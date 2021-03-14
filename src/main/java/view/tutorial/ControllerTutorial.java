@@ -5,8 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import controller.menu.SceneController;
-import controller.menu.SceneControllerImpl;
+import controller.menu.SceneLoader;
 import controller.sound.SoundController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -64,7 +63,6 @@ public class ControllerTutorial implements Initializable {
     private static final int SIZEHEIGHT = 20;
     private static final int CENTER_VIDEO_POSITION = 2;
     private static final int CENTER_BUTTON_POSITION = 4;
-    private SceneController sceneController;
     private MediaPlayer player;
 
      /**
@@ -117,11 +115,12 @@ public class ControllerTutorial implements Initializable {
     private void loadListener() {
         // ButtonBack Listener
         this.buttonBack.setOnAction(event -> {
-            this.sceneController = new SceneControllerImpl((Stage) ((Node) event.getSource()).getScene().getWindow());
-            this.sceneController.switchScene(PersonalViews.SCENE_MAIN_MENU.getTitleScene(),
-                                             PersonalViews.SCENE_MAIN_MENU.getPath(), 
-                                             this.window.getWidth(),
-                                             this.window.getHeight());
+            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                                    PersonalViews.SCENE_MAIN_MENU.getPath(), 
+                                    PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
+                                    this.window.getWidth(), 
+                                    this.window.getHeight());
+
             //Play Button CLick Sound
             SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
 
