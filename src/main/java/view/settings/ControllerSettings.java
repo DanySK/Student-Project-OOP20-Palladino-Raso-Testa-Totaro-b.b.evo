@@ -6,12 +6,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-import controller.menu.SceneController;
-import controller.menu.SceneControllerImpl;
+import controller.menu.SceneLoader;
 import controller.sound.SoundController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -63,11 +61,11 @@ public class ControllerSettings implements Initializable {
         @FXML
         private Button btnBack;
 
-        private SceneController sceneController;
         private static final int SIZEFONTTITLE = 64;
         private static final int SIZEFONT = 24;
         private static final int SIZEWIDTH = 20;
         private static final int SIZEHEIGHT = 20;
+        private static final int CENTER_POSITION = 3;
 
 
         /**
@@ -91,17 +89,15 @@ public class ControllerSettings implements Initializable {
 
             //Button back Listener
             this.btnBack.setOnAction(event -> {
-                this.sceneController = new SceneControllerImpl((Stage) ((Node) event.getSource()).getScene().getWindow());
-                this.sceneController.switchScene(PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
-                                                 PersonalViews.SCENE_MAIN_MENU.getPath(), 
-                                                 this.window.getWidth(), 
-                                                 this.window.getHeight());
+                SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                                        PersonalViews.SCENE_MAIN_MENU.getPath(), 
+                                        PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
+                                        this.window.getWidth(), 
+                                        this.window.getHeight());
 
                 //Play Button CLick Sound
                 SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
 
-                //Stop Music, and contiune the menù music
-                SoundController.stopMusic();
              });
 
             //CheckBox SoundFx Listener
@@ -145,11 +141,11 @@ public class ControllerSettings implements Initializable {
                 this.panel.prefHeightProperty().bind(this.window.heightProperty());
                 this.panel.prefWidthProperty().bind(this.window.widthProperty());
 
-                this.ckSoundFX.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(3));
-                this.ckSound.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(3));
-                this.rbUseLeftRight.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(3));
-                this.rbUseUpDown.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(3));
-                this.btnBack.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(3));
+                this.ckSoundFX.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(CENTER_POSITION));
+                this.ckSound.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(CENTER_POSITION));
+                this.rbUseLeftRight.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(CENTER_POSITION));
+                this.rbUseUpDown.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(CENTER_POSITION));
+                this.btnBack.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(CENTER_POSITION));
 
                 this.lblTitle.setWrapText(true);
         }

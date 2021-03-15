@@ -2,7 +2,6 @@ package view.entities;
 
 import java.awt.Graphics;
 import java.util.Map;
-
 /*
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -19,8 +18,8 @@ public class MovableGameObjView extends SimpleGameObjView implements MovableView
 
     private Status status;
     private Direction direction;
-    private final Map<Pair<Direction, Status>, BufferedImage> images;
-    
+    //private final Map<Pair<Direction, Status>, BufferedImage> images;
+
     @Override
     public GameObjectType getType() {
         // TODO Auto-generated method stub

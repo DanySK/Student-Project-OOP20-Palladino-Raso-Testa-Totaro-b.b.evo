@@ -4,8 +4,7 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 
 
-import controller.menu.SceneController;
-import controller.menu.SceneControllerImpl;
+import controller.menu.SceneLoader;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import view.utilities.PersonalViews;
@@ -20,18 +19,18 @@ public class Main extends Application {
      */
     @Override
     public void start(final Stage primaryStage) throws Exception {
+
         /*Get screen size */
         final GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        final SceneController sceneController = new SceneControllerImpl(primaryStage);
 
-        sceneController.switchScene(PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
+        SceneLoader.switchScene(primaryStage, 
                 PersonalViews.SCENE_MAIN_MENU.getPath(), 
+                PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
                 graphicsDevice.getDisplayMode().getWidth() / 2, 
                 graphicsDevice.getDisplayMode().getHeight() / 2);
 
         primaryStage.setMinWidth(MIN_WIDHT);
         primaryStage.setMinHeight(MIN_HEIGHT);
-
     }
 
     public static void main(final String[] args) {

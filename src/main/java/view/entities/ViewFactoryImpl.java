@@ -18,16 +18,19 @@ public class ViewFactoryImpl implements ViewFactory {
     /**
      * {@inheritDoc}
      */
+
     @Override
     public MovableView ball() {
+        /*
         return new MovableGameObjView(GameObjectType.BALL, WIDTHIMAGE, HEIGHTIMAGE,
                 this.loadBallImages(GameObjectType.BALL.toString()));
+                */
+        return null;
     }
-    
+
     private Map<Pair<Direction, Status>, BufferedImage> loadBallImages(final String type) {
         final Map<Pair<Direction, Status>, BufferedImage> images = new HashMap<>();
-        
-        images.put(new Pair<>(dir, Status.CHASING), BufferedImageLoader.loadImage("Images/Ball/Yellow_Ball.png"));
+       // images.put(new Pair<>(dir, Status.CHASING), BufferedImageLoader.loadImage("Images/Ball/Yellow_Ball.png"));
         return images;
     }
 
