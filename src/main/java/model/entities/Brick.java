@@ -15,4 +15,5 @@ public interface Brick {
     /*decreases bricks's durability by an integer number*/
     void decreaseDurability(int damage);
 
+    
 }

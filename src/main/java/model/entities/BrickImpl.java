@@ -4,8 +4,7 @@ import javafx.scene.shape.Rectangle;
 import model.utilities.GameObjectType;
 import model.utilities.Position;
 
-public class BrickImpl extends GameObjectImpl implements Brick {
-
+public class BrickImpl extends GameObject implements Brick {
     public int durability;
 
     public BrickImpl(final int width, final int height, final Position position, final GameObjectType type, final int durability) {

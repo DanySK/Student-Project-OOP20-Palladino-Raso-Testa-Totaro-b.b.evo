@@ -29,8 +29,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="4" language="java" name="model.entities.GameObjectImpl" project="BrickBreaker-Evolution" 
-    file="/BrickBreaker-Evolution/src/main/java/model/entities/GameObjectImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="model.entities.GameObject" project="BrickBreaker-Evolution" 
+    file="/BrickBreaker-Evolution/src/main/java/model/entities/GameObject.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="633" y="493"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

@@ -30,7 +30,7 @@ public class PoweUpImpl extends BrickImpl implements PowerUp{
         //se tocca il paddle attiva il powerup e distrugge il gameobj 
         
         //se tocca il fondo non attiva il pwrup e distrugge il gameobj
-    
+
     }
 
     @Override

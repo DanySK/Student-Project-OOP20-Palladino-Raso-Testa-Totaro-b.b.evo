@@ -6,4 +6,5 @@ public interface PowerUp extends Brick {
     
     /*activates the powerup when its boundaries hit the paddle*/
     void activatePowerUp(int seconds);
+    
 }
