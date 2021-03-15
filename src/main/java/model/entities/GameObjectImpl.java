@@ -8,7 +8,7 @@ import model.utilities.Position;
  * 
  *
  */
-public class GameObjectImpl implements GameObj {
+public abstract class GameObjectImpl{
 
     public final int width;
     public final int height;
@@ -22,17 +22,17 @@ public class GameObjectImpl implements GameObj {
         this.type = type;
     }
 
-    @Override
+
     public Rectangle getBound() {
         return new Rectangle(position.getX(), position.getY(), width, height);
     }
 
-    @Override
+
     public Position getPosition() {
         return this.position;
     }
 
-    @Override
+
     public GameObjectType getType() {
         return this.type;
     }
