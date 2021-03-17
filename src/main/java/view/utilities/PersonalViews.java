@@ -8,6 +8,11 @@ public enum PersonalViews {
     SCENE_MAIN_MENU("/Layout/MainMenu.fxml", "BrickBreacker-EVO"),
 
     /**
+     * Path for load Character Layout.
+     */
+    SCENE_CHARACTER_MENU("/Layout/CharacterMenu.fxml", "BrickBreacker-EVO"),
+
+    /**
      * Path for load Settings Menu Layout.
      */
     SCENE_SETTINGS("/Layout/SettingsMenu.fxml", "Settings"),

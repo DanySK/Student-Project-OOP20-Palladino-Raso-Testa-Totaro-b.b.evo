@@ -6,7 +6,7 @@
 
 
 #lblTitle{
-	-fx-text-fill: #FFFFFF;
+	-fx-text-fill: linear-gradient(from 25% 25% to 100% 100%, #005AA7, #FFFDE4);
 	-fx-alignment: center;
 }
 
@@ -32,8 +32,8 @@ AnchorPane {
 }*/
 
 .menuButton{
-	-fx-background-color: #FFFFFF;
-	-fx-text-fill: #000000;
+	-fx-background-color : #FFFFFF;
+	-fx-text-fill: linear-gradient(from 25% 25% to 100% 100%, #a8c0ff, #3f2b96);
 	-fx-background-radius : 50px;
 	-fx-padding: 10px;
 }
