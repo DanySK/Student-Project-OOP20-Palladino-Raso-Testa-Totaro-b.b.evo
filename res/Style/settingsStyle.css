@@ -33,7 +33,7 @@ AnchorPane {
 
 .menuButton{
 	-fx-background-color: #FFFFFF;
-	-fx-text-fill: #000000;
+	-fx-text-fill: linear-gradient(from 25% 25% to 100% 100%, #a8c0ff, #3f2b96);
 	-fx-background-radius : 50px;
 }
 
@@ -47,7 +47,7 @@ AnchorPane {
 .check-box .box {
 	
 	-fx-background-color: white;
-	-fx-border-color: #e40017;
+	-fx-border-color: linear-gradient(from 25% 25% to 100% 100%, #a8ff78, #78ffd6);
 	-fx-border-radius: 30px; 
 	-fx-background-radius : 30px;
 
@@ -63,14 +63,14 @@ AnchorPane {
 .check-box:selected .box {
 	
 	-fx-background-radius : 30px;
-	-fx-background-color: #e40017;
+	-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #a8ff78, #78ffd6);
 }
 
 /* Radio Button  */
 
 .radio-button .radio {
     -fx-border-width: 1px;
-	-fx-border-color: #e40017;
+	-fx-border-color: linear-gradient(from 25% 25% to 100% 100%, #a8ff78, #78ffd6);
     -fx-background-color: white;
     -fx-background-image: null;
     -fx-border-radius: 15px;
@@ -95,8 +95,8 @@ AnchorPane {
 .radio-button .dot {
     -fx-background-radius: 50px;
     -fx-padding: 8px;
-    -fx-mark-highlight-color:  #e40017 ;
-    -fx-mark-color:  #e40017 ;
+    -fx-mark-highlight-color:  linear-gradient(from 25% 25% to 100% 100%, #a8ff78, #78ffd6);
+    -fx-mark-color: linear-gradient(from 25% 25% to 100% 100%, #a8ff78, #78ffd6);
 }
 
 

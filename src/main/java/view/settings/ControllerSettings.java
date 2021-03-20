@@ -69,7 +69,7 @@ public class ControllerSettings implements Initializable {
 
 
         /**
-         *
+         * Method that initialize all javaFx component.
          */
         @Override
         public void initialize(final URL location, final ResourceBundle resources) {
