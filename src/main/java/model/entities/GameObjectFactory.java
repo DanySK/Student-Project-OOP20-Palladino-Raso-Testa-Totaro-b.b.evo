@@ -26,7 +26,7 @@ public interface GameObjectFactory {
      * @param position the position of the paddle
      * @return the paddle
      */
-    GameObject createPaddle(Position position);
+    Movable createPaddle(Position position);
     /**
      * Used to build a wall.
      * 

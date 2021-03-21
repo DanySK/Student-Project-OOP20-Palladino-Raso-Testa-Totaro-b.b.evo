@@ -1,10 +1,12 @@
 package model.entities;
 
-import javafx.scene.shape.Rectangle;
 import model.utilities.GameObjectType;
 import model.utilities.Position;
 
 public class BrickImpl extends GameObject implements Brick {
+    /**
+     * 
+     */
     public int durability;
 
     public BrickImpl(final int width, final int height, final Position position, final GameObjectType type, final int durability) {
@@ -12,6 +14,9 @@ public class BrickImpl extends GameObject implements Brick {
             this.durability = durability;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Boolean isBroken() {
         if (this.durability <= 0) {
@@ -20,11 +25,17 @@ public class BrickImpl extends GameObject implements Brick {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void decreaseDurability(int damage) {
+    public void decreaseDurability(final int damage) {
         this.durability -= damage;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getDurability() {
         return this.durability;

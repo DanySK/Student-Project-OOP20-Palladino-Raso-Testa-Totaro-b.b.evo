@@ -13,7 +13,7 @@ public class PowerUpImpl extends BrickImpl implements PowerUp {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public Boolean isBroken() {
@@ -25,7 +25,7 @@ public class PowerUpImpl extends BrickImpl implements PowerUp {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void dropPowerUp() {
@@ -40,7 +40,7 @@ public class PowerUpImpl extends BrickImpl implements PowerUp {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void activatePowerUp(final int seconds) {
