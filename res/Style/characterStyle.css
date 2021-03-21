@@ -1,0 +1,44 @@
+/* 
+ HBox,VBox,BorderPane {
+	-fx-border-color: red;
+    -fx-border-insets: 5;
+    -fx-border-width: 3;
+    -fx-border-style: dashed;
+}
+AnchorPane {
+	-fx-border-color: blue;
+    -fx-border-insets: 5;
+    -fx-border-width: 3;
+    -fx-border-style: dashed;
+}
+*/
+.mainPanel {
+	-fx-background-image: url('/Images/character/bgCharacter.jpg');
+	-fx-background-position: 1%;
+	-fx-background-repeat: stretch;
+}
+
+#lblTitle {
+	-fx-text-fill: linear-gradient(from 25% 25% to 100% 100%, #a8ff78, #78ffd6);
+	-fx-alignment: center;
+}
+
+.menuButton{
+	-fx-background-color: #FFFFFF;
+	-fx-text-fill: #000000;
+	-fx-background-radius : 50px;
+	-fx-padding: 10px;
+}
+
+.menuButton:hover{
+	-fx-background-color: #212121;
+	-fx-text-fill: #000000;
+	-fx-background-radius : 50px;
+}
+
+.menuField{
+	-fx-background-color: #FFFFFF;
+	-fx-text-fill: linear-gradient(from 25% 25% to 100% 100%, #a8ff78, #78ffd6);
+	-fx-background-radius : 50px;
+	-fx-padding: 20px;
+}

@@ -84,6 +84,16 @@ public class ControllerMainMenu implements Initializable {
     }
 
     private void loadListener() {
+        //Play Listener
+        this.btnPlay.setOnAction(event -> {
+            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                                     PersonalViews.SCENE_CHARACTER_MENU.getPath(), 
+                                     PersonalViews.SCENE_CHARACTER_MENU.getTitleScene(), 
+                                     this.window.getWidth(), 
+                                     this.window.getHeight());
+            //Play Button CLick Sound
+            SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
+        });
 
         // Settings Listener
         this.btnSettings.setOnAction(event -> {

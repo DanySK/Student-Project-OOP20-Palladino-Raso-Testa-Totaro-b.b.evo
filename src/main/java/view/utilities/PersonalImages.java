@@ -34,6 +34,11 @@ public enum PersonalImages {
     CURSOR_PACMAN_IMG("/Images/Cursor/PacmanCursor.png"),
 
     /**
+     * Path for Next icon.
+     */
+    NEXT_IMG("/Images/character/next.png"),
+
+    /**
      * Path for Game Icon Cursor Image.
      */
     GAME_ICON_IMG("/Images/Icon/GameIcon.png"),
