@@ -2,6 +2,7 @@ package model.entities;
 
 import java.awt.Rectangle;
 
+import controller.utilities.MapGame;
 import controller.utilities.MapIO;
 import model.utilities.Direction;
 import model.utilities.GameObjectType;
@@ -12,19 +13,19 @@ public class MovableGameObj extends GameObject implements Movable {
     private Status status;
     private Direction direction;
     private final int speed;
-    private static final Position MIDDLELEFT = new Position(0, ((MapIO.getRows() - 1) / 2) * MapIO.getScale());
-    private static final Position MIDDLERIGHT  = new Position(MapIO.getColumns() * MapIO.getScale(), 
-                                                             ((MapIO.getRows() - 1) / 2) * MapIO.getScale());
+    private static final Position MIDDLELEFT = new Position(0, ((MapGame.getRows() - 1) / 2) * MapGame.getScale());
+    private static final Position MIDDLERIGHT  = new Position(MapGame.getColumns() * MapGame.getScale(), 
+                                                             ((MapGame.getRows() - 1) / 2) * MapGame.getScale());
     /**
      * Construct an abstract movable.
      * 
-     * @param width     {@link SimpleGameObj}
-     * @param height    {@link SimpleGameObj}
-     * @param position  {@link SimpleGameObj}
-     * @param type      {@link SimpleGameObj}
-     * @param direction the first direction of the entity
-     * @param status    the initial status of the entity
-     * @param speed     the first speed of the entity
+     * @param width     {@link GameObject}
+     * @param height    {@link GameObject}
+     * @param position  {@link GameObject}
+     * @param type      {@link GameObject}
+     * @param direction the first direction of the gameObj
+     * @param status    the initial status of the gameObj
+     * @param speed     the first speed of the gameObj
      */
     protected MovableGameObj(final int width, final int height, final Position position, final GameObjectType type,
             final Direction direction, final Status status, final int speed) {
