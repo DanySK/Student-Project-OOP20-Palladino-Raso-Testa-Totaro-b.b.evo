@@ -12,11 +12,11 @@ public enum Direction {
     DOWN_RIGHT,
     LEFT,
     RIGHT;
-    
-    public static List<Direction> directionList(Direction d){
+
+    public static List<Direction> directionList(final Direction dir) {
         return Arrays.asList(Direction.values());
     }
-    
+
     /* this method returns a string for each direction */
     @Override
     public String toString() {

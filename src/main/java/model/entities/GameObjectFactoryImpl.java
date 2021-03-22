@@ -46,7 +46,7 @@ public class GameObjectFactoryImpl implements GameObjectFactory  {
     @Override
     public Movable createPaddle(final Position position) {
         return new MovableGameObj(PADDLEWIDTH, PADDLEHEIGHT, position, GameObjectType.PADDLE, Direction.LEFT, 
-                Status.TO_HIT, PADDLESPEED);
+                Status.NOT_DESTR, PADDLESPEED);
     }
 
     /**
@@ -63,7 +63,7 @@ public class GameObjectFactoryImpl implements GameObjectFactory  {
     @Override
     public Movable createBall(final Position position) {
         return new MovableGameObj(BALLWIDTH, BALLHEIGHT, position, GameObjectType.BALL, Direction.UP, 
-                Status.HIT, BALLSPEED);
+                Status.DESTR, BALLSPEED);
     }
 
 }

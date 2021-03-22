@@ -10,15 +10,18 @@ public enum Status {
     /**
      * Represent a movable gamObj that can not destroy.
      */
-    TO_HIT,
+    NOT_DESTR,
+
     /**
      * Represent a movable entity that can destroy.
      */
-    HIT,
+    DESTR,
+
     /**
      * Represent the last moments of hit gamObj to hit gamObj.
      */
-    HIT_END;
+    BROKEN;
+
     /**
      * Used to know all the possible status of gamObj.
      * 
