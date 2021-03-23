@@ -80,7 +80,7 @@ public class ControllerSettings implements Initializable {
         }
         private void loadImage() {
             final ImageView imgPlay = new ImageView(
-                    new Image(this.getClass().getResourceAsStream(PersonalImages.BACK_IMG.getPath())));
+                    new Image(ClassLoader.getSystemResourceAsStream(PersonalImages.BACK_IMG.getPath())));
             imgPlay.setFitWidth(SIZEWIDTH);
             imgPlay.setFitHeight(SIZEHEIGHT);
             this.btnBack.setGraphic(imgPlay);
@@ -96,7 +96,7 @@ public class ControllerSettings implements Initializable {
                                         this.window.getHeight());
 
                 //Play Button CLick Sound
-                SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
+                SoundController.playSoundFx(ClassLoader.getSystemResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
 
              });
 
@@ -104,35 +104,35 @@ public class ControllerSettings implements Initializable {
             this.ckSoundFX.selectedProperty().addListener((obs, oldV, newV) -> {
 
                 //Play Sound
-                SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_SPECIALBUTTON.getPath()).getPath());
+                SoundController.playSoundFx(ClassLoader.getSystemResource(PersonalSounds.TICK_SPECIALBUTTON.getPath()).getPath());
             });
 
             this.ckSound.selectedProperty().addListener((obs, oldV, newV) -> {
 
                 //Play Sound
-                SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_SPECIALBUTTON.getPath()).getPath());
+                SoundController.playSoundFx(ClassLoader.getSystemResource(PersonalSounds.TICK_SPECIALBUTTON.getPath()).getPath());
             });
 
             this.rbUseLeftRight.selectedProperty().addListener((obs, oldV, newV) -> {
 
                 //Play Sound
-                SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_SPECIALBUTTON.getPath()).getPath());
+                SoundController.playSoundFx(ClassLoader.getSystemResource(PersonalSounds.TICK_SPECIALBUTTON.getPath()).getPath());
             });
 
             this.rbUseUpDown.selectedProperty().addListener((obs, oldV, newV) -> {
 
                 //Play Sound
-                SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_SPECIALBUTTON.getPath()).getPath());
+                SoundController.playSoundFx(ClassLoader.getSystemResource(PersonalSounds.TICK_SPECIALBUTTON.getPath()).getPath());
             });
         }
 
         private void loadFont() {
-                this.lblTitle.setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_TITLE.getPath()), SIZEFONTTITLE));
-                this.ckSoundFX.setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
-                this.ckSound.setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
-                this.rbUseLeftRight.setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
-                this.rbUseUpDown.setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
-                this.btnBack.setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
+                this.lblTitle.setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_TITLE.getPath()), SIZEFONTTITLE));
+                this.ckSoundFX.setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
+                this.ckSound.setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
+                this.rbUseLeftRight.setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
+                this.rbUseUpDown.setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
+                this.btnBack.setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
         }
 
         private void resizable() {

@@ -74,7 +74,7 @@ public class ControllerCharacter implements Initializable {
 
     private void loadImage() {
         final ImageView imgBack = new ImageView(
-                new Image(this.getClass().getResourceAsStream(PersonalImages.BACK_IMG.getPath())));
+                new Image(ClassLoader.getSystemResourceAsStream(PersonalImages.BACK_IMG.getPath())));
         imgBack.setFitWidth(SIZEWIDTH);
         imgBack.setFitHeight(SIZEHEIGHT);
         this.btnBack.setGraphic(imgBack);
@@ -103,13 +103,13 @@ public class ControllerCharacter implements Initializable {
 
     private void loadFont() {
         this.lblTitle
-            .setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_TITLE.getPath()), SIZEFONTTITLE));
+            .setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_TITLE.getPath()), SIZEFONTTITLE));
         this.btnBack
-            .setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
+            .setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
         this.btnNext
-            .setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
+            .setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
         this.characterNameField
-        .setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_TITLE.getPath()), SIZEFONT));
+        .setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_TITLE.getPath()), SIZEFONT));
     }
 
     private void resizable() {

@@ -87,7 +87,7 @@ public class ControllerTutorial implements Initializable {
         SoundController.stopMusic();
 
         //Load the video
-        final URL videoUrl = new URL(new File(this.getClass().getResource(PersonalImages.TUTORIAL_VIDEO.getPath()).getFile()).toURI().toString());
+        final URL videoUrl = new URL(new File(ClassLoader.getSystemResource(PersonalImages.TUTORIAL_VIDEO.getPath()).getFile()).toURI().toString());
         final Media media = new Media(videoUrl.toExternalForm());
 
         //Set video into player
@@ -101,15 +101,15 @@ public class ControllerTutorial implements Initializable {
 
     private void loadImage() {
         final ImageView imgPlay = new ImageView(
-                new Image(this.getClass().getResourceAsStream(PersonalImages.BACK_IMG.getPath())));
+                new Image(ClassLoader.getSystemResourceAsStream(PersonalImages.BACK_IMG.getPath())));
         imgPlay.setFitWidth(SIZEWIDTH);
         imgPlay.setFitHeight(SIZEHEIGHT);
         this.buttonBack.setGraphic(imgPlay);
     }
 
     private void loadFont() {
-        this.lblTitle.setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_TITLE.getPath()), SIZEFONTTITLE));
-        this.buttonBack.setFont(Font.loadFont(this.getClass().getResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
+        this.lblTitle.setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_TITLE.getPath()), SIZEFONTTITLE));
+        this.buttonBack.setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
     }
 
     private void loadListener() {
@@ -122,7 +122,7 @@ public class ControllerTutorial implements Initializable {
                                     this.window.getHeight());
 
             //Play Button CLick Sound
-            SoundController.playSoundFx(this.getClass().getResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
+            SoundController.playSoundFx(ClassLoader.getSystemResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
 
             //Stop video
             player.stop();

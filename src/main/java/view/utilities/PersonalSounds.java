@@ -5,17 +5,17 @@ public enum PersonalSounds {
     /***
      * Sound generate by click button event.
      * */
-    TICK_BUTTON("/Sounds/SoundFx/SoundClick.wav"),
+    TICK_BUTTON("Sounds/soundFx/SoundClick.wav"),
 
     /***
      * Sound generate by click event of CheckBox and Radio Button.
      * */
-    TICK_SPECIALBUTTON("/Sounds/SoundFx/SoundSpecialButton.wav"),
+    TICK_SPECIALBUTTON("Sounds/soundFx/SoundSpecialButton.wav"),
 
     /***
      * Main Menu Theme.
      * */
-    TETRIS_THEME("/Sounds/Music/KorbenikiAlexTesta(GameVersion).wav");
+    TETRIS_THEME("Sounds/music/KorbenikiAlexTesta(GameVersion).wav");
 
     private String path;
 

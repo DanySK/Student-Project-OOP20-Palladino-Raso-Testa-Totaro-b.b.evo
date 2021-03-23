@@ -2,8 +2,6 @@ package controller.menu;
 
 import java.io.IOException;
 
-import org.checkerframework.common.reflection.qual.GetClass;
-
 
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
@@ -33,11 +31,11 @@ public final class SceneLoader {
      */
     public static void switchScene(final Stage stage, final String path, final String title, final double width, final double height)  {
         try {
-            final Parent parent = FXMLLoader.load(GetClass.class.getResource(path));
+            final Parent parent = FXMLLoader.load(ClassLoader.getSystemResource(path));
             final Scene newScene = new Scene(parent, width, height);
 
             // Load cursor Image
-            final Image cursor = new Image(GetClass.class.getResourceAsStream(PersonalImages.CURSOR_PACMAN_IMG.getPath()));
+            final Image cursor = new Image(ClassLoader.getSystemResourceAsStream(PersonalImages.CURSOR_PACMAN_IMG.getPath()));
             newScene.setCursor(new ImageCursor(cursor, CURSOR_DIMENSION, CURSOR_DIMENSION));
 
             final FadeTransition fadeIn = new FadeTransition(Duration.millis(ANIMATION_DURATION), newScene.getRoot());
@@ -46,7 +44,7 @@ public final class SceneLoader {
             fadeIn.play();
 
             //Load Stage Property
-            stage.getIcons().add(new Image(GetClass.class.getResourceAsStream(PersonalImages.GAME_ICON_IMG.getPath())));
+            stage.getIcons().add(new Image(ClassLoader.getSystemResourceAsStream(PersonalImages.GAME_ICON_IMG.getPath())));
             stage.setScene(newScene);
             stage.setTitle(title);
             stage.show();
