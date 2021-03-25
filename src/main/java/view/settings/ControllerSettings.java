@@ -6,7 +6,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-import controller.menu.SceneLoader;
+import controller.menu.SceneLoaderSingleton;
 import controller.sound.SoundController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -80,7 +80,7 @@ public class ControllerSettings implements Initializable {
         }
         private void loadImage() {
             final ImageView imgPlay = new ImageView(
-                    new Image(ClassLoader.getSystemResourceAsStream(PersonalImages.BACK_IMG.getPath())));
+                    new Image(PersonalImages.BACK_IMG.getResourceAsStream()));
             imgPlay.setFitWidth(SIZEWIDTH);
             imgPlay.setFitHeight(SIZEHEIGHT);
             this.btnBack.setGraphic(imgPlay);
@@ -89,14 +89,14 @@ public class ControllerSettings implements Initializable {
 
             //Button back Listener
             this.btnBack.setOnAction(event -> {
-                SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
-                                        PersonalViews.SCENE_MAIN_MENU.getPath(), 
+                SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                                        PersonalViews.SCENE_MAIN_MENU.getURL(), 
                                         PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
                                         this.window.getWidth(), 
                                         this.window.getHeight());
 
                 //Play Button CLick Sound
-                SoundController.playSoundFx(ClassLoader.getSystemResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
+                SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
 
              });
 
@@ -104,35 +104,35 @@ public class ControllerSettings implements Initializable {
             this.ckSoundFX.selectedProperty().addListener((obs, oldV, newV) -> {
 
                 //Play Sound
-                SoundController.playSoundFx(ClassLoader.getSystemResource(PersonalSounds.TICK_SPECIALBUTTON.getPath()).getPath());
+                SoundController.playSoundFx(PersonalSounds.TICK_SPECIALBUTTON.getURL().getPath());
             });
 
             this.ckSound.selectedProperty().addListener((obs, oldV, newV) -> {
 
                 //Play Sound
-                SoundController.playSoundFx(ClassLoader.getSystemResource(PersonalSounds.TICK_SPECIALBUTTON.getPath()).getPath());
+                SoundController.playSoundFx(PersonalSounds.TICK_SPECIALBUTTON.getURL().getPath());
             });
 
             this.rbUseLeftRight.selectedProperty().addListener((obs, oldV, newV) -> {
 
                 //Play Sound
-                SoundController.playSoundFx(ClassLoader.getSystemResource(PersonalSounds.TICK_SPECIALBUTTON.getPath()).getPath());
+                SoundController.playSoundFx(PersonalSounds.TICK_SPECIALBUTTON.getURL().getPath());
             });
 
             this.rbUseUpDown.selectedProperty().addListener((obs, oldV, newV) -> {
 
                 //Play Sound
-                SoundController.playSoundFx(ClassLoader.getSystemResource(PersonalSounds.TICK_SPECIALBUTTON.getPath()).getPath());
+                SoundController.playSoundFx(PersonalSounds.TICK_SPECIALBUTTON.getURL().getPath());
             });
         }
 
         private void loadFont() {
-                this.lblTitle.setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_TITLE.getPath()), SIZEFONTTITLE));
-                this.ckSoundFX.setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
-                this.ckSound.setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
-                this.rbUseLeftRight.setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
-                this.rbUseUpDown.setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
-                this.btnBack.setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
+                this.lblTitle.setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), SIZEFONTTITLE));
+                this.ckSoundFX.setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
+                this.ckSound.setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
+                this.rbUseLeftRight.setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
+                this.rbUseUpDown.setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
+                this.btnBack.setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
         }
 
         private void resizable() {

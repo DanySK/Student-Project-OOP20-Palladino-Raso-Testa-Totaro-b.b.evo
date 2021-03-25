@@ -4,7 +4,7 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 
 
-import controller.menu.SceneLoader;
+import controller.menu.SceneLoaderSingleton;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import view.utilities.PersonalViews;
@@ -23,8 +23,8 @@ public class Main extends Application {
         /*Get screen size */
         final GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
-        SceneLoader.switchScene(primaryStage, 
-                PersonalViews.SCENE_MAIN_MENU.getPath(), 
+        SceneLoaderSingleton.switchScene(primaryStage, 
+                PersonalViews.SCENE_MAIN_MENU.getURL(), 
                 PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
                 graphicsDevice.getDisplayMode().getWidth() / 2, 
                 graphicsDevice.getDisplayMode().getHeight() / 2);

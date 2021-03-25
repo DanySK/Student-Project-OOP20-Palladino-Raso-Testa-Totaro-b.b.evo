@@ -1,5 +1,8 @@
 package view.utilities;
 
+import java.io.InputStream;
+import java.net.URL;
+
 public enum PersonalViews {
 
     /**
@@ -35,11 +38,15 @@ public enum PersonalViews {
         this.titleScene = titleScene;
     }
 
-    public String getPath() {
-        return this.path;
-    }
-
     public String getTitleScene() {
         return this.titleScene;
+    }
+
+    public URL getURL() {
+        return ClassLoader.getSystemResource(this.path);
+    }
+
+    public InputStream getResourceAsStream() {
+        return ClassLoader.getSystemResourceAsStream(this.path);
     }
 }

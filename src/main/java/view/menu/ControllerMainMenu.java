@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-import controller.menu.SceneLoader;
+import controller.menu.SceneLoaderSingleton;
 import controller.sound.SoundController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -86,46 +86,46 @@ public class ControllerMainMenu implements Initializable {
     private void loadListener() {
         //Play Listener
         this.btnPlay.setOnAction(event -> {
-            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
-                                     PersonalViews.SCENE_CHARACTER_MENU.getPath(), 
+            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                                     PersonalViews.SCENE_CHARACTER_MENU.getURL(), 
                                      PersonalViews.SCENE_CHARACTER_MENU.getTitleScene(), 
                                      this.window.getWidth(), 
                                      this.window.getHeight());
             //Play Button CLick Sound
-            SoundController.playSoundFx(ClassLoader.getSystemResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
+            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
         });
 
         // Settings Listener
         this.btnSettings.setOnAction(event -> {
-            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
-                                     PersonalViews.SCENE_SETTINGS.getPath(), 
+            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                                     PersonalViews.SCENE_SETTINGS.getURL(), 
                                      PersonalViews.SCENE_SETTINGS.getTitleScene(), 
                                      this.window.getWidth(), 
                                      this.window.getHeight());
             //Play Button CLick Sound
-            SoundController.playSoundFx(ClassLoader.getSystemResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
+            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
         });
 
         // Tutorial Listener
         this.btnTutorial.setOnAction(event -> {
-            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
-                                    PersonalViews.SCENE_TUTORIAL.getPath(), 
+            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                                    PersonalViews.SCENE_TUTORIAL.getURL(), 
                                     PersonalViews.SCENE_TUTORIAL.getTitleScene(), 
                                     this.window.getWidth(), 
                                     this.window.getHeight());
             //Play Button CLick Sound
-            SoundController.playSoundFx(ClassLoader.getSystemResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
+            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
         });
 
         // Ranking Listener
         this.btnRanking.setOnAction(event -> {
-            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
-                                    PersonalViews.SCENE_RANKING.getPath(), 
+            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                                    PersonalViews.SCENE_RANKING.getURL(), 
                                     PersonalViews.SCENE_RANKING.getTitleScene(), 
                                     this.window.getWidth(), 
                                     this.window.getHeight());
             //Play Button CLick Sound
-            SoundController.playSoundFx(ClassLoader.getSystemResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
+            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
         });
     }
 
@@ -139,45 +139,45 @@ public class ControllerMainMenu implements Initializable {
 
     private void loadFont() {
         this.lblTitle
-                .setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_TITLE.getPath()), SIZEFONT));
+                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), SIZEFONT));
         this.btnPlay
-                .setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
         this.btnSettings
-                .setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
         this.btnTutorial
-                .setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
         this.btnRanking
-                .setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
-        this.lblCoins.setFont(
-                Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONTCOIN));
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
+        this.lblCoins
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONTCOIN));
     }
 
     private void loadButtonImage() {
 
         // ButtonPlay
         final ImageView imgPlay = new ImageView(
-                new Image(ClassLoader.getSystemResourceAsStream(PersonalImages.PLAY_IMG.getPath())));
+                new Image(PersonalImages.PLAY_IMG.getResourceAsStream()));
         imgPlay.setFitWidth(SIZEWIDTH);
         imgPlay.setFitHeight(SIZEHEIGHT);
         this.btnPlay.setGraphic(imgPlay);
 
         // ButtonSettings
         final ImageView imgSettings = new ImageView(
-                new Image(ClassLoader.getSystemResourceAsStream(PersonalImages.SETTINGS_IMG.getPath())));
+                new Image(PersonalImages.SETTINGS_IMG.getResourceAsStream()));
         imgSettings.setFitWidth(SIZEWIDTH);
         imgSettings.setFitHeight(SIZEHEIGHT);
         this.btnSettings.setGraphic(imgSettings);
 
         // ButtonTutorial
         final ImageView imgTutorial = new ImageView(
-                new Image(ClassLoader.getSystemResourceAsStream(PersonalImages.TUTORIAL_IMG.getPath())));
+                new Image(PersonalImages.TUTORIAL_IMG.getResourceAsStream()));
         imgTutorial.setFitWidth(SIZEWIDTH);
         imgTutorial.setFitHeight(SIZEHEIGHT);
         this.btnTutorial.setGraphic(imgTutorial);
 
         // ButtonRanking
         final ImageView imgRanking = new ImageView(
-                new Image(ClassLoader.getSystemResourceAsStream(PersonalImages.RANKING_IMG.getPath())));
+                new Image(PersonalImages.RANKING_IMG.getResourceAsStream()));
         imgRanking.setFitWidth(SIZEWIDTH);
         imgRanking.setFitHeight(SIZEHEIGHT);
         this.btnRanking.setGraphic(imgRanking);
@@ -196,6 +196,6 @@ public class ControllerMainMenu implements Initializable {
 
     private void loadMusic() {
         //Play Button CLick Sound
-        SoundController.playMusic(ClassLoader.getSystemResource(PersonalSounds.TETRIS_THEME.getPath()).getPath());
+        SoundController.playMusic(PersonalSounds.TETRIS_THEME.getURL().getPath());
     }
 }

@@ -1,5 +1,8 @@
 package view.utilities;
 
+import java.io.InputStream;
+import java.net.URL;
+
 public enum PersonalFonts {
     /**
      * Font of all button and label. 
@@ -17,8 +20,12 @@ public enum PersonalFonts {
         this.path = path;
     }
 
-    public String getPath() {
-        return this.path;
+    public URL getURL() {
+        return ClassLoader.getSystemResource(this.path);
+    }
+
+    public InputStream getResourceAsStream() {
+        return ClassLoader.getSystemResourceAsStream(this.path);
     }
 
 }

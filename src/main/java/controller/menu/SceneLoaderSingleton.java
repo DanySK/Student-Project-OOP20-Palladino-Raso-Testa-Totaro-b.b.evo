@@ -1,7 +1,7 @@
 package controller.menu;
 
 import java.io.IOException;
-
+import java.net.URL;
 
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
@@ -13,12 +13,12 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import view.utilities.PersonalImages;
 
-public final class SceneLoader {
+public final class SceneLoaderSingleton {
 
     private static final int CURSOR_DIMENSION = 30;
     private static final int ANIMATION_DURATION = 500;
 
-    private SceneLoader() {
+    private SceneLoaderSingleton() {
 
     }
 
@@ -29,13 +29,13 @@ public final class SceneLoader {
      * @param width - the width of the stage 
      * @param height - the height of the stage
      */
-    public static void switchScene(final Stage stage, final String path, final String title, final double width, final double height)  {
+    public static void switchScene(final Stage stage, final URL path, final String title, final double width, final double height)  {
         try {
-            final Parent parent = FXMLLoader.load(ClassLoader.getSystemResource(path));
+            final Parent parent = FXMLLoader.load(path);
             final Scene newScene = new Scene(parent, width, height);
 
             // Load cursor Image
-            final Image cursor = new Image(ClassLoader.getSystemResourceAsStream(PersonalImages.CURSOR_PACMAN_IMG.getPath()));
+            final Image cursor = new Image(PersonalImages.CURSOR_PACMAN_IMG.getResourceAsStream());
             newScene.setCursor(new ImageCursor(cursor, CURSOR_DIMENSION, CURSOR_DIMENSION));
 
             final FadeTransition fadeIn = new FadeTransition(Duration.millis(ANIMATION_DURATION), newScene.getRoot());
@@ -44,7 +44,7 @@ public final class SceneLoader {
             fadeIn.play();
 
             //Load Stage Property
-            stage.getIcons().add(new Image(ClassLoader.getSystemResourceAsStream(PersonalImages.GAME_ICON_IMG.getPath())));
+            stage.getIcons().add(new Image(PersonalImages.GAME_ICON_IMG.getResourceAsStream()));
             stage.setScene(newScene);
             stage.setTitle(title);
             stage.show();
