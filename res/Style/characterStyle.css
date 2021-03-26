@@ -16,6 +16,7 @@ AnchorPane {
 	-fx-background-image: url('/Images/character/bgCharacter.jpg');
 	-fx-background-position: 1%;
 	-fx-background-repeat: stretch;
+	-fx-background-size: cover;
 }
 
 #lblTitle {

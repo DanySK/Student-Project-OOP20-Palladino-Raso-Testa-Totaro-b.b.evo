@@ -1,5 +1,8 @@
 package view.utilities;
 
+import java.io.InputStream;
+import java.net.URL;
+
 public enum PersonalImages {
 
 
@@ -54,7 +57,11 @@ public enum PersonalImages {
         this.path = path;
     }
 
-    public String getPath() {
-        return this.path;
+    public URL getURL() {
+        return ClassLoader.getSystemResource(this.path);
+    }
+
+    public InputStream getResourceAsStream() {
+        return ClassLoader.getSystemResourceAsStream(this.path);
     }
 }

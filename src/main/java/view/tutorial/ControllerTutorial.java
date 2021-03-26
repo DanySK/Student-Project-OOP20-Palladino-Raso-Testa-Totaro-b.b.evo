@@ -5,7 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import controller.menu.SceneLoader;
+import controller.menu.SceneLoaderSingleton;
 import controller.sound.SoundController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -87,7 +87,7 @@ public class ControllerTutorial implements Initializable {
         SoundController.stopMusic();
 
         //Load the video
-        final URL videoUrl = new URL(new File(ClassLoader.getSystemResource(PersonalImages.TUTORIAL_VIDEO.getPath()).getFile()).toURI().toString());
+        final URL videoUrl = new URL(new File(PersonalImages.TUTORIAL_VIDEO.getURL().getFile()).toURI().toString());
         final Media media = new Media(videoUrl.toExternalForm());
 
         //Set video into player
@@ -101,28 +101,28 @@ public class ControllerTutorial implements Initializable {
 
     private void loadImage() {
         final ImageView imgPlay = new ImageView(
-                new Image(ClassLoader.getSystemResourceAsStream(PersonalImages.BACK_IMG.getPath())));
+                new Image(PersonalImages.BACK_IMG.getResourceAsStream()));
         imgPlay.setFitWidth(SIZEWIDTH);
         imgPlay.setFitHeight(SIZEHEIGHT);
         this.buttonBack.setGraphic(imgPlay);
     }
 
     private void loadFont() {
-        this.lblTitle.setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_TITLE.getPath()), SIZEFONTTITLE));
-        this.buttonBack.setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
+        this.lblTitle.setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), SIZEFONTTITLE));
+        this.buttonBack.setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
     }
 
     private void loadListener() {
         // ButtonBack Listener
         this.buttonBack.setOnAction(event -> {
-            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
-                                    PersonalViews.SCENE_MAIN_MENU.getPath(), 
+            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                                    PersonalViews.SCENE_MAIN_MENU.getURL(), 
                                     PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
                                     this.window.getWidth(), 
                                     this.window.getHeight());
 
             //Play Button CLick Sound
-            SoundController.playSoundFx(ClassLoader.getSystemResource(PersonalSounds.TICK_BUTTON.getPath()).getPath());
+            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
 
             //Stop video
             player.stop();

@@ -1,6 +1,7 @@
 .mainPanel {
 	-fx-background-image: url('/Images/settingsImg/bgMenuSettings.jpg');
 	-fx-background-position: 1%;
+	-fx-background-size: cover;
 }
 
 /* 

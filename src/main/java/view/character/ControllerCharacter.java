@@ -3,12 +3,14 @@ package view.character;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import controller.menu.SceneLoaderSingleton;
 import controller.sound.SoundController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -19,10 +21,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import view.utilities.PersonalFonts;
 import view.utilities.PersonalImages;
 import view.utilities.PersonalSounds;
+import view.utilities.PersonalViews;
 
 public class ControllerCharacter implements Initializable {
 
@@ -74,7 +78,7 @@ public class ControllerCharacter implements Initializable {
 
     private void loadImage() {
         final ImageView imgBack = new ImageView(
-                new Image(ClassLoader.getSystemResourceAsStream(PersonalImages.BACK_IMG.getPath())));
+                new Image(PersonalImages.BACK_IMG.getResourceAsStream()));
         imgBack.setFitWidth(SIZEWIDTH);
         imgBack.setFitHeight(SIZEHEIGHT);
         this.btnBack.setGraphic(imgBack);
@@ -90,7 +94,18 @@ public class ControllerCharacter implements Initializable {
             }
         });
 
+        //Button back Listener
+        this.btnBack.setOnAction(event -> {
+            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                                    PersonalViews.SCENE_MAIN_MENU.getURL(), 
+                                    PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
+                                    this.window.getWidth(), 
+                                    this.window.getHeight());
 
+            //Play Button CLick Sound
+            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+
+         });
     }
 
     private void loadAnimation() {
@@ -103,13 +118,13 @@ public class ControllerCharacter implements Initializable {
 
     private void loadFont() {
         this.lblTitle
-            .setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_TITLE.getPath()), SIZEFONTTITLE));
+            .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), SIZEFONTTITLE));
         this.btnBack
-            .setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
+            .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
         this.btnNext
-            .setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_BUTTON.getPath()), SIZEFONT));
+            .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
         this.characterNameField
-        .setFont(Font.loadFont(ClassLoader.getSystemResourceAsStream(PersonalFonts.FONT_TITLE.getPath()), SIZEFONT));
+            .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), SIZEFONT));
     }
 
     private void resizable() {

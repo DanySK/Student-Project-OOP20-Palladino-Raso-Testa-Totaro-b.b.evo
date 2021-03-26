@@ -2,6 +2,7 @@
 	-fx-background-image: url('/Images/mainMenuImg/bgMenu.jpg');
 	-fx-background-position: 1%;
 	-fx-background-repeat: stretch;
+	-fx-background-size: cover;
 }
 
 
