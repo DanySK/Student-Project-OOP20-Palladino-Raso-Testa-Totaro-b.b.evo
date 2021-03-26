@@ -141,6 +141,7 @@ public class ControllerSettings implements Initializable {
                 this.panel.prefHeightProperty().bind(this.window.heightProperty());
                 this.panel.prefWidthProperty().bind(this.window.widthProperty());
 
+
                 this.ckSoundFX.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(CENTER_POSITION));
                 this.ckSound.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(CENTER_POSITION));
                 this.rbUseLeftRight.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(CENTER_POSITION));

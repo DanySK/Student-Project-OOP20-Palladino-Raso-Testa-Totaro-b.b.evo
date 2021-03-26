@@ -1,6 +1,7 @@
 .mainPanel {
 	-fx-background-image: url('/Images/settingsImg/bgMenuSettings.jpg');
 	-fx-background-position: 1%;
+	-fx-background-size: cover;
 }
 
 
@@ -16,7 +17,7 @@
 	-fx-alignment: center;
 }
 
-/* 
+
 HBox,VBox,BorderPane {
 	-fx-border-color: red;
     -fx-border-insets: 5;
@@ -29,7 +30,7 @@ AnchorPane {
     -fx-border-width: 3;
     -fx-border-style: dashed;
 }
-*/
+
 
 .menuButton{
 	-fx-background-color: #FFFFFF;
