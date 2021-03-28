@@ -8,15 +8,15 @@ import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class LeaderBoardImpl implements Leaderboard {
+public class LeaderboardImpl implements Leaderboard {
 
     private Map<String, Integer> ranking;
 
-    public LeaderBoardImpl() {
+    public LeaderboardImpl() {
         this.ranking = new HashMap<>();
     }
 
-    public LeaderBoardImpl(final Map<String, Integer> ranking) {
+    public LeaderboardImpl(final Map<String, Integer> ranking) {
         this.ranking = ranking;
     }
 

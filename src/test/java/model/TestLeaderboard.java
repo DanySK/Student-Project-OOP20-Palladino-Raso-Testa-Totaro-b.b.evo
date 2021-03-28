@@ -13,12 +13,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-import model.leaderboard.LeaderBoardImpl;
+import model.leaderboard.LeaderboardImpl;
 
 
 class TestLeaderboard {
 
-    private LeaderBoardImpl leaderboard;
+    private LeaderboardImpl leaderboard;
     private final Map<String, Integer> testMap = new HashMap<>();
     private static final int ALEX00_SCORE = 1800;
     private static final int ALEX00_SCORE_2 = 1300;
@@ -28,7 +28,7 @@ class TestLeaderboard {
 
     @BeforeEach
     void initLeaderboard() {
-        this.leaderboard = new LeaderBoardImpl();
+        this.leaderboard = new LeaderboardImpl();
         this.leaderboard.addPlayer("Alex00", ALEX00_SCORE);
         this.leaderboard.addPlayer("-<Jack>-", JACK_SCORE);
         this.leaderboard.addPlayer("_Tommy_", TOMMY_SCORE);
@@ -93,7 +93,7 @@ class TestLeaderboard {
 
     @Test
     void testEmptyPoudium() {
-        this.leaderboard = new LeaderBoardImpl();
+        this.leaderboard = new LeaderboardImpl();
         assertEquals(Optional.empty(), this.leaderboard.getTopPlayer());
         assertEquals(Optional.empty(), this.leaderboard.getSecondPlayer());
         assertEquals(Optional.empty(), this.leaderboard.getThirdPlayer());
@@ -119,7 +119,7 @@ class TestLeaderboard {
 
     @Test
     void testOrder() {
-        this.leaderboard = new LeaderBoardImpl();
+        this.leaderboard = new LeaderboardImpl();
         this.leaderboard.addPlayer("Fausto", ALEX00_SCORE);
         this.leaderboard.addPlayer("Mario", TOMMY_SCORE);
         this.leaderboard.addPlayer("Alex", TOMMY_SCORE);
