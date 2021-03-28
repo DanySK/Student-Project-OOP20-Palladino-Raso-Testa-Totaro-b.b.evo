@@ -31,12 +31,12 @@ class TestPrintLeaderboard {
 
     @Test
     void testCorrectPrintJsonFormat() {
-        IOLeaderboard.printInJsonFormat("Leaderboard/ranking.json", this.rank.getLeaderBoard());
+        IOLeaderboard.printInJsonFormat(this.rank.getLeaderBoard());
     }
 
     @Test
     void testCorrectReadJsonFormat() {
-        final Map<String, Integer> map2 = IOLeaderboard.readLeaderboard("Leaderboard/ranking.json");
+        final Map<String, Integer> map2 = IOLeaderboard.readLeaderboard();
         assertEquals(this.map, map2);
         System.out.println(map);
     }
