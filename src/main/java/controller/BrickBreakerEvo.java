@@ -13,11 +13,6 @@ import controller.utilities.IOLeaderboard;
 import controller.utilities.MapGame;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import main.java.it.unibo.pacman.controller.Launcher;
-import main.java.it.unibo.pacman.controller.utilities.LeaderboardIO;
-import main.java.it.unibo.pacman.controller.utilities.MapIO;
-import main.java.it.unibo.pacman.model.utilities.Difficulty;
-import main.java.it.unibo.pacman.view.MainMenuView;
 import view.utilities.PersonalViews;
 
 /**
@@ -75,12 +70,8 @@ public class BrickBreakerEvo extends Application {
             MapGame.writeMap("standard", map);
         }
         if (new File(IOLeaderboard.getPath()).mkdirs()) {
-            if (new File(IOLeaderboard.getPath() + "Ranking_" + Difficulty.HARD.toString() + ".txt").createNewFile()) {
-                System.out.println("Hard ranking successfully created");
-            }
-            if (new File(IOLeaderboard.getPath() + "Ranking_" + Difficulty.NORMAL.toString() + ".txt").createNewFile()) {
-                System.out.println("Normal ranking successfully created");
-            }
+            new File(IOLeaderboard.getPath() + "Ranking.txt").createNewFile();
+            System.out.println("Ranking successfully created");
         }
         new MainMenuView(TITLE).show();
     }
