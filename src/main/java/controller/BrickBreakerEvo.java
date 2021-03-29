@@ -13,11 +13,6 @@ import controller.utilities.IOLeaderboard;
 import controller.utilities.MapGame;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import main.java.it.unibo.pacman.controller.Launcher;
-import main.java.it.unibo.pacman.controller.utilities.LeaderboardIO;
-import main.java.it.unibo.pacman.controller.utilities.MapIO;
-import main.java.it.unibo.pacman.model.utilities.Difficulty;
-import main.java.it.unibo.pacman.view.MainMenuView;
 import view.utilities.PersonalViews;
 
 /**
@@ -58,7 +53,7 @@ public class BrickBreakerEvo extends Application {
      * @param args command input
      */
     public static void main(final String[] args) {
-        initSoftware();
+        //initSoftware();
 
         launch();
     }
@@ -67,6 +62,7 @@ public class BrickBreakerEvo extends Application {
      * 
      * if not present, create the folder to keep the game files.
      */
+    /*
     private static void initSoftware() throws IOException {
         final BrickBreakerEvo launcher = new BrickBreakerEvo();
         if (new File(MapGame.getPath()).mkdirs()) {
@@ -84,6 +80,7 @@ public class BrickBreakerEvo extends Application {
         }
         new MainMenuView(TITLE).show();
     }
+    */
 
     private void createStandardMap() throws IOException {
         final Optional<BufferedReader> content = Optional.of(new BufferedReader(new InputStreamReader(ClassLoader.getSystemResourceAsStream(STANDARD_MAP_PATH))));
