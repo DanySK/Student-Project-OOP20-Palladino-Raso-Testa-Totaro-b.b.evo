@@ -15,8 +15,6 @@ import com.google.gson.Gson;
 import com.google.common.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 /**
  *  Class that allows to print and read to external file a leaderboard.
@@ -95,5 +93,21 @@ public final class IOLeaderboard {
             System.out.println("IOExcept");
         }
         return jsonMap;
+    }
+
+    /**
+     *  Method that allows to get a directory path that contains ranking.
+     *  @return a directory path that contains ranking.
+     */
+    public static String getDirPath() {
+        return RES_PATH;
+    }
+
+    /**
+     *  Method that allows to get a path of ranking file.
+     *  @return a path of ranking file.
+     */
+    public static String getFilePath() {
+        return FILE_PATH;
     }
 }

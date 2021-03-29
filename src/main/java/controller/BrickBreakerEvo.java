@@ -53,7 +53,7 @@ public class BrickBreakerEvo extends Application {
      * @param args command input
      */
     public static void main(final String[] args) {
-        initSoftware();
+        //initSoftware();
 
         launch();
     }
@@ -62,6 +62,7 @@ public class BrickBreakerEvo extends Application {
      * 
      * if not present, create the folder to keep the game files.
      */
+    /*
     private static void initSoftware() throws IOException {
         final BrickBreakerEvo launcher = new BrickBreakerEvo();
         if (new File(MapGame.getPath()).mkdirs()) {
@@ -75,6 +76,7 @@ public class BrickBreakerEvo extends Application {
         }
         new MainMenuView(TITLE).show();
     }
+    */
 
     private void createStandardMap() throws IOException {
         final Optional<BufferedReader> content = Optional.of(new BufferedReader(new InputStreamReader(ClassLoader.getSystemResourceAsStream(STANDARD_MAP_PATH))));
