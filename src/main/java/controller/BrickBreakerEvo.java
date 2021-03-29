@@ -9,7 +9,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import view.utilities.PersonalViews;
 
-public class Main extends Application {
+public class BrickBreakerEvo extends Application {
 
     private static final int MIN_WIDHT = 450;
     private static final int MIN_HEIGHT = 550;
@@ -34,7 +34,17 @@ public class Main extends Application {
     }
 
     public static void main(final String[] args) {
+        initSoftware();
+
         launch();
+    }
+
+    /**
+     * 
+     * if not present, create the folder to keep the game files.
+     */
+    private static void initSoftware() {
+        // TODO Auto-generated method stub
     }
 
 }

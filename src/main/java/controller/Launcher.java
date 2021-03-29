@@ -1,5 +1,4 @@
 package controller;
-import com.sun.javafx.application.LauncherImpl;
 
 /**
  * Start the application.
@@ -19,6 +18,7 @@ public final class Launcher {
      * @param args
      */
     public static void main(final String[] args) {
-        LauncherImpl.launchApplication(Main.class, args);
+        BrickBreakerEvo.main(args);
+        //LauncherImpl.launchApplication(Main.class, args);
     }
 }
