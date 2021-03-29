@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.util.Optional;
 
 import controller.menu.SceneLoaderSingleton;
+import controller.utilities.IOLeaderboard;
 import controller.utilities.MapGame;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -73,11 +74,11 @@ public class BrickBreakerEvo extends Application {
             launcher.createStandardMap();
             MapGame.writeMap("standard", map);
         }
-        if (new File(LeaderboardIO.getPath()).mkdirs()) {
-            if (new File(LeaderboardIO.getPath() + "Ranking_" + Difficulty.HARD.toString() + ".txt").createNewFile()) {
+        if (new File(IOLeaderboard.getPath()).mkdirs()) {
+            if (new File(IOLeaderboard.getPath() + "Ranking_" + Difficulty.HARD.toString() + ".txt").createNewFile()) {
                 System.out.println("Hard ranking successfully created");
             }
-            if (new File(LeaderboardIO.getPath() + "Ranking_" + Difficulty.NORMAL.toString() + ".txt").createNewFile()) {
+            if (new File(IOLeaderboard.getPath() + "Ranking_" + Difficulty.NORMAL.toString() + ".txt").createNewFile()) {
                 System.out.println("Normal ranking successfully created");
             }
         }

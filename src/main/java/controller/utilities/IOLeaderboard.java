@@ -24,13 +24,13 @@ import java.nio.file.Path;
 public final class IOLeaderboard {
 
     private static final Gson GSON  = new Gson();
-    private static final String SEPARATOR = System.getProperty("file.separator");
+    private static final String SEP = System.getProperty("file.separator");
     private static final String RES_PATH = System.getProperty("user.home")
-                                           + SEPARATOR
+                                           + SEP
                                            + "BrickBreaker-EVO-Resources" 
-                                           + SEPARATOR
+                                           + SEP
                                            + "Leaderboards"
-                                           + SEPARATOR;
+                                           + SEP;
     private static final String FILE_NAME = "ranking.json";
     private static final String FILE_PATH = RES_PATH + FILE_NAME;
     private static File rankFile = new File(FILE_PATH);
@@ -95,6 +95,20 @@ public final class IOLeaderboard {
             System.out.println("IOExcept");
         }
         return jsonMap;
+    }
+
+    /**
+     * Used to get the next line of ranking file.
+     * 
+     * @return a line of the file
+     * @throws IOException if the file is not found
+     */
+    public static String getNext() throws IOException {
+        return null;   //content.readLine();
+    }
+
+    public static String getPath() {
+        return RES_PATH;
     }
 
 }
