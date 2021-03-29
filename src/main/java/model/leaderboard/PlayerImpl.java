@@ -1,6 +1,6 @@
 package model.leaderboard;
 
-public class PlayerImpl implements Player, Life {
+public class PlayerImpl implements Player {
 
     private static final int MAX_LIFE = 3;
     private final String alias;
@@ -14,8 +14,8 @@ public class PlayerImpl implements Player, Life {
     }
 
     /**
-     *  Method that allows to add or subtract the score to the player.
-     *  @param value - represents the value that must be added or subtract to the score.
+     * 
+     * {@inheritDoc}
      *
      */
     @Override
@@ -26,8 +26,8 @@ public class PlayerImpl implements Player, Life {
     }
 
     /**
-     *  Return a String that represents the alias of the player.
-     *  @return a String that represents the alias of the player.
+     * 
+     * {@inheritDoc}
      *
      */
     @Override
@@ -36,8 +36,8 @@ public class PlayerImpl implements Player, Life {
     }
 
     /**
-     *  Return an Integer that represents the value of the player score.
-     *  @return an Integer that represents the value of the player score.
+     * 
+     * {@inheritDoc}
      *
      */
     @Override
