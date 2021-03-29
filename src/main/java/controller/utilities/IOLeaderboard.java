@@ -49,7 +49,7 @@ public final class IOLeaderboard {
         //Serialize in json
         final String gsonStringFormat = GSON.toJson(leaderboard);
 
-        //Create File
+        /*
         final Path filePath = Path.of(FILE_PATH);
         try {
             Files.deleteIfExists(filePath);
@@ -59,7 +59,7 @@ public final class IOLeaderboard {
         } catch (IOException e1) {
             e1.printStackTrace();
         }
-        System.out.println(rankFile.getAbsolutePath());
+        System.out.println(rankFile.getAbsolutePath());*/
 
         //Print File
         final Charset charset = Charset.forName("UTF-8");
@@ -96,19 +96,4 @@ public final class IOLeaderboard {
         }
         return jsonMap;
     }
-
-    /**
-     * Used to get the next line of ranking file.
-     * 
-     * @return a line of the file
-     * @throws IOException if the file is not found
-     */
-    public static String getNext() throws IOException {
-        return null;   //content.readLine();
-    }
-
-    public static String getPath() {
-        return RES_PATH;
-    }
-
 }
