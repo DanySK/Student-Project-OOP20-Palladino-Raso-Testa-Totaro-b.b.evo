@@ -94,6 +94,15 @@ public class ControllerCharacter implements Initializable {
             }
         });
 
+        //Button next Listener  /////PROVAAA
+        this.btnNext.setOnAction(event -> {
+            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(),
+                                    PersonalViews.SCENE_SETTINGS.getURL(),
+                                    PersonalViews.SCENE_SETTINGS.getTitleScene(),
+                                    this.window.getWidth(),
+                                    this.window.getHeight());
+        });
+
         //Button back Listener
         this.btnBack.setOnAction(event -> {
             SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
