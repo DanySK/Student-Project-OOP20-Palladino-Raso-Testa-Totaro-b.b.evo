@@ -49,7 +49,13 @@ public enum PersonalImages {
     /**
      * Path for Game Video Tutorial.
      */
-    TUTORIAL_VIDEO("Images/video/Tutorial.mp4");
+    TUTORIAL_VIDEO("Images/video/Tutorial.mp4"),
+
+    /**
+     * Path for Ball Image.
+     */
+    BALL_IMG("Images/Ball/MarioBall");
+
 
     private String path;
 

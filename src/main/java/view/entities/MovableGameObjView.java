@@ -1,53 +1,53 @@
 package view.entities;
 
 import java.awt.Graphics;
-import java.util.Map;
-/*
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.util.Map;
-*/
 
+import javafx.scene.image.Image;
 import model.utilities.Direction;
 import model.utilities.GameObjectType;
-import model.utilities.Pair;
-import model.utilities.Position;
 import model.utilities.Status;
+import view.utilities.PersonalImages;
+import view.utilities.PersonalSounds;
 
+/**
+ * An implementation of {@link MovableView}.
+ */
 public class MovableGameObjView extends SimpleGameObjView implements MovableView {
 
     private Status status;
     private Direction direction;
-    //private final Map<Pair<Direction, Status>, BufferedImage> images;
-
-    @Override
-    public GameObjectType getType() {
-        // TODO Auto-generated method stub
-        return null;
+    private final Image image;
+    /**
+     * Constructor that extends the constructor of {@link SimpleGameObjView}.
+     * 
+     * @param type   {@inheritDoc}}
+     * @param width  {@inheritDoc}
+     * @param height {@inheritDoc}
+     * @param image the image associated with the gameObj
+     */
+    protected MovableGameObjView(final GameObjectType type, final int width, final int height, final Image image) {
+        super(type, null, width, height);
+        this.image = image;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void render(Graphics g) {
-        // TODO Auto-generated method stub
-
+    public void render(final Graphics g) {
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void updatePosition(Position position) {
-        // TODO Auto-generated method stub
-
+    public void updateStatus(final Status status) {
+        this.status = status;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void updateStatus(Status status) {
-        // TODO Auto-generated method stub
-
+    public void updateDirection(final Direction newDir) {
+        this.direction = newDir;
     }
-
-    @Override
-    public void updateDirection(Direction newDir) {
-        // TODO Auto-generated method stub
-
-    }
-
 }
