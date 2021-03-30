@@ -3,6 +3,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="view.game.ControllerGame">
-	<!-- TODO Add Nodes -->
+<AnchorPane prefHeight="449.0" prefWidth="508.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="view.game.ControllerGame">
+   <children>
+      <AnchorPane layoutX="2.0" layoutY="-3.0" prefHeight="479.0" prefWidth="505.0" />
+   </children>
 </AnchorPane>
