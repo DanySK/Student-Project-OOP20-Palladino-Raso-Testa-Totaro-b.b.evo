@@ -1,14 +1,8 @@
 package view.entities;
 
-import java.awt.image.BufferedImage;
-import java.util.HashMap;
-import java.util.Map;
-
-import model.utilities.Direction;
+import javafx.scene.image.Image;
 import model.utilities.GameObjectType;
-import model.utilities.Pair;
-import model.utilities.Status;
-//import view.utilities.BufferedImageLoader;
+import view.utilities.PersonalImages;
 
 public class ViewFactoryImpl implements ViewFactory {
 
@@ -21,17 +15,9 @@ public class ViewFactoryImpl implements ViewFactory {
 
     @Override
     public MovableView ball() {
-        /*
         return new MovableGameObjView(GameObjectType.BALL, WIDTHIMAGE, HEIGHTIMAGE,
-                this.loadBallImages(GameObjectType.BALL.toString()));
-                */
-        return null;
-    }
-
-    private Map<Pair<Direction, Status>, BufferedImage> loadBallImages(final String type) {
-        final Map<Pair<Direction, Status>, BufferedImage> images = new HashMap<>();
-       // images.put(new Pair<>(dir, Status.CHASING), BufferedImageLoader.loadImage("Images/Ball/Yellow_Ball.png"));
-        return images;
+                new Image(PersonalImages.CURSOR_PACMAN_IMG.getResourceAsStream()));
+        //return null;
     }
 
 }

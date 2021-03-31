@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<SplitPane dividerPositions="375.0" maxHeight="-Infinity" maxWidth="-Infinity" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.game.ControllerGame">
+   <items>
+      <VBox fx:id="dashBoard" alignment="CENTER" prefHeight="410.0" prefWidth="188.0" spacing="20.0" style="-fx-background-image: url('/Images/mainMenuImg/bgMenu.jpg'); -fx-background-size: stretch;">
+         <children>
+            <Label style="-fx-background-color: linear-gradient(to bottom right, #0D0B0B, #E0122A); -fx-background-radius: 30;" text="BRICK-BREAKER" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </Label>
+            <Label fx:id="lblScore" style="-fx-background-color: linear-gradient(to bottom right, #0D0B0B, #E0122A); -fx-background-radius: 30;" text="SCORE:" textFill="#fafafa">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <padding>
+                  <Insets left="25.0" right="25.0" />
+               </padding>
+            </Label>
+            <Label fx:id="lblLives" style="-fx-background-color: linear-gradient(to bottom right, #0D0B0B, #E0122A); -fx-background-radius: 30;" text="LIVES:" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </Label>
+            <Label style="-fx-background-color: linear-gradient(to bottom right, #0D0B0B, #E0122A); -fx-background-radius: 30;" text="Press esc to return to the menu" textFill="WHITE">
+               <effect>
+                  <DropShadow />
+               </effect>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding></Label>
+            <Label fx:id="lblPlay" style="-fx-background-color: linear-gradient(to bottom right, #0D0B0B, #E0122A); -fx-background-radius: 30;" text="Press space to start" textFill="WHITE">
+               <effect>
+                  <DropShadow />
+               </effect>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></Label>
+         </children>
+      </VBox>
+      <Pane fx:id="panel">
+         <children>
+            <Canvas fx:id="canvas" focusTraversable="true" />
+         </children>
+      </Pane>
+   </items>
+</SplitPane>

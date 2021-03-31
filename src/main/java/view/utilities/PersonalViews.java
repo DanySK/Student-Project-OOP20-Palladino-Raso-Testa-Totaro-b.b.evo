@@ -28,7 +28,12 @@ public enum PersonalViews {
     /**
      * Path for load Ranking Menu Layout.
      */
-    SCENE_RANKING("Layout/RankingMenu.fxml", "RANKING");
+    SCENE_RANKING("Layout/RankingMenu.fxml", "RANKING"),
+
+    /**
+     * Path for load Game Layout.
+     */
+    SCENE_GAME("Layout/Game.fxml", "GAME");
 
     private String path;
     private String titleScene;

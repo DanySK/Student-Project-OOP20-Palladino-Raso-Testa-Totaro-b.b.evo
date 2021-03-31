@@ -16,13 +16,13 @@ import javafx.stage.Stage;
 import view.utilities.PersonalViews;
 
 /**
- * PARANOID MAIN.
+ * BRICK-BREAKER-EVO MAIN.
  * Stage creation.
  *
  */
 public class BrickBreakerEvo extends Application {
 
-    private static final String TITLE = "BRICK-BREAKER-EVO";
+    //private static final String TITLE = "BRICK-BREAKER-EVO";
     private static final String STANDARD_MAP_PATH = "Game/Maps/standard.txt";
     private static String map = "";
 
@@ -30,7 +30,7 @@ public class BrickBreakerEvo extends Application {
     private static final int MIN_HEIGHT = 550;
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void start(final Stage primaryStage) throws Exception {
@@ -50,11 +50,11 @@ public class BrickBreakerEvo extends Application {
 
     /**
      * initializes the game.
-     * @param args command input
+     * @param args unused
+     * @throws IOException 
      */
-    public static void main(final String[] args) {
-        //initSoftware();
-
+    public static void main(final String[] args) throws IOException {
+        initSoftware();
         launch();
     }
 
@@ -62,7 +62,6 @@ public class BrickBreakerEvo extends Application {
      * 
      * if not present, create the folder to keep the game files.
      */
-    /*
     private static void initSoftware() throws IOException {
         final BrickBreakerEvo launcher = new BrickBreakerEvo();
         if (new File(MapGame.getPath()).mkdirs()) {
@@ -70,17 +69,12 @@ public class BrickBreakerEvo extends Application {
             launcher.createStandardMap();
             MapGame.writeMap("standard", map);
         }
-        if (new File(IOLeaderboard.getPath()).mkdirs()) {
-            if (new File(IOLeaderboard.getPath() + "Ranking_" + Difficulty.HARD.toString() + ".txt").createNewFile()) {
-                System.out.println("Hard ranking successfully created");
-            }
-            if (new File(IOLeaderboard.getPath() + "Ranking_" + Difficulty.NORMAL.toString() + ".txt").createNewFile()) {
-                System.out.println("Normal ranking successfully created");
-            }
+        if (new File(IOLeaderboard.getDirPath()).mkdirs()
+                && new File(IOLeaderboard.getDirPath() + "Ranking.txt").createNewFile()) {
+            System.out.println("Hard ranking successfully created");
         }
-        new MainMenuView(TITLE).show();
+        //new MainMenuView(TITLE).show();
     }
-    */
 
     private void createStandardMap() throws IOException {
         final Optional<BufferedReader> content = Optional.of(new BufferedReader(new InputStreamReader(ClassLoader.getSystemResourceAsStream(STANDARD_MAP_PATH))));
