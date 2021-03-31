@@ -14,7 +14,7 @@ public final class Launcher {
     }
 
     /**
-     * Main method.
+     * Method used to launch application.
      * @param args
      */
     public static void main(final String[] args) {

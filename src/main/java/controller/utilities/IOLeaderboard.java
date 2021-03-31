@@ -47,18 +47,6 @@ public final class IOLeaderboard {
         //Serialize in json
         final String gsonStringFormat = GSON.toJson(leaderboard);
 
-        /*
-        final Path filePath = Path.of(FILE_PATH);
-        try {
-            Files.deleteIfExists(filePath);
-            if (rankFile.getParentFile().mkdirs()) {
-                rankFile.createNewFile();
-            }
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-        System.out.println(rankFile.getAbsolutePath());*/
-
         //Print File
         final Charset charset = Charset.forName("UTF-8");
         try (BufferedWriter wr = new BufferedWriter(new FileWriter(rankFile, charset))) {

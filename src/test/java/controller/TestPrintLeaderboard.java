@@ -9,8 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import controller.utilities.IOLeaderboard;
-import model.leaderboard.LeaderboardImpl;
 import model.leaderboard.Leaderboard;
+import model.leaderboard.LeaderboardImpl;
 
 class TestPrintLeaderboard {
 
