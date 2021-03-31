@@ -28,7 +28,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -123,6 +122,21 @@ public class ControllerRanking implements Initializable {
         .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), SIZEFONTTITLE));
         this.buttonBack
         .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
+    }
+
+    private void loadListener() {
+        //Button back Listener
+        this.buttonBack.setOnAction(event -> {
+            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                                PersonalViews.SCENE_MAIN_MENU.getURL(), 
+                                PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
+                                this.window.getWidth(), 
+                                this.window.getHeight());
+
+            //Play Button CLick Sound
+            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+
+         });
 
         /* Change column font */
         this.aliasColumn.setCellFactory(new Callback<TableColumn<Entry<String, Integer>, String>, TableCell<Entry<String, Integer>, String>>() {
@@ -160,21 +174,6 @@ public class ControllerRanking implements Initializable {
         });
     }
 
-    private void loadListener() {
-        //Button back Listener
-        this.buttonBack.setOnAction(event -> {
-            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
-                                PersonalViews.SCENE_MAIN_MENU.getURL(), 
-                                PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
-                                this.window.getWidth(), 
-                                this.window.getHeight());
-
-            //Play Button CLick Sound
-            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
-
-         });
-    }
-
     private void resizable() {
 
         this.panel.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
@@ -182,6 +181,8 @@ public class ControllerRanking implements Initializable {
         this.panel.prefWidthProperty().bind(this.window.widthProperty());
         this.lblTitle.setWrapText(true);
         this.buttonBack.prefWidthProperty().bind(this.containerBackButton.widthProperty().divide(CENTER_POSITION));
+        this.displayRanking.prefHeightProperty().bind(this.rankingContainer.heightProperty());
+        this.displayRanking.prefWidthProperty().bind(this.rankingContainer.widthProperty());
     }
 
 }

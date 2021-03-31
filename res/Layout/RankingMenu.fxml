@@ -27,7 +27,7 @@
          <center>
             <VBox fx:id="rankingContainer" alignment="TOP_CENTER" BorderPane.alignment="CENTER">
                <children>
-                  <TableView fx:id="displayRanking" prefHeight="298.0" prefWidth="560.0">
+                  <TableView fx:id="displayRanking">
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>

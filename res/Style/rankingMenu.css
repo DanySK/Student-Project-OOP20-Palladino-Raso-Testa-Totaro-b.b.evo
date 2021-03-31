@@ -1,11 +1,18 @@
-/* 
-HBox,VBox,BorderPane {
+/*
+HBox,VBox,BorderPane, table-view{
 	-fx-border-color: red;
     -fx-border-insets: 5;
     -fx-border-width: 3;
     -fx-border-style: dashed;
 }
-* */
+*/
+/*
+TableView{
+		-fx-border-color: green;
+    -fx-border-insets: 5;
+    -fx-border-width: 3;
+    -fx-border-style: dashed;
+}
 
 AnchorPane {
 	-fx-border-color: blue;
@@ -13,7 +20,7 @@ AnchorPane {
     -fx-border-width: 3;
     -fx-border-style: dashed;
 }
-
+*/
 .mainPanel {
 	-fx-background-image: url('/Images/character/bgCharacter.jpg');
 	-fx-background-position: 1%;
