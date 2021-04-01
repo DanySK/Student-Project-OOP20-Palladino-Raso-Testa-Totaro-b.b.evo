@@ -27,14 +27,14 @@ class TestBuilderSettings {
 
     @Test
     void testCorrectBuild() {
-        final var settings = this.builder.enableSoundFx(true);
-                             this.builder.enableMusic(true);
-                             this.builder.upAndDown(false);
-                             this.builder.leftAndRight(true);
-                             this.builder.difficulty(Difficulty.NORMAL);
-                             this.builder.build();
+        this.builder.enableSoundFx(true);
+        this.builder.enableMusic(true);
+        this.builder.upAndDown(false);
+        this.builder.leftAndRight(true);
+        this.builder.difficulty(Difficulty.NORMAL);
+        final var settings = this.builder.build();
         final GameSettingsImpl gameSettings = new GameSettingsImpl(true, true, true, false, Difficulty.NORMAL);
-        assertEquals(gameSettings, settings.build());
+        assertEquals(gameSettings, settings);
     }
 
     @Test
