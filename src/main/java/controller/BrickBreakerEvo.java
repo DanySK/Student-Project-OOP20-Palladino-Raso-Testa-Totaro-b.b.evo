@@ -22,8 +22,26 @@ import view.utilities.PersonalViews;
  */
 public class BrickBreakerEvo extends Application {
 
+    /**
+     * User's home folder.
+     */
+    public static final String HOME = System.getProperty("user.home");
+
     //private static final String TITLE = "BRICK-BREAKER-EVO";
     private static final String STANDARD_MAP_PATH = "Game/Maps/standard.txt";
+
+    /**
+    * identifies how the operating system separates files.
+    */
+   public static final String SEPARATOR = System.getProperty("file.separator");
+   /**
+    * Game folder destination.
+    */
+   public static final String MAIN_FOLDER = HOME + SEPARATOR + ".BrickBreakerEvo";
+    /**
+     * Folder where levels are saved.
+     */
+    public static final String LEVEL_FOLDER = MAIN_FOLDER + SEPARATOR + "levels";
     private static String map = "";
 
     private static final int MIN_WIDHT = 450;
