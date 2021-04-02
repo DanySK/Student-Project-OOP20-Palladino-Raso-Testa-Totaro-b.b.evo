@@ -1,36 +1,39 @@
 package model.utilities;
 
-import java.util.Arrays;
-import java.util.List;
-
 public enum Difficulty {
-    /*  used to get/set difficulties  */
-    EASY,
-    NORMAL,
-    HARD;
-    
-    public static List<Difficulty> difficultyList(Difficulty d){
-        return Arrays.asList(Difficulty.values());
-    } 
-    
+
     /**
-     * @return a {@link String} for each direction.
+     * Use to set the number of lives of the player, the ball velocity 
+     * and The value that will be multiplied to the score.
      */
-    @Override
-    public String toString() {
-        switch (this) {
-        case EASY:
-            return "Easy";
-        case NORMAL:
-            return "Normal";
-        case HARD:
-            return "Hard";
-        default:
-            return "";
-        }
+    NORMAL(3, 0.5, 1),
+
+    /**
+     * Use to set the number of lives of the player, the ball velocity 
+     * and The value that will be multiplied to the score.
+     */
+    HARD(1, 1.0, 3);
+
+    private int numberOfLives;
+    private double ballVelocity;
+    private int multiplyScoreValue;
+
+    Difficulty(final int numberOfLives, final double ballVelocity, final int multiplyScoreValue) {
+        this.numberOfLives = numberOfLives;
+        this.ballVelocity = ballVelocity;
+        this.multiplyScoreValue = multiplyScoreValue;
     }
-    
-    
-    
-    
+
+    public int getNumberOfLives() {
+        return this.numberOfLives;
+    }
+
+    public double getBallVelocity() {
+        return this.ballVelocity;
+    }
+
+    public int multiplyScoreValue() {
+        return this.multiplyScoreValue;
+    }
+
 }
