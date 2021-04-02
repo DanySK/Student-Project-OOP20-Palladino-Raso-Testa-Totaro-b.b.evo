@@ -5,45 +5,45 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/*
- * Background resource
+/**
+ * Background resource.
  */
 public enum Background implements Serializable {
 
-    /*
-     * Default theme
+    /**
+     * Default theme.
      */
-    BACKGROUND_1(" ", "Standard"),
+    BACKGROUND_1("Images/background/DefaultBackground.png ", "Default"),
 
-    /*
-     * Arkanoid theme
+    /**
+     * Arkanoid theme.
      */
-    BACKGROUND_2(" ", "Arkanoid"),
+    BACKGROUND_2("Images/background/ArkanoidBackground.png ", "Arkanoid"),
 
-    /*
-     * Pacman theme
+    /**
+     * Galaga theme.
      */
-    BACKGROUND_3(" ", "Pacman"),
+    BACKGROUND_3("Images/background/GalagaBackground.jpg ", "Galaga"),
 
-    /*
-     * Super Mario theme
+    /**
+     * Pacman theme.
      */
-    BACKGROUND_4(" ", "Super Mario"),
+    BACKGROUND_4("Images/background/BlackBackground.png ", "Pacman"),
 
-    /*
-     * Donkey Kong theme
+    /**
+     * Donkey Kong theme.
      */
-    BACKGROUND_5(" ", "Donkey Kong"),
+    BACKGROUND_5("Images/background/DonkeyKongBackground.jpeg ", "Donkey Kong"),
 
-    /*
-     * Crash Bandicoot theme
+    /**
+     * Crash Bandicoot theme.
      */
-    BACKGROUND_6(" ", "Crash Bandicoot"),
+    BACKGROUND_6("Images/background/CrashBackground1.png ", "Crash Bandicoot"),
 
-    /*
-     * Galaga theme
+    /**
+     * Super Mario theme.
      */
-    BACKGROUND_7(" ", "Galaga");
+    BACKGROUND_7("Images/background/SuperMarioBackground.png ", "Super Mario");
 
     private String path;
     private String name;
