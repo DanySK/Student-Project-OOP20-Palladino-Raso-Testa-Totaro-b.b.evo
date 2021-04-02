@@ -18,8 +18,14 @@ public final class SoundController {
 
     private static Clip clip;
     private static boolean clipIsActived;
+    private static boolean canPermiseMusic;
+    private static boolean canPermiseFX;
 
     { clipIsActived = false; }
+
+    { canPermiseFX = true; }
+
+    { canPermiseMusic = true; }
 
     private SoundController() {
 
@@ -27,9 +33,11 @@ public final class SoundController {
 
     public static void playSoundFx(final String path) {
         try {
-            final Media media = new Media(new File(new URI(path).getPath()).toURI().toString());
-            final MediaPlayer mediaPlayer = new MediaPlayer(media);
-            mediaPlayer.play();
+            if (canPermiseFX) {
+                final Media media = new Media(new File(new URI(path).getPath()).toURI().toString());
+                final MediaPlayer mediaPlayer = new MediaPlayer(media);
+                mediaPlayer.play();
+            }
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
@@ -37,7 +45,7 @@ public final class SoundController {
 
     public static void playMusic(final String path) {
             try {
-                    if (!clipIsActived)  {
+                    if (!clipIsActived && !canPermiseMusic)  {
                         final File musicPath = new File(path);
                         final var audio = AudioSystem.getAudioInputStream(musicPath);
                         clip = AudioSystem.getClip();
@@ -55,6 +63,19 @@ public final class SoundController {
 
     public static void stopMusic() {
         clipIsActived = false;
+        canPermiseMusic = false;
         clip.stop();
+    }
+
+    public static void enableMusic() {
+        canPermiseMusic = true;
+    }
+
+    public static void stopFx() {
+        canPermiseFX = false;
+    }
+
+    public static void enableSoundFx() {
+        canPermiseFX = true;
     }
 }
