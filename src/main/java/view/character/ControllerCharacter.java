@@ -97,8 +97,8 @@ public class ControllerCharacter implements Initializable {
         //Button next Listener
         this.btnNext.setOnAction(event -> {
             SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
-                                     PersonalViews.SCENE_GAME.getURL(), 
-                                     PersonalViews.SCENE_GAME.getTitleScene(), 
+                                     PersonalViews.SCENE_DIFFICULTY.getURL(), 
+                                     PersonalViews.SCENE_DIFFICULTY.getTitleScene(), 
                                      this.window.getWidth(), 
                                      this.window.getHeight());
             //Play Button CLick Sound

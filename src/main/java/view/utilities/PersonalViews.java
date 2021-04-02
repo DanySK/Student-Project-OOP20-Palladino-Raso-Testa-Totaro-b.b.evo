@@ -31,6 +31,11 @@ public enum PersonalViews {
     SCENE_RANKING("Layout/RankingMenu.fxml", "RANKING"),
 
     /**
+     * Path for load Difficulty Menu Layout.
+     */
+    SCENE_DIFFICULTY("Layout/DifficultyMenu.fxml", "Difficulty"),
+
+    /**
      * Path for load Game Layout.
      */
     SCENE_GAME("Layout/Game.fxml", "GAME");
