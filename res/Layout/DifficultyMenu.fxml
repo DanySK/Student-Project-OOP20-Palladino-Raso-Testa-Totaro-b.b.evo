@@ -30,13 +30,13 @@
          <center>
             <VBox fx:id="radioButtonContainer" alignment="CENTER" spacing="50.0" BorderPane.alignment="CENTER">
                <children>
-                  <RadioButton fx:id="ckNormalDifficulty" mnemonicParsing="false" styleClass="menuButton" text="NORMAL">
+                  <RadioButton fx:id="ckNormalDifficulty" mnemonicParsing="false" prefHeight="100.0" prefWidth="309.0" styleClass="menuButton" text="NORMAL" textAlignment="CENTER">
                      <toggleGroup>
                         <ToggleGroup fx:id="Difficulty" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="ckHardDifficulty" mnemonicParsing="false" styleClass="menuButton" text="HARD" toggleGroup="$Difficulty" />
-                  <Button fx:id="btnStartGame" mnemonicParsing="false" styleClass="menuButton" text="Start Game" />
+                  <RadioButton fx:id="ckHardDifficulty" mnemonicParsing="false" prefHeight="100.0" prefWidth="304.0" styleClass="menuButton" text="HARD" textAlignment="CENTER" toggleGroup="$Difficulty" />
+                  <Button fx:id="btnStartGame" mnemonicParsing="false" prefHeight="40.0" styleClass="menuButton" text="Start Game" />
                </children>
                <BorderPane.margin>
                   <Insets />
@@ -56,7 +56,7 @@
                   </Button>
                </children>
                <padding>
-                  <Insets bottom="30.0" />
+                  <Insets bottom="30.0" top="30.0" />
                </padding>
             </HBox>
          </bottom>
