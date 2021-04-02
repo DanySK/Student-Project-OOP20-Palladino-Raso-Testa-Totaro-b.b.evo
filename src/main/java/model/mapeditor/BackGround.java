@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 /**
  * Background resource.
  */
-public enum Background implements Serializable {
+public enum BackGround implements Serializable {
 
     /**
      * Default theme.
@@ -48,7 +48,7 @@ public enum Background implements Serializable {
     private String path;
     private String name;
 
-    Background(final String path, final String name) {
+    BackGround(final String path, final String name) {
         this.path = path;
         this.name = name;
     }
@@ -71,8 +71,8 @@ public enum Background implements Serializable {
      * 
      * @return a list of all available backgrounds
      */
-    public static List<String> getBackgroundNames() {
-        return Arrays.asList(Background.values()).stream()
+    public static List<String> getBackGroundNames() {
+        return Arrays.asList(BackGround.values()).stream()
                                           .map(i -> i.getName())
                                           .collect(Collectors.toList());
     }
@@ -80,10 +80,10 @@ public enum Background implements Serializable {
     /**
      * the reference to the enumeration of a background by name.
      * @param name to map
-     * @return background enum
+     * @return backGround enum
      */
-    public static Background getBackGroundByName(final String name) {
-        return Arrays.asList(Background.values()).stream()
+    public static BackGround getBackGroundByName(final String name) {
+        return Arrays.asList(BackGround.values()).stream()
                                                  .filter(i -> i.getName().equals(name))
                                                  .findFirst()
                                                  .get();

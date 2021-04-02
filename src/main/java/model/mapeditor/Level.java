@@ -15,7 +15,7 @@ public class Level implements Serializable {
     private final Set<Brick> bricks; //deve cambiare brick
     private final String levelName;
     //DA CONTROLLARE, NEL CASO RIMUOVERE private final Music music; 
-    private final Background background;
+    private final BackGround background;
 
     /*
      * Set all required variables 
@@ -24,7 +24,7 @@ public class Level implements Serializable {
      * @param music
      * @param backGround
      */
-    public Level(final Set<Brick> bricks, final String levelName, /*final Music music ,*/ final Background background) {
+    public Level(final Set<Brick> bricks, final String levelName, /*final Music music ,*/ final BackGround background) {
         this.bricks = bricks;
         this.levelName = levelName;
         //this.music = music;
@@ -60,7 +60,7 @@ public class Level implements Serializable {
     /*
      * @return the background
      */
-    public Background getBackground() {
+    public BackGround getBackground() {
         return background;
     }
 

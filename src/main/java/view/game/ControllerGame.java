@@ -19,6 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.utilities.ConstantScreen;
 import model.entities.GameObject;
+import model.mapeditor.BackGround;
 
 public class ControllerGame implements Initializable {
 
@@ -105,8 +106,8 @@ public class ControllerGame implements Initializable {
      * set the background image of the canvas.
      * @param backGround use
      */
-    public void setBackGroundImage(final BackGround backGround) {
-        final BackgroundImage bg = new BackgroundImage(new Image(backGround.getLocation(), 
+    public void setBackgroundImage(final BackGround backGround) {
+        final BackgroundImage bg = new BackgroundImage(new Image(backGround.getPath(), 
                 ConstantScreen.CANVAS_WIDTH,
                 ConstantScreen.CANVAS_HEIGHT,
                 false,
