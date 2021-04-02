@@ -1,5 +1,6 @@
 package controller;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.HashMap;
@@ -31,14 +32,17 @@ class TestPrintLeaderboard {
 
     @Test
     void testCorrectPrintJsonFormat() {
-        IOLeaderboard.printInJsonFormat(this.rank.getLeaderBoard());
+        assertDoesNotThrow(() -> {
+            IOLeaderboard.printInJsonFormat(this.rank.getLeaderBoard());
+        });
     }
 
     @Test
     void testCorrectReadJsonFormat() {
-        final Map<String, Integer> map2 = IOLeaderboard.readLeaderboard();
-        assertEquals(this.map, map2);
-        System.out.println(map);
+        assertDoesNotThrow(() -> {
+            final Map<String, Integer> map2 = IOLeaderboard.readLeaderboard();
+            assertEquals(this.map, map2);
+        });
     }
 
 }

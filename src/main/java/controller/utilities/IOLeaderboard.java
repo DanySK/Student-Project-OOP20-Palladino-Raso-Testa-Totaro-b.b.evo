@@ -29,6 +29,7 @@ public final class IOLeaderboard {
                                            + SEP
                                            + "Leaderboards"
                                            + SEP;
+
     private static final String FILE_NAME = "ranking.json";
     private static final String FILE_PATH = RES_PATH + FILE_NAME;
     private static File rankFile = new File(FILE_PATH);
@@ -39,7 +40,7 @@ public final class IOLeaderboard {
     }
 
     /**
-     *  Method that allows to print to external file a leaderboard in jsonformat.
+     *  Method that allows to print to external file a Leaderboard in jsonformat.
      *  @param leaderboard - represent the map that needs to be converted.
      */
     public static void printInJsonFormat(final Map<String, Integer> leaderboard) {
@@ -61,7 +62,7 @@ public final class IOLeaderboard {
     }
 
     /**
-     *  Method that allows to print to read file a leaderboard in jsonformat.
+     *  Method that allows to read leaderboard in file in jsonformat.
      *  @return a map that represent the leaderboard.
      */
     public static Map<String, Integer> readLeaderboard() {

@@ -88,7 +88,7 @@ public class GameSettingsImpl implements Settings {
      */
     @Override
     public String toString() {
-        return "GameSettingsImpl [isEnableSoundFx=" + isEnableSoundFx + ", isEnableMusic=" + isEnableMusic
+        return "[isEnableSoundFx=" + isEnableSoundFx + ", isEnableMusic=" + isEnableMusic
                 + ", useLeftAndRight=" + useLeftAndRight + ", useUpAndDown=" + useUpAndDown + ", difficulty="
                 + difficulty + "]";
     }

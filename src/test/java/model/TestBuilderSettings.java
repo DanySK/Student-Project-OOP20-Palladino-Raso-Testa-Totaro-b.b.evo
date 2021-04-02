@@ -1,5 +1,6 @@
 package model;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Assertions;
@@ -27,14 +28,16 @@ class TestBuilderSettings {
 
     @Test
     void testCorrectBuild() {
-        this.builder.enableSoundFx(true);
-        this.builder.enableMusic(true);
-        this.builder.upAndDown(false);
-        this.builder.leftAndRight(true);
-        this.builder.difficulty(Difficulty.NORMAL);
-        final var settings = this.builder.build();
-        final GameSettingsImpl gameSettings = new GameSettingsImpl(true, true, true, false, Difficulty.NORMAL);
-        assertEquals(gameSettings, settings);
+        assertDoesNotThrow(() -> {
+            this.builder.enableSoundFx(true);
+            this.builder.enableMusic(true);
+            this.builder.upAndDown(false);
+            this.builder.leftAndRight(true);
+            this.builder.difficulty(Difficulty.NORMAL);
+            final var settings = this.builder.build();
+            final GameSettingsImpl gameSettings = new GameSettingsImpl(true, true, true, false, Difficulty.NORMAL);
+            assertEquals(gameSettings, settings);
+        });
     }
 
     @Test
@@ -51,8 +54,10 @@ class TestBuilderSettings {
 
     @Test
     void testBuilderWhitNull() {
-        this.builder.difficulty(Difficulty.HARD);
-        this.builder.build();
+        assertDoesNotThrow(() -> {
+            this.builder.difficulty(Difficulty.HARD);
+            this.builder.build();
+        });
     }
 
     @Test

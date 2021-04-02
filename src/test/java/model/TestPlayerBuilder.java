@@ -1,6 +1,7 @@
 package model;
 
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Assertions;
@@ -26,12 +27,14 @@ class TestPlayerBuilder {
 
     @Test
     void testCorrectBuild() {
-        this.builder.alias(ALIAS);
-        this.builder.score(SCORE);
-        this.builder.life(LIFE);
-        final var playerBuilder = this.builder.build();
-        final PlayerImpl player = new PlayerImpl(ALIAS, SCORE, LIFE);
-        assertEquals(player, playerBuilder);
+        assertDoesNotThrow(() -> {
+            this.builder.alias(ALIAS);
+            this.builder.score(SCORE);
+            this.builder.life(LIFE);
+            final var playerBuilder = this.builder.build();
+            final PlayerImpl player = new PlayerImpl(ALIAS, SCORE, LIFE);
+            assertEquals(player, playerBuilder);
+        });
     }
 
     @Test
