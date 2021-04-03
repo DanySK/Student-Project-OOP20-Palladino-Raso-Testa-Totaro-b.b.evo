@@ -2,10 +2,12 @@ package controller.mapeditor;
 
 import controller.utilities.GUIController;
 import javafx.fxml.FXML;
+import javafx.scene.canvas.GraphicsContext;
 import model.mapeditor.LevelBuilder;
 
 public class MapBuilderController implements GUIController {
 
+    private GraphicsContext graphicsContex;
     private LevelBuilder levelBuilder;
     private final CheckAlertController alert = new CheckAlertController();
 
@@ -40,6 +42,9 @@ public class MapBuilderController implements GUIController {
 
         alert.checkAllField();
         alert.checkLevelName();
+
+        alert.checkLevelCreate();
+
     }
 
     /**
@@ -47,6 +52,7 @@ public class MapBuilderController implements GUIController {
      */
     @FXML
     public void clearAll() {
-
+        levelBuilder.deleteAll();
+        this.setCanvas();
     }
 }
