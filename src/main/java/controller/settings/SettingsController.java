@@ -1,20 +1,20 @@
 package controller.settings;
 
-import model.utilities.Difficulty;
-
 public interface SettingsController {
+
+    boolean isSoundFxEnable();
+
+    boolean isMusicEnable();
+
+    boolean isLeftAndRightEnable();
+
+    boolean isUpAndDownEnable();
 
     void changeSoundFxState(boolean state);
 
     void changeMusicState(boolean state);
 
-    void setLeftAndRightMode();
+    void changeGameController();
 
-    void setUpAndDownMode();
-
-    void setDifficulty(Difficulty difficulty);
-
-    void printSettings();
-
-    void takeSettings();
+    void saveNewSettings();
 }

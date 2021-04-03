@@ -2,6 +2,7 @@ package view.settings;
 
 
 
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -76,11 +77,19 @@ public class ControllerSettings implements Initializable {
          */
         @Override
         public void initialize(final URL location, final ResourceBundle resources) {
+            this.controller = new SettingsControllerImpl();
             this.resizable();
             this.loadFont();
             this.loadListener();
             this.loadImage();
-            this.controller = new SettingsControllerImpl();
+            this.updateViewComponent();
+        }
+
+        private void updateViewComponent() {
+            this.ckSoundFX.setSelected(this.controller.isSoundFxEnable());
+            this.ckSound.setSelected(this.controller.isMusicEnable());
+            this.rbUseLeftRight.setSelected(this.controller.isLeftAndRightEnable());
+            this.rbUseUpDown.setSelected(this.controller.isUpAndDownEnable());
         }
 
         private void loadImage() {
@@ -99,10 +108,9 @@ public class ControllerSettings implements Initializable {
                                         PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
                                         this.window.getWidth(), 
                                         this.window.getHeight());
-                this.controller.printSettings();
+                this.controller.saveNewSettings();
                 //Play Button CLick Sound
                 SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
-
              });
 
             //CheckBox SoundFx Listener
@@ -119,13 +127,13 @@ public class ControllerSettings implements Initializable {
             });
 
             this.rbUseLeftRight.selectedProperty().addListener((obs, oldV, newV) -> {
-                this.controller.setLeftAndRightMode();
+                this.controller.changeGameController();
                 //Play Sound
                 SoundController.playSoundFx(PersonalSounds.TICK_SPECIALBUTTON.getURL().getPath());
             });
 
             this.rbUseUpDown.selectedProperty().addListener((obs, oldV, newV) -> {
-                this.controller.setUpAndDownMode();
+                this.controller.changeGameController();
                 //Play Sound
                 SoundController.playSoundFx(PersonalSounds.TICK_SPECIALBUTTON.getURL().getPath());
             });

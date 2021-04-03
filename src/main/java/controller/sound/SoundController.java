@@ -11,21 +11,17 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import controller.utilities.IOSettings;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 public final class SoundController {
 
     private static Clip clip;
-    private static boolean clipIsActived;
-    private static boolean canPermiseMusic;
-    private static boolean canPermiseFX;
+    private static boolean clipIsActived = false;
+    private static boolean canPermiseMusic = IOSettings.readSettings().isEnableMusic();
+    private static boolean canPermiseFX = IOSettings.readSettings().isEnableoundFx();
 
-    { clipIsActived = false; }
-
-    { canPermiseFX = true; }
-
-    { canPermiseMusic = true; }
 
     private SoundController() {
 
@@ -43,9 +39,17 @@ public final class SoundController {
         }
     }
 
+    public static void stopFx() {
+        canPermiseFX = false;
+    }
+
+    public static void enableSoundFx() {
+        canPermiseFX = true;
+    }
+
     public static void playMusic(final String path) {
             try {
-                    if (!clipIsActived && !canPermiseMusic)  {
+                    if (!clipIsActived && canPermiseMusic)  {
                         final File musicPath = new File(path);
                         final var audio = AudioSystem.getAudioInputStream(musicPath);
                         clip = AudioSystem.getClip();
@@ -62,20 +66,18 @@ public final class SoundController {
     }
 
     public static void stopMusic() {
+        if (clip.isActive()) {
+            clip.stop();
+        }
         clipIsActived = false;
-        canPermiseMusic = false;
-        clip.stop();
     }
 
     public static void enableMusic() {
         canPermiseMusic = true;
     }
 
-    public static void stopFx() {
-        canPermiseFX = false;
+    public static void disableMusic() {
+        canPermiseMusic = false;
     }
 
-    public static void enableSoundFx() {
-        canPermiseFX = true;
-    }
 }

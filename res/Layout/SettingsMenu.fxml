@@ -18,15 +18,15 @@
          <center>
             <VBox fx:id="radioButtonContainer" alignment="CENTER" spacing="15.0" BorderPane.alignment="CENTER">
                <children>
-                  <CheckBox fx:id="ckSoundFX" mnemonicParsing="false" prefHeight="90.0" prefWidth="557.0" selected="true" styleClass="menuButton" stylesheets="@../Style/settingsStyle.css" text="SoundFX">
+                  <CheckBox fx:id="ckSoundFX" mnemonicParsing="false" prefHeight="90.0" prefWidth="557.0" styleClass="menuButton" stylesheets="@../Style/settingsStyle.css" text="SoundFX">
                      <padding>
                         <Insets left="10.0" />
                      </padding></CheckBox>
-                  <CheckBox fx:id="ckSound" mnemonicParsing="false" prefHeight="90.0" prefWidth="557.0" selected="true" styleClass="menuButton" stylesheets="@../Style/settingsStyle.css" text="Music">
+                  <CheckBox fx:id="ckSound" mnemonicParsing="false" prefHeight="90.0" prefWidth="557.0" styleClass="menuButton" stylesheets="@../Style/settingsStyle.css" text="Music">
                      <padding>
                         <Insets left="10.0" />
                      </padding></CheckBox>
-                  <RadioButton fx:id="rbUseLeftRight" mnemonicParsing="false" prefHeight="90.0" prefWidth="557.0" selected="true" styleClass="menuButton" stylesheets="@../Style/settingsStyle.css" text="Use Left &amp; Right">
+                  <RadioButton fx:id="rbUseLeftRight" mnemonicParsing="false" prefHeight="90.0" prefWidth="557.0" styleClass="menuButton" stylesheets="@../Style/settingsStyle.css" text="Use Left &amp; Right">
                      <toggleGroup>
                         <ToggleGroup fx:id="ControlSettings" />
                      </toggleGroup>

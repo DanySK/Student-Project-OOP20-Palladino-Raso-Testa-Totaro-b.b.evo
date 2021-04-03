@@ -39,7 +39,7 @@ public final class IOSettings {
      *  Method that allows to print to external file game's settings in jsonformat.
      *  @param gameSettings - represent the settings entity that needs to be converted.
      */
-    public static void printInJsonFormat(final Settings gameSettings) throws IOException, FileNotFoundException {
+    public static void printInJsonFormat(final Settings gameSettings) {
 
         //Serialize in json
         final String gsonStringFormat = GSON.toJson(gameSettings);
@@ -59,7 +59,7 @@ public final class IOSettings {
      *  Method that allows to read game's settings in file in jsonformat.
      *  @return a map that represent the entity settings.
      */
-    public static Settings readSettings() throws IOException, FileNotFoundException {
+    public static Settings readSettings() {
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
             final String data = reader.readLine();
             reader.close();
