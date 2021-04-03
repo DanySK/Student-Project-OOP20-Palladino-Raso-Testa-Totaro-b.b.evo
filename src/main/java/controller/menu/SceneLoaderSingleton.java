@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import view.utilities.PersonalImages;
+import view.utilities.PersonalStyle;
 
 public final class SceneLoaderSingleton {
 
@@ -38,6 +39,10 @@ public final class SceneLoaderSingleton {
             final Image cursor = new Image(PersonalImages.CURSOR_PACMAN_IMG.getResourceAsStream());
             newScene.setCursor(new ImageCursor(cursor, CURSOR_DIMENSION, CURSOR_DIMENSION));
 
+            //Apply Style
+            parent.getStylesheets().add(PersonalStyle.DEFAULT_STYLE.getStylePath()); /* Da modificare */
+
+            //Animation
             final FadeTransition fadeIn = new FadeTransition(Duration.millis(ANIMATION_DURATION), newScene.getRoot());
             fadeIn.setFromValue(0.0);
             fadeIn.setToValue(1.0);

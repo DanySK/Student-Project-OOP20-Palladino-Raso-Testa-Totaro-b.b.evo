@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="mainPanel" stylesheets="@../Style/rankingMenu.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ranking.ControllerRanking">
+<AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="mainPanelRanking" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ranking.ControllerRanking">
    <children>
       <BorderPane fx:id="panel" prefHeight="400.0" prefWidth="600.0">
          <top>
@@ -35,8 +35,8 @@
                         <Insets left="20.0" right="20.0" top="20.0" />
                      </VBox.margin>
                      <columns>
-                        <TableColumn fx:id="aliasColumn" editable="false" prefWidth="75.0" sortable="false" text="Alias" />
-                        <TableColumn fx:id="scoreColumn" editable="false" prefWidth="75.0" sortable="false" text="Score" />
+                        <TableColumn fx:id="aliasColumn" editable="false" prefWidth="75.0" sortable="false" styleClass="lblColumnTitle" text="Alias" />
+                        <TableColumn fx:id="scoreColumn" editable="false" prefWidth="75.0" sortable="false" styleClass="lblColumnTitle" text="Score" />
                      </columns>
                   </TableView>
                </children>

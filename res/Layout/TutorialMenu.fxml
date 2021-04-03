@@ -10,13 +10,13 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="mainPanel" stylesheets="@../Style/tutorialStyle.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.tutorial.ControllerTutorial">
+<AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="mainPanelTutorial" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.tutorial.ControllerTutorial">
    <children>
-      <BorderPane fx:id="panel" prefHeight="400.0" prefWidth="600.0" styleClass="mainPanel" stylesheets="@../Style/tutorialStyle.css">
+      <BorderPane fx:id="panel" prefHeight="400.0" prefWidth="600.0">
          <top>
-            <HBox fx:id="titleContainer" prefHeight="100.0" prefWidth="200.0" stylesheets="@../Style/tutorialStyle.css" BorderPane.alignment="CENTER">
+            <HBox fx:id="titleContainer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="lblTitle" stylesheets="@../Style/tutorialStyle.css" text="BB">
+                  <Label fx:id="lblTitle" text="Tutorial">
                      <padding>
                         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                      </padding>
@@ -27,9 +27,9 @@
                </HBox>
          </top>
          <bottom>
-            <HBox fx:id="containerBackButton" alignment="CENTER" stylesheets="@../Style/tutorialStyle.css" BorderPane.alignment="CENTER">
+            <HBox fx:id="containerBackButton" alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="buttonBack" mnemonicParsing="false" stylesheets="@../Style/tutorialStyle.css" text="Back to Menù">
+                  <Button fx:id="buttonBack" mnemonicParsing="false" text="Back to Menù">
                      <HBox.margin>
                         <Insets bottom="20.0" />
                      </HBox.margin></Button>
@@ -37,9 +37,9 @@
             </HBox>
          </bottom>
          <center>
-            <VBox fx:id="videoTutorialContainer" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" stylesheets="@../Style/tutorialStyle.css" BorderPane.alignment="CENTER">
+            <VBox fx:id="videoTutorialContainer" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <MediaView fx:id="videoTutorial" fitHeight="200.0" fitWidth="200.0" nodeOrientation="INHERIT" styleClass="media">
+                  <MediaView fx:id="videoTutorial" fitHeight="200.0" fitWidth="200.0" nodeOrientation="INHERIT">
                   </MediaView>
                </children>
             </VBox>

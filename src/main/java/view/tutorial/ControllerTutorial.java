@@ -57,7 +57,7 @@ public class ControllerTutorial implements Initializable {
     private Button buttonBack;
 
 
-    private static final int SIZEFONTTITLE = 64;
+    private static final int SIZEFONTTITLE = 42;
     private static final int SIZEFONT = 24;
     private static final int SIZEWIDTH = 20;
     private static final int SIZEHEIGHT = 20;

@@ -64,7 +64,7 @@ public class ControllerSettings implements Initializable {
         @FXML
         private Button btnBack;
 
-        private static final int SIZEFONTTITLE = 64;
+        private static final int SIZEFONTTITLE = 42;
         private static final int SIZEFONT = 24;
         private static final int SIZEWIDTH = 20;
         private static final int SIZEHEIGHT = 20;
