@@ -60,14 +60,15 @@ public class SettingsControllerImpl implements SettingsController {
     }
 
     @Override
-    public void changeGameController() {
-        if (IOSettings.readSettings().useLeftAndRight()) {
-            this.settings.upAndDown(true);
-            this.settings.leftAndRight(false);
-        } else {
-            this.settings.leftAndRight(true);
-            this.settings.upAndDown(false);
-        }
+    public void useLeftAndRightCommand() {
+        this.settings.leftAndRight(true);
+        this.settings.upAndDown(false);
+    }
+
+    @Override
+    public void useUpAndDownCommand() {
+        this.settings.upAndDown(true);
+        this.settings.leftAndRight(false);
     }
 
     @Override

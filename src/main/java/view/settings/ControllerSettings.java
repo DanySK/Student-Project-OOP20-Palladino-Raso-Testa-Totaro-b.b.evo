@@ -127,13 +127,13 @@ public class ControllerSettings implements Initializable {
             });
 
             this.rbUseLeftRight.selectedProperty().addListener((obs, oldV, newV) -> {
-                this.controller.changeGameController();
+                this.controller.useLeftAndRightCommand();
                 //Play Sound
                 SoundController.playSoundFx(PersonalSounds.TICK_SPECIALBUTTON.getURL().getPath());
             });
 
             this.rbUseUpDown.selectedProperty().addListener((obs, oldV, newV) -> {
-                this.controller.changeGameController();
+                this.controller.useUpAndDownCommand();
                 //Play Sound
                 SoundController.playSoundFx(PersonalSounds.TICK_SPECIALBUTTON.getURL().getPath());
             });

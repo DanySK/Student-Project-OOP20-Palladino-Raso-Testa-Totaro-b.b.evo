@@ -13,8 +13,10 @@ public interface SettingsController {
     void changeSoundFxState(boolean state);
 
     void changeMusicState(boolean state);
-
-    void changeGameController();
+    
+    void useLeftAndRightCommand();
+    
+    void useUpAndDownCommand();
 
     void saveNewSettings();
 }
