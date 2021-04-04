@@ -1,92 +1,165 @@
 package model.entities;
 
+import controller.input.ComponentInput;
 import controller.input.ControllerInput;
+import controller.physics.ComponentPhysics;
 import model.utilities.Position;
 import model.utilities.Velocity;
 import view.graphics.AdapterGraphics;
+import view.graphics.ComponentGraphics;
 
 public abstract class GameObjectImpl implements GameObject {
 
-    public GameObjectImpl() {
-        // TODO Auto-generated constructor stub
+    private Position pos;
+    private Velocity vel;
+    private double speed;
+    private int height;
+    private int width;
+    private final ComponentPhysics physics;
+    private final ComponentInput input;
+    private final ComponentGraphics graphics;
+
+    public GameObjectImpl(final Position pos, final Velocity vel, final double speed, final int height, final int width,
+            final ComponentPhysics physics, final ComponentInput input, final ComponentGraphics graphics) {
+        this.pos = pos;
+        this.vel = vel;
+        this.speed = speed;
+        this.height = height;
+        this.width = width;
+        this.physics = physics;
+        this.input = input;
+        this.graphics = graphics;
     }
 
+    public GameObjectImpl(final Position pos, final Velocity vel, final double speed, final int height, final int width,
+            final ComponentPhysics physics, final ComponentGraphics graphics) {
+        this.pos = pos;
+        this.vel = vel;
+        this.speed = speed;
+        this.height = height;
+        this.width = width;
+        this.physics = physics;
+        this.input = null;
+        this.graphics = graphics;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setHeight(final int height) {
-        // TODO Auto-generated method stub
-        
+        this.height = height;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setWidth(final int width) {
-        // TODO Auto-generated method stub
-        
+        this.width = width;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getHeight() {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.height;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getWidth() {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.width;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Position getPos() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.pos;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setPos(final Position pos) {
-        // TODO Auto-generated method stub
-        
+        this.pos = pos;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Velocity getVel() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.vel;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setVel(final Velocity vel) {
-        // TODO Auto-generated method stub
-        
+        this.vel = vel;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setSpeed(final double speed) {
-        // TODO Auto-generated method stub
-        
+        this.speed = speed;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double getSpeed() {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.speed;
     }
 
-    @Override
-    public void updatePhysics(final int timeElapsed, final GameBoardImpl world) {
-        // TODO Auto-generated method stub
-        
+    /**
+     * @return component Physics
+     */
+    protected ComponentPhysics getComponentPhysics() {
+        return this.physics;
     }
 
-    @Override
-    public void updateInput(final ControllerInput controller) {
-        // TODO Auto-generated method stub
-        
+    /**
+     * @return component Input
+     */
+    protected ComponentInput getComponentInput() {
+        return this.input;
     }
 
-    @Override
-    public void updateGraphics(final AdapterGraphics graphicsAdapter) {
-        // TODO Auto-generated method stub
-        
+    /**
+     * @return component Graphics
+     */
+    protected ComponentGraphics getComponentGraphics() {
+        return this.graphics;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public abstract void updatePhysics(int timeElapsed, GameBoardImpl world);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public abstract void updateInput(ControllerInput controller);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public abstract void updateGraphics(AdapterGraphics graphicsAdapter);
 
 }

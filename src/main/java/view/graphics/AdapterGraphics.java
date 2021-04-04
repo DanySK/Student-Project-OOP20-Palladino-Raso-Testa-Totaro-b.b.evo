@@ -1,6 +1,7 @@
 package view.graphics;
 
 import javafx.scene.image.Image;
+import model.entities.Ball;
 import model.entities.Brick;
 
 public interface AdapterGraphics {
