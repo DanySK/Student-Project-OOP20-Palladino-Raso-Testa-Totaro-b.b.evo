@@ -21,7 +21,7 @@ public final class IOSettings {
     private static final String SEP = System.getProperty("file.separator");
     private static final String RES_PATH = System.getProperty("user.home")
                                            + SEP
-                                           + "BrickBreaker-EVO-Resources" 
+                                           + ".BrickBreakerEvo" 
                                            + SEP
                                            + "Settings"
                                            + SEP;
