@@ -1,91 +1,77 @@
 package model.entities;
 
-import javafx.scene.shape.Rectangle;
-import model.utilities.GameObjectType;
+import controller.input.ControllerInput;
 import model.utilities.Position;
+import model.utilities.Velocity;
+import view.graphics.AdapterGraphics;
 
-/**
- * A class for {@link GameObject} model.
- */
-public abstract class GameObject {
-    /**
-     * 
-     */
-    private final int width;
-    private final int height;
-    private Position position;
-    private final GameObjectType type;
+public interface GameObject {
 
     /**
-     * Construct an implementation of {@link GameObject}.
-     * 
-     * @param width    the width of the gameObj.
-     * @param height   the height of the gameObj.
-     * @param position the position of the gameObj.
-     * @param type     the type of the gameObj.
+     * @param height to set
      */
-    protected GameObject(final int width, final int height, final Position position, final GameObjectType type) {
-        this.width = width;
-        this.height = height;
-        this.position = position;
-        this.type = type;
-    }
+    void setHeight(int height);
 
     /**
-     * Used to know the space occupied by an GameObject.
-     * 
-     * @return the Rectangle that represents the occupied space.
+     * @param width to set
      */
-    public Rectangle getBound() {
-        return new Rectangle(position.getX(), position.getY(), width, height);
-    }
+    void setWidth(int width);
 
     /**
-     * Used to know the position of an GameObject in the game world.
-     * 
-     * @return the Position that keeps the (x,y) coordinates.
+     * @return the height
      */
-    public Position getPosition() {
-        return this.position;
-    }
+    int getHeight();
 
     /**
-     * Used to know what kind of GameObject is.
-     * 
-     * @return the type of the GameObject.
+     * @return the width
      */
-    public GameObjectType getType() {
-        return this.type;
-    }
+    int getWidth(); 
 
     /**
-     * An implementation of the setter for the classes that needs to extend
-     * SimpleGameObj.
-     * 
-     * @param newPosition the new position to set
+     * @return the position
      */
-    public void setPosition(final Position newPosition) {
-        this.position = newPosition;
-    }
+    Position getPos();
 
     /**
-     * An implementation of the getter for the classes that needs to extend
-     * SimpleGameObj.
-     * 
-     * @return the width of the gameObj
+     * @param pos to set
      */
-    public int getWidth() {
-        return this.width;
-    }
+    void setPos(Position pos);
 
     /**
-     * An implementation of the getter for the classes that needs to extend
-     * SimpleGameObj.
-     * 
-     * @return the height of the gameObj
+     * @return the velocity
      */
-    public int getHeight() {
-        return this.height;
-    }
+    Velocity getVel();
+
+    /**
+     * @param vel to set
+     */
+    void setVel(Velocity vel);
+
+    /**
+     * @param speed to set
+     */
+    void setSpeed(double speed);
+
+    /**
+     * @return the speed
+     */
+    double getSpeed();
+
+    /**
+     * @param timeElapsed from game loop
+     * @param world model
+     */
+    void updatePhysics(int timeElapsed, GameBoardImpl world);
+
+    /**
+     * @param controller of this gameObject
+     */
+    void updateInput(ControllerInput controller);
+
+    /**
+     * 
+     * @param graphicsAdapter to adapt the object to the screen
+     */
+    void updateGraphics(AdapterGraphics graphicsAdapter);
 
 }
