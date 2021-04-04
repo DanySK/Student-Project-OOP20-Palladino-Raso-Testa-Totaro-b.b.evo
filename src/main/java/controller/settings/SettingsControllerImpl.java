@@ -18,26 +18,51 @@ public class SettingsControllerImpl implements SettingsController {
         this.settings.difficulty(IOSettings.readSettings().getDifficulty());
     }
 
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
     @Override
     public boolean isSoundFxEnable() {
         return IOSettings.readSettings().isEnableoundFx();
     }
 
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
     @Override
     public boolean isMusicEnable() {
         return IOSettings.readSettings().isEnableMusic();
     }
 
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
     @Override
     public boolean isLeftAndRightEnable() {
         return IOSettings.readSettings().useLeftAndRight();
     }
 
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
     @Override
     public boolean isUpAndDownEnable() {
         return IOSettings.readSettings().useUpAndDown();
     }
 
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
     @Override
     public void changeSoundFxState(final boolean state) {
         this.settings.enableSoundFx(state);
@@ -48,6 +73,11 @@ public class SettingsControllerImpl implements SettingsController {
         }
     }
 
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
     @Override
     public void changeMusicState(final boolean state) {
         this.settings.enableMusic(state);
@@ -59,18 +89,33 @@ public class SettingsControllerImpl implements SettingsController {
         }
     }
 
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
     @Override
     public void useLeftAndRightCommand() {
         this.settings.leftAndRight(true);
         this.settings.upAndDown(false);
     }
 
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
     @Override
     public void useUpAndDownCommand() {
         this.settings.upAndDown(true);
         this.settings.leftAndRight(false);
     }
 
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
     @Override
     public void saveNewSettings() {
         IOSettings.printInJsonFormat(this.settings.build());
