@@ -85,10 +85,10 @@ public class ControllerGame implements Initializable {
      */
     private void drawWorld(final Set<GameObject> gameEntities) {
         gc.clearRect(0, 0, ConstantScreen.CANVAS_WIDTH, ConstantScreen.CANVAS_HEIGHT);
-        final GraphicsAdapter ga = new GraphicsAdapterImpl(gc);
-        gameEntities.stream().forEach(e -> {
-            e.updateGraphics(ga);
-        });
+        //final GraphicsAdapter ga = new GraphicsAdapterImpl(gc);
+        //gameEntities.stream().forEach(e -> {
+        //    e.updateGraphics(ga);
+        //});
     }
 
     /**

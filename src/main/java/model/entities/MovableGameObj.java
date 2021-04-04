@@ -3,7 +3,6 @@ package model.entities;
 import java.awt.Rectangle;
 
 import controller.utilities.MapGame;
-import controller.utilities.MapIO;
 import model.utilities.Direction;
 import model.utilities.GameObjectType;
 import model.utilities.Position;

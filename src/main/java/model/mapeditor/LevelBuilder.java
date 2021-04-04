@@ -24,18 +24,20 @@ public class LevelBuilder {
      * @param lives
      * @return coordinates
      */
+    /*
     public Pair<A, Boolean> brickSelected(final double x, final double y, final Color color, final boolean isIndestructibile, 
                                             final int point, final int lives) {
 
     }
-
+    */
     /**
      * @return level built
      */
+    /*
     public Level build() {
 
     }
-
+    */
     /**
      * @param levelName
      */

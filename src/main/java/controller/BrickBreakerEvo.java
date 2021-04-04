@@ -6,8 +6,10 @@ import java.io.File;
 import java.io.IOException;
 
 import controller.menu.SceneLoaderSingleton;
+import controller.utilities.IOSettings;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import model.settings.GameSettingsBuilderImpl;
 import view.utilities.PersonalViews;
 
 /**
@@ -97,9 +99,12 @@ public class BrickBreakerEvo extends Application {
         if (new File(BrickBreakerEvo.LEVEL_FOLDER).mkdirs()) {
             System.out.println("Level Folder successfully created");
         }
-        if (new File(BrickBreakerEvo.SETTINGS_FOLDER).mkdirs()
-                && new File(BrickBreakerEvo.SETTINGS_FOLDER + "settings.json").createNewFile()) {
-            System.out.println("Settings Folder e json successfully created");
+        if (!new File(BrickBreakerEvo.SETTINGS_FOLDER + "settings.json").exists()) {
+            if (new File(BrickBreakerEvo.SETTINGS_FOLDER).mkdirs()
+                    && new File(BrickBreakerEvo.SETTINGS_FOLDER + "settings.json").createNewFile()) {
+                //System.out.println("Settings Folder e json successfully created");
+                IOSettings.printInJsonFormat(new GameSettingsBuilderImpl().defaultSettings().build());
+            }
         }
         if (new File(BrickBreakerEvo.MAPS_FOLDER).mkdirs()) {
             System.out.println("Maps Folder successfully created");
