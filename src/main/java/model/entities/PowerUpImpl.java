@@ -49,7 +49,6 @@ public class PowerUpImpl extends BrickImpl implements PowerUp {
     @Override
     public void activatePowerUp(final int seconds) {
         //attiva il powerup
-
     }
 
     @Override
