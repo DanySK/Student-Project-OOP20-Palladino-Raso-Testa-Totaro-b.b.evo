@@ -22,16 +22,31 @@ public class LeaderboardControllerImpl implements LeaderBoardController {
         }
     }
 
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
     @Override
     public void addPlayerInLeaderBoard(final Player player) {
         this.leaderboard.addPlayer(player.getAlias(), player.getScore());
     }
 
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
     @Override
     public Map<String, Integer> viewLeaderboard() {
         return Collections.unmodifiableMap(this.leaderboard.getLeaderBoard());
     }
 
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
     @Override
     public Map<String, Integer> getPoudium(final int index) {
         this.leaderboard.sortByScore();
@@ -43,6 +58,11 @@ public class LeaderboardControllerImpl implements LeaderBoardController {
                                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
     @Override
     public void saveSortLeaderboard() {
         this.leaderboard.sortByScore();
