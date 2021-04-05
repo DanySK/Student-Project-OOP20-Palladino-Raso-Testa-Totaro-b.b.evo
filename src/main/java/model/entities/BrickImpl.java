@@ -1,28 +1,36 @@
 package model.entities;
 
-import model.utilities.GameObjectType;
+import controller.input.ControllerInput;
+import controller.physics.ComponentPhysics;
 import model.utilities.Position;
+import model.utilities.Status;
+import model.utilities.Velocity;
+import view.graphics.AdapterGraphics;
+import view.graphics.ComponentGraphics;
 
-public class BrickImpl extends GameObject implements Brick {
+public class BrickImpl extends GameObjectImpl implements Brick {
+
     /**
-     * 
+     * int
      */
     public int durability;
+    public Status status;
 
-    public BrickImpl(final int width, final int height, final Position position, final GameObjectType type, final int durability) {
-        super(width, height, position, type);
-            this.durability = durability;
+    public BrickImpl(Position pos, Velocity vel, double speed, int height, int width, ComponentPhysics physics,
+            ComponentGraphics graphics) {
+        super(pos, vel, speed, height, width, physics, graphics);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Boolean isBroken() {
-        if (this.durability <= 0) {
-            return true;
+    public Status getStatus() {
+        if (this.status == Status.DESTR && this.durability <= 0) {
+            this.status = Status.BROKEN;
+            return this.status;
         }
-        return false;
+        return this.status;
     }
 
     /**
@@ -39,6 +47,18 @@ public class BrickImpl extends GameObject implements Brick {
     @Override
     public int getDurability() {
         return this.durability;
+    }
+
+    @Override
+    public void updatePhysics(int timeElapsed, GameBoardImpl world) {        
+    }
+
+    @Override
+    public void updateInput(ControllerInput controller) {        
+    }
+
+    @Override
+    public void updateGraphics(AdapterGraphics graphicsAdapter) {        
     }
 
 }

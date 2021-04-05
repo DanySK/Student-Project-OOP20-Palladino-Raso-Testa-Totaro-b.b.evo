@@ -1,8 +1,12 @@
 package controller.entities;
 
+import model.utilities.Status;
+
 public interface BrickController extends GameObjController{
 
-    void getDurability();
+    int getDurability();
 
-    void decDurability();
+    void decreaseDurability();
+
+    Status getStatus();
 }

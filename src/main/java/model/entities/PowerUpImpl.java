@@ -1,27 +1,32 @@
 package model.entities;
 
-import model.utilities.GameObjectType;
+import controller.physics.ComponentPhysics;
 import model.utilities.Position;
 import model.utilities.PowerUpType;
+import model.utilities.Status;
+import model.utilities.Velocity;
+import view.graphics.ComponentGraphics;
 
 public class PowerUpImpl extends BrickImpl implements PowerUp {
+
     private PowerUpType pwtype;
 
-    public PowerUpImpl(final int width, final int height, final Position position, final GameObjectType type, 
-            final int durability) {
-        super(width, height, position, type, durability);
+    public PowerUpImpl(Position pos, Velocity vel, double speed, int height, int width, ComponentPhysics physics,
+            ComponentGraphics graphics) {
+        super(pos, vel, speed, height, width, physics, graphics);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Boolean isBroken() {
-        if (this.durability <= 0) {
+    public Status getStatus() {
+        if (this.status == Status.DESTR && this.durability <= 0) {
+            this.status = Status.DROP_POWERUP;
             dropPowerUp();
-            return true;
+            return this.status;
         }
-        return false;
+        return this.status;
     }
 
     /**
@@ -36,7 +41,6 @@ public class PowerUpImpl extends BrickImpl implements PowerUp {
         //se tocca il paddle attiva il powerup e distrugge il gameobj 
 
         //se tocca il fondo non attiva il pwrup e distrugge il gameobj
-
     }
 
     /**
@@ -46,6 +50,11 @@ public class PowerUpImpl extends BrickImpl implements PowerUp {
     public void activatePowerUp(final int seconds) {
         //attiva il powerup
 
+    }
+
+    @Override
+    public PowerUpType getPowerUpType() {
+        return this.pwtype;
     }
 
 
