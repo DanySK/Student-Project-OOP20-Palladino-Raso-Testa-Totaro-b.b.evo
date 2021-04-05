@@ -4,8 +4,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class LeaderboardImpl implements Leaderboard {
@@ -72,48 +70,6 @@ public class LeaderboardImpl implements Leaderboard {
     @Override
     public Map<String, Integer> getLeaderBoard() {
         return Collections.unmodifiableMap(this.ranking);
-    }
-
-    /**
-     * 
-     * {@inheritDoc}
-     *
-     */
-    @Override
-    public Optional<Entry<String, Integer>> getTopPlayer() {
-        this.sortByScore();
-        if (this.ranking.entrySet().stream().findFirst().isPresent()) {
-            return this.ranking.entrySet().stream().findFirst();
-        }
-        return Optional.empty();
-    }
-
-    /**
-     * 
-     * {@inheritDoc}
-     *
-     */
-    @Override
-    public Optional<Entry<String, Integer>> getSecondPlayer() {
-        this.sortByScore();
-        if (this.ranking.entrySet().stream().findFirst().isPresent()) {
-            return this.ranking.entrySet().stream().skip(1).findFirst();
-        }
-        return Optional.empty();
-    }
-
-    /**
-     * 
-     * {@inheritDoc}
-     *
-     */
-    @Override
-    public Optional<Entry<String, Integer>> getThirdPlayer() {
-        this.sortByScore();
-        if (this.ranking.entrySet().stream().findFirst().isPresent()) {
-            return this.ranking.entrySet().stream().skip(2).findFirst();
-        }
-        return Optional.empty();
     }
 
     /**

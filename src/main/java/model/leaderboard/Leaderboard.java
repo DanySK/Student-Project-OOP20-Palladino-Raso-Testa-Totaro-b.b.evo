@@ -1,8 +1,6 @@
 package model.leaderboard;
 
 import java.util.Map;
-import java.util.Optional;
-import java.util.Map.Entry;
 
 public interface Leaderboard {
 
@@ -33,24 +31,4 @@ public interface Leaderboard {
      */
     Map<String, Integer> getLeaderBoard();
 
-    /**
-     *  Return a Entry representing the first place player in the ranking.
-     *  @return a Entry representing the first place player in the ranking or Optional empty.
-     *
-     */
-    Optional<Entry<String, Integer>>  getTopPlayer();
-
-    /**
-     *  Return a Entry representing the second place player in the ranking.
-     *  @return a Entry representing the second place player in the ranking or Optional empty.
-     *
-     */
-    Optional<Entry<String, Integer>>  getSecondPlayer();
-
-    /**
-     *  Return a Entry representing the third place player in the ranking.
-     *  @return a Entry representing the third place player in the ranking or Optional empty.
-     *
-     */
-    Optional<Entry<String, Integer>>  getThirdPlayer();
 }

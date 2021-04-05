@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -70,52 +69,6 @@ class TestLeaderboard {
         });
     }
 
-    @Test
-    void testGetTopPlayer() {
-        assertEquals(Optional.of(Map.entry("Alex00", ALEX00_SCORE)).get(), this.leaderboard.getTopPlayer().get());
-        this.leaderboard.removePlayer("Alex00", ALEX00_SCORE);
-        assertEquals(Optional.of(Map.entry("-<Jack>-", JACK_SCORE)).get(), this.leaderboard.getTopPlayer().get());
-    }
-
-    @Test
-    void testGetSecondPlayer() {
-        assertEquals(Optional.of(Map.entry("-<Jack>-", JACK_SCORE)).get(), this.leaderboard.getSecondPlayer().get());
-        this.leaderboard.removePlayer("Alex00", ALEX00_SCORE);
-        assertEquals(Optional.of(Map.entry("_Tommy_", TOMMY_SCORE)).get(), this.leaderboard.getSecondPlayer().get());
-    }
-
-    @Test
-    void testGetThirdPlayer() {
-        assertEquals(Optional.of(Map.entry("_Tommy_", TOMMY_SCORE)).get(), this.leaderboard.getThirdPlayer().get());
-        this.leaderboard.removePlayer("Alex00", ALEX00_SCORE);
-        assertEquals(Optional.of(Map.entry("Marcus", MARCUS_SCORE)).get(), this.leaderboard.getThirdPlayer().get());
-    }
-
-    @Test
-    void testEmptyPoudium() {
-        this.leaderboard = new LeaderboardImpl();
-        assertEquals(Optional.empty(), this.leaderboard.getTopPlayer());
-        assertEquals(Optional.empty(), this.leaderboard.getSecondPlayer());
-        assertEquals(Optional.empty(), this.leaderboard.getThirdPlayer());
-
-        //Add first player
-        this.leaderboard.addPlayer("Fausto", ALEX00_SCORE);
-        assertEquals(Optional.of(Map.entry("Fausto", ALEX00_SCORE)), this.leaderboard.getTopPlayer());
-        assertEquals(Optional.empty(), this.leaderboard.getSecondPlayer());
-        assertEquals(Optional.empty(), this.leaderboard.getThirdPlayer());
-
-        //Add second player
-        this.leaderboard.addPlayer("Mario", TOMMY_SCORE);
-        assertEquals(Optional.of(Map.entry("Fausto", ALEX00_SCORE)), this.leaderboard.getTopPlayer());
-        assertEquals(Optional.of(Map.entry("Mario", TOMMY_SCORE)), this.leaderboard.getSecondPlayer());
-        assertEquals(Optional.empty(), this.leaderboard.getThirdPlayer());
-
-        //Add third Player
-        this.leaderboard.addPlayer("Alex", TOMMY_SCORE);
-        assertEquals(Optional.of(Map.entry("Fausto", ALEX00_SCORE)), this.leaderboard.getTopPlayer());
-        assertEquals(Optional.of(Map.entry("Mario", TOMMY_SCORE)), this.leaderboard.getSecondPlayer());
-        assertEquals(Optional.of(Map.entry("Alex", TOMMY_SCORE)), this.leaderboard.getThirdPlayer());
-    }
 
     @Test
     void testOrder() {
@@ -124,10 +77,10 @@ class TestLeaderboard {
         this.leaderboard.addPlayer("Mario", TOMMY_SCORE);
         this.leaderboard.addPlayer("Alex", TOMMY_SCORE);
         this.leaderboard.sortByScore();
+        assertEquals(this.leaderboard.getLeaderBoard(), Map.of("Fausto", ALEX00_SCORE,
+                                                               "Mario", TOMMY_SCORE,
+                                                               "Alex", TOMMY_SCORE));
 
-        assertEquals(Optional.of(Map.entry("Fausto", ALEX00_SCORE)), this.leaderboard.getTopPlayer());
-        assertEquals(Optional.of(Map.entry("Alex", TOMMY_SCORE)), this.leaderboard.getSecondPlayer());
-        assertEquals(Optional.of(Map.entry("Mario", TOMMY_SCORE)), this.leaderboard.getThirdPlayer());
     }
 
 
