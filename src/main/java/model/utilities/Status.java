@@ -8,17 +8,22 @@ import java.util.List;
  */
 public enum Status {
     /**
-     * Represent a movable gamObj that can not destroy.
+     * Represents a gamObj that can not be destroyed.
      */
     NOT_DESTR,
 
     /**
-     * Represent a movable entity that can destroy.
+     * Represents a gamObj that can be destroyed.
      */
     DESTR,
 
     /**
-     * Represent the last moments of hit gamObj to hit gamObj.
+     * Represents a gamObj that can drop a PowerUp.
+     */
+    DROP_POWERUP,
+
+    /**
+     * Represent a broken gameObject.
      */
     BROKEN;
 
