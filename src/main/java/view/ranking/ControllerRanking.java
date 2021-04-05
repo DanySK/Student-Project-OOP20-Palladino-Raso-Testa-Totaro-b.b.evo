@@ -9,7 +9,6 @@ import controller.leaderboard.LeaderBoardController;
 import controller.leaderboard.LeaderboardControllerImpl;
 import controller.menu.SceneLoaderSingleton;
 import controller.sound.SoundController;
-import controller.utilities.IOLeaderboard;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -57,7 +56,7 @@ public class ControllerRanking implements Initializable {
     private VBox rankingContainer;
 
     @FXML
-    private TableView displayRanking;
+    private TableView<Map.Entry<String, Integer>> displayRanking;
 
     @FXML
     private TableColumn<Map.Entry<String, Integer>, String> aliasColumn;
