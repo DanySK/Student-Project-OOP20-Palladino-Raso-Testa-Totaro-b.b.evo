@@ -9,7 +9,7 @@ public interface PowerUp extends Brick {
     void dropPowerUp();
     /**
      * getter for {@link PowerUpType} attribute.
-     * @return pwtype
+     * @return poweruptype
      */
     PowerUpType getPowerUpType();
 
