@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Map.Entry;
 
+import controller.leaderboard.LeaderBoardController;
+import controller.leaderboard.LeaderboardControllerImpl;
 import controller.menu.SceneLoaderSingleton;
 import controller.sound.SoundController;
 import controller.utilities.IOLeaderboard;
@@ -75,6 +77,7 @@ public class ControllerRanking implements Initializable {
     private static final int SIZEHEIGHT = 20;
     private static final int CENTER_POSITION = 2;
     private final Font fontColumn = Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), SIZEFONT);
+    private final LeaderBoardController controller = new LeaderboardControllerImpl();
 
      /**
      *  Method that initialize all component of scene.
@@ -95,7 +98,7 @@ public class ControllerRanking implements Initializable {
         this.scoreColumn
             .setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getValue()));
 
-        final ObservableList<Map.Entry<String, Integer>> data = FXCollections.observableArrayList(IOLeaderboard.readLeaderboard().entrySet());
+        final ObservableList<Map.Entry<String, Integer>> data = FXCollections.observableArrayList(this.controller.viewLeaderboard().entrySet());
 
         this.displayRanking.setItems(data);
         this.displayRanking.getColumns().setAll(this.aliasColumn, this.scoreColumn);
