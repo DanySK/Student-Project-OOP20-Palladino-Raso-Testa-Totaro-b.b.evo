@@ -12,5 +12,5 @@ public interface LeaderBoardController {
 
     Map<String, Integer> getPoudium(int index);
 
-    void printLeaderBoard();
+    void saveSortLeaderboard();
 }

@@ -111,7 +111,7 @@ public class BrickBreakerEvo extends Application {
         }
 
         if (new File(BrickBreakerEvo.LEADERBOARDS_FOLDER).mkdirs()
-                && new File(BrickBreakerEvo.LEADERBOARDS_FOLDER + "Ranking.json").createNewFile()) {
+                && new File(BrickBreakerEvo.LEADERBOARDS_FOLDER + "ranking.json").createNewFile()) {
             System.out.println("LeaderBoards Folder e json successfully created");
         //new MainMenuView(TITLE).show();
         }

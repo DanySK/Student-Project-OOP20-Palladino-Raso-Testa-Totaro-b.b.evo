@@ -14,7 +14,12 @@ public class LeaderboardControllerImpl implements LeaderBoardController {
     private final Leaderboard leaderboard;
 
     public LeaderboardControllerImpl() {
-        this.leaderboard = new LeaderboardImpl(IOLeaderboard.readLeaderboard());
+        final var map = IOLeaderboard.readLeaderboard();
+        if (map == null || map.isEmpty()) {
+            this.leaderboard = new LeaderboardImpl();
+        } else {
+            this.leaderboard = new LeaderboardImpl(map);
+        }
     }
 
     @Override
@@ -30,6 +35,7 @@ public class LeaderboardControllerImpl implements LeaderBoardController {
     @Override
     public Map<String, Integer> getPoudium(final int index) {
         this.leaderboard.sortByScore();
+        System.out.println(this.leaderboard.getLeaderBoard());
         return this.leaderboard.getLeaderBoard()
                                .entrySet()
                                .stream()
@@ -38,7 +44,8 @@ public class LeaderboardControllerImpl implements LeaderBoardController {
     }
 
     @Override
-    public void printLeaderBoard() {
+    public void saveSortLeaderboard() {
+        this.leaderboard.sortByScore();
         IOLeaderboard.printInJsonFormat(this.viewLeaderboard());
     }
 
