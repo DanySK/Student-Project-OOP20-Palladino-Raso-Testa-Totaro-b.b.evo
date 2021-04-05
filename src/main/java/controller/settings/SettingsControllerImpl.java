@@ -4,6 +4,7 @@ import controller.sound.SoundController;
 import controller.utilities.IOSettings;
 import model.settings.GameSettingsBuilder;
 import model.settings.GameSettingsBuilderImpl;
+import model.utilities.Difficulty;
 
 public class SettingsControllerImpl implements SettingsController {
 
@@ -109,6 +110,26 @@ public class SettingsControllerImpl implements SettingsController {
     public void useUpAndDownCommand() {
         this.settings.upAndDown(true);
         this.settings.leftAndRight(false);
+    }
+
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public Difficulty getDifficulty() {
+        return IOSettings.readSettings().getDifficulty();
+    }
+
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void changeDifficulty(final Difficulty difficulty) {
+        this.settings.difficulty(difficulty);
     }
 
     /**

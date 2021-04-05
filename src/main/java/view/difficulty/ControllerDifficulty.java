@@ -3,11 +3,16 @@ package view.difficulty;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import controller.menu.SceneLoaderSingleton;
+import controller.settings.SettingsController;
+import controller.settings.SettingsControllerImpl;
+import controller.sound.SoundController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -18,9 +23,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.utilities.Difficulty;
 import view.utilities.PersonalFonts;
 import view.utilities.PersonalImages;
+import view.utilities.PersonalSounds;
+import view.utilities.PersonalViews;
 
 public class ControllerDifficulty implements Initializable {
 
@@ -59,17 +68,25 @@ public class ControllerDifficulty implements Initializable {
     private static final int SIZEWIDTH = 20;
     private static final int SIZEHEIGHT = 20;
     private static final int CENTER_POSITION = 2;
+    private SettingsController controller;
 
     /**
      * Method that initialize all javaFx component.
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
+        this.controller = new SettingsControllerImpl();
         this.resizable();
         this.loadFont();
         this.loadListener();
         this.loadAnimation();
         this.loadImage();
+        this.updateViewComponent();
+    }
+
+    private void updateViewComponent() {
+        this.ckNormalDifficulty.setSelected(this.controller.getDifficulty().equals(Difficulty.NORMAL));
+        this.ckHardDifficulty.setSelected(this.controller.getDifficulty().equals(Difficulty.HARD));
     }
 
     private void loadAnimation() {
@@ -89,7 +106,30 @@ public class ControllerDifficulty implements Initializable {
     }
 
     private void loadListener() {
+        //Button back Listener
+        this.btnBack.setOnAction(event -> {
+            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                                    PersonalViews.SCENE_CHARACTER_MENU.getURL(), 
+                                    PersonalViews.SCENE_CHARACTER_MENU.getTitleScene(), 
+                                    this.window.getWidth(), 
+                                    this.window.getHeight());
+            this.controller.saveNewSettings();
+            //Play Button CLick Sound
+            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+         });
 
+        //RadioButton change difficulty
+        this.ckNormalDifficulty.selectedProperty().addListener((obs, oldV, newV) -> {
+            this.controller.changeDifficulty(Difficulty.NORMAL);
+            //Play Sound
+            SoundController.playSoundFx(PersonalSounds.TICK_SPECIALBUTTON.getURL().getPath());
+        });
+
+        this.ckHardDifficulty.selectedProperty().addListener((obs, oldV, newV) -> {
+            this.controller.changeDifficulty(Difficulty.HARD);
+            //Play Sound
+            SoundController.playSoundFx(PersonalSounds.TICK_SPECIALBUTTON.getURL().getPath());
+        });
     }
 
     private void loadFont() {
