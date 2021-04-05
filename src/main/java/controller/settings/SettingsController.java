@@ -1,5 +1,7 @@
 package controller.settings;
 
+import model.utilities.Difficulty;
+
 public interface SettingsController {
 
     /**
@@ -47,6 +49,18 @@ public interface SettingsController {
      * Method that allows use the up and down keys to check the player.
      */
     void useUpAndDownCommand();
+
+    /**
+     * Method that allows to get the game difficulty.
+     * @return the game difficulty.
+     */
+    Difficulty getDifficulty();
+
+    /**
+     * Method that allows to set the game difficulty.
+     * @param difficulty - use to set the game difficulty.
+     */
+    void changeDifficulty(Difficulty difficulty);
 
     /**
      * Method that allows to print settings changes in settings configuration file.
