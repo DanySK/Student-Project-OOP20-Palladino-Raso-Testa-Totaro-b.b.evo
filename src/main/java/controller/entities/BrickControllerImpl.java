@@ -9,12 +9,12 @@ import model.entities.BrickImpl;
 import model.entities.GameObject;
 import model.utilities.GameObjectType;
 import model.utilities.Position;
-import model.utilities.Velocity;
+import model.utilities.DirVector;
 import view.graphics.ComponentGraphics;
 
 public class BrickControllerImpl extends BrickImpl implements BrickController{
 
-    public BrickControllerImpl(Position pos, Velocity vel, double speed, int height, int width,
+    public BrickControllerImpl(Position pos, DirVector vel, double speed, int height, int width,
             ComponentPhysics physics, ComponentGraphics graphics) {
         super(pos, vel, speed, height, width, physics, graphics);
     }
