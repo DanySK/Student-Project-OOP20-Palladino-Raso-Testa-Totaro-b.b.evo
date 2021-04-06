@@ -12,13 +12,15 @@ import model.entities.GameObject;
 import model.utilities.ConstantScreen;
 import model.utilities.Pair;
 import model.utilities.Position;
+import paranoid.model.entity.PlaceHolder;
+import paranoid.model.entity.Brick.Builder;
 import view.utilities.PersonalSounds;
 
 public class LevelBuilder {
 
-    //build the map between bricks in the world and coordinates
+    //build the map between bricks in the board and coordinates
     private final Map<GameObject, Pair<Integer, Integer>> builderGrid = new HashMap<>();
-    //build the map between bricks in the show in the canvas and coordinates
+    //build the map between bricks in the show and in the grid and coordinates DA SISTEMARE IL COMMENTO PERCHE NON SI CAPISCE BENISSIMO
     private final Map<Pair<Integer, Integer>, Pair<GameObject, Optional<Brick>>> gameGrid = new HashMap<>();
     private final int builderBrickDimY = (int) (ConstantScreen.CANVAS_HEIGHT / ConstantScreen.BRICK_NUMBER_Y);
     private final int builderBrickDimX = (int) (ConstantScreen.CANVAS_WIDTH / ConstantScreen.BRICK_NUMBER_X);
@@ -55,18 +57,52 @@ public class LevelBuilder {
     }
 
     /**
-     * DA VEDERE COME AGGIUNGERE LA TEXTURE.
-     * @param x
-     * @param y
-     * @param color
-     * @param isIndestructibile
-     * @param point
-     * @param lives
-     * @return coordinates
+     * DA RIGUARDARE IN GENERALE IL COMMENTO, SISTEMARE IL BUILDER, SISTEMARE I NOMI PROBABILMENTE E AGGIUNGERE TEXTURE E VEDERE COME FARE
+     * PER POINTS E VITE
+     * First compare the x, y coordinates of the click with the grid containing, then
+     * the game object built on the dimensions of the current size of the screen 
+     * by returning the number of the brick hit.
+     * Check in the grid containing the game object built on the size of the world 
+     * which coordinate was hit. 
+     * Checks if the paddle has already selected that brick 
+     * if he had not selected I call the brick builder and build the brick with the form inputs 
+     * and the dimensions of the placeholder built on the size of the world 
+     * @param x mouse coordinates mouse x coordinate
+     * @param y mouse coordinates mouse y coordinate
+     * @param color color selected
+     * @param isIndestructible if the brick is indestructible
+     * @param point point earned
+     * @param lives lives remaining
+     * @return current game grid state
      */
-    public Pair<GameObject, Boolean> brickSelected(final double x, final double y, final Color color, final boolean isIndestructibile, 
-                                            final int point, final int lives) {
-
+    public Pair<GameObject, Boolean> brickSelected(final double x, final double y, 
+                                                    final Color color, final boolean isIndestructible, 
+                                                    final int point, final int lives) { //PUNTI E VITE SARANNO DA MODIFICARE PROBABILMENTE
+        Pair<GameObject, Boolean> res = new Pair<>(new GameObject(new Position(0, 0), 0, 0), false);
+        for (final GameObject ph : this.builderGrid.keySet()) {
+            if (x > ph.getPos().getX() && x < ph.getPos().getX() + ph.getWidth() && y > ph.getPos().getY()
+                    && y < ph.getPos().getY() + ph.getHeight()) {
+                final Pair<Integer, Integer> hit = this.builderGrid.get(ph);
+                if (this.gameGrid.get(hit).getY().isPresent()) {
+                    this.gameGrid.replace(hit, new Pair<>(this.gameGrid.get(hit).getX(), Optional.empty()));
+                    res = new Pair<>(ph, false);
+                } else {
+                    final Builder builder = new Builder(); //BUILDER DEL BRICK, DEVE IMPLEMENTARLO LUI
+                    final GameObject gamePlaceHolder = this.gameGrid.get(hit).getX();
+                    final Brick brick = builder.position(new Position(gamePlaceHolder.getPos().getX(), gamePlaceHolder.getPos().getY()))
+                                               .height(this.gameGrid.get(hit).getX().getHeight())
+                                               .width(this.gameGrid.get(hit).getX().getWidth())
+                                               .pointEarned(point)
+                                               .color(color)
+                                               .indestructible(isIndestructible)
+                                               .energy(lives)
+                                               .build();
+                    this.gameGrid.replace(hit, new Pair<>(this.gameGrid.get(hit).getX(), Optional.of(brick)));
+                    res = new Pair<>(ph, true);
+                }
+            }
+        }
+        return res;
     }
 
     /**
@@ -95,8 +131,8 @@ public class LevelBuilder {
     /**
      * @param music to set
      */
-    public void setSong(final String music) {
-        this.music = PersonalSounds.getMusicByName(music);
+    public void setMusic(final String music) {
+        this.music = PersonalSounds.getSoundsByName(music);
     }
 
     /**
