@@ -3,6 +3,7 @@ package view.graphics;
 import javafx.scene.image.Image;
 import model.entities.Ball;
 import model.entities.Brick;
+import model.entities.Paddle;
 
 public interface AdapterGraphics {
 
