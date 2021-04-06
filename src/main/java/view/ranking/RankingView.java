@@ -38,7 +38,7 @@ import view.utilities.PersonalImages;
 import view.utilities.PersonalSounds;
 import view.utilities.PersonalViews;
 
-public class ControllerRanking implements Initializable {
+public class RankingView implements Initializable {
 
     @FXML
     private AnchorPane window;

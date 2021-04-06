@@ -32,7 +32,7 @@ import view.utilities.PersonalSounds;
 import view.utilities.PersonalViews;
 
 
-public class ControllerSettings implements Initializable {
+public class SettingsView implements Initializable {
 
         @FXML
         private AnchorPane window;
