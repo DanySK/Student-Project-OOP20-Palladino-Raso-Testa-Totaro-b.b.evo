@@ -9,8 +9,13 @@ import model.utilities.Status;
 public interface Brick {
 
     /**
+     * setter for {@link Brick} status.
+     */
+    void setStatus(Status status);
+
+    /**
      * getter for {@link Brick} status.
-     * @return brick's status.
+     * @return brick's status
      */
     Status getStatus();
 
