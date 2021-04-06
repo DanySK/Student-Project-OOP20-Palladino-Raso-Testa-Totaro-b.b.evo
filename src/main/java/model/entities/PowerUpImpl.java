@@ -14,19 +14,7 @@ public class PowerUpImpl extends BrickImpl implements PowerUp {
     public PowerUpImpl(Position pos, Velocity vel, double speed, int height, int width, ComponentPhysics physics,
             ComponentGraphics graphics) {
         super(pos, vel, speed, height, width, physics, graphics);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Status getStatus() {
-        if (this.status == Status.DESTR && this.durability <= 0) {
-            this.status = Status.DROP_POWERUP;
-            dropPowerUp();
-            return this.status;
-        }
-        return this.status;
+        this.pwtype = PowerUpType.randomPowerUpType();
     }
 
     /**
@@ -34,6 +22,7 @@ public class PowerUpImpl extends BrickImpl implements PowerUp {
      */
     @Override
     public void dropPowerUp() {
+
         //richiama la view per cambiare la grafica del brick(?)
 
         //inizia a cadere verso il basso
@@ -49,6 +38,8 @@ public class PowerUpImpl extends BrickImpl implements PowerUp {
     @Override
     public void activatePowerUp(final int seconds) {
         //attiva il powerup
+        //aspetta X secondi 
+        //disattiva il powerUp
     }
 
     @Override
