@@ -2,7 +2,6 @@ package view;
 
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +11,6 @@ import org.testfx.matcher.base.NodeMatchers;
 import org.testfx.matcher.control.LabeledMatchers;
 
 import controller.BrickBreakerEvo;
-import controller.sound.SoundController;
 
 
 
@@ -28,7 +26,7 @@ class TestMainMenu extends ApplicationTest {
     private static final int SLEEP_TIME = 2000;
 
     @BeforeEach
-    void launch() throws Exception {
+    void launch() throws Throwable {
         ApplicationTest.launch(BrickBreakerEvo.class, "");
         sleep(SLEEP_TIME);
     }
@@ -117,30 +115,4 @@ class TestMainMenu extends ApplicationTest {
             clickOn("#buttonBack");
         });
     }
-
-    /*
-    @Test
-    void testClickOnSettingsButton() {
-        assertDoesNotThrow(() -> {
-            clickOn("#btnSettings");
-        });
-    }
-
-    @Test
-    void testClickOnTutorialButton() {
-        assertDoesNotThrow(() -> {
-            clickOn("#btnTutorial");
-            sleep(1000);
-        });
-    }
-
-    @Test
-    void testClickRankingButton() {
-        assertDoesNotThrow(() -> {
-            clickOn("#btnRanking");
-        });
-    }
-    */
-
-
 }
