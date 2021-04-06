@@ -1,8 +1,26 @@
 package model.utilities;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
 public enum PowerUpType {
-    /*speeds the ball up*/
+    /**
+     * speeds the ball up.
+     */
     SPEEDUP,
-    /*increases the damage dealt by the ball*/
+    /**
+     * increases the damage dealt by the ball.
+     */
     DAMAGEUP;
+
+    private static final List<PowerUpType> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
+
+        private static final int SIZE = VALUES.size();
+        private static final Random RANDOM = new Random();
+
+        public static PowerUpType randomPowerUpType()  {
+          return VALUES.get(RANDOM.nextInt(SIZE));
+        }
 }
