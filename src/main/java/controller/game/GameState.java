@@ -18,30 +18,10 @@ public interface GameState {
     int getPlayerScore();
 
     /**
-     * @return the high score.
-     */
-    int getHighScoreValue();
-
-    /**
      * 
      * @param point to add to the total.
      */
     void addPoint(int point);
-
-    /**
-     * Add the end game bonus to the total score.
-     */
-    void addBonus();
-
-    /**
-     * Returns the multiplier to its initial state.
-     */
-    void flatMultiplier();
-
-    /**
-     * Increase the multiplier.
-     */
-    void incMultiplier();
 
     /**
      * Decreases the player's lives.
@@ -83,10 +63,10 @@ public interface GameState {
     Player getPlayer();
 
     /**
-     * DA CONTROLLARE SE VA BENE O BISOGNA IMPLEMENTARE UNA CLASSE SCORE.
+     * 
      * @return the topScore of the player who is playing
      */
-    Player getTopScores();
+    int getTopScores();
 
     /**
      * 

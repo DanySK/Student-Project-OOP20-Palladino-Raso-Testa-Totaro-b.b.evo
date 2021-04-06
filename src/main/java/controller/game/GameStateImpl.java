@@ -1,124 +1,158 @@
 package controller.game;
 
+import java.util.Arrays;
+
+import controller.settings.SettingsControllerImpl;
+import model.entities.Ball;
 import model.entities.GameBoard;
 import model.leaderboard.Player;
+import model.leaderboard.PlayerImpl;
 import model.mapeditor.Level;
+import model.utilities.ConstantScreen;
 import model.utilities.Difficulty;
+import model.utilities.Direction;
 
-public class GameStateImpl implements GameState{
+public class GameStateImpl implements GameState {
 
+    //dovrebbe essere quasi tutto a posto, bisognera inserire i test e i controlli per tutti i metodi pero
+    private GamePhase phase;
+    private final GameBoard board;
+    private final Level level;
+    private final Player player;
+    private final SettingsControllerImpl setting;
+
+    public GameStateImpl(final String alias, final int life) {
+        this.phase = GamePhase.INIT;
+        this.player = new PlayerImpl(alias, 0, life);
+        this.setting = new SettingsControllerImpl();
+        this.board = new GameBoardImpl(new Border(ConstantScreen.WORLD_WIDTH, ConstantScreen.WORLD_HEIGHT), this); // da sistemare
+        this.board.setBricks(level.getBricks());
+    }
+
+    /**
+     *
+     */
     @Override
     public void init() {
-        // TODO Auto-generated method stub
-
+        this.board.setBalls(Arrays.asList(new Ball.Builder()
+                                             .position(Start.BALL.getSpawnPoint())
+                                             .direction(Direction.EDGE_LEFT.getVector().mul(-1)) //da sistemare
+                                             .height(Start.BALL.getInitHeight())
+                                             .width(Start.BALL.getInitWidth())
+                                             .speed(setting.getDifficulty().getSpeed()) //da sistemare
+                                             .build()));
+        this.phase = GamePhase.PAUSE;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getPlayerScore() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
+        return player.getScore();    }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public int getHighScoreValue() {
-        // TODO Auto-generated method stub
-        return 0;
+    public void addPoint(final int point) {
+        player.scoreOperation(point);
     }
 
-    @Override
-    public void addPoint(int point) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void addBonus() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void flatMultiplier() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void incMultiplier() {
-        // TODO Auto-generated method stub
-
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void decLives() {
-        // TODO Auto-generated method stub
-
+        player.decreaseLife();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void incLives() {
-        // TODO Auto-generated method stub
-
+        player.increaseLife();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getLives() {
-        // TODO Auto-generated method stub
-        return 0;
+        return player.getLife();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public GameBoard getBoard() {
-        // TODO Auto-generated method stub
-        return null;
+        return board;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public GamePhase getPhase() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.phase;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void setPhase(GamePhase phase) {
-        // TODO Auto-generated method stub
-
+    public void setPhase(final GamePhase phase) {
+        this.phase = phase;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Player getPlayer() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.player;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Player getTopScores() {
-        // TODO Auto-generated method stub
-        return null;
+    public int getTopScores() {
+        return player.getScore();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Level getLevel() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.level;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Difficulty getDifficulty() {
-        // TODO Auto-generated method stub
-        return null;
+        return setting.getDifficulty();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isMusicActive() {
-        // TODO Auto-generated method stub
-        return false;
+        return setting.isMusicEnable();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isEffectActive() {
-        // TODO Auto-generated method stub
-        return false;
+        return setting.isSoundFxEnable();
     }
 
 }
