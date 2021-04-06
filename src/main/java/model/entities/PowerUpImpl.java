@@ -4,14 +4,14 @@ import controller.physics.ComponentPhysics;
 import model.utilities.Position;
 import model.utilities.PowerUpType;
 import model.utilities.Status;
-import model.utilities.Velocity;
+import model.utilities.DirVector;
 import view.graphics.ComponentGraphics;
 
 public class PowerUpImpl extends BrickImpl implements PowerUp {
 
     private PowerUpType pwtype;
 
-    public PowerUpImpl(Position pos, Velocity vel, double speed, int height, int width, ComponentPhysics physics,
+    public PowerUpImpl(Position pos, DirVector vel, double speed, int height, int width, ComponentPhysics physics,
             ComponentGraphics graphics) {
         super(pos, vel, speed, height, width, physics, graphics);
     }

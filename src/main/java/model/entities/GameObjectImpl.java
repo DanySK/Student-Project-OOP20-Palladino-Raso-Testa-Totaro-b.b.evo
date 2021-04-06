@@ -1,46 +1,59 @@
 package model.entities;
 
+import java.util.Optional;
+
 import controller.input.ComponentInput;
 import controller.input.ControllerInput;
 import controller.physics.ComponentPhysics;
 import model.utilities.Position;
-import model.utilities.Velocity;
+import model.utilities.DirVector;
 import view.graphics.AdapterGraphics;
 import view.graphics.ComponentGraphics;
 
 public abstract class GameObjectImpl implements GameObject {
 
     private Position pos;
-    private Velocity vel;
+    private DirVector vel;
     private double speed;
     private int height;
     private int width;
-    private final ComponentPhysics physics;
-    private final ComponentInput input;
-    private final ComponentGraphics graphics;
+    private final Optional<ComponentPhysics> physics;
+    private final Optional<ComponentInput> input;
+    private final Optional<ComponentGraphics> graphics;
 
-    public GameObjectImpl(final Position pos, final Velocity vel, final double speed, final int height, final int width,
+    public GameObjectImpl(final Position pos, final DirVector vel, final double speed, final int height, final int width,
             final ComponentPhysics physics, final ComponentInput input, final ComponentGraphics graphics) {
         this.pos = pos;
         this.vel = vel;
         this.speed = speed;
         this.height = height;
         this.width = width;
-        this.physics = physics;
-        this.input = input;
-        this.graphics = graphics;
+        this.physics = Optional.of(physics);
+        this.input = Optional.of(input);
+        this.graphics = Optional.of(graphics);
     }
 
-    public GameObjectImpl(final Position pos, final Velocity vel, final double speed, final int height, final int width,
+    public GameObjectImpl(final Position pos, final DirVector vel, final double speed, final int height, final int width,
             final ComponentPhysics physics, final ComponentGraphics graphics) {
         this.pos = pos;
         this.vel = vel;
         this.speed = speed;
         this.height = height;
         this.width = width;
-        this.physics = physics;
-        this.input = null;
-        this.graphics = graphics;
+        this.physics = Optional.of(physics);
+        this.input = Optional.empty();
+        this.graphics = Optional.of(graphics);
+    }
+
+    public GameObjectImpl(final Position pos, final DirVector vel, final double speed, final int height, final int width) {
+        this.pos = pos;
+        this.vel = vel;
+        this.speed = speed;
+        this.height = height;
+        this.width = width;
+        this.physics = Optional.empty();
+        this.input = Optional.empty();
+        this.graphics = Optional.empty();
     }
 
     /**
@@ -95,7 +108,7 @@ public abstract class GameObjectImpl implements GameObject {
      * {@inheritDoc}
      */
     @Override
-    public Velocity getVel() {
+    public DirVector getVel() {
         return this.vel;
     }
 
@@ -103,7 +116,7 @@ public abstract class GameObjectImpl implements GameObject {
      * {@inheritDoc}
      */
     @Override
-    public void setVel(final Velocity vel) {
+    public void setVel(final DirVector vel) {
         this.vel = vel;
     }
 
@@ -126,21 +139,21 @@ public abstract class GameObjectImpl implements GameObject {
     /**
      * @return component Physics
      */
-    protected ComponentPhysics getComponentPhysics() {
+    protected Optional<ComponentPhysics> getComponentPhysics() {
         return this.physics;
     }
 
     /**
      * @return component Input
      */
-    protected ComponentInput getComponentInput() {
+    protected Optional<ComponentInput> getComponentInput() {
         return this.input;
     }
 
     /**
      * @return component Graphics
      */
-    protected ComponentGraphics getComponentGraphics() {
+    protected Optional<ComponentGraphics> getComponentGraphics() {
         return this.graphics;
     }
 

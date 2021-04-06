@@ -2,7 +2,7 @@ package model.entities;
 
 import controller.input.ControllerInput;
 import model.utilities.Position;
-import model.utilities.Velocity;
+import model.utilities.DirVector;
 import view.graphics.AdapterGraphics;
 
 public interface GameObject {
@@ -40,12 +40,12 @@ public interface GameObject {
     /**
      * @return the velocity
      */
-    Velocity getVel();
+    DirVector getVel();
 
     /**
      * @param vel to set
      */
-    void setVel(Velocity vel);
+    void setVel(DirVector vel);
 
     /**
      * @param speed to set

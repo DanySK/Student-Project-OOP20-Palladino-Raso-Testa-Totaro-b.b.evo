@@ -1,11 +1,11 @@
 package model.utilities;
 
-public class Velocity {
+public class DirVector {
 
     private final double x;
     private final double y;
 
-    public Velocity(final double x, final double y) {
+    public DirVector(final double x, final double y) {
         this.x = x;
         this.y = y;
     }
@@ -28,8 +28,8 @@ public class Velocity {
      * @param v vector to sum to this
      * @return sum vector
      */
-    public Velocity sum(final Velocity v) {
-        return new Velocity(x + v.x, y + v.y);
+    public DirVector sum(final DirVector v) {
+        return new DirVector(x + v.x, y + v.y);
     }
 
     /**
@@ -44,9 +44,9 @@ public class Velocity {
      * 
      * @return normalize the vector
      */
-    public Velocity getNormalized() {
+    public DirVector getNormalized() {
         final double module = (double) Math.sqrt(x * x + y * y);
-        return new Velocity(x / module, y / module);
+        return new DirVector(x / module, y / module);
     }
 
     /**
@@ -54,8 +54,8 @@ public class Velocity {
      * @param fact vector multiplier
      * @return the resulting vector
      */
-    public Velocity mul(final double fact) {
-        return new Velocity(x * fact, y * fact);
+    public DirVector mul(final double fact) {
+        return new DirVector(x * fact, y * fact);
     }
 
     /**
@@ -97,7 +97,7 @@ public class Velocity {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Velocity other = (Velocity) obj;
+        final DirVector other = (DirVector) obj;
         if (Double.doubleToLongBits(x) != Double.doubleToLongBits(other.x)) {
             return false;
             //return Double.doubleToLongBits(x) == Double.doubleToLongBits(other.x); avoid pmd warning
