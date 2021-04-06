@@ -9,10 +9,6 @@ import view.graphics.AdapterGraphics;
 import view.graphics.ComponentGraphics;
 
 public class BrickImpl extends GameObjectImpl implements Brick {
-
-    /**
-     * int
-     */
     public int durability;
     public Status status;
 
@@ -25,11 +21,17 @@ public class BrickImpl extends GameObjectImpl implements Brick {
      * {@inheritDoc}
      */
     @Override
-    public Status getStatus() {
+    public void setStatus(final Status status) {
         if (this.status == Status.DESTR && this.durability <= 0) {
-            this.status = Status.BROKEN;
-            return this.status;
+            this.status = status;
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Status getStatus() {
         return this.status;
     }
 
