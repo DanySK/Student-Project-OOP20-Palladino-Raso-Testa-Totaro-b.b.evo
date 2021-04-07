@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import controller.input.ControllerInput;
+import model.physics.PaddleComponentPhysics;
 import model.utilities.Boundaries;
 import model.utilities.DirVector;
 import model.utilities.Position;
@@ -51,6 +52,50 @@ public class Paddle extends GameObjectImpl {
     }
 
     public static final class Builder {
-        
+
+        private int height;
+        private int width;
+        private Position pos;
+
+        /**
+         * 
+         * @param width
+         * @return himself
+         */
+        public Builder width(final int width) {
+            this.width = width;
+            return this;
+        }
+
+        /**
+         * 
+         * @param height
+         * @return himself
+         */
+        public Builder height(final int height) {
+            this.height = height;
+            return this;
+        }
+
+        /**
+         * 
+         * @param pos
+         * @return himself
+         */
+        public Builder position(final Position pos) {
+            this.pos = pos;
+            return this;
+        }
+
+        /**
+         * builds the paddle if the characteristics are valid.
+         * @return the new Paddle object
+         */
+        public Paddle build() {
+            if (this.height <= 0 || this.width <= 0 || this.pos == null) {
+                throw new IllegalStateException();
+            }
+            return new Paddle(this.pos, this.height, this.width);
+        }
     }
 }

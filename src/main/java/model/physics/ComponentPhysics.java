@@ -1,4 +1,4 @@
-package controller.physics;
+package model.physics;
 
 import model.entities.GameBoardImpl;
 import model.entities.GameObject;
