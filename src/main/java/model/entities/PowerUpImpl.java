@@ -42,10 +42,11 @@ public class PowerUpImpl extends BrickImpl implements PowerUp {
         //disattiva il powerUp
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PowerUpType getPowerUpType() {
         return this.pwtype;
     }
-
-
 }
