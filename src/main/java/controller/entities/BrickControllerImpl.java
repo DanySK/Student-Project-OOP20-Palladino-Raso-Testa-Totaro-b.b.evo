@@ -2,11 +2,11 @@ package controller.entities;
 
 import java.util.Optional;
 
-import controller.physics.ComponentPhysics;
 import javafx.scene.Scene;
 import javafx.scene.shape.Rectangle;
 import model.entities.BrickImpl;
 import model.entities.GameObject;
+import model.physics.ComponentPhysics;
 import model.utilities.GameObjectType;
 import model.utilities.Position;
 import model.utilities.DirVector;
