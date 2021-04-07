@@ -3,36 +3,36 @@ package model.utilities;
 public enum ScoreAttribute {
 
     /**
-     * Used to represent the value that must be added to the score when the wall breaks.
+     * Used to represent the value that must be added to the score when the brick breaks.
      */
-    BREAK_WALL(+80),
+    BRICK_BREAK(+80),
 
     /**
-     * Used to represent the value that must be added to the score when the wall harms.
+     * Used to represent the value that must be added to the score when the brick is damaged.
      */
-    HARM_WALL(+40),
+    BRICK_DAMAGED(+40),
 
     /**
      * Used to represent the value that must be added to the score
-     * when the player take a positive powerup.
+     * when the player takes a positive powerup.
      */
     POSITIVE_POWERUP(+40),
 
     /**
      * Used to represent the value that must be added to the score
-     * when the player take a negative powerup.
+     * when the player takes a negative powerup.
      */
     NEGATIVE_POWERUP(-80),
 
     /**
      * Used to represent the value that must be added to the score
-     * when the player lost life.
+     * when the player loses a life.
      */
     LOST_LIFE(-10),
 
     /**
      * Used to represent the value that must be added to the score
-     * when the player take life.
+     * when the player takes a life.
      */
     INCREASE_LIFE(+10);
 
