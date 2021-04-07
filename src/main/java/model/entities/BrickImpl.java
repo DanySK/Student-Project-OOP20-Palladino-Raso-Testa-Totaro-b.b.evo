@@ -22,9 +22,7 @@ public class BrickImpl extends GameObjectImpl implements Brick {
      */
     @Override
     public void setStatus(final Status status) {
-        if (this.status == Status.DESTR && this.durability <= 0) {
             this.status = status;
-        }
     }
 
     /**
@@ -39,8 +37,8 @@ public class BrickImpl extends GameObjectImpl implements Brick {
      * {@inheritDoc}
      */
     @Override
-    public void decreaseDurability(final int damage) {
-        this.durability -= damage;
+    public void decreaseDurability(final int ballDamage) {
+        this.durability -= ballDamage;
     }
 
     /**

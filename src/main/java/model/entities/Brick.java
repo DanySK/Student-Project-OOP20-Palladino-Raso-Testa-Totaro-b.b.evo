@@ -10,6 +10,7 @@ public interface Brick {
 
     /**
      * setter for {@link Brick} status.
+     * @param status
      */
     void setStatus(Status status);
 
@@ -27,8 +28,8 @@ public interface Brick {
 
     /**
      * decreases {@link Brick} durability by an integer value {@link damage}.
-     * @param damage
+     * @param ballDamage
      */
-    void decreaseDurability(int damage);
+    void decreaseDurability(int ballDamage);
 
 }
