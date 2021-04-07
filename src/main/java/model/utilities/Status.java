@@ -30,7 +30,7 @@ public enum Status {
     /**
      * Used to know all the possible status of gamObj.
      * 
-     * @return the list of this {@link Direction}
+     * @return the list of this {@link Angle}
      */
     public static List<Status> getStatusList() {
         return Arrays.asList(Status.values());
