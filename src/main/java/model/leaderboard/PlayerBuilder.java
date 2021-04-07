@@ -26,6 +26,12 @@ public interface PlayerBuilder extends Serializable {
     PlayerBuilder life(int life);
 
     /**
+     * Used to set the player's max life property.
+     * @param value 
+     * @return the max life property.
+     */
+    PlayerBuilder maxLife(int value);
+    /**
      * Used to build a correct version of Player Class.
      * @return a correct version of Player whit validation data.
      */
