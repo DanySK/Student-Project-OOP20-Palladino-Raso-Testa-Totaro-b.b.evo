@@ -8,7 +8,7 @@ import model.entities.GameBoard;
 import model.leaderboard.Player;
 import model.leaderboard.PlayerImpl;
 import model.mapeditor.Level;
-import model.utilities.ConstantScreen;
+import model.utilities.GameUtilities;
 import model.utilities.Difficulty;
 import model.utilities.Angle;
 
@@ -25,7 +25,7 @@ public class GameStateImpl implements GameState {
         this.phase = GamePhase.INIT;
         this.player = new PlayerImpl(alias, 0, life);
         this.setting = new SettingsControllerImpl();
-        this.board = new GameBoardImpl(new Border(ConstantScreen.WORLD_WIDTH, ConstantScreen.WORLD_HEIGHT), this); // da sistemare
+        this.board = new GameBoardImpl(new Border(GameUtilities.WORLD_WIDTH, GameUtilities.WORLD_HEIGHT), this); // da sistemare
         this.board.setBricks(level.getBricks());
     }
 
