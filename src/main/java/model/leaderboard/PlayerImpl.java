@@ -2,15 +2,16 @@ package model.leaderboard;
 
 public class PlayerImpl implements Player {
 
-    private static final int MAX_LIFE = 3;
     private final String alias;
     private int score;
     private int life;
+    private int maxNumberOfLife;
 
-    public PlayerImpl(final String alias, final int score, final int life) {
+    public PlayerImpl(final String alias, final int score, final int life, final int maxNumberOfLife) {
         this.alias = alias;
         this.score = score;
         this.life = life;
+        this.maxNumberOfLife = maxNumberOfLife;
     }
 
     /**
@@ -46,8 +47,8 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     *  Return an Integer that represents the value of the life.
-     *  @return an Integer that represents the value of the life.
+     * 
+     * {@inheritDoc}
      *
      */
     @Override
@@ -56,23 +57,47 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     *  Method that allows to add, of a one unit, the life.
+     * 
+     * {@inheritDoc}
+     *
      */
     @Override
     public void increaseLife() {
-        if (this.getLife() < MAX_LIFE) {
+        if (this.getLife() < this.getMaxNumberOfLife()) {
             this.life++;
         }
     }
 
     /**
-     *  Method that allows to subtract, of a one unit, the life.
+     * 
+     * {@inheritDoc}
+     *
      */
     @Override
     public void decreaseLife() {
         if (this.getLife() > 0) {
             this.life--;
         }
+    }
+
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public int getMaxNumberOfLife() {
+        return this.maxNumberOfLife;
+    }
+
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void setMaxNumberOfLife(final int value) {
+        this.maxNumberOfLife = value;
     }
 
     /**

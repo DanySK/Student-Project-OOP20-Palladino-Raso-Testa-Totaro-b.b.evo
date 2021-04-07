@@ -50,7 +50,6 @@ public class LeaderboardControllerImpl implements LeaderBoardController {
     @Override
     public Map<String, Integer> getPoudium(final int index) {
         this.leaderboard.sortByScore();
-        System.out.println(this.leaderboard.getLeaderBoard());
         return this.leaderboard.getLeaderBoard()
                                .entrySet()
                                .stream()
