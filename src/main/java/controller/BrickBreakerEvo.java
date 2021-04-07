@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import model.settings.GameSettingsBuilderImpl;
 import model.utilities.GameUtilities;
+import view.utilities.PersonalStyle;
 import view.utilities.PersonalViews;
 
 /**
@@ -63,7 +64,8 @@ public class BrickBreakerEvo extends Application {
                 PersonalViews.SCENE_MAIN_MENU.getURL(), 
                 PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
                 GameUtilities.SCREEN_WIDTH, 
-                GameUtilities.SCREEN_HEIGHT);
+                GameUtilities.SCREEN_HEIGHT,
+                PersonalStyle.DEFAULT_STYLE.getStylePath());
 
         primaryStage.setMinWidth(GameUtilities.MIN_RESIZE_WIDTH);
         primaryStage.setMinHeight(GameUtilities.MIN_RESIZE_HEIGHT);

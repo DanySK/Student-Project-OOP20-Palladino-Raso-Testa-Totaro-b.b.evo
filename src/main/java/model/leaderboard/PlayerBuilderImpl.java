@@ -8,12 +8,6 @@ public class PlayerBuilderImpl implements PlayerBuilder {
     private int life;
     private int maxLife;
 
-    public PlayerBuilderImpl(final String alias, final int maxLife) {
-        this.alias = alias;
-        this.maxLife = maxLife;
-        this.score = 0;
-        this.life = 0;
-    }
     /**
      * 
      * {@inheritDoc}
@@ -67,7 +61,8 @@ public class PlayerBuilderImpl implements PlayerBuilder {
         if (this.alias == null 
             || this.score < 0 
             || this.life < 0 
-            || this.life > this.maxLife) {
+            || this.life > this.maxLife
+            || this.maxLife < 0) {
             throw new IllegalStateException();
         }
         return new PlayerImpl(this.alias, this.score, this.life, this.maxLife);

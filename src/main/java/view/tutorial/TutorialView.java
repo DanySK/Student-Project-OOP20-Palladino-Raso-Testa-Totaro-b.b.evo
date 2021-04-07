@@ -27,6 +27,7 @@ import javafx.util.Duration;
 import view.utilities.PersonalFonts;
 import view.utilities.PersonalImages;
 import view.utilities.PersonalSounds;
+import view.utilities.PersonalStyle;
 import view.utilities.PersonalViews;
 
 
@@ -119,7 +120,8 @@ public class TutorialView implements Initializable {
                                     PersonalViews.SCENE_MAIN_MENU.getURL(), 
                                     PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
                                     this.window.getWidth(), 
-                                    this.window.getHeight());
+                                    this.window.getHeight(),
+                                    PersonalStyle.DEFAULT_STYLE.getStylePath());
 
             //Play Button CLick Sound
             SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());

@@ -26,6 +26,7 @@ import javafx.util.Duration;
 import view.utilities.PersonalFonts;
 import view.utilities.PersonalImages;
 import view.utilities.PersonalSounds;
+import view.utilities.PersonalStyle;
 import view.utilities.PersonalViews;
 
 public class MainMenuView implements Initializable {
@@ -90,7 +91,8 @@ public class MainMenuView implements Initializable {
                                      PersonalViews.SCENE_CHARACTER_MENU.getURL(), 
                                      PersonalViews.SCENE_CHARACTER_MENU.getTitleScene(), 
                                      this.window.getWidth(), 
-                                     this.window.getHeight());
+                                     this.window.getHeight(),
+                                     PersonalStyle.DEFAULT_STYLE.getStylePath());
             //Play Button CLick Sound
             SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
         });
@@ -101,7 +103,8 @@ public class MainMenuView implements Initializable {
                                      PersonalViews.SCENE_SETTINGS.getURL(), 
                                      PersonalViews.SCENE_SETTINGS.getTitleScene(), 
                                      this.window.getWidth(), 
-                                     this.window.getHeight());
+                                     this.window.getHeight(),
+                                     PersonalStyle.DEFAULT_STYLE.getStylePath());
             //Play Button CLick Sound
             SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
         });
@@ -112,7 +115,8 @@ public class MainMenuView implements Initializable {
                                     PersonalViews.SCENE_TUTORIAL.getURL(), 
                                     PersonalViews.SCENE_TUTORIAL.getTitleScene(), 
                                     this.window.getWidth(), 
-                                    this.window.getHeight());
+                                    this.window.getHeight(),
+                                    PersonalStyle.DEFAULT_STYLE.getStylePath());
             //Play Button CLick Sound
             SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
         });
@@ -123,7 +127,8 @@ public class MainMenuView implements Initializable {
                                     PersonalViews.SCENE_RANKING.getURL(), 
                                     PersonalViews.SCENE_RANKING.getTitleScene(), 
                                     this.window.getWidth(), 
-                                    this.window.getHeight());
+                                    this.window.getHeight(),
+                                    PersonalStyle.DEFAULT_STYLE.getStylePath());
             //Play Button CLick Sound
             SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
         });

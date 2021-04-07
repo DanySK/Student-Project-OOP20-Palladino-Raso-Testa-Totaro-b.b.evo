@@ -22,7 +22,7 @@ class TestPlayerBuilder {
 
     @BeforeEach
     void initBuild() {
-        this.builder = new PlayerBuilderImpl(ALIAS, LIFE);
+        this.builder = new PlayerBuilderImpl();
     }
 
     @Test
