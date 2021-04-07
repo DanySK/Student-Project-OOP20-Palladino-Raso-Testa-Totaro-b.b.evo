@@ -2,8 +2,8 @@ package model.entities;
 
 import controller.input.ComponentInput;
 import controller.input.ControllerInput;
-import controller.physics.ComponentPhysics;
 import model.utilities.Position;
+import model.physics.ComponentPhysics;
 import model.utilities.DirVector;
 import view.graphics.AdapterGraphics;
 import view.graphics.ComponentGraphics;
