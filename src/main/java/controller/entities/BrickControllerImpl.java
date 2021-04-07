@@ -14,9 +14,9 @@ import view.graphics.ComponentGraphics;
 
 public class BrickControllerImpl extends BrickImpl implements BrickController{
 
-    public BrickControllerImpl(Position pos, DirVector vel, double speed, int height, int width,
-            ComponentPhysics physics, ComponentGraphics graphics) {
-        super(pos, vel, speed, height, width, physics, graphics);
+    public BrickControllerImpl(Position pos, double speed, int height, int width, int durability) {
+        super(pos, speed, height, width, durability);
+        // TODO Auto-generated constructor stub
     }
 
     @Override

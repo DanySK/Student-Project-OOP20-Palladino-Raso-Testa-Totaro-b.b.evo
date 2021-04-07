@@ -1,5 +1,6 @@
 package model.entities;
 
+import controller.input.ComponentInput;
 import controller.input.ControllerInput;
 import controller.physics.ComponentPhysics;
 import model.utilities.Position;
@@ -8,19 +9,21 @@ import model.utilities.DirVector;
 import view.graphics.AdapterGraphics;
 import view.graphics.ComponentGraphics;
 
-public class BrickImpl extends GameObjectImpl implements Brick {
+public class BrickImpl extends GameObjectImpl {
+    
     public int durability;
     public Status status;
-
-    public BrickImpl(Position pos, DirVector vel, double speed, int height, int width, ComponentPhysics physics,
-            ComponentGraphics graphics) {
-        super(pos, vel, speed, height, width, physics, graphics);
+    
+    public BrickImpl(Position pos, double speed, int height, int width,int durability) {
+        super(pos, new DirVector(0,0), 0, height, width,null,null,null);
+        this.durability = durability;
     }
+
+
 
     /**
      * {@inheritDoc}
      */
-    @Override
     public void setStatus(final Status status) {
             this.status = status;
     }
@@ -28,7 +31,6 @@ public class BrickImpl extends GameObjectImpl implements Brick {
     /**
      * {@inheritDoc}
      */
-    @Override
     public Status getStatus() {
         return this.status;
     }
@@ -36,7 +38,6 @@ public class BrickImpl extends GameObjectImpl implements Brick {
     /**
      * {@inheritDoc}
      */
-    @Override
     public void decreaseDurability(final int ballDamage) {
         this.durability -= ballDamage;
     }
@@ -44,7 +45,6 @@ public class BrickImpl extends GameObjectImpl implements Brick {
     /**
      * {@inheritDoc}
      */
-    @Override
     public int getDurability() {
         return this.durability;
     }

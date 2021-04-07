@@ -1,19 +1,13 @@
 package model.entities;
 
-import controller.physics.ComponentPhysics;
 import model.utilities.Position;
 import model.utilities.PowerUpType;
-import model.utilities.Status;
-import model.utilities.DirVector;
-import view.graphics.ComponentGraphics;
 
 public class PowerUpImpl extends BrickImpl implements PowerUp {
-
     private PowerUpType pwtype;
 
-    public PowerUpImpl(Position pos, DirVector vel, double speed, int height, int width, ComponentPhysics physics,
-            ComponentGraphics graphics) {
-        super(pos, vel, speed, height, width, physics, graphics);
+    public PowerUpImpl(Position pos, double speed, int height, int width, int durability) {
+        super(pos, speed, height, width, durability);
         this.pwtype = PowerUpType.randomPowerUpType();
     }
 
