@@ -32,7 +32,7 @@ import view.utilities.PersonalSounds;
 import view.utilities.PersonalViews;
 
 
-public class ControllerSettings implements Initializable {
+public class SettingsView implements Initializable {
 
         @FXML
         private AnchorPane window;
@@ -82,14 +82,27 @@ public class ControllerSettings implements Initializable {
             this.loadFont();
             this.loadListener();
             this.loadImage();
-            this.updateViewComponent();
+            this.updateViewComponent(this.controller.isSoundFxEnable(),
+                                     this.controller.isMusicEnable(),
+                                     this.controller.isLeftAndRightEnable(),
+                                     this.controller.isUpAndDownEnable());
         }
 
-        private void updateViewComponent() {
-            this.ckSoundFX.setSelected(this.controller.isSoundFxEnable());
-            this.ckSound.setSelected(this.controller.isMusicEnable());
-            this.rbUseLeftRight.setSelected(this.controller.isLeftAndRightEnable());
-            this.rbUseUpDown.setSelected(this.controller.isUpAndDownEnable());
+        /**
+         * Method used to update view component.
+         * @param isSoundsFxEnable
+         * @param isMusicEnable
+         * @param isLeftAndRightEnable
+         * @param isUpAndDownEnable
+         */
+        public void updateViewComponent(final boolean isSoundsFxEnable,
+                                        final boolean isMusicEnable,
+                                        final boolean isLeftAndRightEnable,
+                                        final boolean isUpAndDownEnable) {
+            this.ckSoundFX.setSelected(isSoundsFxEnable);
+            this.ckSound.setSelected(isMusicEnable);
+            this.rbUseLeftRight.setSelected(isLeftAndRightEnable);
+            this.rbUseUpDown.setSelected(isUpAndDownEnable);
         }
 
         private void loadImage() {

@@ -3,6 +3,7 @@ package view.graphics;
 import javafx.scene.image.Image;
 import model.entities.Ball;
 import model.entities.Brick;
+import model.entities.Paddle;
 
 public interface AdapterGraphics {
 
@@ -23,7 +24,7 @@ public interface AdapterGraphics {
     /**
      * allows to draw the brick with the characteristics of the graphic component.
      * @param brick the object to draw
-     * @param ImageBrick the image to use
+     * @param imageBrick the image to use
      */
-    void drawBrick(Brick brick, Image ImageBrick);
+    void drawBrick(Brick brick, Image imageBrick);
 }

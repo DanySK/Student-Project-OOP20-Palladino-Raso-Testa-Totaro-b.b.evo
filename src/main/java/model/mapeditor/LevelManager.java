@@ -18,8 +18,8 @@ import java.util.stream.Stream;
 
 import controller.BrickBreakerEvo;
 
-/*
- *Manage the level, (save, load) 
+/**
+ * Manage the level, (save, load).
  *
  */
 public final class LevelManager {
@@ -27,13 +27,13 @@ public final class LevelManager {
     private LevelManager() {
     }
 
-    /*
-     * save the level in the game folder created in the operating system.
+    /**
+     * Save the level in the game folder created in the os.
      * @param level to save
      */
     public static void saveLevel(final Level level) {
-        try (ObjectOutputStream ostream = new ObjectOutputStream(
-        new BufferedOutputStream(new FileOutputStream(BrickBreakerEvo.LEVEL_FOLDER + BrickBreakerEvo.SEPARATOR + level.getLevelName())))) {
+        try (ObjectOutputStream ostream = new ObjectOutputStream(new BufferedOutputStream(
+                new FileOutputStream(BrickBreakerEvo.LEVEL_FOLDER + BrickBreakerEvo.SEP + level.getLevelName())))) {
             ostream.writeObject(level);
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
@@ -42,7 +42,7 @@ public final class LevelManager {
         }
     }
 
-    /*
+    /**
      * @return all the levels in the custom level folder
      */
     public static Set<Level> loadLevels() {
@@ -57,15 +57,15 @@ public final class LevelManager {
         return new HashSet<Level>();
     }
 
-    /*
-     * load the level of the name taken as input.
+    /**
+     * Load the level with name passed.
      * @param nameLevel 
      * @return the level from name
      */
     private static Level loadLevel(final String nameLevel) {
         Level level = null;
         try (ObjectInputStream istream = new ObjectInputStream(
-        new BufferedInputStream(new FileInputStream(BrickBreakerEvo.LEVEL_FOLDER + BrickBreakerEvo.SEPARATOR + nameLevel)))) {
+        new BufferedInputStream(new FileInputStream(BrickBreakerEvo.LEVEL_FOLDER + BrickBreakerEvo.SEP + nameLevel)))) {
             level = (Level) istream.readObject();
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();

@@ -16,13 +16,22 @@ public final class ConstantScreen {
     /**
      * Width of the gui (portion adapted to the resolution).
      */
-    public static final double SCREEN_WIDTH = SCREEN_RES.getWidth() / 1.5; 
+    public static final double SCREEN_WIDTH = SCREEN_RES.getWidth() / 2; 
 
     /**
      * Height of the gui (portion adapted to the resolution).
      */
-    public static final double SCREEN_HEIGHT = SCREEN_RES.getHeight() / 1.5;
+    public static final double SCREEN_HEIGHT = SCREEN_RES.getHeight() / 2;
 
+    /**
+     * The minimum WIDTH number that the stage can have.
+     */
+    public static final int MIN_RESIZE_WIDTH = 450;
+
+    /**
+     * The minimum HEIGHT number that the stage can have.
+     */
+    public static final int MIN_RESIZE_HEIGHT = 550;
     /**
      * Width of the game world (used in model World).
      */

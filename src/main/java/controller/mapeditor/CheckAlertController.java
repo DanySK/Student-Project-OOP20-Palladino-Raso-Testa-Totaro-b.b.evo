@@ -4,7 +4,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 /**
- * Used to check if the fileds and the name level.
+ * Used to check if the fields and the name level.
  * DA GUARDRE SE TENERLA QUI O SPOSTARLA
  *
  */

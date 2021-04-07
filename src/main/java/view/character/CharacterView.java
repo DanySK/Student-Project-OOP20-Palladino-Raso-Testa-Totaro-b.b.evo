@@ -28,7 +28,7 @@ import view.utilities.PersonalImages;
 import view.utilities.PersonalSounds;
 import view.utilities.PersonalViews;
 
-public class ControllerCharacter implements Initializable {
+public class CharacterView implements Initializable {
 
     @FXML
     private AnchorPane window;

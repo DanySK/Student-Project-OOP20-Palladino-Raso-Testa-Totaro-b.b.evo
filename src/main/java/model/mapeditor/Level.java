@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 import model.entities.Brick;
+import view.utilities.PersonalSounds;
 
 /*
  * Provides to create a simple level
@@ -12,26 +13,26 @@ import model.entities.Brick;
 public class Level implements Serializable {
 
     private static final long serialVersionUID = -3269378075735300995L;
-    private final Set<Brick> bricks; //deve cambiare brick
+    private final Set<Brick> bricks;
     private final String levelName;
-    //DA CONTROLLARE, NEL CASO RIMUOVERE private final Music music; 
+    private final PersonalSounds music; 
     private final BackGround background;
 
-    /*
-     * Set all required variables 
+    /**
+     * Set all required variables. 
      * @param bricks
      * @param levelName
      * @param music
-     * @param backGround
+     * @param background
      */
-    public Level(final Set<Brick> bricks, final String levelName, /*final Music music ,*/ final BackGround background) {
+    public Level(final Set<Brick> bricks, final String levelName, final PersonalSounds music, final BackGround background) {
         this.bricks = bricks;
         this.levelName = levelName;
-        //this.music = music;
+        this.music = music;
         this.background = background;
     }
 
-    /*
+    /**
      * 
      * @return the amount of bricks in the map
      */
@@ -39,7 +40,7 @@ public class Level implements Serializable {
         return this.bricks;
     }
 
-    /*
+    /**
      * 
      * @return the name of the level
      */
@@ -47,24 +48,22 @@ public class Level implements Serializable {
         return this.levelName;
     }
 
-    /*
-     * DA CONTROLLARE, NEL CASO RIMUOVERE
+    /**
+     * 
      * @return the music
      */
-    /*
-     public Music getMusic() {
-         return music;import paranoid.model.entity.Brick;
+     public PersonalSounds getMusic() {
+         return music;
     }
-     */
 
-    /*
+    /**
      * @return the background
      */
     public BackGround getBackground() {
         return background;
     }
 
-    /*
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -75,7 +74,7 @@ public class Level implements Serializable {
         return result;
     }
 
-    /*
+    /**
      * {@inheritDoc}
      */
     @Override

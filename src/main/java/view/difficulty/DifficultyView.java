@@ -31,7 +31,7 @@ import view.utilities.PersonalImages;
 import view.utilities.PersonalSounds;
 import view.utilities.PersonalViews;
 
-public class ControllerDifficulty implements Initializable {
+public class DifficultyView implements Initializable {
 
     @FXML
     private AnchorPane window;

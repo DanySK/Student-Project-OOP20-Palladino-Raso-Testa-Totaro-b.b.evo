@@ -30,7 +30,7 @@ import view.utilities.PersonalSounds;
 import view.utilities.PersonalViews;
 
 
-public class ControllerTutorial implements Initializable {
+public class TutorialView implements Initializable {
 
     @FXML
     private AnchorPane window;
