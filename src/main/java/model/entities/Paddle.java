@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import controller.input.ControllerInput;
+import model.utilities.Boundaries;
 import model.utilities.DirVector;
 import model.utilities.Position;
 import view.graphics.AdapterGraphics;
@@ -11,7 +12,7 @@ import view.graphics.AdapterGraphics;
 public class Paddle extends GameObjectImpl {
 
     private static final int PADDLE_SPEED = 400;
-    private final Map<Ball, Collision> hitBall = new HashMap<>();
+    private final Map<Ball, Boundaries> hitBall = new HashMap<>();
 
     public Paddle(final Position pos, final int height, final int width) {
         super(pos, new DirVector(0, 0), PADDLE_SPEED, height, width, new PaddleComponentPhysics(), PlayerComponentInput(), new PaddleComponentGraphics());
@@ -45,11 +46,11 @@ public class Paddle extends GameObjectImpl {
      * 
      * @return a map containing the info of the ball in the game to facilitate the bounce with the paddle
      */
-    public Map<Ball, Collision> getHitBall() {
+    public Map<Ball, Boundaries> getHitBall() {
         return this.hitBall;
     }
-    
-    public static final class Builder{
+
+    public static final class Builder {
         
     }
 }
