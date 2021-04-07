@@ -20,7 +20,7 @@ public final class SoundController {
     private static Clip clip;
     private static boolean clipIsActived = false;
     private static boolean canPermiseMusic = IOSettings.readSettings().isEnableMusic();
-    private static boolean canPermiseFX = IOSettings.readSettings().isEnableoundFx();
+    private static boolean canPermiseFX = IOSettings.readSettings().isEnableSoundFx();
 
 
     private SoundController() {
