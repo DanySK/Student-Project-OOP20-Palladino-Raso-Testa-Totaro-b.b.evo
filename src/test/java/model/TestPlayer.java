@@ -35,7 +35,7 @@ public class TestPlayer {
      */
     @BeforeEach
     void initPlayer() {
-        this.currentPlayer = new PlayerImpl(PLAYER_NAME, PLAYER_SCORE, PLAYER_LIFE);
+        this.currentPlayer = new PlayerImpl(PLAYER_NAME, PLAYER_SCORE, PLAYER_LIFE, PLAYER_LIFE);
     }
 
     @Test
@@ -76,9 +76,9 @@ public class TestPlayer {
 
     @Test
     void testSamePlayer() {
-        final PlayerImpl secondPlayer = new PlayerImpl(PLAYER_NAME, PLAYER_SCORE, PLAYER_LIFE);
-        final PlayerImpl thirdPlayer = new PlayerImpl(PLAYER_NAME, SCORE_OPERATION, SCORE_OPERATION);
-        final PlayerImpl fourtyPlayer = new PlayerImpl(SECOND_NAME_PLAYER, PLAYER_SCORE, PLAYER_LIFE);
+        final PlayerImpl secondPlayer = new PlayerImpl(PLAYER_NAME, PLAYER_SCORE, PLAYER_LIFE, PLAYER_LIFE);
+        final PlayerImpl thirdPlayer = new PlayerImpl(PLAYER_NAME, SCORE_OPERATION, SCORE_OPERATION, PLAYER_LIFE);
+        final PlayerImpl fourtyPlayer = new PlayerImpl(SECOND_NAME_PLAYER, PLAYER_SCORE, PLAYER_LIFE, PLAYER_LIFE);
 
         assertTrue(this.currentPlayer.equals(secondPlayer));
         assertTrue(this.currentPlayer.equals(thirdPlayer));
@@ -133,8 +133,8 @@ public class TestPlayer {
 
     @Test
     void testToString() {
-        assertEquals(this.currentPlayer.toString(), "[alias = " + PLAYER_NAME + ", score = " + PLAYER_SCORE + " ,life = " + PLAYER_LIFE + "]");
+        assertEquals(this.currentPlayer.toString(), "[alias = " + PLAYER_NAME + " ,score = " + PLAYER_SCORE + " ,life = " + PLAYER_LIFE + " ,maxLife = " + PLAYER_LIFE + "]");
         System.out.println(this.currentPlayer.toString());
-        assertNotEquals(this.currentPlayer.toString(), "[alias= " + PLAYER_NAME + ", score= " + PLAYER_SCORE + " ,life= " + PLAYER_LIFE + "]");
+        assertNotEquals(this.currentPlayer.toString(), "[alias= " + PLAYER_NAME + " ,score= " + PLAYER_SCORE + " ,life= " + PLAYER_LIFE + " ,maxLife = " + PLAYER_LIFE + "]");
     }
 }
