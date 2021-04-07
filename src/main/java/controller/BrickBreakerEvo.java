@@ -1,7 +1,5 @@
 package controller;
 
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
 
@@ -10,6 +8,7 @@ import controller.utilities.IOSettings;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.settings.GameSettingsBuilderImpl;
+import model.utilities.ConstantScreen;
 import view.utilities.PersonalViews;
 
 /**
@@ -54,27 +53,21 @@ public class BrickBreakerEvo extends Application {
      */
     private static final String LEADERBOARDS_FOLDER = MAIN_FOLDER + SEP + "Leaderboards" + SEP;
 
-
-    private static final int MIN_WIDHT = 450;
-    private static final int MIN_HEIGHT = 550;
-
     /**
      * {@inheritDoc}
      */
     @Override
     public void start(final Stage primaryStage) throws Exception {
 
-        /*Get screen size */
-        final GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-
         SceneLoaderSingleton.switchScene(primaryStage, 
                 PersonalViews.SCENE_MAIN_MENU.getURL(), 
                 PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
-                graphicsDevice.getDisplayMode().getWidth() / 2, 
-                graphicsDevice.getDisplayMode().getHeight() / 2);
+                ConstantScreen.SCREEN_WIDTH, 
+                ConstantScreen.SCREEN_HEIGHT);
 
-        primaryStage.setMinWidth(MIN_WIDHT);
-        primaryStage.setMinHeight(MIN_HEIGHT);
+        primaryStage.setMinWidth(ConstantScreen.MIN_RESIZE_WIDTH);
+        primaryStage.setMinHeight(ConstantScreen.MIN_RESIZE_HEIGHT);
+
     }
 
     /**
