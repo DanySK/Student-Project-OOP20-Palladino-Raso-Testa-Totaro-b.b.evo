@@ -2,44 +2,40 @@ package model.utilities;
 import java.util.Arrays;
 import java.util.List;
 
-public enum Direction { 
-    /* directions types */
-    UP,
-    UP_LEFT,
-    UP_RIGHT,
-    DOWN,
-    DOWN_LEFT,
-    DOWN_RIGHT,
-    LEFT,
-    RIGHT;
+public enum Angle { 
+    /**
+     * Used to represent the left edge of the paddle.
+     */
+    lEFT(150),
+    /**
+     * Used to represent the middle-left portion of the paddle.
+     */
+    MIDDLE_LEFT(130),
+    /**
+     * Used to represent the middle-right portion of the paddle.
+     */
+    MIDDLE_RIGHT(50),
+    /**
+     * Used to represent the right edge of the paddle.
+     */
+    RIGHT(30);
 
-    public static List<Direction> directionList(final Direction dir) {
-        return Arrays.asList(Direction.values());
+    private int angle;
+    private static int versor = 1;
+
+    Angle(final int angle) {
+        this.angle = angle;
     }
 
-    /* this method returns a string for each direction */
-    @Override
-    public String toString() {
-        switch (this) {
-        case UP:
-            return "Up";
-        case UP_LEFT:
-            return "Up-left";
-        case UP_RIGHT:
-            return "Up-right";
-        case DOWN:
-            return "Down";
-        case DOWN_LEFT:
-            return "Down-left";
-        case DOWN_RIGHT:
-            return "Down-Right";
-        case LEFT:
-            return "Left";
-        case RIGHT:
-            return "Right";
-        default:
-            return "";
-        }
+    public static List<Angle> directionList(final Angle dir) {
+        return Arrays.asList(Angle.values());
     }
-    
+
+    /**
+     * Used to calculate the angle hit by the ball.
+     * @return DirVector
+     */
+    public DirVector getAngleVector() {
+        return new DirVector(Math.sin(Math.toRadians(angle)) * versor, Math.cos(Math.toRadians(angle)) * versor);
+    }
 }
