@@ -3,7 +3,7 @@ package controller;
 import java.io.File;
 import java.io.IOException;
 
-import controller.menu.SceneLoaderSingleton;
+import controller.menu.SceneLoader;
 import controller.utilities.IOSettings;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -60,7 +60,7 @@ public class BrickBreakerEvo extends Application {
     @Override
     public void start(final Stage primaryStage) throws Exception {
 
-        SceneLoaderSingleton.switchScene(primaryStage, 
+        SceneLoader.switchScene(primaryStage, 
                 PersonalViews.SCENE_MAIN_MENU.getURL(), 
                 PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
                 GameUtilities.SCREEN_WIDTH, 

@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-import controller.menu.SceneLoaderSingleton;
+import controller.menu.SceneLoader;
 import controller.sound.SoundController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -87,7 +87,7 @@ public class MainMenuView implements Initializable {
     private void loadListener() {
         //Play Listener
         this.btnPlay.setOnAction(event -> {
-            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
                                      PersonalViews.SCENE_CHARACTER_MENU.getURL(), 
                                      PersonalViews.SCENE_CHARACTER_MENU.getTitleScene(), 
                                      this.window.getWidth(), 
@@ -99,7 +99,7 @@ public class MainMenuView implements Initializable {
 
         // Settings Listener
         this.btnSettings.setOnAction(event -> {
-            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
                                      PersonalViews.SCENE_SETTINGS.getURL(), 
                                      PersonalViews.SCENE_SETTINGS.getTitleScene(), 
                                      this.window.getWidth(), 
@@ -111,7 +111,7 @@ public class MainMenuView implements Initializable {
 
         // Tutorial Listener
         this.btnTutorial.setOnAction(event -> {
-            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
                                     PersonalViews.SCENE_TUTORIAL.getURL(), 
                                     PersonalViews.SCENE_TUTORIAL.getTitleScene(), 
                                     this.window.getWidth(), 
@@ -123,7 +123,7 @@ public class MainMenuView implements Initializable {
 
         // Ranking Listener
         this.btnRanking.setOnAction(event -> {
-            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
                                     PersonalViews.SCENE_RANKING.getURL(), 
                                     PersonalViews.SCENE_RANKING.getTitleScene(), 
                                     this.window.getWidth(), 

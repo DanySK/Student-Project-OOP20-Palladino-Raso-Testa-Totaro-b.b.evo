@@ -13,12 +13,12 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import view.utilities.PersonalImages;
 
-public final class SceneLoaderSingleton {
+public final class SceneLoader {
 
     private static final int CURSOR_DIMENSION = 30;
     private static final int ANIMATION_DURATION = 600;
 
-    private SceneLoaderSingleton() {
+    private SceneLoader() {
 
     }
 

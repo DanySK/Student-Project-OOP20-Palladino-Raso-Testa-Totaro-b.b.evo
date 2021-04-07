@@ -3,7 +3,7 @@ package view.character;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import controller.menu.SceneLoaderSingleton;
+import controller.menu.SceneLoader;
 import controller.sound.SoundController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -97,7 +97,7 @@ public class CharacterView implements Initializable {
 
         //Button next Listener
         this.btnNext.setOnAction(event -> {
-            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
                                      PersonalViews.SCENE_DIFFICULTY.getURL(), 
                                      PersonalViews.SCENE_DIFFICULTY.getTitleScene(), 
                                      this.window.getWidth(), 
@@ -109,7 +109,7 @@ public class CharacterView implements Initializable {
 
         //Button back Listener
         this.btnBack.setOnAction(event -> {
-            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
                                     PersonalViews.SCENE_MAIN_MENU.getURL(), 
                                     PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
                                     this.window.getWidth(), 

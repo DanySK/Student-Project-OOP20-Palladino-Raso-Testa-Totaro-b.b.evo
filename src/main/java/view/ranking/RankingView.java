@@ -7,7 +7,7 @@ import java.util.Map.Entry;
 
 import controller.leaderboard.LeaderBoardController;
 import controller.leaderboard.LeaderboardControllerImpl;
-import controller.menu.SceneLoaderSingleton;
+import controller.menu.SceneLoader;
 import controller.sound.SoundController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -130,7 +130,7 @@ public class RankingView implements Initializable {
     private void loadListener() {
         //Button back Listener
         this.buttonBack.setOnAction(event -> {
-            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
                                 PersonalViews.SCENE_MAIN_MENU.getURL(), 
                                 PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
                                 this.window.getWidth(), 

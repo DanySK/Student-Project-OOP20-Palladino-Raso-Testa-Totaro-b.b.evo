@@ -7,7 +7,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-import controller.menu.SceneLoaderSingleton;
+import controller.menu.SceneLoader;
 import controller.settings.SettingsController;
 import controller.settings.SettingsControllerImpl;
 import controller.sound.SoundController;
@@ -117,7 +117,7 @@ public class SettingsView implements Initializable {
 
             //Button back Listener
             this.btnBack.setOnAction(event -> {
-                SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
                                         PersonalViews.SCENE_MAIN_MENU.getURL(), 
                                         PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
                                         this.window.getWidth(), 

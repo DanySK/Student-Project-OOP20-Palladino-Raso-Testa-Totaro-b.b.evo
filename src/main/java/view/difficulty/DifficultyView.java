@@ -3,7 +3,7 @@ package view.difficulty;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import controller.menu.SceneLoaderSingleton;
+import controller.menu.SceneLoader;
 import controller.settings.SettingsController;
 import controller.settings.SettingsControllerImpl;
 import controller.sound.SoundController;
@@ -109,7 +109,7 @@ public class DifficultyView implements Initializable {
     private void loadListener() {
         //Button back Listener
         this.btnBack.setOnAction(event -> {
-            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
                                     PersonalViews.SCENE_CHARACTER_MENU.getURL(), 
                                     PersonalViews.SCENE_CHARACTER_MENU.getTitleScene(), 
                                     this.window.getWidth(), 
