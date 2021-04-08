@@ -12,12 +12,15 @@ import org.junit.jupiter.api.Test;
 import controller.utilities.IOLeaderboard;
 import model.leaderboard.Leaderboard;
 import model.leaderboard.LeaderboardImpl;
+import model.leaderboard.LeaderboardSortingStrategy;
+import model.leaderboard.StandardScoreSortingStrategy;
 
 class TestPrintLeaderboard {
 
     private Leaderboard rank;
     private Map<String, Integer> map;
     private static final int NUMBER_PLAYER = 100;
+    private final LeaderboardSortingStrategy ls = new StandardScoreSortingStrategy();
     private static final String SEP = System.getProperty("file.separator");
     private static final String RES_PATH = System.getProperty("user.home");
     public static final String LEADERBOARD_PATH = RES_PATH
@@ -35,7 +38,7 @@ class TestPrintLeaderboard {
             this.rank.addPlayer(String.valueOf(i), i);
             this.map.put(String.valueOf(i), i);
         }
-        this.rank.sortByScore();
+        this.rank.sortByScore(this.ls);
     }
 
     @Test

@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import controller.utilities.IOLeaderboard;
 import model.leaderboard.Leaderboard;
 import model.leaderboard.LeaderboardImpl;
+import model.leaderboard.LeaderboardSortingStrategy;
 import model.leaderboard.Player;
 
 public class LeaderboardControllerImpl implements LeaderboardController {
@@ -50,8 +51,8 @@ public class LeaderboardControllerImpl implements LeaderboardController {
      *
      */
     @Override
-    public Map<String, Integer> getPoudium(final int index) {
-        this.leaderboard.sortByScore();
+    public Map<String, Integer> getPoudium(final int index, final LeaderboardSortingStrategy ls) {
+        this.leaderboard.sortByScore(ls);
         return this.leaderboard.getLeaderBoard()
                                .entrySet()
                                .stream()
@@ -65,8 +66,8 @@ public class LeaderboardControllerImpl implements LeaderboardController {
      *
      */
     @Override
-    public void saveSortLeaderboard() {
-        this.leaderboard.sortByScore();
+    public void saveSortLeaderboard(final LeaderboardSortingStrategy ls) {
+        this.leaderboard.sortByScore(ls);
         IOLeaderboard.printInJsonFormat(this.filePath, this.viewLeaderboard());
     }
 

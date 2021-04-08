@@ -6,8 +6,9 @@ public interface Leaderboard {
 
     /**
      *  Method that allows to sort by score, the ranking.
+     *  @param ls - use to understand the sorting strategy.
      */
-    void sortByScore();
+    void sortByScore(LeaderboardSortingStrategy ls);
 
     /**
      *  Method that allows to , add or overwrite, player in the ranking.
