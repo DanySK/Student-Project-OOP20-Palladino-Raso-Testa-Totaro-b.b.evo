@@ -35,19 +35,31 @@ public class CollisionControllerImpl implements CollisionController {
     }
 
     private Boundaries checkCollisions(final double ballPos, final double gameObjPos, Boundaries bounds) {
-        switch(bounds) {
+        Boundaries checkedBounds = null;
+        switch (bounds) {
         case LOWER:
+            if (ballPos < gameObjPos) {
+                checkedBounds = Boundaries.LOWER;
+            }
             break;
         case SIDE_LEFT:
+            if (ballPos < gameObjPos) { 
+                checkedBounds = Boundaries.SIDE_LEFT; 
+                }
             break;
         case SIDE_RIGHT:
+            if (ballPos > gameObjPos) {
+                checkedBounds = Boundaries.SIDE_RIGHT;
+            }
             break;
         case UPPER:
+            if (ballPos > gameObjPos) {
+                checkedBounds = Boundaries.UPPER;
+            }
             break;
         default:
             break;
         }
-
-        return null ;
+        return checkedBounds;
     }
 }
