@@ -4,7 +4,7 @@ import java.util.Map;
 
 import model.leaderboard.Player;
 
-public interface LeaderBoardController {
+public interface LeaderboardController {
 
     /**
      *  Method that allows to , add or overwrite, player in the ranking.

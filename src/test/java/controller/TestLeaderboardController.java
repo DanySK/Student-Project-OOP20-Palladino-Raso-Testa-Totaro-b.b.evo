@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import controller.leaderboard.LeaderBoardController;
+import controller.leaderboard.LeaderboardController;
 import controller.leaderboard.LeaderboardControllerImpl;
 import model.leaderboard.Player;
 import model.leaderboard.PlayerImpl;
@@ -37,7 +37,7 @@ class TestLeaderboardController {
     private static final int SCORE_4 = 2400;
     private static final int LIFE = 3;
     private static final int PODIUM = 3;
-    private LeaderBoardController controller;
+    private LeaderboardController controller;
     private Map<String, Integer> map;
     private Player player1;
     private Player player2;

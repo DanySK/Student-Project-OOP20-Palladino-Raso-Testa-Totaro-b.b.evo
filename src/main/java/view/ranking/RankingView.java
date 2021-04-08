@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Map.Entry;
 
-import controller.leaderboard.LeaderBoardController;
+import controller.leaderboard.LeaderboardController;
 import controller.leaderboard.LeaderboardControllerImpl;
 import controller.menu.SceneLoader;
 import controller.sound.SoundController;
@@ -78,7 +78,7 @@ public class RankingView implements Initializable {
     private static final int SIZEHEIGHT = 20;
     private static final int CENTER_POSITION = 2;
     private final Font fontColumn = Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), SIZEFONT);
-    private final LeaderBoardController controller = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
+    private final LeaderboardController controller = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
 
      /**
      *  Method that initialize all component of scene.

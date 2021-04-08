@@ -9,7 +9,7 @@ import model.leaderboard.Leaderboard;
 import model.leaderboard.LeaderboardImpl;
 import model.leaderboard.Player;
 
-public class LeaderboardControllerImpl implements LeaderBoardController {
+public class LeaderboardControllerImpl implements LeaderboardController {
 
     private Leaderboard leaderboard;
     private final String filePath;
