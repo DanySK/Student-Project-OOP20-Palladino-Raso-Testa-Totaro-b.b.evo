@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Map.Entry;
 
-import controller.leaderboard.LeaderBoardController;
+import controller.leaderboard.LeaderboardController;
 import controller.leaderboard.LeaderboardControllerImpl;
 import controller.menu.SceneLoader;
 import controller.sound.SoundController;
@@ -33,6 +33,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
+import model.utilities.GameUtilities;
 import view.utilities.PersonalFonts;
 import view.utilities.PersonalImages;
 import view.utilities.PersonalSounds;
@@ -77,13 +78,14 @@ public class RankingView implements Initializable {
     private static final int SIZEHEIGHT = 20;
     private static final int CENTER_POSITION = 2;
     private final Font fontColumn = Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), SIZEFONT);
-    private final LeaderBoardController controller = new LeaderboardControllerImpl();
+    private final LeaderboardController controller = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
 
      /**
      *  Method that initialize all component of scene.
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
+        System.out.println(GameUtilities.LEADERBOARD_PATH);
         this.initializeTableView();
         this.loadFont();
         this.loadImage();

@@ -18,7 +18,15 @@ class TestPrintLeaderboard {
     private Leaderboard rank;
     private Map<String, Integer> map;
     private static final int NUMBER_PLAYER = 100;
-
+    private static final String SEP = System.getProperty("file.separator");
+    private static final String RES_PATH = System.getProperty("user.home");
+    public static final String LEADERBOARD_PATH = RES_PATH
+                                                  + SEP
+                                                  + ".BrickBreakerEvo" 
+                                                  + SEP
+                                                  + "Leaderboards"
+                                                  + SEP
+                                                  + "ranking.json"; 
     @BeforeEach
     void initRank() {
         this.rank = new LeaderboardImpl();
@@ -33,14 +41,14 @@ class TestPrintLeaderboard {
     @Test
     void testCorrectPrintJsonFormat() {
         assertDoesNotThrow(() -> {
-            IOLeaderboard.printInJsonFormat(this.rank.getLeaderBoard());
+            IOLeaderboard.printInJsonFormat(LEADERBOARD_PATH, this.rank.getLeaderBoard());
         });
     }
 
     @Test
     void testCorrectReadJsonFormat() {
         assertDoesNotThrow(() -> {
-            final Map<String, Integer> map2 = IOLeaderboard.readLeaderboard();
+            final Map<String, Integer> map2 = IOLeaderboard.readLeaderboard(LEADERBOARD_PATH);
             assertEquals(this.map, map2);
         });
     }

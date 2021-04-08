@@ -4,7 +4,7 @@ import java.util.Map;
 
 import model.leaderboard.Player;
 
-public interface LeaderBoardController {
+public interface LeaderboardController {
 
     /**
      *  Method that allows to , add or overwrite, player in the ranking.
@@ -33,4 +33,9 @@ public interface LeaderBoardController {
      *  Method that allows to print on file a sorted leaderboard.
      */
     void saveSortLeaderboard();
+
+    /**
+     *  Method that allows to delete leaderboard and print it on file.
+     */
+    void clearLeaderboard();
 }
