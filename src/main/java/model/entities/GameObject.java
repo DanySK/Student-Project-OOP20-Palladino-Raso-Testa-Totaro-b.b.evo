@@ -3,6 +3,7 @@ package model.entities;
 import controller.input.ControllerInput;
 import model.utilities.Position;
 import model.utilities.DirVector;
+import model.utilities.GameObjectType;
 import view.graphics.AdapterGraphics;
 
 public interface GameObject {
@@ -73,5 +74,7 @@ public interface GameObject {
      * @param graphicsAdapter to adapt the object to the screen
      */
     void updateGraphics(AdapterGraphics graphicsAdapter);
+
+    GameObjectType getGameObjectType();
 
 }

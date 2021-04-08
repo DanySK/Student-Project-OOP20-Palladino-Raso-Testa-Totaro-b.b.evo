@@ -4,7 +4,7 @@ import model.utilities.PowerUpType;
 
 public interface PowerUp extends Brick {
     /**
-     * drops the {@link PowerUp} when the {@link Status} is set on DROP_POWERUP.
+     * drops the {@link PowerUp} when the {@link BrickStatus} is set on DROP_POWERUP.
      */
     void dropPowerUp();
     /**
