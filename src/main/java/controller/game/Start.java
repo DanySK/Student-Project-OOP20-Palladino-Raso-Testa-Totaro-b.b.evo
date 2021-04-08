@@ -5,12 +5,12 @@ import model.utilities.Position;
 public enum Start {
 
     /**
-     * the default states.
+     * Initial position of paddle.
      */
-    PLAYER_ONE(new Position(290, 580), 78, 20),
+    PADDLE(new Position(290, 580), 78, 20),
 
     /**
-     * the default states.
+     * Initial position of ball.
      */
     BALL(new Position(330, 570), 10, 10);
 
