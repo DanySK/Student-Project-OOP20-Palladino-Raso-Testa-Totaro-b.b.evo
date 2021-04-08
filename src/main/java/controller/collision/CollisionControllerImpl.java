@@ -1,3 +1,4 @@
+  
 package controller.collision;
 
 import java.util.HashMap;
@@ -7,6 +8,7 @@ import java.util.Optional;
 import model.entities.Ball;
 import model.entities.BrickImpl;
 import model.entities.GameObject;
+import model.entities.GameObjectImpl;
 import model.entities.Paddle;
 import model.utilities.Boundaries;
 import model.utilities.Pair;
@@ -96,10 +98,6 @@ public class CollisionControllerImpl implements CollisionController {
         return paddle.getPos().getX();
     }
 
-<<<<<<< HEAD
-    private Boundaries checkCollisions(final double ballPos, final double gameObjPos, Boundaries bounds) {
-        Boundaries checkedBounds = null;
-=======
     private int ballHeight(final Ball ball) {
         return ball.getHeight();
     }
@@ -128,37 +126,34 @@ public class CollisionControllerImpl implements CollisionController {
         return brick.getPos().getX();
     }
 
-    private Boolean checkCollisions(final double ballPos, final double gameObjPos, final Boundaries bounds) {
->>>>>>> b8ed2f66cd6a9272193e87a64e00443de43fc3bf
+
+    private Boolean checkCollisions(final double obj1, final double obj2, final Boundaries bounds) {
+        Boolean checkedBounds = false;
         switch (bounds) {
         case LOWER:
-            if (ballPos < gameObjPos) {
-                checkedBounds = Boundaries.LOWER;
+            if (obj1 < obj2) {
+                checkedBounds = true;
             }
             break;
         case SIDE_LEFT:
-            if (ballPos < gameObjPos) { 
-                checkedBounds = Boundaries.SIDE_LEFT; 
+            if (obj1 < obj2) { 
+                checkedBounds = true;
                 }
             break;
         case SIDE_RIGHT:
-            if (ballPos > gameObjPos) {
-                checkedBounds = Boundaries.SIDE_RIGHT;
+            if (obj1 > obj2) {
+                checkedBounds = true;
             }
             break;
         case UPPER:
-            if (ballPos > gameObjPos) {
-                checkedBounds = Boundaries.UPPER;
+            if (obj1 > obj2) {
+                checkedBounds = true;
             }
             break;
         default:
+            checkedBounds = false;
             break;
         }
-<<<<<<< HEAD
         return checkedBounds;
-=======
-
-        return null;
->>>>>>> b8ed2f66cd6a9272193e87a64e00443de43fc3bf
     }
 }
