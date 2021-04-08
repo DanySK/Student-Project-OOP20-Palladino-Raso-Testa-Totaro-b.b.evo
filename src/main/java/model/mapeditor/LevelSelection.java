@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 /**
- * Path of the Level story.
+ * Path of the standard levels.
  *
  */
 public enum LevelSelection implements Iterator<LevelSelection> {
@@ -15,37 +15,37 @@ public enum LevelSelection implements Iterator<LevelSelection> {
     /**
      * Level 1 location and the input to fit the iterator interface.
      */
-    LEVEL1("storyLevel/Default", 0, false),
+    LEVEL1("standardLevel/Default", 0, false),
 
     /**
      * Level 2 location and the input to fit the iterator interface.
      */
-    LEVEL2("storyLevel/Arkanoid tribute", 1, false),
+    LEVEL2("standardLevel/Arkanoid tribute", 1, false),
 
     /**
      * Level 3 location and the input to fit the iterator interface.
      */
-    LEVEL3("storyLevel/Galaga tribute", 2, false),
+    LEVEL3("standardLevel/Galaga tribute", 2, false),
 
     /**
      * Level 4 location and the input to fit the iterator interface.
      */
-    LEVEL4("storyLevel/Pacman tribute", 3, false),
+    LEVEL4("standardLevel/Pacman tribute", 3, false),
 
     /**
      * Level 5 location and the input to fit the iterator interface.
      */
-    LEVEL5("storyLevel/Donkey Kong tribute", 4, false),
+    LEVEL5("standardLevel/Donkey Kong tribute", 4, false),
 
     /**
      * Level 6 location and the input to fit the iterator interface.
      */
-    LEVEL6("storyLevel/Crash Bandicoot tribute", 5, false),
+    LEVEL6("standardLevel/Crash Bandicoot tribute", 5, false),
 
     /**
      * Level 7 location and the input to fit the iterator interface.
      */
-    LEVEL7("storyLevel/Super Mario tribute", 6, false);
+    LEVEL7("standardLevel/Super Mario tribute", 6, false);
 
     private int index;
     private String path;
@@ -57,21 +57,30 @@ public enum LevelSelection implements Iterator<LevelSelection> {
         this.isLast = isLast;
     }
 
+    /**
+     * @return index of level
+     */
     public int getIndex() {
         return index;
     }
 
+    /**
+     * @return path of level
+     */
     public String getPath() {
         return path;
     }
 
+    /**
+     * @return true if it's the last, false otherwise
+     */
     public boolean isLast() {
         return isLast;
     }
 
     /**
      * 
-     * @return load the story level saved in the resources
+     * @return load the standard level saved in the resources
      */
     public Level getLevel() {
         Level level = null;
@@ -107,9 +116,9 @@ public enum LevelSelection implements Iterator<LevelSelection> {
     /**
      * 
      * @param nameLvl the name level to search
-     * @return if the level is part of the campaign. 
+     * @return if the level is one of the default
      */
-    public static boolean isStoryLevel(final String nameLvl) {
+    public static boolean isStandardLevel(final String nameLvl) {
         return Arrays.asList(LevelSelection.values()).stream()
                                                      .map(i -> i.getLevel().getLevelName())
                                                      .anyMatch(i -> i.equals(nameLvl));
@@ -117,8 +126,8 @@ public enum LevelSelection implements Iterator<LevelSelection> {
 
     /**
      * 
-     * @param level to serch in this enum
-     * @return the corresponding enumeration linked to the story level.
+     * @param level to search in this enum
+     * @return the corresponding enumeration linked to the standard level.
      */
     public static LevelSelection getSelectionFromLevel(final Level level) {
         return Arrays.asList(LevelSelection.values()).stream()
