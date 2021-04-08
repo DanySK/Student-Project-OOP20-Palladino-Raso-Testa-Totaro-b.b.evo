@@ -3,11 +3,13 @@ package model.entities;
 import java.util.Collection;
 import java.util.Set;
 
+import controller.event.GameBoardEventListeners;
+
 /**
  * Interface that instantiates methods for creating the game board.
  *
  */
-public interface GameBoard extends GameBoardEventListeners{
+public interface GameBoard extends GameBoardEventListeners {
 
     /**
      * 
