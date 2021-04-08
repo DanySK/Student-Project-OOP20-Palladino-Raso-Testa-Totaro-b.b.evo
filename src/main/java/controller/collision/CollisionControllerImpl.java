@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import model.entities.Ball;
-import model.entities.BrickImpl;
+import model.entities.Brick;
 import model.entities.GameObject;
 import model.entities.Paddle;
 import model.utilities.Boundaries;
@@ -22,7 +22,7 @@ public class CollisionControllerImpl implements CollisionController {
      * Check if there has been a collision between the ball and the brick. If yes then it returns a Pair of bricks and border
      */
     @Override
-    public Optional<Pair<BrickImpl, Boundaries>> checkBallCollisionsWithBrick(final Ball ball, final BrickImpl brick) {
+    public Optional<Pair<Brick, Boundaries>> checkBallCollisionsWithBrick(final Ball ball, final Brick brick) {
         this.fillMap(ball, brick);
         collision.forEach((k, v) -> {
             if (!v.booleanValue()) {
@@ -36,7 +36,7 @@ public class CollisionControllerImpl implements CollisionController {
      * Check if there has been a collision between the ball and the wall. If yes then return the border
      */
     @Override
-    public Optional<Boundaries> checkBallCollisionsWithWall(final BrickImpl wall, final Ball ball) {
+    public Optional<Boundaries> checkBallCollisionsWithWall(final Brick wall, final Ball ball) {
         return null;
     }
 
@@ -58,7 +58,7 @@ public class CollisionControllerImpl implements CollisionController {
      * Check if there has been a collision between the paddle and the paddle. If yes then return the border
      */
     @Override
-    public Optional<Boundaries> checkPaddleCollisionsWithWall(final BrickImpl wall, final Paddle paddle) {
+    public Optional<Boundaries> checkPaddleCollisionsWithWall(final Brick wall, final Paddle paddle) {
         //collision.put(Boundaries.SIDE_LEFT, checkCollisions(paddleX(paddle), brickX(brick) + brickWidth(brick), Boundaries.SIDE_RIGHT));
         //collision.put(Boundaries.SIDE_RIGHT, checkCollisions(ballX(ball) + ballWidth(ball), brickX(brick), Boundaries.SIDE_RIGHT));
         return null;

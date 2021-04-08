@@ -3,7 +3,7 @@ package controller.collision;
 import java.util.Optional;
 
 import model.entities.Ball;
-import model.entities.BrickImpl;
+import model.entities.Brick;
 import model.entities.Paddle;
 import model.utilities.Boundaries;
 import model.utilities.Pair;
@@ -15,14 +15,14 @@ public interface CollisionController {
      * @param ball
      * @return collision
      */
-    Optional<Pair<BrickImpl, Boundaries>> checkBallCollisionsWithBrick(Ball ball, BrickImpl brick);
+    Optional<Pair<Brick, Boundaries>> checkBallCollisionsWithBrick(Ball ball, Brick brick);
     /**
      *
      * @param wall
      * @param ball
      * @return collision
      */
-    Optional<Boundaries> checkBallCollisionsWithWall(BrickImpl wall, Ball ball);
+    Optional<Boundaries> checkBallCollisionsWithWall(Brick wall, Ball ball);
     /**
      * 
      * @param paddle
@@ -36,5 +36,5 @@ public interface CollisionController {
      * @param paddle
      * @return collision
      */
-    Optional<Boundaries> checkPaddleCollisionsWithWall(BrickImpl wall, Paddle paddle);
+    Optional<Boundaries> checkPaddleCollisionsWithWall(Brick wall, Paddle paddle);
 } 
