@@ -10,7 +10,6 @@ import model.entities.GameObject;
 import model.entities.Paddle;
 import model.utilities.Boundaries;
 import model.utilities.Pair;
-import paranoid.model.collision.Collision;
 
 public class CollisionControllerImpl implements CollisionController {
 
