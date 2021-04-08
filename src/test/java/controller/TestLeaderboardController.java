@@ -13,8 +13,10 @@ import org.junit.jupiter.api.Test;
 
 import controller.leaderboard.LeaderboardController;
 import controller.leaderboard.LeaderboardControllerImpl;
+import model.leaderboard.LeaderboardSortingStrategy;
 import model.leaderboard.Player;
 import model.leaderboard.PlayerImpl;
+import model.leaderboard.StandardScoreSortingStrategy;
 
 class TestLeaderboardController {
 
@@ -22,6 +24,7 @@ class TestLeaderboardController {
     private static final String NAME_2 = "Giacomo";
     private static final String NAME_3 = "Alessandro";
     private static final String NAME_4 = "Francesco";
+    private final LeaderboardSortingStrategy ls = new StandardScoreSortingStrategy();
     private static final String SEP = System.getProperty("file.separator");
     private static final String RES_PATH = System.getProperty("user.home");
     public static final String LEADERBOARD_PATH = RES_PATH
@@ -77,7 +80,15 @@ class TestLeaderboardController {
                                  .stream()
                                  .filter(x -> x.getValue() >= SCORE_2)
                                  .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)), 
-                         this.controller.getPoudium(PODIUM));
+                         this.controller.getPoudium(PODIUM, this.ls));
+        });
+    }
+
+    @Test
+    void testClearLeaderboard() {
+        assertDoesNotThrow(() -> {
+            this.controller.clearLeaderboard();
+            assertEquals(Map.of(), this.controller.viewLeaderboard());
         });
     }
 
@@ -86,7 +97,7 @@ class TestLeaderboardController {
         assertDoesNotThrow(() -> {
             this.controller.clearLeaderboard();
             this.testAddPlayer();
-            this.controller.saveSortLeaderboard();
+            this.controller.saveSortLeaderboard(this.ls);
         });
     }
 

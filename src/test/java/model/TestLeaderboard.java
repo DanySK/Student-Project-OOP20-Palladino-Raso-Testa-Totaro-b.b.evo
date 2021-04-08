@@ -13,12 +13,15 @@ import org.junit.jupiter.api.Test;
 
 
 import model.leaderboard.LeaderboardImpl;
+import model.leaderboard.LeaderboardSortingStrategy;
+import model.leaderboard.StandardScoreSortingStrategy;
 
 
 class TestLeaderboard {
 
     private LeaderboardImpl leaderboard;
     private final Map<String, Integer> testMap = new HashMap<>();
+    private final LeaderboardSortingStrategy ls = new StandardScoreSortingStrategy();
     private static final int ALEX00_SCORE = 1800;
     private static final int ALEX00_SCORE_2 = 1300;
     private static final int JACK_SCORE = 1700;
@@ -76,7 +79,7 @@ class TestLeaderboard {
         this.leaderboard.addPlayer("Fausto", ALEX00_SCORE);
         this.leaderboard.addPlayer("Mario", TOMMY_SCORE);
         this.leaderboard.addPlayer("Alex", TOMMY_SCORE);
-        this.leaderboard.sortByScore();
+        this.leaderboard.sortByScore(this.ls);
         assertEquals(this.leaderboard.getLeaderBoard(), Map.of("Fausto", ALEX00_SCORE,
                                                                "Mario", TOMMY_SCORE,
                                                                "Alex", TOMMY_SCORE));

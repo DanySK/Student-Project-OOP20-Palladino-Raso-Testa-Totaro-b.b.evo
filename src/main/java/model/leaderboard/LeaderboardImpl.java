@@ -2,9 +2,7 @@ package model.leaderboard;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class LeaderboardImpl implements Leaderboard {
 
@@ -24,13 +22,8 @@ public class LeaderboardImpl implements Leaderboard {
      *
      */
     @Override
-    public void sortByScore() {
-        this.ranking = this.ranking.entrySet()
-                                   .stream()
-                                   .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
-                                   .collect(Collectors.toMap(Map.Entry::getKey,
-                                            Map.Entry::getValue, (e1, e2) -> e1,
-                                            LinkedHashMap::new));
+    public void sortByScore(final LeaderboardSortingStrategy ls) {
+        this.ranking = ls.sortMap(this.ranking);
     }
 
     /**
