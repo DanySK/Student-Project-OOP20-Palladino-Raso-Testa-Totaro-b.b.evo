@@ -22,6 +22,15 @@ class TestLeaderboardController {
     private static final String NAME_2 = "Giacomo";
     private static final String NAME_3 = "Alessandro";
     private static final String NAME_4 = "Francesco";
+    private static final String SEP = System.getProperty("file.separator");
+    private static final String RES_PATH = System.getProperty("user.home");
+    public static final String LEADERBOARD_PATH = RES_PATH
+                                                  + SEP
+                                                  + ".BrickBreakerEvo" 
+                                                  + SEP
+                                                  + "Leaderboards"
+                                                  + SEP
+                                                  + "ranking.json"; 
     private static final int SCORE_1 = 1234;
     private static final int SCORE_2 = 1700;
     private static final int SCORE_3 = 2000;
@@ -37,7 +46,7 @@ class TestLeaderboardController {
 
     @BeforeEach
     void initController() {
-        this.controller = new LeaderboardControllerImpl();
+        this.controller = new LeaderboardControllerImpl(LEADERBOARD_PATH);
         this.player1 = new PlayerImpl(NAME_1, SCORE_1, LIFE, LIFE);
         this.player2 = new PlayerImpl(NAME_2, SCORE_2, LIFE, LIFE);
         this.player3 = new PlayerImpl(NAME_3, SCORE_3, LIFE, LIFE);

@@ -12,9 +12,11 @@ import model.leaderboard.Player;
 public class LeaderboardControllerImpl implements LeaderBoardController {
 
     private final Leaderboard leaderboard;
+    private final String filePath;
 
-    public LeaderboardControllerImpl() {
-        final var map = IOLeaderboard.readLeaderboard();
+    public LeaderboardControllerImpl(final String filePath) {
+        this.filePath = filePath;
+        final var map = IOLeaderboard.readLeaderboard(filePath);
         if (map == null || map.isEmpty()) {
             this.leaderboard = new LeaderboardImpl();
         } else {
@@ -65,7 +67,7 @@ public class LeaderboardControllerImpl implements LeaderBoardController {
     @Override
     public void saveSortLeaderboard() {
         this.leaderboard.sortByScore();
-        IOLeaderboard.printInJsonFormat(this.viewLeaderboard());
+        IOLeaderboard.printInJsonFormat(this.filePath, this.viewLeaderboard());
     }
 
 }

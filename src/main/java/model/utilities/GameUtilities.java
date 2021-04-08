@@ -36,7 +36,7 @@ public final class GameUtilities {
     /**
      * Path for the leaderboard file.
      */
-    private static final String LEADERBOARD_PATH = RES_PATH
+    public static final String LEADERBOARD_PATH = RES_PATH
                                                    + SEP
                                                    + ".BrickBreakerEvo" 
                                                    + SEP
@@ -46,7 +46,7 @@ public final class GameUtilities {
     /**
      * Path for the settings file.
      */
-    private static final String SETTINGS_PATH = RES_PATH
+    public static final String SETTINGS_PATH =  RES_PATH
                                                 + SEP
                                                 + ".BrickBreakerEvo" 
                                                 + SEP
