@@ -15,6 +15,15 @@ import model.settings.Settings;
 class TestPrintSettings {
 
     private Settings gameSettings;
+    private static final String SEP = System.getProperty("file.separator");
+    private static final String RES_PATH = System.getProperty("user.home");
+    public static final String SETTINGS_PATH = RES_PATH
+                                               + SEP
+                                               + ".BrickBreakerEvo" 
+                                               + SEP
+                                               + "Settings"
+                                               + SEP
+                                               + "settings.json";
 
     @BeforeEach
     void initSettings() {
@@ -24,14 +33,14 @@ class TestPrintSettings {
     @Test
     void testPrintSettings() {
         assertDoesNotThrow(() -> {
-            IOSettings.printInJsonFormat(gameSettings);
+            IOSettings.printInJsonFormat(SETTINGS_PATH, gameSettings);
         });
     }
 
     @Test
     void testReadSettings() {
         assertDoesNotThrow(() -> {
-            final var readSettings = IOSettings.readSettings();
+            final var readSettings = IOSettings.readSettings(SETTINGS_PATH);
             assertEquals(this.gameSettings, readSettings);
         });
 

@@ -85,7 +85,6 @@ public class RankingView implements Initializable {
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        System.out.println(GameUtilities.LEADERBOARD_PATH);
         this.initializeTableView();
         this.loadFont();
         this.loadImage();

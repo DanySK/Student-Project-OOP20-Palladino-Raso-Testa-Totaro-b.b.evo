@@ -26,6 +26,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.utilities.Difficulty;
+import model.utilities.GameUtilities;
 import view.utilities.PersonalFonts;
 import view.utilities.PersonalImages;
 import view.utilities.PersonalSounds;
@@ -76,7 +77,7 @@ public class DifficultyView implements Initializable {
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        this.controller = new SettingsControllerImpl();
+        this.controller = new SettingsControllerImpl(GameUtilities.SETTINGS_PATH);
         this.resizable();
         this.loadFont();
         this.loadListener();
