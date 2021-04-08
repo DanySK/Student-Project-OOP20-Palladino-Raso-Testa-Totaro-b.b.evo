@@ -27,7 +27,7 @@ public enum GamePhase {
     WIN,
 
     /**
-     * When your life are end the game is finish and you can enter your alias to see ranking.
+     * When your lifes are ends the game is finish and you can enter your alias to see your ranking.
      */
     LOST,
 
