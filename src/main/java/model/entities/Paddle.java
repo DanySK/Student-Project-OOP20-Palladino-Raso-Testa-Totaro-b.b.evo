@@ -8,6 +8,7 @@ import controller.input.PaddleComponentInput;
 import model.physics.PaddleComponentPhysics;
 import model.utilities.Boundaries;
 import model.utilities.DirVector;
+import model.utilities.GameObjectType;
 import model.utilities.Position;
 import view.graphics.AdapterGraphics;
 import view.graphics.PaddleComponentGraphics;

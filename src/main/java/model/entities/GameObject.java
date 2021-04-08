@@ -75,6 +75,4 @@ public interface GameObject {
      */
     void updateGraphics(AdapterGraphics graphicsAdapter);
 
-    GameObjectType getGameObjectType();
-
 }
