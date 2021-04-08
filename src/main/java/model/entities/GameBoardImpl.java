@@ -3,6 +3,8 @@ package model.entities;
 import java.util.Collection;
 import java.util.Set;
 
+import controller.event.Event;
+
 
 public class GameBoardImpl implements GameBoard{
 
@@ -58,6 +60,18 @@ public class GameBoardImpl implements GameBoard{
     public Border getBorder() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public Border getBorder() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void eventListener(Event e) {
+        // TODO Auto-generated method stub
+        
     }
 
     @Override
