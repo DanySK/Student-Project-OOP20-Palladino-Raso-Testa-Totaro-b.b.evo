@@ -38,10 +38,10 @@ class TestLeaderboardController {
     @BeforeEach
     void initController() {
         this.controller = new LeaderboardControllerImpl();
-        this.player1 = new PlayerImpl(NAME_1, SCORE_1, LIFE);
-        this.player2 = new PlayerImpl(NAME_2, SCORE_2, LIFE);
-        this.player3 = new PlayerImpl(NAME_3, SCORE_3, LIFE);
-        this.player4 = new PlayerImpl(NAME_4, SCORE_4, LIFE);
+        this.player1 = new PlayerImpl(NAME_1, SCORE_1, LIFE, LIFE);
+        this.player2 = new PlayerImpl(NAME_2, SCORE_2, LIFE, LIFE);
+        this.player3 = new PlayerImpl(NAME_3, SCORE_3, LIFE, LIFE);
+        this.player4 = new PlayerImpl(NAME_4, SCORE_4, LIFE, LIFE);
         this.map = new HashMap<>();
         this.map.put(this.player1.getAlias(), this.player1.getScore());
         this.map.put(this.player2.getAlias(), this.player2.getScore());

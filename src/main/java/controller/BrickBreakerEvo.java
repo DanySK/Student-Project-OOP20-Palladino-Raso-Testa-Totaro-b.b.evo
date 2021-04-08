@@ -3,12 +3,13 @@ package controller;
 import java.io.File;
 import java.io.IOException;
 
-import controller.menu.SceneLoaderSingleton;
+import controller.menu.SceneLoader;
 import controller.utilities.IOSettings;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.settings.GameSettingsBuilderImpl;
-import model.utilities.ConstantScreen;
+import model.utilities.GameUtilities;
+import view.utilities.PersonalStyle;
 import view.utilities.PersonalViews;
 
 /**
@@ -59,14 +60,15 @@ public class BrickBreakerEvo extends Application {
     @Override
     public void start(final Stage primaryStage) throws Exception {
 
-        SceneLoaderSingleton.switchScene(primaryStage, 
+        SceneLoader.switchScene(primaryStage, 
                 PersonalViews.SCENE_MAIN_MENU.getURL(), 
                 PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
-                ConstantScreen.SCREEN_WIDTH, 
-                ConstantScreen.SCREEN_HEIGHT);
+                GameUtilities.SCREEN_WIDTH, 
+                GameUtilities.SCREEN_HEIGHT,
+                PersonalStyle.DEFAULT_STYLE.getStylePath());
 
-        primaryStage.setMinWidth(ConstantScreen.MIN_RESIZE_WIDTH);
-        primaryStage.setMinHeight(ConstantScreen.MIN_RESIZE_HEIGHT);
+        primaryStage.setMinWidth(GameUtilities.MIN_RESIZE_WIDTH);
+        primaryStage.setMinHeight(GameUtilities.MIN_RESIZE_HEIGHT);
 
     }
 

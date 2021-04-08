@@ -117,7 +117,8 @@ public class PlayerImpl implements Player {
      */
     @Override
     public String toString() {
-        return "[alias = " + this.alias + ", score = " + this.score + " ,life = " + this.life + "]";
+        return "[alias = " + this.alias + " ,score = " + this.score + " ,life = " + this.life 
+             + " ,maxLife = " + this.maxNumberOfLife + "]";
     }
 
     /**

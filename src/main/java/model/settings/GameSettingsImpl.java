@@ -37,7 +37,7 @@ public class GameSettingsImpl implements Settings {
      *
      */
     @Override
-    public boolean isEnableoundFx() {
+    public boolean isEnableSoundFx() {
         return this.isEnableSoundFx;
     }
 
@@ -126,7 +126,7 @@ public class GameSettingsImpl implements Settings {
         }
         final GameSettingsImpl other = (GameSettingsImpl) obj;
 
-        return other.isEnableoundFx() == this.isEnableSoundFx 
+        return other.isEnableSoundFx() == this.isEnableSoundFx 
                && other.isEnableMusic() == this.isEnableMusic
                && other.useLeftAndRight() == this.useLeftAndRight
                && other.useUpAndDown() == this.useUpAndDown

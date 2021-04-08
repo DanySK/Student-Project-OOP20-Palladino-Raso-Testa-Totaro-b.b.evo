@@ -10,7 +10,7 @@ public interface Settings extends Serializable {
      * Return true if the game allows Sound FX.
      * @return true if the game allows Sound FX.
      */
-    boolean isEnableoundFx();
+    boolean isEnableSoundFx();
 
     /**
      * Return true if the game allows Music.
