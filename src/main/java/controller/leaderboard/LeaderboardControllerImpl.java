@@ -17,6 +17,13 @@ public class LeaderboardControllerImpl implements LeaderboardController {
 
     public LeaderboardControllerImpl(final String filePath) {
         this.filePath = filePath;
+        this.initializeLeaderboard();
+    }
+
+    /**
+     * Method that allows to initialize correctly leaderboard.
+    */
+    private void initializeLeaderboard() {
         final var map = IOLeaderboard.readLeaderboard(filePath);
         if (map == null || map.isEmpty()) {
             this.leaderboard = new LeaderboardImpl();
@@ -24,7 +31,6 @@ public class LeaderboardControllerImpl implements LeaderboardController {
             this.leaderboard = new LeaderboardImpl(map);
         }
     }
-
     /**
      * 
      * {@inheritDoc}
@@ -79,7 +85,7 @@ public class LeaderboardControllerImpl implements LeaderboardController {
     @Override
     public void clearLeaderboard() {
         this.leaderboard = new LeaderboardImpl();
-        IOLeaderboard.printInJsonFormat(filePath, this.viewLeaderboard());
+        IOLeaderboard.printInJsonFormat(this.filePath, this.viewLeaderboard());
     }
 
 }

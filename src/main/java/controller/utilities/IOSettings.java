@@ -2,7 +2,6 @@ package controller.utilities;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -18,17 +17,6 @@ import model.settings.Settings;
  */
 public final class IOSettings {
     private static final Gson GSON  = new Gson();
-    private static final String SEP = System.getProperty("file.separator");
-    private static final String RES_PATH = System.getProperty("user.home")
-                                           + SEP
-                                           + ".BrickBreakerEvo" 
-                                           + SEP
-                                           + "Settings"
-                                           + SEP;
-
-    private static final String FILE_NAME = "settings.json";
-    private static final String FILE_PATH = RES_PATH + FILE_NAME;
-    private static File rankFile = new File(FILE_PATH);
     private static GameSettingsImpl jsonSettings;
 
     private IOSettings() {
@@ -37,16 +25,17 @@ public final class IOSettings {
 
     /**
      *  Method that allows to print to external file game's settings in jsonformat.
+     *  @param filePath - represent the file path where the settings will print.
      *  @param gameSettings - represent the settings entity that needs to be converted.
      */
-    public static void printInJsonFormat(final Settings gameSettings) {
+    public static void printInJsonFormat(final String filePath, final Settings gameSettings) {
 
         //Serialize in json
         final String gsonStringFormat = GSON.toJson(gameSettings);
 
         //Print File
         final Charset charset = Charset.forName("UTF-8");
-        try (BufferedWriter wr = new BufferedWriter(new FileWriter(rankFile, charset));) {
+        try (BufferedWriter wr = new BufferedWriter(new FileWriter(filePath, charset));) {
             wr.write(gsonStringFormat);
             wr.flush();
             wr.close();
@@ -57,10 +46,11 @@ public final class IOSettings {
 
     /**
      *  Method that allows to read game's settings in file in jsonformat.
+     *  @param filePath - represent the file path where the settings was saved.
      *  @return a map that represent the entity settings.
      */
-    public static Settings readSettings() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+    public static Settings readSettings(final String filePath) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             final String data = reader.readLine();
             reader.close();
             jsonSettings = GSON.fromJson(data, GameSettingsImpl.class);
@@ -71,21 +61,5 @@ public final class IOSettings {
             ioExcept.printStackTrace();
         }
         return jsonSettings;
-    }
-
-    /**
-     *  Method that allows to get a directory path that contains game's settings.
-     *  @return a directory path that contains game's settings.
-     */
-    public static String getDirPath() {
-        return RES_PATH;
-    }
-
-    /**
-     *  Method that allows to get a path of game's settings file.
-     *  @return a path of game's settings file.
-     */
-    public static String getFilePath() {
-        return FILE_PATH;
     }
 }

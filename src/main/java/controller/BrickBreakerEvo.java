@@ -98,7 +98,8 @@ public class BrickBreakerEvo extends Application {
             if (new File(BrickBreakerEvo.SETTINGS_FOLDER).mkdirs()
                     && new File(BrickBreakerEvo.SETTINGS_FOLDER + "settings.json").createNewFile()) {
                 //System.out.println("Settings Folder e json successfully created");
-                IOSettings.printInJsonFormat(new GameSettingsBuilderImpl().defaultSettings().build());
+                IOSettings.printInJsonFormat(GameUtilities.SETTINGS_PATH, 
+                                             new GameSettingsBuilderImpl().defaultSettings().build());
             }
         }
         if (new File(BrickBreakerEvo.MAPS_FOLDER).mkdirs()) {

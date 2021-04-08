@@ -66,4 +66,5 @@ public interface SettingsController {
      * Method that allows to print settings changes in settings configuration file.
      */
     void saveNewSettings();
+
 }

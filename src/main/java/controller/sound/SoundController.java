@@ -14,13 +14,14 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import controller.utilities.IOSettings;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import model.utilities.GameUtilities;
 
 public final class SoundController {
 
     private static Clip clip;
     private static boolean clipIsActived = false;
-    private static boolean canPermiseMusic = IOSettings.readSettings().isEnableMusic();
-    private static boolean canPermiseFX = IOSettings.readSettings().isEnableSoundFx();
+    private static boolean canPermiseMusic = IOSettings.readSettings(GameUtilities.SETTINGS_PATH).isEnableMusic();
+    private static boolean canPermiseFX = IOSettings.readSettings(GameUtilities.SETTINGS_PATH).isEnableSoundFx();
 
 
     private SoundController() {

@@ -9,14 +9,16 @@ import model.utilities.Difficulty;
 public class SettingsControllerImpl implements SettingsController {
 
     private final GameSettingsBuilder settings;
+    private final String filePath;
 
-    public SettingsControllerImpl() {
+    public SettingsControllerImpl(final String filePath) {
+        this.filePath = filePath;
         this.settings = new GameSettingsBuilderImpl();
-        this.settings.enableSoundFx(IOSettings.readSettings().isEnableSoundFx());
-        this.settings.enableMusic(IOSettings.readSettings().isEnableMusic());
-        this.settings.leftAndRight(IOSettings.readSettings().useLeftAndRight());
-        this.settings.upAndDown(IOSettings.readSettings().useUpAndDown());
-        this.settings.difficulty(IOSettings.readSettings().getDifficulty());
+        this.settings.enableSoundFx(IOSettings.readSettings(this.filePath).isEnableSoundFx());
+        this.settings.enableMusic(IOSettings.readSettings(this.filePath).isEnableMusic());
+        this.settings.leftAndRight(IOSettings.readSettings(this.filePath).useLeftAndRight());
+        this.settings.upAndDown(IOSettings.readSettings(this.filePath).useUpAndDown());
+        this.settings.difficulty(IOSettings.readSettings(this.filePath).getDifficulty());
     }
 
     /**
@@ -26,7 +28,7 @@ public class SettingsControllerImpl implements SettingsController {
      */
     @Override
     public boolean isSoundFxEnable() {
-        return IOSettings.readSettings().isEnableSoundFx();
+        return IOSettings.readSettings(this.filePath).isEnableSoundFx();
     }
 
     /**
@@ -36,7 +38,7 @@ public class SettingsControllerImpl implements SettingsController {
      */
     @Override
     public boolean isMusicEnable() {
-        return IOSettings.readSettings().isEnableMusic();
+        return IOSettings.readSettings(this.filePath).isEnableMusic();
     }
 
     /**
@@ -46,7 +48,7 @@ public class SettingsControllerImpl implements SettingsController {
      */
     @Override
     public boolean isLeftAndRightEnable() {
-        return IOSettings.readSettings().useLeftAndRight();
+        return IOSettings.readSettings(this.filePath).useLeftAndRight();
     }
 
     /**
@@ -56,7 +58,7 @@ public class SettingsControllerImpl implements SettingsController {
      */
     @Override
     public boolean isUpAndDownEnable() {
-        return IOSettings.readSettings().useUpAndDown();
+        return IOSettings.readSettings(this.filePath).useUpAndDown();
     }
 
     /**
@@ -119,7 +121,7 @@ public class SettingsControllerImpl implements SettingsController {
      */
     @Override
     public Difficulty getDifficulty() {
-        return IOSettings.readSettings().getDifficulty();
+        return IOSettings.readSettings(this.filePath).getDifficulty();
     }
 
     /**
@@ -139,7 +141,7 @@ public class SettingsControllerImpl implements SettingsController {
      */
     @Override
     public void saveNewSettings() {
-        IOSettings.printInJsonFormat(this.settings.build());
+        IOSettings.printInJsonFormat(this.filePath, this.settings.build());
     }
 
 }
