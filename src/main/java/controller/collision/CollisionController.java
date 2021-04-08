@@ -15,7 +15,7 @@ public interface CollisionController {
      * @param ball
      * @return collision
      */
-    Optional<Pair<BrickImpl, Boundaries>> checkBallCollisionsWithBrick(BrickImpl brick, Ball ball);
+    Optional<Pair<BrickImpl, Boundaries>> checkBallCollisionsWithBrick(Ball ball, BrickImpl brick);
     /**
      *
      * @param wall
