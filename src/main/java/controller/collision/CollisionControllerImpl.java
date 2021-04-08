@@ -19,7 +19,7 @@ public class CollisionControllerImpl implements CollisionController {
     private final Map<Boundaries, Boolean> collision = new HashMap<>();
 
     /**
-     * {@inheritDoc}
+     * Check if there has been a collision between the ball and the brick. If yes then it returns a Pair of bricks and border
      */
     @Override
     public Optional<Pair<BrickImpl, Boundaries>> checkBallCollisionsWithBrick(final Ball ball, final BrickImpl brick) {
@@ -33,7 +33,7 @@ public class CollisionControllerImpl implements CollisionController {
     }
 
     /**
-     * {@inheritDoc}
+     * Check if there has been a collision between the ball and the wall. If yes then return the border
      */
     @Override
     public Optional<Boundaries> checkBallCollisionsWithWall(final BrickImpl wall, final Ball ball) {
@@ -41,7 +41,7 @@ public class CollisionControllerImpl implements CollisionController {
     }
 
     /**
-     * {@inheritDoc}
+     * Check if there has been a collision between the ball and the paddle. If yes then return the border
      */
     @Override
     public Optional<Boundaries> checkBallCollisionsWithPaddle(final Ball ball, final Paddle paddle) {
@@ -55,7 +55,7 @@ public class CollisionControllerImpl implements CollisionController {
     }
 
     /**
-     * {@inheritDoc}
+     * Check if there has been a collision between the paddle and the paddle. If yes then return the border
      */
     @Override
     public Optional<Boundaries> checkPaddleCollisionsWithWall(final BrickImpl wall, final Paddle paddle) {
