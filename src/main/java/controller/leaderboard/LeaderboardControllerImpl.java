@@ -11,7 +11,7 @@ import model.leaderboard.Player;
 
 public class LeaderboardControllerImpl implements LeaderBoardController {
 
-    private final Leaderboard leaderboard;
+    private Leaderboard leaderboard;
     private final String filePath;
 
     public LeaderboardControllerImpl(final String filePath) {
@@ -68,6 +68,17 @@ public class LeaderboardControllerImpl implements LeaderBoardController {
     public void saveSortLeaderboard() {
         this.leaderboard.sortByScore();
         IOLeaderboard.printInJsonFormat(this.filePath, this.viewLeaderboard());
+    }
+
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void clearLeaderboard() {
+        this.leaderboard = new LeaderboardImpl();
+        IOLeaderboard.printInJsonFormat(filePath, this.viewLeaderboard());
     }
 
 }

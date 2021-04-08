@@ -33,4 +33,9 @@ public interface LeaderBoardController {
      *  Method that allows to print on file a sorted leaderboard.
      */
     void saveSortLeaderboard();
+
+    /**
+     *  Method that allows to delete leaderboard and print it on file.
+     */
+    void clearLeaderboard();
 }

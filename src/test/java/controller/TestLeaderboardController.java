@@ -84,6 +84,7 @@ class TestLeaderboardController {
     @Test
     void testSaveLeaderboard() {
         assertDoesNotThrow(() -> {
+            this.controller.clearLeaderboard();
             this.testAddPlayer();
             this.controller.saveSortLeaderboard();
         });
