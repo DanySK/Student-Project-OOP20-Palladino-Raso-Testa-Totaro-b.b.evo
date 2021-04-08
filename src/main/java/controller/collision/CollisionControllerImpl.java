@@ -1,3 +1,4 @@
+  
 package controller.collision;
 
 import java.util.HashMap;
@@ -7,6 +8,7 @@ import java.util.Optional;
 import model.entities.Ball;
 import model.entities.BrickImpl;
 import model.entities.GameObject;
+import model.entities.GameObjectImpl;
 import model.entities.Paddle;
 import model.utilities.Boundaries;
 import model.utilities.Pair;
@@ -124,20 +126,34 @@ public class CollisionControllerImpl implements CollisionController {
         return brick.getPos().getX();
     }
 
-    private Boolean checkCollisions(final double ballPos, final double gameObjPos, final Boundaries bounds) {
+
+    private Boolean checkCollisions(final double obj1, final double obj2, final Boundaries bounds) {
+        Boolean checkedBounds = false;
         switch (bounds) {
         case LOWER:
+            if (obj1 < obj2) {
+                checkedBounds = true;
+            }
             break;
         case SIDE_LEFT:
+            if (obj1 < obj2) { 
+                checkedBounds = true;
+                }
             break;
         case SIDE_RIGHT:
+            if (obj1 > obj2) {
+                checkedBounds = true;
+            }
             break;
         case UPPER:
+            if (obj1 > obj2) {
+                checkedBounds = true;
+            }
             break;
         default:
+            checkedBounds = false;
             break;
         }
-
-        return null;
+        return checkedBounds;
     }
 }
