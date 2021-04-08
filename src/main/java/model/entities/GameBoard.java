@@ -37,6 +37,18 @@ public interface GameBoard extends GameBoardEventListeners {
 
     /**
      * 
+     * @param paddle to add to the world
+     */
+    void setPlayers(Paddle paddle);
+
+    /**
+     * 
+     * @return the paddle
+     */
+    Paddle getPaddle();
+
+    /**
+     * 
      * @return all the balls in the game
      */
     Set<Ball> getBalls();
@@ -51,7 +63,7 @@ public interface GameBoard extends GameBoardEventListeners {
      * 
      * @return the border of the gameboard
      */
-    Border getBorder();
+    Wall getBorder();
 
     /**
      * 
@@ -96,7 +108,7 @@ public interface GameBoard extends GameBoardEventListeners {
      * @return if a collision has occurred in the upper part of the player, 
      * the direction the ball will take is also calculated. 
      */
-    Pair<Optional<Boundaries>, Optional<Angle>> checkBallCollisionsWithPaddle(Ball ball);
+    Pair<Optional<Boundaries>, Optional<Angle>> checkBallCollisionsWithPaddle(Ball ball, Paddle paddle);
 
     /**
      * 
@@ -112,10 +124,9 @@ public interface GameBoard extends GameBoardEventListeners {
 
     /**
      * Update paddle input component.
-     * @param paddle 
      * @param inputController controller that check the key pressed by user
      */
-    void movePlayer(Paddle paddle, ControllerInput inputController);
+    void movePlayer(ControllerInput inputController);
 
     /**
      * @return the eventHandler 
