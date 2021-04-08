@@ -78,7 +78,7 @@ public enum BackGround implements Serializable {
     }
 
     /**
-     * the reference to the enumeration of a background by name.
+     * The reference to the enumeration of a background by name.
      * @param name to map
      * @return backGround enum
      */
