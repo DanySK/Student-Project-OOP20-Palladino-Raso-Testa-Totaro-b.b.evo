@@ -6,7 +6,7 @@ import javafx.stage.Screen;
 /**
  * Contains global information for setup the view adaptable to the resolution.
  */
-public final class ConstantScreen {
+public final class GameUtilities {
 
     /**
      * @return current screen size
@@ -22,6 +22,37 @@ public final class ConstantScreen {
      * Height of the gui (portion adapted to the resolution).
      */
     public static final double SCREEN_HEIGHT = SCREEN_RES.getHeight() / 2;
+
+    /**
+     * System Separator.
+     */
+    private static final String SEP = System.getProperty("file.separator");
+
+    /**
+     * System User Home Path.
+     */
+    private static final String RES_PATH = System.getProperty("user.home");
+
+    /**
+     * Path for the leaderboard file.
+     */
+    private static final String LEADERBOARD_PATH = RES_PATH
+                                                   + SEP
+                                                   + ".BrickBreakerEvo" 
+                                                   + SEP
+                                                   + "Leaderboards"
+                                                   + SEP
+                                                   + "ranking.json"; 
+    /**
+     * Path for the settings file.
+     */
+    private static final String SETTINGS_PATH = RES_PATH
+                                                + SEP
+                                                + ".BrickBreakerEvo" 
+                                                + SEP
+                                                + "Settings"
+                                                + SEP
+                                                + "settings.json"; 
 
     /**
      * The minimum WIDTH number that the stage can have.
@@ -72,7 +103,7 @@ public final class ConstantScreen {
      */
     public static final double BRICK_NUMBER_Y = 26;
 
-    private ConstantScreen() {
+    private GameUtilities() {
 
     }
 

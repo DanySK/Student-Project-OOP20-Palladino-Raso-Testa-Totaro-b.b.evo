@@ -1,7 +1,7 @@
 package model.entities;
 
 import controller.input.ControllerInput;
-import controller.physics.BallComponentPhysics;
+import model.physics.BallComponentPhysics;
 import model.utilities.DirVector;
 import model.utilities.Position;
 import view.graphics.AdapterGraphics;

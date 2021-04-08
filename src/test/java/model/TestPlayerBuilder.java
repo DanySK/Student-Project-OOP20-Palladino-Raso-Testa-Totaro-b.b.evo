@@ -31,8 +31,9 @@ class TestPlayerBuilder {
             this.builder.alias(ALIAS);
             this.builder.score(SCORE);
             this.builder.life(LIFE);
+            this.builder.maxLife(LIFE);
             final var playerBuilder = this.builder.build();
-            final PlayerImpl player = new PlayerImpl(ALIAS, SCORE, LIFE);
+            final PlayerImpl player = new PlayerImpl(ALIAS, SCORE, LIFE, LIFE);
             assertEquals(player, playerBuilder);
         });
     }
@@ -40,7 +41,6 @@ class TestPlayerBuilder {
     @Test
     void testUncorretBuildOverFlowLife() {
         Assertions.assertThrows(IllegalStateException.class, () -> {
-            this.builder.alias(ALIAS);
             this.builder.score(SCORE);
             this.builder.life(LIFE + COFFICENT);
             this.builder.build();
@@ -50,7 +50,6 @@ class TestPlayerBuilder {
     @Test
     void testUncorretBuildUnderFlowLife() {
         Assertions.assertThrows(IllegalStateException.class, () -> {
-            this.builder.alias(ALIAS);
             this.builder.score(SCORE);
             this.builder.life(LIFE - COFFICENT);
             this.builder.build();
@@ -60,7 +59,6 @@ class TestPlayerBuilder {
     @Test
     void testUncorretBuildUnderFlowScore() {
         Assertions.assertThrows(IllegalStateException.class, () -> {
-            this.builder.alias(ALIAS);
             this.builder.score(UNDER_SCORE);
             this.builder.life(LIFE);
             this.builder.build();

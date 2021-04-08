@@ -17,7 +17,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import model.utilities.ConstantScreen;
+import model.utilities.GameUtilities;
 import model.entities.GameObject;
 import model.mapeditor.BackGround;
 
@@ -49,12 +49,12 @@ public class ControllerGame implements Initializable {
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        this.canvas.setWidth(ConstantScreen.CANVAS_WIDTH);
-        this.canvas.setHeight(ConstantScreen.CANVAS_HEIGHT);
-        this.panel.setMinWidth(ConstantScreen.CANVAS_WIDTH);
-        this.panel.setMaxWidth(ConstantScreen.CANVAS_WIDTH);
-        this.panel.setMinHeight(ConstantScreen.CANVAS_HEIGHT);
-        this.panel.setMaxHeight(ConstantScreen.CANVAS_HEIGHT);
+        this.canvas.setWidth(GameUtilities.CANVAS_WIDTH);
+        this.canvas.setHeight(GameUtilities.CANVAS_HEIGHT);
+        this.panel.setMinWidth(GameUtilities.CANVAS_WIDTH);
+        this.panel.setMaxWidth(GameUtilities.CANVAS_WIDTH);
+        this.panel.setMinHeight(GameUtilities.CANVAS_HEIGHT);
+        this.panel.setMaxHeight(GameUtilities.CANVAS_HEIGHT);
         this.gc = canvas.getGraphicsContext2D();
     }
 
@@ -84,7 +84,7 @@ public class ControllerGame implements Initializable {
      * @param gameEntities to draw
      */
     private void drawWorld(final Set<GameObject> gameEntities) {
-        gc.clearRect(0, 0, ConstantScreen.CANVAS_WIDTH, ConstantScreen.CANVAS_HEIGHT);
+        gc.clearRect(0, 0, GameUtilities.CANVAS_WIDTH, GameUtilities.CANVAS_HEIGHT);
         //final GraphicsAdapter ga = new GraphicsAdapterImpl(gc);
         //gameEntities.stream().forEach(e -> {
         //    e.updateGraphics(ga);
@@ -108,8 +108,8 @@ public class ControllerGame implements Initializable {
      */
     public void setBackgroundImage(final BackGround backGround) {
         final BackgroundImage bg = new BackgroundImage(new Image(backGround.getPath(), 
-                ConstantScreen.CANVAS_WIDTH,
-                ConstantScreen.CANVAS_HEIGHT,
+                GameUtilities.CANVAS_WIDTH,
+                GameUtilities.CANVAS_HEIGHT,
                 false,
                 true),
                 BackgroundRepeat.REPEAT, 

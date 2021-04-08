@@ -7,7 +7,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-import controller.menu.SceneLoaderSingleton;
+import controller.menu.SceneLoader;
 import controller.settings.SettingsController;
 import controller.settings.SettingsControllerImpl;
 import controller.sound.SoundController;
@@ -29,6 +29,7 @@ import javafx.stage.Stage;
 import view.utilities.PersonalFonts;
 import view.utilities.PersonalImages;
 import view.utilities.PersonalSounds;
+import view.utilities.PersonalStyle;
 import view.utilities.PersonalViews;
 
 
@@ -116,11 +117,12 @@ public class SettingsView implements Initializable {
 
             //Button back Listener
             this.btnBack.setOnAction(event -> {
-                SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
                                         PersonalViews.SCENE_MAIN_MENU.getURL(), 
                                         PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
                                         this.window.getWidth(), 
-                                        this.window.getHeight());
+                                        this.window.getHeight(),
+                                        PersonalStyle.DEFAULT_STYLE.getStylePath());
                 this.controller.saveNewSettings();
                 //Play Button CLick Sound
                 SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());

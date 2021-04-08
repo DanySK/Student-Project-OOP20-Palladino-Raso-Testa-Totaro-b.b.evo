@@ -3,10 +3,10 @@ package model.leaderboard;
 public class PlayerBuilderImpl implements PlayerBuilder {
 
     private static final long serialVersionUID = -7344646435858952139L;
-    private static final int MAX_LIFE = 3;
     private String alias;
     private int score;
     private int life;
+    private int maxLife;
 
     /**
      * 
@@ -47,14 +47,25 @@ public class PlayerBuilderImpl implements PlayerBuilder {
      *
      */
     @Override
+    public PlayerBuilder maxLife(final int value) {
+        this.maxLife = value;
+        return this;
+    }
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
+    @Override
     public Player build() {
         if (this.alias == null 
-            ||  this.score < 0 
+            || this.score < 0 
             || this.life < 0 
-            || this.life > MAX_LIFE) {
+            || this.life > this.maxLife
+            || this.maxLife < 0) {
             throw new IllegalStateException();
         }
-        return new PlayerImpl(this.alias, this.score, this.life);
+        return new PlayerImpl(this.alias, this.score, this.life, this.maxLife);
     }
 
 }

@@ -5,7 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import controller.menu.SceneLoaderSingleton;
+import controller.menu.SceneLoader;
 import controller.sound.SoundController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,6 +27,7 @@ import javafx.util.Duration;
 import view.utilities.PersonalFonts;
 import view.utilities.PersonalImages;
 import view.utilities.PersonalSounds;
+import view.utilities.PersonalStyle;
 import view.utilities.PersonalViews;
 
 
@@ -115,11 +116,12 @@ public class TutorialView implements Initializable {
     private void loadListener() {
         // ButtonBack Listener
         this.buttonBack.setOnAction(event -> {
-            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
                                     PersonalViews.SCENE_MAIN_MENU.getURL(), 
                                     PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
                                     this.window.getWidth(), 
-                                    this.window.getHeight());
+                                    this.window.getHeight(),
+                                    PersonalStyle.DEFAULT_STYLE.getStylePath());
 
             //Play Button CLick Sound
             SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());

@@ -12,14 +12,13 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import view.utilities.PersonalImages;
-import view.utilities.PersonalStyle;
 
-public final class SceneLoaderSingleton {
+public final class SceneLoader {
 
     private static final int CURSOR_DIMENSION = 30;
-    private static final int ANIMATION_DURATION = 500;
+    private static final int ANIMATION_DURATION = 600;
 
-    private SceneLoaderSingleton() {
+    private SceneLoader() {
 
     }
 
@@ -29,8 +28,10 @@ public final class SceneLoaderSingleton {
      * @param title - the title of the stage
      * @param width - the width of the stage 
      * @param height - the height of the stage
+     * @param cssStylePath - the css applied to the current scene
      */
-    public static void switchScene(final Stage stage, final URL path, final String title, final double width, final double height)  {
+    public static void switchScene(final Stage stage, final URL path, final String title, 
+                                    final double width, final double height, final String cssStylePath)  {
         try {
             final Parent parent = FXMLLoader.load(path);
             final Scene newScene = new Scene(parent, width, height);
@@ -40,7 +41,7 @@ public final class SceneLoaderSingleton {
             newScene.setCursor(new ImageCursor(cursor, CURSOR_DIMENSION, CURSOR_DIMENSION));
 
             //Apply Style
-            parent.getStylesheets().add(PersonalStyle.DEFAULT_STYLE.getStylePath()); /* Da modificare */
+            parent.getStylesheets().add(cssStylePath);
 
             //Animation
             final FadeTransition fadeIn = new FadeTransition(Duration.millis(ANIMATION_DURATION), newScene.getRoot());

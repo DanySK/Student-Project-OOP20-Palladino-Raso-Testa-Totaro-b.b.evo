@@ -12,7 +12,7 @@ public class SettingsControllerImpl implements SettingsController {
 
     public SettingsControllerImpl() {
         this.settings = new GameSettingsBuilderImpl();
-        this.settings.enableSoundFx(IOSettings.readSettings().isEnableoundFx());
+        this.settings.enableSoundFx(IOSettings.readSettings().isEnableSoundFx());
         this.settings.enableMusic(IOSettings.readSettings().isEnableMusic());
         this.settings.leftAndRight(IOSettings.readSettings().useLeftAndRight());
         this.settings.upAndDown(IOSettings.readSettings().useUpAndDown());
@@ -26,7 +26,7 @@ public class SettingsControllerImpl implements SettingsController {
      */
     @Override
     public boolean isSoundFxEnable() {
-        return IOSettings.readSettings().isEnableoundFx();
+        return IOSettings.readSettings().isEnableSoundFx();
     }
 
     /**

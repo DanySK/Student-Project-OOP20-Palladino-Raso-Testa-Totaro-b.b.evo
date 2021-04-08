@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-import controller.menu.SceneLoaderSingleton;
+import controller.menu.SceneLoader;
 import controller.sound.SoundController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -26,6 +26,7 @@ import javafx.util.Duration;
 import view.utilities.PersonalFonts;
 import view.utilities.PersonalImages;
 import view.utilities.PersonalSounds;
+import view.utilities.PersonalStyle;
 import view.utilities.PersonalViews;
 
 public class MainMenuView implements Initializable {
@@ -86,44 +87,48 @@ public class MainMenuView implements Initializable {
     private void loadListener() {
         //Play Listener
         this.btnPlay.setOnAction(event -> {
-            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
                                      PersonalViews.SCENE_CHARACTER_MENU.getURL(), 
                                      PersonalViews.SCENE_CHARACTER_MENU.getTitleScene(), 
                                      this.window.getWidth(), 
-                                     this.window.getHeight());
+                                     this.window.getHeight(),
+                                     PersonalStyle.DEFAULT_STYLE.getStylePath());
             //Play Button CLick Sound
             SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
         });
 
         // Settings Listener
         this.btnSettings.setOnAction(event -> {
-            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
                                      PersonalViews.SCENE_SETTINGS.getURL(), 
                                      PersonalViews.SCENE_SETTINGS.getTitleScene(), 
                                      this.window.getWidth(), 
-                                     this.window.getHeight());
+                                     this.window.getHeight(),
+                                     PersonalStyle.DEFAULT_STYLE.getStylePath());
             //Play Button CLick Sound
             SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
         });
 
         // Tutorial Listener
         this.btnTutorial.setOnAction(event -> {
-            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
                                     PersonalViews.SCENE_TUTORIAL.getURL(), 
                                     PersonalViews.SCENE_TUTORIAL.getTitleScene(), 
                                     this.window.getWidth(), 
-                                    this.window.getHeight());
+                                    this.window.getHeight(),
+                                    PersonalStyle.DEFAULT_STYLE.getStylePath());
             //Play Button CLick Sound
             SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
         });
 
         // Ranking Listener
         this.btnRanking.setOnAction(event -> {
-            SceneLoaderSingleton.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
                                     PersonalViews.SCENE_RANKING.getURL(), 
                                     PersonalViews.SCENE_RANKING.getTitleScene(), 
                                     this.window.getWidth(), 
-                                    this.window.getHeight());
+                                    this.window.getHeight(),
+                                    PersonalStyle.DEFAULT_STYLE.getStylePath());
             //Play Button CLick Sound
             SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
         });

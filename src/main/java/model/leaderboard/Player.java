@@ -27,6 +27,20 @@ public interface Player {
     void decreaseLife();
 
     /**
+     *  Return the maximum number of life 
+     *  that player can have.
+     *  @return a maximum number of life that player can have.
+     */
+    int getMaxNumberOfLife();
+
+    /**
+     * Method that allows to set the maximum number of life 
+     * that player can have.
+     * @param value - use to set the maximum number of life
+     */
+    void setMaxNumberOfLife(int value);
+
+    /**
      *  Returns true if the value of life is major of 0.
      *  @return true if the value of life is major of 0.
      *
