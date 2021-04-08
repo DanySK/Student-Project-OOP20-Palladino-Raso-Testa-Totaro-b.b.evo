@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import model.entities.Ball;
 import model.entities.BrickImpl;
+import model.entities.GameObject;
 import model.entities.Paddle;
 import model.utilities.Boundaries;
 import model.utilities.Pair;
@@ -66,6 +67,13 @@ public class CollisionControllerImpl implements CollisionController {
         //collision.put(Boundaries.SIDE_LEFT, checkCollisions(paddleX(paddle), brickX(brick) + brickWidth(brick), Boundaries.SIDE_RIGHT));
         //collision.put(Boundaries.SIDE_RIGHT, checkCollisions(ballX(ball) + ballWidth(ball), brickX(brick), Boundaries.SIDE_RIGHT));
         return null;
+    }
+
+    private Map<Boundaries, Boolean> fillMap(GameObject objOne, final int objTwo){
+        collision.put(Boundaries.SIDE_LEFT, checkCollisions(ballX(ball), paddleX(paddle) + paddleWidth(paddle), Boundaries.SIDE_RIGHT));
+        collision.put(Boundaries.SIDE_RIGHT, checkCollisions(ballX(ball) + ballWidth(ball), paddleX(paddle), Boundaries.SIDE_RIGHT));
+        collision.put(Boundaries.LOWER, checkCollisions(ballY(ball) + ballHeight(ball), paddleY(paddle), Boundaries.LOWER));
+        collision.put(Boundaries.UPPER, checkCollisions(ballY(ball), paddleY(paddle) + paddleHeight(paddle), Boundaries.UPPER));
     }
 
     private int paddleHeight(final Paddle paddle) {
