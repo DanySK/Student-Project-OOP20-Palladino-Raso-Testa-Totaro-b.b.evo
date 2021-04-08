@@ -14,7 +14,7 @@ public interface ComponentPhysics {
      * Update physic component of selected entity.
      * @param timeElapsed time elapsed from game loop.
      * @param gameObject entity of the game.
-     * @param world world.
+     * @param board board.
      */
-    void update(int timeElapsed, GameObject gameObject, GameBoardImpl world);
+    void update(int timeElapsed, GameObject gameObject, GameBoardImpl board);
 }
