@@ -1,6 +1,6 @@
 package model.entities;
 
-import model.utilities.Status;
+import model.utilities.BrickStatus;
 
 /**
  * A generic interface which represents an {@link GameObj} that can be destruct. 
@@ -10,15 +10,15 @@ public interface Brick {
 
     /**
      * setter for {@link Brick} status.
-     * @param status
+     * @param brickStatus
      */
-    void setStatus(Status status);
+    void setStatus(BrickStatus brickStatus);
 
     /**
      * getter for {@link Brick} status.
      * @return brick's status
      */
-    Status getStatus();
+    BrickStatus getStatus();
 
     /**
      * getter for {@link Brick} durability.
