@@ -9,32 +9,33 @@ public enum PowerUpType {
     /**
      * Used to represent a {@link PowerUpType} that speeds the ball up.
      */
-    SPEEDUP(1, 5), 
+    SPEED_UP(1, 5, 0, 0), 
     /**
      * Used to represent a {@link PowerUpType} that adds a life to the player's score.
      */
-    LIFE_UP(1),
+    LIFE_UP(0, 0, 1, 0),
     /**
      * Used to represent a {@link PowerUpType} that increases the damage dealt by the ball.
      */
-    DAMAGE_UP(5, (int) 1),
+    DAMAGE_UP(0, 5, 0, 1),
 
     /**
      * Used to represent a {@link PowerUpType} that speeds the ball down.
      */
-    SPEED_DOWN(-1, 5), 
+    SPEED_DOWN(-1, 5, 0, 0), 
     /**
      * Used to represent a {@link PowerUpType} that reduces a life to the player's score.
      */
-    LIFE_DOWN(-1),
+    LIFE_DOWN(0, 0, -1, 0),
     /**
      * Used to represent a {@link PowerUpType} that decreases the damage dealt by the ball.
      */
-    DAMAGE_DOWN(5, (int) -1); 
+    DAMAGE_DOWN(0, 5, 0, -1); 
 
     private float speedModifier;
     private float activeTime;
     private int lifeModifier;
+    private int damageModifier;
     private static final List<PowerUpType> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
     private static final int SIZE = VALUES.size();
     private static final Random RANDOM = new Random();
@@ -44,27 +45,11 @@ public enum PowerUpType {
      * @param speedModifier
      * @param activeTime
      */
-    PowerUpType(final float speedModifier, final float activeTime) {
+    PowerUpType(final float speedModifier, final float activeTime, final int lifeModifier, final int damageModifier) {
         this.speedModifier = speedModifier;
         this.activeTime = activeTime;
-    }
-
-    /**
-     * Constructor for {@link PowerUpType.DAMAGE_UP} and {@link PowerUpType.DAMAGE_DOWN} types.
-     * @param lifeModifier
-     */
-    PowerUpType(final int lifeModifier) {
         this.lifeModifier = lifeModifier;
-    }
-
-    /**
-     * Constructor for {@link PowerUpType.LIFE_UP} and {@link PowerUpType.LIFE_DOWN} types.
-     * @param activeTime
-     * @param lifeModifier
-     */
-    PowerUpType(final float activeTime, final int lifeModifier) {
-        this.activeTime = activeTime;
-        this.lifeModifier = lifeModifier;
+        this.damageModifier = damageModifier;
     }
 
     /**
@@ -73,5 +58,21 @@ public enum PowerUpType {
      */
     public static PowerUpType randomPowerUpType()  {
           return VALUES.get(RANDOM.nextInt(SIZE));
+    }
+
+    public float getActiveTime() {
+        return activeTime;
+    }
+    
+    public float getSpeedModifier() {
+        return speedModifier;
+    }
+    
+    public int getLifeModifier() {
+        return lifeModifier;
+    }
+    
+    public int getDamageModifier() {
+        return damageModifier;
     }
 }

@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * An enum which represents the {@link BrickStatus} of the various gamObj in this game.
+ * An enum which represents the {@link GameObjStatus} of the various gamObj in this game.
  */
-public enum BrickStatus {
+public enum GameObjStatus {
     /**
      * Represents a gamObj that can not be destroyed.
      */
@@ -32,7 +32,7 @@ public enum BrickStatus {
      * 
      * @return the list of this {@link Angle}
      */
-    public static List<BrickStatus> getStatusList() {
-        return Arrays.asList(BrickStatus.values());
+    public static List<GameObjStatus> getStatusList() {
+        return Arrays.asList(GameObjStatus.values());
     }
 }
