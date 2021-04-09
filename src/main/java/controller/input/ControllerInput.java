@@ -8,12 +8,12 @@ public interface ControllerInput {
     /**
      * @return true if user try to move left.
      */
-    boolean isMoveLef();
+    boolean canMoveLef();
 
     /**
      * @return true if user try to move right.
      */
-    boolean isMoveRight();
+    boolean canMoveRight();
 
     /**
      * @param cond  The moveRight flag is set based on the "cond" parameter. (If the user tries to move right)

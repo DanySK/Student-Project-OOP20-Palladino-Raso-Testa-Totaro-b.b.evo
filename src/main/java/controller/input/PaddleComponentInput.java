@@ -10,9 +10,9 @@ public class PaddleComponentInput implements ComponentInput {
      */
     @Override
     public void update(final GameObject obj, final ControllerInput controlInput) {
-        if (controlInput.isMoveLef()) {
+        if (controlInput.canMoveLef()) {
             obj.setVel(new DirVector(-1, 0));
-        } else if (controlInput.isMoveRight()) {
+        } else if (controlInput.canMoveRight()) {
             obj.setVel(new DirVector(1, 0));
         } else {
             obj.setVel(new DirVector(0, 0));
