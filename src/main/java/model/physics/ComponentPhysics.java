@@ -6,12 +6,12 @@ import model.entities.GameObject;
 public interface ComponentPhysics {
 
     /**
-     * Constant used for set entity velocity.
+     * Represents the velocity of entities. The lower the value, the slower they will go. And viceversa.
      */
-    double SCALER = 0.001;
+    double COST_VELOCITY = 0.001;
 
     /**
-     * Update physic component of selected entity.
+     * Updates the physical component of the entity passed in input.
      * @param timeElapsed time elapsed from game loop.
      * @param gameObject entity of the game.
      * @param board board.

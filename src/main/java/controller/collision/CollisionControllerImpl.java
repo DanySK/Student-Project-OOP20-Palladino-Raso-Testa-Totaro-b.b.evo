@@ -42,6 +42,8 @@ public class CollisionControllerImpl implements CollisionController {
      */
     @Override
     public Optional<Boundaries> checkBallCollisionsWithWall(final Brick wall, final Ball ball) {
+
+        /////////////////////////////////////
         return null;
     }
 
@@ -85,11 +87,11 @@ public class CollisionControllerImpl implements CollisionController {
         return obj.getWidth();
     }
 
-    private int objX(final GameObject obj) {
+    private double objX(final GameObject obj) {
         return obj.getPos().getX();
     }
 
-    private int objY(final GameObject obj) {
+    private double objY(final GameObject obj) {
         return obj.getPos().getY();
     }
 
