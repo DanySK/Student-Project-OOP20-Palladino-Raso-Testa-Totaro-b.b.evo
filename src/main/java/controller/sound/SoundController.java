@@ -66,6 +66,21 @@ public final class SoundController {
             }
     }
 
+    public static void playSound(final String path) {
+        try {
+            if (!clipIsActived && canPermiseMusic)  {
+                final File musicPath = new File(path);
+                final var audio = AudioSystem.getAudioInputStream(musicPath);
+                clip = AudioSystem.getClip();
+                clip.open(audio);
+                clip.start();
+                clipIsActived = true;
+            }
+    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+        e.printStackTrace();
+    }
+}
+
     public static void stopMusic() {
         if (clip.isActive()) {
             clip.stop();
