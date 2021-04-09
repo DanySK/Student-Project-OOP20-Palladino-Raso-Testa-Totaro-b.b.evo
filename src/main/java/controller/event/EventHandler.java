@@ -20,7 +20,6 @@ public class EventHandler {
 
     private final List<Event> eventList = new LinkedList<>();
     private final GameState state;
-    private SoundController music;
     private final int ballDamage = GameUtilities.DEFAULT_BALL_DAMAGE; //da importare dai settings e viene modificato dai powerup
 
     public EventHandler(final GameState state) {
@@ -43,7 +42,7 @@ public class EventHandler {
                     state.addPoint(ScoreAttribute.BRICK_BREAK.getValue());          //add the score of the broken brick
                     state.getBoard().removeBrick(brick);
                 }
-                this.music.playMusic(PersonalSounds.SOUND_BRICK.getURL().getPath());    //throw the sound for hitting the brick
+                SoundController.playMusic(PersonalSounds.SOUND_BRICK.getURL().getPath());    //throw the sound for hitting the brick
             } else if (hit.getGameObj().get() instanceof PowerUp && hit.getGameObj().get().getStatus() == GameObjStatus.DESTR) {
                 final PowerUp pwup = (PowerUp) hit.getGameObj().get();
                 pwup.decreaseDurability(ballDamage);
@@ -51,7 +50,7 @@ public class EventHandler {
            ///////////////////////////////////////////////////
                 }
             } else if (hit.getGameObj().get() instanceof Paddle) {
-                this.music.playMusic(PersonalSounds.SOUND_PADDLE.getURL().getPath());    //throw sound for hitting the paddle
+                SoundController.playSound(PersonalSounds.SOUND_PADDLE.getURL().getPath());    //throw sound for hitting the paddle
             } else if (hit.getBounds().isPresent()) {
                 if (hit.getBounds().get().equals(Boundaries.LOWER)) {
                     this.state.getBoard().removeBall((Ball) hit.getGameObj().get());
@@ -60,7 +59,7 @@ public class EventHandler {
                         this.state.setPhase(GamePhase.INIT);
                     }
                 }
-                this.music.playMusic(PersonalSounds.SOUND_WALL.getURL().getPath());    //throw sound for hitting the wall
+                SoundController.playSound(PersonalSounds.SOUND_WALL.getURL().getPath());    //throw sound for hitting the wall
             }
         });
         checkGameState();
@@ -86,7 +85,7 @@ public class EventHandler {
         if (state.getLives() == 0) {
             state.setPhase(GamePhase.LOST);
         } else if (state.getBoard().getBricks().stream()
-                                                .filter(i -> i.getStatus().equals(GameObjStatus.DESTR) )
+                                                .filter(i -> i.getStatus().equals(GameObjStatus.DESTR))
                                                 .count() == 0) {
             //state.addBonus();
             state.setPhase(GamePhase.WIN);
