@@ -6,12 +6,15 @@ import java.util.List;
 import controller.game.GamePhase;
 import controller.game.GameState;
 import model.entities.Brick;
-import model.utilities.BrickStatus;
+import model.entities.Paddle;
+import model.entities.PowerUp;
+import model.utilities.GameObjStatus;
 
 public class EventHandler {
 
     private final List<Event> eventList = new LinkedList<>();
     private final GameState state;
+    private int ballDamage = 1; //da importare dai settings e viene modificato dai powerup
 
     public EventHandler(final GameState state) {
         this.state = state;
@@ -24,9 +27,23 @@ public class EventHandler {
 
         this.eventList.stream().forEach(event -> {
             final HitEvent hit = (HitEvent) event;
-            if (hit.getGameObj() instanceof Brick) {
+            if (hit.getGameObj() instanceof Brick && hit.getGameObj().getStatus() == GameObjStatus.DESTR) {
                 final Brick brick = (Brick) hit.getGameObj();
-                //state.addPoint(brick.getPoint);
+                    brick.decreaseDurability(ballDamage);
+                    //state.addPoint(brick.getPoint);
+                    if (checkDurability(brick)) {
+                        brick.setStatus(GameObjStatus.BROKEN); //non so se ci servira'
+                        state.getBoard().removeBrick(brick);
+                    }
+
+            } else if (hit.getGameObj() instanceof PowerUp && hit.getGameObj().getStatus() == GameObjStatus.DESTR) {
+                final PowerUp pwup = (PowerUp) hit.getGameObj();
+                pwup.decreaseDurability(ballDamage);
+                if (checkDurability(pwup)) {
+                    
+                }
+            } else if (hit.getGameObj() instanceof Paddle) {
+                
             }
         });
         checkGameState();
@@ -41,11 +58,18 @@ public class EventHandler {
         this.eventList.add(e);
     }
 
+    private Boolean checkDurability(final Brick obj) {
+        if (obj.getDurability() <= 0) {
+            return true;
+        } 
+        return false;
+    }
+
     private void checkGameState() {
         if (state.getLives() == 0) {
             state.setPhase(GamePhase.LOST);
         } else if (state.getBoard().getBricks().stream()
-                                                .filter(i -> i.getStatus().equals(BrickStatus.DESTR) )
+                                                .filter(i -> i.getStatus().equals(GameObjStatus.DESTR) )
                                                 .count() == 0) {
             //state.addBonus();
             state.setPhase(GamePhase.WIN);

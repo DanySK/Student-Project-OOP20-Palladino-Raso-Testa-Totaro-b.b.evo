@@ -5,7 +5,7 @@ import java.util.Map;
 import controller.input.ComponentInput;
 import controller.input.ControllerInput;
 import model.utilities.Position;
-import model.utilities.BrickStatus;
+import model.utilities.GameObjStatus;
 import model.physics.ComponentPhysics;
 import model.utilities.Boundaries;
 import model.utilities.DirVector;
@@ -18,33 +18,21 @@ public class Brick extends GameObjectImpl {
      * 
      */
     private int durability;
-    /**
-     * 
-     */
-    private BrickStatus brickStatus;
+    
 
     private final Map<Ball, Boundaries> hitBall = new HashMap<>();
 
-    public Brick(final Position pos, final double speed, final int height, final int width, final int durability, BrickStatus brickStatus) {
-        super(pos, new DirVector(0, 0), 0, height, width, null, null, null);
+    public Brick(final Position pos, final double speed, final int height, final int width, final int durability, final GameObjStatus status) {
+        super(pos, new DirVector(0, 0), 0, height, width, null, null, null, status);
         this.durability = durability;
-        this.brickStatus = brickStatus;
-    }
-
-
-
-    /**
-     * {@inheritDoc}
-     */
-    public void setStatus(final BrickStatus brickStatus) {
-            this.brickStatus = brickStatus;
     }
 
     /**
-     * {@inheritDoc}
+     * 
      */
-    public BrickStatus getStatus() {
-        return this.brickStatus;
+    @Override
+    public GameObjStatus getStatus() {
+        return this.getStatus();
     }
 
     /**
@@ -61,16 +49,28 @@ public class Brick extends GameObjectImpl {
         return this.durability;
     }
 
+    /**
+     * 
+     */
     @Override
     public void updatePhysics(final int timeElapsed, final GameBoardImpl world) {
+        super.getComponentPhysics().update(timeElapsed, this, world);
     }
 
+    /**
+     * 
+     */
     @Override
     public void updateInput(final ControllerInput controller) {
-    }
+        super.getComponentInput().update(this, controller);
+        }
 
+    /**
+     * 
+     */
     @Override
     public void updateGraphics(final AdapterGraphics graphicsAdapter) { 
+        this.getComponentGraphics().update(this, graphicsAdapter);
     }
 
     /**
