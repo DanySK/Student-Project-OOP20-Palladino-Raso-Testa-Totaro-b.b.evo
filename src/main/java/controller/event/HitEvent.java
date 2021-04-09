@@ -1,10 +1,11 @@
 package controller.event;
 
+import model.entities.GameObject;
 import model.entities.GameObjectImpl;
 import model.utilities.Boundaries;
-import model.utilities.GameObjectType;
 
 public class HitEvent implements Event {
+
     private final GameObjectImpl gameObj;
     private final Boundaries bounds;
 
@@ -15,10 +16,18 @@ public class HitEvent implements Event {
 
     /**
      * 
-     * @return which side has been hit
+     * @return gameObject
      */
-    public Boundaries getBoundaries() {
-        return this.bounds;
+    public GameObject getGameObj() {
+        return gameObj;
+    }
+
+    /**
+     * 
+     * @return boundaries
+     */
+    public Boundaries getBounds() {
+        return bounds;
     }
 
 }
