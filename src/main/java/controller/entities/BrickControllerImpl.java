@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import javafx.scene.Scene;
 import javafx.scene.shape.Rectangle;
-import model.entities.BrickImpl;
+import model.entities.Brick;
 import model.entities.GameObject;
 import model.physics.ComponentPhysics;
 import model.utilities.GameObjectType;
@@ -12,7 +12,7 @@ import model.utilities.Position;
 import model.utilities.DirVector;
 import view.graphics.ComponentGraphics;
 
-public class BrickControllerImpl extends BrickImpl implements BrickController{
+public class BrickControllerImpl extends Brick implements BrickController{
 
     public BrickControllerImpl(Position pos, double speed, int height, int width, int durability) {
         super(pos, speed, height, width, durability);

@@ -1,35 +1,83 @@
 package model.entities;
+import java.util.HashMap;
+import java.util.Map;
 
+import controller.input.ComponentInput;
+import controller.input.ControllerInput;
+import model.utilities.Position;
 import model.utilities.BrickStatus;
+import model.physics.ComponentPhysics;
+import model.utilities.Boundaries;
+import model.utilities.DirVector;
+import view.graphics.AdapterGraphics;
+import view.graphics.ComponentGraphics;
 
-/**
- * A generic interface which represents an {@link GameObj} that can be destruct. 
- *
- */
-public interface Brick {
-
-    /**
-     * setter for {@link Brick} status.
-     * @param brickStatus
-     */
-    void setStatus(BrickStatus brickStatus);
+public class Brick extends GameObjectImpl {
 
     /**
-     * getter for {@link Brick} status.
-     * @return brick's status
+     * 
      */
-    BrickStatus getStatus();
+    private int durability;
+    /**
+     * 
+     */
+    private BrickStatus brickStatus;
+
+    private final Map<Ball, Boundaries> hitBall = new HashMap<>();
+
+    public Brick(final Position pos, final double speed, final int height, final int width, final int durability, BrickStatus brickStatus) {
+        super(pos, new DirVector(0, 0), 0, height, width, null, null, null);
+        this.durability = durability;
+        this.brickStatus = brickStatus;
+    }
+
+
 
     /**
-     * getter for {@link Brick} durability.
-     * @return brick's durability.
+     * {@inheritDoc}
      */
-    int getDurability();
+    public void setStatus(final BrickStatus brickStatus) {
+            this.brickStatus = brickStatus;
+    }
 
     /**
-     * decreases {@link Brick} durability by an integer value {@link damage}.
-     * @param ballDamage
+     * {@inheritDoc}
      */
-    void decreaseDurability(int ballDamage);
+    public BrickStatus getStatus() {
+        return this.brickStatus;
+    }
 
+    /**
+     * {@inheritDoc}
+     */
+    public void decreaseDurability(final int ballDamage) {
+        this.durability -= ballDamage;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public int getDurability() {
+        return this.durability;
+    }
+
+    @Override
+    public void updatePhysics(final int timeElapsed, final GameBoardImpl world) {
+    }
+
+    @Override
+    public void updateInput(final ControllerInput controller) {
+    }
+
+    @Override
+    public void updateGraphics(final AdapterGraphics graphicsAdapter) { 
+    }
+
+    /**
+     * 
+     * @return map
+     */
+    public Map<Ball, Boundaries> getHitBall() {
+        return this.hitBall;
+    }
 }

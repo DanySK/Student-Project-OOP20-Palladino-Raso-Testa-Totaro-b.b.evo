@@ -1,7 +1,9 @@
 package model.utilities;
 
-public enum Wall {
-    UPPER_LEFT_CORNER(0,0),
-    
-    BOTTOM_RIGHT_CORNER;
+public class Wall extends Position {
+
+    public Wall(int x, int y) {
+        super(x, y);
+        // TODO Auto-generated constructor stub
+    }  
 }

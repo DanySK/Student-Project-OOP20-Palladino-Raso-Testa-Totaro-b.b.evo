@@ -3,18 +3,23 @@ package controller.collision;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-
 import model.entities.Ball;
 import model.entities.Brick;
 import model.entities.GameObject;
 import model.entities.Paddle;
 import model.utilities.Boundaries;
+import model.utilities.GameUtilities;
 import model.utilities.Pair;
+import model.utilities.Position;
 
 /**
  * collision implementation.
  */
 public class CollisionControllerImpl implements CollisionController {
+    private final Position upperLeftCorner = new Position((int) GameUtilities.UPPER_LEFT_CORNER_X + (int) GameUtilities.WALL_WIDTH,
+                                            (int) GameUtilities.UPPER_LEFT_CORNER_Y + (int) GameUtilities.WALL_HEIGHT);
+    private final Position bottomRightCorner = new Position((int) GameUtilities.BOTTOM_RIGHT_CORNER_X - (int) GameUtilities.WALL_WIDTH, 
+                                            (int) GameUtilities.BOTTOM_RIGHT_CORNER_Y - (int) GameUtilities.WALL_HEIGHT);
 
     private final Map<Boundaries, Boolean> collision = new HashMap<>();
 
