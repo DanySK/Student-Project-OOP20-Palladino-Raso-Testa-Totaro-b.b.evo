@@ -5,6 +5,7 @@ import java.util.List;
 
 import controller.game.GamePhase;
 import controller.game.GameState;
+import model.entities.Brick;
 import model.utilities.BrickStatus;
 
 public class EventHandler {
@@ -22,9 +23,12 @@ public class EventHandler {
     public void manageEvent() {
 
         this.eventList.stream().forEach(event -> {
-            
+            final HitEvent hit = (HitEvent) event;
+            if (hit.getGameObj() instanceof Brick) {
+                final Brick brick = (Brick) hit.getGameObj();
+                //state.addPoint(brick.getPoint);
+            }
         });
-        
         checkGameState();
         this.eventList.clear();
     }

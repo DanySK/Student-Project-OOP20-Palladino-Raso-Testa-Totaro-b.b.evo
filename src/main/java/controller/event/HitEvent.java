@@ -1,5 +1,6 @@
 package controller.event;
 
+import model.entities.GameObject;
 import model.entities.GameObjectImpl;
 import model.utilities.Boundaries;
 
@@ -17,7 +18,7 @@ public class HitEvent implements Event {
      * 
      * @return gameObject
      */
-    public GameObjectImpl getGameObj() {
+    public GameObject getGameObj() {
         return gameObj;
     }
 
