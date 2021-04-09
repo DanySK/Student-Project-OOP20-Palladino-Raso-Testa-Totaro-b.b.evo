@@ -9,12 +9,13 @@ import model.entities.Brick;
 import model.entities.Paddle;
 import model.entities.PowerUp;
 import model.utilities.GameObjStatus;
+import model.utilities.GameUtilities;
 
 public class EventHandler {
 
     private final List<Event> eventList = new LinkedList<>();
     private final GameState state;
-    private int ballDamage = 1; //da importare dai settings e viene modificato dai powerup
+    private int ballDamage = GameUtilities.DEFAULT_BALL_DAMAGE; //da importare dai settings e viene modificato dai powerup
 
     public EventHandler(final GameState state) {
         this.state = state;
