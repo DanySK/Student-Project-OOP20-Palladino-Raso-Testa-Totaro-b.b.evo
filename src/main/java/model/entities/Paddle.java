@@ -8,6 +8,7 @@ import controller.input.PaddleComponentInput;
 import model.physics.PaddleComponentPhysics;
 import model.utilities.Boundaries;
 import model.utilities.DirVector;
+import model.utilities.GameObjStatus;
 import model.utilities.GameObjectType;
 import model.utilities.Position;
 import view.graphics.AdapterGraphics;
@@ -19,7 +20,8 @@ public class Paddle extends GameObjectImpl {
     private final Map<Ball, Boundaries> hitBall = new HashMap<>();
 
     public Paddle(final Position pos, final int height, final int width) {
-        super(pos, new DirVector(0, 0), PADDLE_SPEED, height, width, new PaddleComponentPhysics(), new PaddleComponentInput(), new PaddleComponentGraphics());
+        super(pos, new DirVector(0, 0), PADDLE_SPEED, height, width, new PaddleComponentPhysics(), 
+                new PaddleComponentInput(), new PaddleComponentGraphics(), GameObjStatus.NOT_DESTR);
     }
 
     /**

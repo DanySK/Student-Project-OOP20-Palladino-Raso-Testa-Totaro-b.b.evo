@@ -4,7 +4,6 @@ import controller.input.ControllerInput;
 import model.utilities.Position;
 import model.utilities.DirVector;
 import model.utilities.GameObjStatus;
-import model.utilities.GameObjectType;
 import view.graphics.AdapterGraphics;
 
 public interface GameObject {

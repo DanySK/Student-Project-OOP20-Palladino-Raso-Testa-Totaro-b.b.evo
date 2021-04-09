@@ -3,6 +3,7 @@ package model.entities;
 import controller.input.ControllerInput;
 import model.physics.BallComponentPhysics;
 import model.utilities.DirVector;
+import model.utilities.GameObjStatus;
 import model.utilities.Position;
 import view.graphics.AdapterGraphics;
 import view.graphics.BallComponentGraphics;
@@ -10,7 +11,8 @@ import view.graphics.BallComponentGraphics;
 public final class Ball extends GameObjectImpl {
 
     private Ball(final Position pos, final DirVector dir, final double speed, final int height, final int width) {
-        super(pos, dir, speed, height, width, new BallComponentPhysics(), null, new BallComponentGraphics());
+        super(pos, dir, speed, height, width, new BallComponentPhysics(), null, new BallComponentGraphics(), 
+                GameObjStatus.NOT_DESTR);
     }
 
     @Override

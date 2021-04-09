@@ -105,6 +105,7 @@ public interface GameBoard extends GameBoardEventListeners {
      * the world asks the collision manager to check 
      * if there have been collisions between ball and the paddle.
      * @param ball object that can collide
+     * @param paddle object that can collide
      * @return if a collision has occurred in the upper part of the player, 
      * the direction the ball will take is also calculated. 
      */

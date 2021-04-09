@@ -19,9 +19,6 @@ public abstract class GameObjectImpl implements GameObject {
     private final ComponentPhysics physics;
     private final ComponentInput input;
     private final ComponentGraphics graphics;
-    /**
-     * 
-     */
     private GameObjStatus status;
 
     public GameObjectImpl(final Position pos, final DirVector vel, final double speed, final int height, final int width, final ComponentPhysics physics,
