@@ -33,18 +33,18 @@ public final class Ball extends GameObjectImpl {
 
     /**
      * 
-     * vertical collision.
+     * Sets the new direction relative to the Y axis.
      */
     public void flipVelOnY() {
-        this.setVel(new DirVector(this.getVel().getX(), -this.getVel().getY()));
+        this.setDirVector(new DirVector(this.getDirVector().getX(), -this.getDirVector().getY()));
     }
 
     /**
      * 
-     * horizontal collision.
+     * Sets the new direction relative to the X axis.
      */
     public void flipVelOnX() {
-        this.setVel(new DirVector(-this.getVel().getX(), this.getVel().getY()));
+        this.setDirVector(new DirVector(-this.getDirVector().getX(), this.getDirVector().getY()));
     }
 
     public static class Builder {

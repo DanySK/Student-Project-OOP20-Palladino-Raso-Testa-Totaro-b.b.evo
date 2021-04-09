@@ -53,12 +53,12 @@ public interface GameObject {
     /**
      * @return the velocity
      */
-    DirVector getVel();
+    DirVector getDirVector();
 
     /**
      * @param vel to set
      */
-    void setVel(DirVector vel);
+    void setDirVector(DirVector vel);
 
     /**
      * @param speed to set

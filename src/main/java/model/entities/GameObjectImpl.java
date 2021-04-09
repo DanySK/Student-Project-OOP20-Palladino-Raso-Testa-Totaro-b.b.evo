@@ -103,7 +103,7 @@ public abstract class GameObjectImpl implements GameObject {
      * {@inheritDoc}
      */
     @Override
-    public DirVector getVel() {
+    public DirVector getDirVector() {
         return this.vel;
     }
 
@@ -111,7 +111,7 @@ public abstract class GameObjectImpl implements GameObject {
      * {@inheritDoc}
      */
     @Override
-    public void setVel(final DirVector vel) {
+    public void setDirVector(final DirVector vel) {
         this.vel = vel;
     }
 
