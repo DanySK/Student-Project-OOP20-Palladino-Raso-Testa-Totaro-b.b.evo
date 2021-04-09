@@ -2,7 +2,6 @@ package controller.event;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
 import controller.game.GamePhase;
 import controller.game.GameState;
@@ -15,13 +14,14 @@ import model.utilities.Boundaries;
 import model.utilities.GameObjStatus;
 import model.utilities.ScoreAttribute;
 import view.utilities.PersonalSounds;
+import model.utilities.GameUtilities;
 
 public class EventHandler {
 
     private final List<Event> eventList = new LinkedList<>();
     private final GameState state;
     private SoundController music;
-    private int ballDamage = 1; //da importare dai settings e viene modificato dai powerup
+    private final int ballDamage = GameUtilities.DEFAULT_BALL_DAMAGE; //da importare dai settings e viene modificato dai powerup
 
     public EventHandler(final GameState state) {
         this.state = state;

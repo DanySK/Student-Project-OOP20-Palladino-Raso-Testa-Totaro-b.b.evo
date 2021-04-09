@@ -9,31 +9,31 @@ public enum PowerUpType {
     /**
      * Used to represent a {@link PowerUpType} that speeds the ball up.
      */
-    SPEED_UP(1, 5, 0, 0), 
+    SPEED_UP(GameUtilities.POWERUP_ACTIVE_TIME, GameUtilities.SPEED_MODIFIER, 0, 0), 
     /**
      * Used to represent a {@link PowerUpType} that adds a life to the player's score.
      */
-    LIFE_UP(0, 0, 1, 0),
+    LIFE_UP(0, 0, GameUtilities.DEFAULT_LIFE_MODIFIER, 0),
     /**
      * Used to represent a {@link PowerUpType} that increases the damage dealt by the ball.
      */
-    DAMAGE_UP(0, 5, 0, 1),
+    DAMAGE_UP(GameUtilities.POWERUP_ACTIVE_TIME, 0,  0, GameUtilities.DAMAGE_MODIFIER),
 
     /**
      * Used to represent a {@link PowerUpType} that speeds the ball down.
      */
-    SPEED_DOWN(-1, 5, 0, 0), 
+    SPEED_DOWN(GameUtilities.POWERUP_ACTIVE_TIME, -GameUtilities.SPEED_MODIFIER, 0, 0), 
     /**
      * Used to represent a {@link PowerUpType} that reduces a life to the player's score.
      */
-    LIFE_DOWN(0, 0, -1, 0),
+    LIFE_DOWN(0, 0, -GameUtilities.DEFAULT_LIFE_MODIFIER, 0),
     /**
      * Used to represent a {@link PowerUpType} that decreases the damage dealt by the ball.
      */
-    DAMAGE_DOWN(0, 5, 0, -1); 
+    DAMAGE_DOWN(GameUtilities.POWERUP_ACTIVE_TIME, 0, 0, -GameUtilities.DAMAGE_MODIFIER); 
 
-    private float speedModifier;
     private float activeTime;
+    private float speedModifier;
     private int lifeModifier;
     private int damageModifier;
     private static final List<PowerUpType> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
@@ -45,7 +45,7 @@ public enum PowerUpType {
      * @param speedModifier
      * @param activeTime
      */
-    PowerUpType(final float speedModifier, final float activeTime, final int lifeModifier, final int damageModifier) {
+    PowerUpType(final float activeTime, final float speedModifier, final int lifeModifier, final int damageModifier) {
         this.speedModifier = speedModifier;
         this.activeTime = activeTime;
         this.lifeModifier = lifeModifier;
@@ -63,15 +63,15 @@ public enum PowerUpType {
     public float getActiveTime() {
         return activeTime;
     }
-    
+
     public float getSpeedModifier() {
         return speedModifier;
     }
-    
+
     public int getLifeModifier() {
         return lifeModifier;
     }
-    
+
     public int getDamageModifier() {
         return damageModifier;
     }
