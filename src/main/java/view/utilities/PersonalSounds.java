@@ -36,7 +36,7 @@ public enum PersonalSounds {
     /***
      * Main Menu Theme.
      * */
-    TETRIS_THEME("Sounds/music/KorbenikiAlexTesta(GameVersion).wav", "MainMenuTheme");
+    MAIN_THEME("Sounds/music/mainTheme.wav", "MainMenuTheme");
 
 
     private String path;

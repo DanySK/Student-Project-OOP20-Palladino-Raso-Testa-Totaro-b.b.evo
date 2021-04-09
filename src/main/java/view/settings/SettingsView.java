@@ -18,8 +18,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -28,7 +26,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.utilities.GameUtilities;
 import view.utilities.PersonalFonts;
-import view.utilities.PersonalImages;
 import view.utilities.PersonalSounds;
 import view.utilities.PersonalStyle;
 import view.utilities.PersonalViews;
@@ -66,11 +63,6 @@ public class SettingsView implements Initializable {
         @FXML
         private Button btnBack;
 
-        private static final int SIZEFONTTITLE = 42;
-        private static final int SIZEFONT = 24;
-        private static final int SIZEWIDTH = 20;
-        private static final int SIZEHEIGHT = 20;
-        private static final int CENTER_POSITION = 3;
         private SettingsController controller;
 
 
@@ -83,7 +75,6 @@ public class SettingsView implements Initializable {
             this.resizable();
             this.loadFont();
             this.loadListener();
-            this.loadImage();
             this.updateViewComponent(this.controller.isSoundFxEnable(),
                                      this.controller.isMusicEnable(),
                                      this.controller.isLeftAndRightEnable(),
@@ -107,13 +98,6 @@ public class SettingsView implements Initializable {
             this.rbUseUpDown.setSelected(isUpAndDownEnable);
         }
 
-        private void loadImage() {
-            final ImageView imgPlay = new ImageView(
-                    new Image(PersonalImages.BACK_IMG.getResourceAsStream()));
-            imgPlay.setFitWidth(SIZEWIDTH);
-            imgPlay.setFitHeight(SIZEHEIGHT);
-            this.btnBack.setGraphic(imgPlay);
-        }
         private void loadListener() {
 
             //Button back Listener
@@ -157,17 +141,17 @@ public class SettingsView implements Initializable {
 
         private void loadFont() {
                 this.lblTitle
-                    .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), SIZEFONTTITLE));
+                    .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
                 this.ckSoundFX
-                    .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
+                    .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
                 this.ckSound
-                    .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
+                    .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
                 this.rbUseLeftRight
-                    .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
+                    .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
                 this.rbUseUpDown
-                    .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
+                    .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
                 this.btnBack
-                    .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
+                    .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
         }
 
         private void resizable() {
@@ -177,11 +161,11 @@ public class SettingsView implements Initializable {
                 this.panel.prefWidthProperty().bind(this.window.widthProperty());
 
 
-                this.ckSoundFX.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(CENTER_POSITION));
-                this.ckSound.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(CENTER_POSITION));
-                this.rbUseLeftRight.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(CENTER_POSITION));
-                this.rbUseUpDown.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(CENTER_POSITION));
-                this.btnBack.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(CENTER_POSITION));
+                this.ckSoundFX.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+                this.ckSound.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+                this.rbUseLeftRight.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+                this.rbUseUpDown.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+                this.btnBack.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
 
                 this.lblTitle.setWrapText(true);
         }

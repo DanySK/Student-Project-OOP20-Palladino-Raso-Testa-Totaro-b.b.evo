@@ -34,6 +34,35 @@ public final class GameUtilities {
     private static final String RES_PATH = System.getProperty("user.home");
 
     /**
+     * Use to have static font size label for all view.
+     */
+    public static final int FONT_NORMAL_LABEL_SIZE = 42;
+
+    /**
+     * Use to have static font size little label for all view.
+     */
+    public static final int FONT_SUB_LABEL_SIZE = 24;
+
+    /**
+     * This number represent the divider number to center object in scene.
+     */
+    public static final int CENTER_DIVIDER = 2;
+
+    /**
+     * This number represent the cursor dimension.
+     */
+    public static final int CURSOR_DIMENSION = 50;
+
+    /**
+     * This number represent the max length for alias name.
+     */
+    public static final int MAX_ALIAS_LENGHT = 12;
+
+    /**
+     * This number represent the animation transition duration.
+     */
+    public static final int ANIMATION_DURATION = 600;
+    /**
      * Path for the leaderboard file.
      */
     public static final String LEADERBOARD_PATH = RES_PATH
@@ -152,7 +181,7 @@ public final class GameUtilities {
      * default life moodifier used by powerups to increase or decrease player's lives.
      */
     public static final int DEFAULT_LIFE_MODIFIER = 1;
-    
+
     /**
      * speed modifier used by powerups to speed the ball up or down.
      */

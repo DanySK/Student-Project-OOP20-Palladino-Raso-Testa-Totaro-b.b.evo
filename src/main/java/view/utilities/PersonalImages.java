@@ -5,36 +5,15 @@ import java.net.URL;
 
 public enum PersonalImages {
 
-
-    /**
-     * Path for Play Image.
-     */
-    PLAY_IMG("Images/mainMenuImg/btnPlay.png"),
-
-    /**
-     * Path for Settings Image.
-     */
-    SETTINGS_IMG("Images/mainMenuImg/settings.png"),
-
-    /**
-     * Path for Tutorial Image.
-     */
-    TUTORIAL_IMG("Images/mainMenuImg/credit-card.png"),
-
     /**
      * Path for Ranking Image.
      */
     RANKING_IMG("Images/mainMenuImg/video.png"),
 
     /**
-     * Path for Back Image.
+     * Path for Cursor Image.
      */
-    BACK_IMG("Images/settingsImg/Back.png"),
-
-    /**
-     * Path for Pacman Cursor Image.
-     */
-    CURSOR_PACMAN_IMG("Images/cursor/pacmanCursor.png"),
+    GLOW_POINTER("Images/cursor/glowPointer.png"),
 
     /**
      * Path for Next icon.

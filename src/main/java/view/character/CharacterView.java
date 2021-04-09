@@ -14,8 +14,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -23,8 +21,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.utilities.GameUtilities;
 import view.utilities.PersonalFonts;
-import view.utilities.PersonalImages;
 import view.utilities.PersonalSounds;
 import view.utilities.PersonalStyle;
 import view.utilities.PersonalViews;
@@ -58,12 +56,7 @@ public class CharacterView implements Initializable {
     @FXML
     private TextField characterNameField;
 
-    private static final int SIZEFONTTITLE = 48;
-    private static final int SIZEFONT = 24;
-    private static final int SIZEWIDTH = 20;
-    private static final int SIZEHEIGHT = 20;
-    private static final int CENTER_POSITION = 2;
-    private static final int MAX_NAME_LENGHT = 12;
+    private static final String CLEAN_TEXT = "";
 
     /**
      *  Initialize all javaFx view components.
@@ -73,26 +66,21 @@ public class CharacterView implements Initializable {
         this.resizable();
         this.loadFont();
         this.loadListener();
-        this.loadImage();
         this.loadAnimation();
-    }
-
-    private void loadImage() {
-        final ImageView imgBack = new ImageView(
-                new Image(PersonalImages.BACK_IMG.getResourceAsStream()));
-        imgBack.setFitWidth(SIZEWIDTH);
-        imgBack.setFitHeight(SIZEHEIGHT);
-        this.btnBack.setGraphic(imgBack);
-
     }
 
     private void loadListener() {
         //TextField listener, not permission a long name control
         this.characterNameField.textProperty().addListener((ob, oldValue, newValue) -> {
-            if (this.characterNameField.getText().length() > MAX_NAME_LENGHT) {
-                final String name = characterNameField.getText().substring(0, MAX_NAME_LENGHT);
+            if (this.characterNameField.getText().length() > GameUtilities.MAX_ALIAS_LENGHT) {
+                final String name = characterNameField.getText().substring(0, GameUtilities.MAX_ALIAS_LENGHT);
                 this.characterNameField.setText(name);
             }
+        });
+
+        this.characterNameField.setOnMouseClicked(event -> {
+            //Clear prompt text when user click
+            this.characterNameField.setPromptText(CLEAN_TEXT);
         });
 
         //Button next Listener
@@ -132,13 +120,13 @@ public class CharacterView implements Initializable {
 
     private void loadFont() {
         this.lblTitle
-            .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), SIZEFONTTITLE));
+            .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnBack
-            .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
+            .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
         this.btnNext
-            .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
+            .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
         this.characterNameField
-            .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), SIZEFONT));
+            .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
     }
 
     private void resizable() {
@@ -146,8 +134,8 @@ public class CharacterView implements Initializable {
         this.panel.prefHeightProperty().bind(this.window.heightProperty());
         this.panel.prefWidthProperty().bind(this.window.widthProperty());
 
-        this.btnBack.prefWidthProperty().bind(this.buttonBackContainer.widthProperty().divide(CENTER_POSITION));
-        this.btnNext.prefWidthProperty().bind(this.objectContainer.widthProperty().divide(CENTER_POSITION));
+        this.btnBack.prefWidthProperty().bind(this.buttonBackContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+        this.btnNext.prefWidthProperty().bind(this.objectContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
         this.characterNameField.setPrefWidth(10);
 
         this.lblTitle.setWrapText(true);

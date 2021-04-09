@@ -12,8 +12,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -24,6 +22,7 @@ import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.utilities.GameUtilities;
 import view.utilities.PersonalFonts;
 import view.utilities.PersonalImages;
 import view.utilities.PersonalSounds;
@@ -57,13 +56,6 @@ public class TutorialView implements Initializable {
     @FXML
     private Button buttonBack;
 
-
-    private static final int SIZEFONTTITLE = 42;
-    private static final int SIZEFONT = 24;
-    private static final int SIZEWIDTH = 20;
-    private static final int SIZEHEIGHT = 20;
-    private static final int CENTER_VIDEO_POSITION = 2;
-    private static final int CENTER_BUTTON_POSITION = 4;
     private MediaPlayer player;
 
      /**
@@ -76,7 +68,6 @@ public class TutorialView implements Initializable {
             this.loadFont();
             this.loadListener();
             this.resizable();
-            this.loadImage();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -100,17 +91,9 @@ public class TutorialView implements Initializable {
         this.videoTutorial.setMediaPlayer(player);
     }
 
-    private void loadImage() {
-        final ImageView imgPlay = new ImageView(
-                new Image(PersonalImages.BACK_IMG.getResourceAsStream()));
-        imgPlay.setFitWidth(SIZEWIDTH);
-        imgPlay.setFitHeight(SIZEHEIGHT);
-        this.buttonBack.setGraphic(imgPlay);
-    }
-
     private void loadFont() {
-        this.lblTitle.setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), SIZEFONTTITLE));
-        this.buttonBack.setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
+        this.lblTitle.setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
+        this.buttonBack.setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
     }
 
     private void loadListener() {
@@ -139,11 +122,11 @@ public class TutorialView implements Initializable {
         this.panel.prefHeightProperty().bind(this.window.heightProperty());
         this.panel.prefWidthProperty().bind(this.window.widthProperty());
 
-        this.videoTutorial.fitHeightProperty().bind(this.panel.heightProperty().divide(CENTER_VIDEO_POSITION));
-        this.videoTutorial.fitWidthProperty().bind(this.panel.widthProperty().divide(CENTER_VIDEO_POSITION));
+        this.videoTutorial.fitHeightProperty().bind(this.panel.heightProperty().divide(GameUtilities.CENTER_DIVIDER));
+        this.videoTutorial.fitWidthProperty().bind(this.panel.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
 
-        this.buttonBack.prefWidthProperty().bind(this.containerBackButton.widthProperty().divide(CENTER_BUTTON_POSITION));
-        this.buttonBack.prefHeightProperty().bind(this.containerBackButton.heightProperty().divide(CENTER_BUTTON_POSITION));
+        this.buttonBack.prefWidthProperty().bind(this.containerBackButton.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+        this.buttonBack.prefHeightProperty().bind(this.containerBackButton.heightProperty().divide(GameUtilities.CENTER_DIVIDER));
 
     }
 

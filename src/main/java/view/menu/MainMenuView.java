@@ -13,8 +13,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -23,8 +21,8 @@ import javafx.scene.text.Font;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.utilities.GameUtilities;
 import view.utilities.PersonalFonts;
-import view.utilities.PersonalImages;
 import view.utilities.PersonalSounds;
 import view.utilities.PersonalStyle;
 import view.utilities.PersonalViews;
@@ -64,21 +62,13 @@ public class MainMenuView implements Initializable {
     @FXML
     private Button btnRanking;
 
-    private static final int SIZEFONT = 42;
-    private static final int SIZEFONTCOIN = 24;
-    private static final int SIZEWIDTH = 40;
-    private static final int SIZEHEIGHT = 40;
-    private static final int CENTER_POSITION = 2;
-
-
     /**
-     *
+     * Initialize all javafx view components.
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         this.resizable();
         this.loadFont();
-        this.loadButtonImage();
         this.loadAnimation();
         this.loadListener();
         this.loadMusic();
@@ -144,56 +134,25 @@ public class MainMenuView implements Initializable {
 
     private void loadFont() {
         this.lblTitle
-                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), SIZEFONT));
+                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnPlay
-                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnSettings
-                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnTutorial
-                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnRanking
-                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
         this.lblCoins
-                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONTCOIN));
-    }
-
-    private void loadButtonImage() {
-
-        // ButtonPlay
-        final ImageView imgPlay = new ImageView(
-                new Image(PersonalImages.PLAY_IMG.getResourceAsStream()));
-        imgPlay.setFitWidth(SIZEWIDTH);
-        imgPlay.setFitHeight(SIZEHEIGHT);
-        this.btnPlay.setGraphic(imgPlay);
-
-        // ButtonSettings
-        final ImageView imgSettings = new ImageView(
-                new Image(PersonalImages.SETTINGS_IMG.getResourceAsStream()));
-        imgSettings.setFitWidth(SIZEWIDTH);
-        imgSettings.setFitHeight(SIZEHEIGHT);
-        this.btnSettings.setGraphic(imgSettings);
-
-        // ButtonTutorial
-        final ImageView imgTutorial = new ImageView(
-                new Image(PersonalImages.TUTORIAL_IMG.getResourceAsStream()));
-        imgTutorial.setFitWidth(SIZEWIDTH);
-        imgTutorial.setFitHeight(SIZEHEIGHT);
-        this.btnTutorial.setGraphic(imgTutorial);
-
-        // ButtonRanking
-        final ImageView imgRanking = new ImageView(
-                new Image(PersonalImages.RANKING_IMG.getResourceAsStream()));
-        imgRanking.setFitWidth(SIZEWIDTH);
-        imgRanking.setFitHeight(SIZEHEIGHT);
-        this.btnRanking.setGraphic(imgRanking);
+                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
     }
 
     private void resizable() {
 
-        this.btnPlay.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(CENTER_POSITION));
-        this.btnSettings.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(CENTER_POSITION));
-        this.btnTutorial.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(CENTER_POSITION));
-        this.btnRanking.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(CENTER_POSITION));
+        this.btnPlay.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+        this.btnSettings.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+        this.btnTutorial.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+        this.btnRanking.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
 
         // Title
         this.lblTitle.setWrapText(true);
@@ -201,6 +160,6 @@ public class MainMenuView implements Initializable {
 
     private void loadMusic() {
         //Play Button CLick Sound
-        SoundController.playMusic(PersonalSounds.TETRIS_THEME.getURL().getPath());
+        SoundController.playMusic(PersonalSounds.MAIN_THEME.getURL().getPath());
     }
 }

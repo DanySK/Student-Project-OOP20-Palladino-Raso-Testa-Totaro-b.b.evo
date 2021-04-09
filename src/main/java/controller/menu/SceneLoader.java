@@ -11,12 +11,10 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.utilities.GameUtilities;
 import view.utilities.PersonalImages;
 
 public final class SceneLoader {
-
-    private static final int CURSOR_DIMENSION = 30;
-    private static final int ANIMATION_DURATION = 600;
 
     private SceneLoader() {
 
@@ -37,14 +35,14 @@ public final class SceneLoader {
             final Scene newScene = new Scene(parent, width, height);
 
             // Load cursor Image
-            final Image cursor = new Image(PersonalImages.CURSOR_PACMAN_IMG.getResourceAsStream());
-            newScene.setCursor(new ImageCursor(cursor, CURSOR_DIMENSION, CURSOR_DIMENSION));
+            final Image cursor = new Image(PersonalImages.GLOW_POINTER.getResourceAsStream());
+            newScene.setCursor(new ImageCursor(cursor, GameUtilities.CURSOR_DIMENSION, GameUtilities.CURSOR_DIMENSION));
 
             //Apply Style
             parent.getStylesheets().add(cssStylePath);
 
             //Animation
-            final FadeTransition fadeIn = new FadeTransition(Duration.millis(ANIMATION_DURATION), newScene.getRoot());
+            final FadeTransition fadeIn = new FadeTransition(Duration.millis(GameUtilities.ANIMATION_DURATION), newScene.getRoot());
             fadeIn.setFromValue(0.0);
             fadeIn.setToValue(1.0);
             fadeIn.play();

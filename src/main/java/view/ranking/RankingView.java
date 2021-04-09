@@ -23,8 +23,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -35,7 +33,6 @@ import javafx.util.Callback;
 import javafx.util.Duration;
 import model.utilities.GameUtilities;
 import view.utilities.PersonalFonts;
-import view.utilities.PersonalImages;
 import view.utilities.PersonalSounds;
 import view.utilities.PersonalStyle;
 import view.utilities.PersonalViews;
@@ -72,12 +69,7 @@ public class RankingView implements Initializable {
     @FXML
     private Button buttonBack;
 
-    private static final int SIZEFONTTITLE = 64;
-    private static final int SIZEFONT = 24;
-    private static final int SIZEWIDTH = 20;
-    private static final int SIZEHEIGHT = 20;
-    private static final int CENTER_POSITION = 2;
-    private final Font fontColumn = Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), SIZEFONT);
+    private final Font fontColumn = Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE);
     private final LeaderboardController controller = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
 
      /**
@@ -87,11 +79,11 @@ public class RankingView implements Initializable {
     public void initialize(final URL location, final ResourceBundle resources) {
         this.initializeTableView();
         this.loadFont();
-        this.loadImage();
         this.loadAnimation();
         this.loadListener();
         this.resizable();
     }
+
 
     private void initializeTableView() {
         this.aliasColumn
@@ -113,19 +105,11 @@ public class RankingView implements Initializable {
                 timeline.play();
     }
 
-    private void loadImage() {
-        final ImageView imgBack = new ImageView(
-                new Image(PersonalImages.BACK_IMG.getResourceAsStream()));
-        imgBack.setFitWidth(SIZEWIDTH);
-        imgBack.setFitHeight(SIZEHEIGHT);
-        this.buttonBack.setGraphic(imgBack);
-    }
-
     private void loadFont() {
         this.lblTitle
-        .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), SIZEFONTTITLE));
+        .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
         this.buttonBack
-        .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), SIZEFONT));
+        .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
     }
 
     private void loadListener() {
@@ -185,7 +169,7 @@ public class RankingView implements Initializable {
         this.panel.prefHeightProperty().bind(this.window.heightProperty());
         this.panel.prefWidthProperty().bind(this.window.widthProperty());
         this.lblTitle.setWrapText(true);
-        this.buttonBack.prefWidthProperty().bind(this.containerBackButton.widthProperty().divide(CENTER_POSITION));
+        this.buttonBack.prefWidthProperty().bind(this.containerBackButton.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
         this.displayRanking.prefHeightProperty().bind(this.rankingContainer.heightProperty());
         this.displayRanking.prefWidthProperty().bind(this.rankingContainer.widthProperty());
     }

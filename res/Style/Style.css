@@ -1,39 +1,43 @@
 /* Default components Style */
 /* Button */
 Button,CheckBox,RadioButton {
-	-fx-background-color : #FFFFFF;
+	-fx-background-color : transparent;
+	-fx-border-color : linear-gradient(from 25% 25% to 100% 100%, #9630E6, #091970);
 	-fx-text-fill: linear-gradient(from 25% 25% to 100% 100%, #a8c0ff, #3f2b96);
-	-fx-background-radius : 50px;
+	-fx-border-radius : 50px;
 	-fx-padding: 10px;
+	-fx-effect: dropshadow(gaussian, rgba(150,48,230,0.8), 1, 1, 1, 1);
 }
 
 Button:hover {
-	-fx-background-color: #212121;
+	-fx-background-color : linear-gradient(from 25% 25% to 100% 100%, #9630E6, #091970);
 	-fx-text-fill: #000000;
 	-fx-background-radius : 50px;
 }
 
 #lblTitle {
-	-fx-text-fill: linear-gradient(from 25% 25% to 100% 100%, #a8ff78, #78ffd6);
+	-fx-text-fill: linear-gradient(from 25% 25% to 100% 100%, #ff3d7c, #ffc549);
 	-fx-alignment: center;
 }
 
 Label {
-	-fx-text-fill: #FFFFFF;
+	-fx-text-fill: linear-gradient(from 25% 25% to 100% 100%, #ff3d7c, #ffc549);
 	-fx-alignment: center;
 }
 
 TextField {
-	-fx-background-color: #FFFFFF;
-	-fx-text-fill: linear-gradient(from 25% 25% to 100% 100%, #a8ff78, #78ffd6);
-	-fx-background-radius : 50px;
+	-fx-background-color : transparent;
+	-fx-border-color : linear-gradient(from 25% 25% to 100% 100%, #9630E6, #091970);
+	-fx-text-fill: linear-gradient(from 25% 25% to 100% 100%, #a8c0ff, #3f2b96);
+	-fx-prompt-text-fill: linear-gradient(from 25% 25% to 100% 100%, #a8c0ff, #3f2b96);
+	-fx-border-radius : 50px;
 	-fx-padding: 20px;
 }
 /* Check box */
 .check-box .box {
 	
-	-fx-background-color: white;
-	-fx-border-color: linear-gradient(from 25% 25% to 100% 100%, #a8ff78, #78ffd6);
+	-fx-background-color: transparent;
+	-fx-border-color: linear-gradient(from 25% 25% to 100% 100%, #9630E6, #091970);
 	-fx-border-radius: 30px; 
 	-fx-background-radius : 30px;
 
@@ -49,21 +53,21 @@ TextField {
 .check-box:selected .box {
 	
 	-fx-background-radius : 30px;
-	-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #a8ff78, #78ffd6);
+	-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #9630E6, #091970);
 }
 
 /* Radio Button  */
 
 .radio-button .radio {
     -fx-border-width: 1px;
-	-fx-border-color: linear-gradient(from 25% 25% to 100% 100%, #a8ff78, #78ffd6);
-    -fx-background-color: white;
+	-fx-border-color: linear-gradient(from 25% 25% to 100% 100%, #9630E6, #091970);
+    -fx-background-color: transparent;
     -fx-background-image: null;
     -fx-border-radius: 15px;
     -fx-padding: 4px;
 }
 .radio-button .radio:selected {
-	-fx-border-color: white;
+	-fx-border-color: transparent;
     -fx-background-image: null;
 }
 .radio-button -radio:armed {
@@ -81,13 +85,13 @@ TextField {
 .radio-button .dot {
     -fx-background-radius: 50px;
     -fx-padding: 8px;
-    -fx-mark-highlight-color:  linear-gradient(from 25% 25% to 100% 100%, #a8ff78, #78ffd6);
-    -fx-mark-color: linear-gradient(from 25% 25% to 100% 100%, #a8ff78, #78ffd6);
+    -fx-mark-highlight-color:  linear-gradient(from 25% 25% to 100% 100%, #9630E6, #091970);
+    -fx-mark-color: linear-gradient(from 25% 25% to 100% 100%, #9630E6, #091970);
 }
 
 .table-view{
    -fx-background-color: transparent;
-   -fx-text-background-color: #ffff00;
+   -fx-text-background-color: linear-gradient(from 25% 25% to 100% 100%, #ff3d7c, #ffc549);
 }
 
 .table-view .column-header-background .filler {
@@ -117,7 +121,7 @@ TextField {
 }
 .table-row-cell:hover {
    -fx-background-color: transparent;
-    -fx-text-background-color: #78ffd6;
+    -fx-text-background-color: linear-gradient(from 25% 25% to 100% 100%, #a8c0ff, #3f2b96);
 }
 .table-row-cell:odd{
    -fx-background-color: transparent;
@@ -157,7 +161,7 @@ TextField {
 /* All View  */
 /* Menu View */
 .mainPanelMenu {
-	-fx-background-image: url('/Images/mainMenuImg/bgMenu.jpg');
+	-fx-background-image: url("/Images/mainMenuImg/background.png");
 	-fx-background-position: 1%;
 	-fx-background-repeat: stretch;
 	-fx-background-size: cover;
@@ -165,21 +169,21 @@ TextField {
 
 /* Settings View */
 .mainPanelSettings {
-	-fx-background-image: url('/Images/character/bgCharacter.jpg');
+	-fx-background-image: url("/Images/mainMenuImg/background.png");
 	-fx-background-position: 1%;
 	-fx-background-size: cover;
 }
 
 /* Tutorial View */
 .mainPanelTutorial {
-	-fx-background-image: url('/Images/character/bgCharacter.jpg');
+	-fx-background-image: url("/Images/mainMenuImg/background.png");
 	-fx-background-position: 1%;
 	-fx-background-size: cover;
 }
 
 /* Ranking View */
 .mainPanelRanking {
-	-fx-background-image: url('/Images/character/bgCharacter.jpg');
+	-fx-background-image: url("/Images/mainMenuImg/background.png");
 	-fx-background-position: 1%;
 	-fx-background-repeat: stretch;
 	-fx-background-size: cover;
@@ -191,7 +195,7 @@ TextField {
 
 /* Character View */
 .mainPanelCharacter {
-	-fx-background-image: url('/Images/selectDifficulty/bgSelectDifficulty.jpg');
+	-fx-background-image: url("/Images/mainMenuImg/background.png");
 	-fx-background-position: 1%;
 	-fx-background-repeat: stretch;
 	-fx-background-size: cover;
@@ -199,7 +203,7 @@ TextField {
 
 /* Difficulty View */
 .mainPanelDifficulty {
-	-fx-background-image: url('/Images/selectDifficulty/bgSelectDifficulty.jpg');
+	-fx-background-image: url("/Images/mainMenuImg/background.png");
 	-fx-background-position: 1%;
 	-fx-background-repeat: stretch;
 	-fx-background-size: cover;
