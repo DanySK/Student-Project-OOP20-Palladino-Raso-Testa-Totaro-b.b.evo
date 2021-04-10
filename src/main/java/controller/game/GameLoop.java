@@ -53,7 +53,7 @@ public class GameLoop implements Runnable {
             final long current = System.currentTimeMillis();
             final int elapsed = (int) (current - lastTime);
             switch (gameState.getPhase()) {
-            case INIT:
+            case START:
                 gameState.init();
                 break;
             case PAUSE:
