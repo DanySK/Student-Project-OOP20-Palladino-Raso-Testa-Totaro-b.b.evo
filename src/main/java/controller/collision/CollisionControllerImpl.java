@@ -1,3 +1,4 @@
+
 package controller.collision;
 
 import java.util.HashMap;
@@ -7,6 +8,7 @@ import model.entities.Ball;
 import model.entities.Brick;
 import model.entities.GameObject;
 import model.entities.Paddle;
+import model.entities.PowerUp;
 import model.utilities.Boundaries;
 import model.utilities.GameUtilities;
 import model.utilities.Pair;
@@ -16,11 +18,8 @@ import model.utilities.Position;
  * collision implementation.
  */
 public class CollisionControllerImpl implements CollisionController {
-    private final Position upperLeftCorner = new Position((int) GameUtilities.UPPER_LEFT_CORNER_X + (int) GameUtilities.WALL_WIDTH,
-                                            (int) GameUtilities.UPPER_LEFT_CORNER_Y + (int) GameUtilities.WALL_HEIGHT);
-    private final Position bottomRightCorner = new Position((int) GameUtilities.BOTTOM_RIGHT_CORNER_X - (int) GameUtilities.WALL_WIDTH, 
-                                            (int) GameUtilities.BOTTOM_RIGHT_CORNER_Y - (int) GameUtilities.WALL_HEIGHT);
-
+    private final Position upperLeftCorner = GameUtilities.getUpperLeftCorner();
+    private final Position bottomRightCorner = GameUtilities.getRightBottomCorner();
     private final Map<Boundaries, Boolean> collision = new HashMap<>();
 
     /**
@@ -68,6 +67,24 @@ public class CollisionControllerImpl implements CollisionController {
     public Optional<Boundaries> checkPaddleCollisionsWithWall(final Brick wall, final Paddle paddle) {
         //collision.put(Boundaries.SIDE_LEFT, checkCollisions(paddleX(paddle), brickX(brick) + brickWidth(brick), Boundaries.SIDE_RIGHT));
         //collision.put(Boundaries.SIDE_RIGHT, checkCollisions(ballX(ball) + ballWidth(ball), brickX(brick), Boundaries.SIDE_RIGHT));
+        return null;
+    }
+
+    /**
+     * 
+     */
+    @Override
+    public Optional<Pair<PowerUp, Boundaries>> checkPwUpCollisionWithPaddle(final PowerUp pwup, final Paddle paddle) {
+        ///////////////////
+        return null;
+    }
+
+    /**
+     * 
+     */
+    @Override
+    public Optional<Pair<PowerUp, Boundaries>> checkPwUpCollisionWithWall(final PowerUp pwup, final Paddle paddle) {
+        /////////////////////////
         return null;
     }
 
@@ -124,4 +141,6 @@ public class CollisionControllerImpl implements CollisionController {
         }
         return checkedBounds;
     }
+
+    
 }

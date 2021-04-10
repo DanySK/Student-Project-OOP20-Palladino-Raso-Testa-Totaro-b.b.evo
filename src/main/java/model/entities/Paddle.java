@@ -21,7 +21,7 @@ public class Paddle extends GameObjectImpl {
 
     public Paddle(final Position pos, final int height, final int width) {
         super(pos, new DirVector(0, 0), PADDLE_SPEED, height, width, new PaddleComponentPhysics(), 
-                new PaddleComponentInput(), new PaddleComponentGraphics(), GameObjStatus.NOT_DESTR);
+                new PaddleComponentInput(), new PaddleComponentGraphics(), GameObjStatus.NOT_DESTRUCTIBLE);
     }
 
     /**
