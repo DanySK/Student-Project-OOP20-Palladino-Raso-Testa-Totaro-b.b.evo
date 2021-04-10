@@ -10,6 +10,7 @@ import controller.input.ControllerInput;
 import model.utilities.Angle;
 import model.utilities.Boundaries;
 import model.utilities.Pair;
+import model.utilities.Wall;
 
 /**
  * Interface that instantiates methods for creating the game board.
@@ -39,7 +40,7 @@ public interface GameBoard extends GameBoardEventListeners {
      * 
      * @param paddle to add to the world
      */
-    void setPlayers(Paddle paddle);
+    void setPaddle(Paddle paddle);
 
     /**
      * 
@@ -63,7 +64,7 @@ public interface GameBoard extends GameBoardEventListeners {
      * 
      * @return the border of the gameboard
      */
-    Wall getBorder();
+    Wall getWall();
 
     /**
      * 

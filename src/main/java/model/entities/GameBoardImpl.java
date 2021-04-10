@@ -1,6 +1,7 @@
 package model.entities;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -14,13 +15,14 @@ import controller.input.ControllerInput;
 import model.utilities.Angle;
 import model.utilities.Boundaries;
 import model.utilities.Pair;
+import model.utilities.Wall;
 
 
 public class GameBoardImpl implements GameBoard {
 
-    private final Set<Ball> balls;
+    private final Set<Ball> balls; // da guardare perche abbiamo solo una pallina
     private final Set<Brick> bricks;
-    private final Optional<Paddle> paddle;
+    private Optional<Paddle> paddle; //dubbio qui
     private final Wall wall;
     private final EventHandler eventHandler;
     private final CollisionController collision;
@@ -28,7 +30,7 @@ public class GameBoardImpl implements GameBoard {
     public GameBoardImpl(final Wall wall, final GameState state) {
         this.balls = new HashSet<>();
         this.bricks = new HashSet<>();
-        this.paddle = Optional.empty();
+        this.paddle = Optional.empty(); //dubbio qui
         this.wall = wall;
         this.eventHandler = new EventHandler(state);
         this.collision = new CollisionControllerImpl();
@@ -42,62 +44,87 @@ public class GameBoardImpl implements GameBoard {
         this.eventHandler.addEvent(e);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void setBalls(Collection<Ball> balls) {
-        // TODO Auto-generated method stub
-        
+    public void setBalls(final Collection<Ball> balls) {
+        this.balls.clear();
+        this.balls.addAll(balls);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void addBall(Ball ball) {
-        // TODO Auto-generated method stub
-        
+    public void addBall(final Ball ball) {
+        this.addBall(ball);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void setBricks(Collection<Brick> bricks) {
-        // TODO Auto-generated method stub
-        
+    public void setBricks(final Collection<Brick> bricks) {
+        this.bricks.clear();
+        this.bricks.addAll(bricks);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void setPlayers(Paddle paddle) {
+    public void setPaddle(final Paddle paddle) {
+        //dubbio qui
         this.paddle = Optional.of(paddle);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Set<Ball> getBalls() {
-        // TODO Auto-generated method stub
-        return null;
+        return Collections.unmodifiableSet(this.balls);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Set<Brick> getBricks() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.bricks;
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Paddle getPaddle() {
         return this.paddle.get();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Border getBorder() {
-        // TODO Auto-generated method stub
-        return null;
+    public Wall getWall() {
+        return this.wall;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void removeBall(Ball ball) {
-        // TODO Auto-generated method stub
-        
+    public void removeBall(final Ball ball) {
+        this.balls.remove(ball);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void removeBrick(Brick brick) {
-        // TODO Auto-generated method stub
-        
+    public void removeBrick(final Brick brick) {
+        this.bricks.remove(brick);
     }
 
     /**
@@ -156,14 +183,19 @@ public class GameBoardImpl implements GameBoard {
      */
     @Override
     public Set<GameObject> getSceneEntities() {
-        // TODO Auto-generated method stub
-        return null;
+        final Set<GameObject> entities = new HashSet<>();
+        entities.addAll(this.balls);
+        entities.addAll(this.bricks);
+        entities.addAll(this.paddle); // bisogna modificare il paddle perche non accetta optional
+        return Collections.unmodifiableSet(entities);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void updateState(int timeElapsed) {
-        // TODO Auto-generated method stub
-        
+    public void updateState(final int timeElapsed) {
+        this.getSceneEntities().forEach(i -> i.updatePhysics(timeElapsed, this));
     }
 
     /**
@@ -171,7 +203,7 @@ public class GameBoardImpl implements GameBoard {
      */
     @Override
     public void movePlayer(final ControllerInput inputController) {
-        this.paddle.get().updateInput(inputController);
+        this.paddle.get().updateInput(inputController); //qui non so se va bene
     }
 
     /**
