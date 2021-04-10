@@ -1,4 +1,3 @@
-
 package controller.collision;
 
 import java.util.HashMap;
@@ -13,19 +12,20 @@ import model.utilities.Boundaries;
 import model.utilities.GameUtilities;
 import model.utilities.Pair;
 import model.utilities.Position;
-import paranoid.model.collision.Collision;
 
 /**
  * collision implementation.
  */
 public class CollisionControllerImpl implements CollisionController {
+
     private final Position upperLeftCorner = GameUtilities.getUpperLeftCorner();
     private final Position bottomRightCorner = GameUtilities.getRightBottomCorner();
     private final Map<Boundaries, Boolean> collision = new HashMap<>();
     private Boundaries side = null;
+    private boolean isCollision = false;
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public Optional<Boundaries> checkGameObjCollisionsWithWall(final GameObject obj) {
@@ -42,54 +42,65 @@ public class CollisionControllerImpl implements CollisionController {
     }
 
     /**
-     * Check if there has been a collision between the ball and the brick. If yes then it returns a Pair of bricks and border
+     * {@inheritDoc}
      */
     @Override
     public Optional<Pair<Brick, Boundaries>> checkBallCollisionsWithBrick(final Ball ball, final Brick brick) {
         this.fillMap(ball, brick);
-        collision.forEach((k, v) -> {
+        this.collision.forEach((k, v) -> {
             if (!v.booleanValue()) {
                 brick.getHit().put(ball, k);
+                this.isCollision = true;
             }
         });
-        return Optional.ofNullable(new Pair<>(brick, brick.getHit().get(ball)));
+        if (!this.isCollision) {
+            return Optional.empty();
+        }
+        return Optional.of(new Pair<>(brick, brick.getHit().get(ball)));
     }
 
 
     /**
-     * Check if there has been a collision between the ball and the paddle. If yes then return the border
+     * {@inheritDoc}
      */
     @Override
     public Optional<Boundaries> checkBallCollisionsWithPaddle(final Ball ball, final Paddle paddle) {
         this.fillMap(ball, paddle);
-        collision.forEach((k, v) -> {
+        this.collision.forEach((k, v) -> {
             if (!v.booleanValue()) {
                 paddle.getHit().put(ball, k);
+                this.isCollision = true;
             }
         });
-        return Optional.ofNullable(paddle.getHit().get(ball));
+       if (!this.isCollision) {
+           return Optional.empty();
+       }
+        return Optional.of(paddle.getHit().get(ball));
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public Optional<Pair<PowerUp, Boundaries>> checkPwUpCollisionWithPaddle(final PowerUp pwup, final Paddle paddle) {
         this.fillMap(pwup, paddle);
-        collision.forEach((k, v) -> {
+        this.collision.forEach((k, v) -> {
             if (!v.booleanValue()) {
                 paddle.getHit().put(pwup, k);
+                this.isCollision = true;
             }
         });
+        if (!this.isCollision) {
+            return Optional.empty();
+        }
         return Optional.ofNullable(new Pair<>(pwup, pwup.getHit().get(paddle)));
     }
 
-    private Map<Boundaries, Boolean> fillMap(final GameObject obj1, final GameObject obj2) {
-        collision.put(Boundaries.SIDE_LEFT, checkCollisions(objX(obj1), objX(obj2) + objWidth(obj2), Boundaries.SIDE_RIGHT));
-        collision.put(Boundaries.SIDE_RIGHT, checkCollisions(objX(obj1) + objWidth(obj1), objX(obj2), Boundaries.SIDE_RIGHT));
-        collision.put(Boundaries.LOWER, checkCollisions(objY(obj1) + objHeight(obj1), objY(obj2), Boundaries.LOWER));
-        collision.put(Boundaries.UPPER, checkCollisions(objY(obj1), objY(obj2) + objHeight(obj2), Boundaries.UPPER));
-        return collision;
+    private void fillMap(final GameObject obj1, final GameObject obj2) {
+        this.collision.put(Boundaries.SIDE_LEFT, checkCollisions(objX(obj1), objX(obj2) + objWidth(obj2), Boundaries.SIDE_RIGHT));
+        this.collision.put(Boundaries.SIDE_RIGHT, checkCollisions(objX(obj1) + objWidth(obj1), objX(obj2), Boundaries.SIDE_RIGHT));
+        this.collision.put(Boundaries.LOWER, checkCollisions(objY(obj1) + objHeight(obj1), objY(obj2), Boundaries.LOWER));
+        this.collision.put(Boundaries.UPPER, checkCollisions(objY(obj1), objY(obj2) + objHeight(obj2), Boundaries.UPPER));
     }
 
     private int objHeight(final GameObject obj) {
@@ -137,8 +148,4 @@ public class CollisionControllerImpl implements CollisionController {
         }
         return checkedBounds;
     }
-
-
-
-
 }
