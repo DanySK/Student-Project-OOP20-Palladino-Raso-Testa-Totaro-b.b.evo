@@ -32,7 +32,7 @@ public enum Difficulty {
         return this.ballVelocity;
     }
 
-    public int multiplyScoreValue() {
+    public int getMultiplyScoreValue() {
         return this.multiplyScoreValue;
     }
 
