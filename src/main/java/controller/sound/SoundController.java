@@ -19,7 +19,7 @@ import model.utilities.GameUtilities;
 public final class SoundController {
 
     private static Clip clip;
-    private static boolean clipIsActived = false;
+    private static boolean clipIsActived;
     private static boolean canPermiseMusic = IOSettings.readSettings(GameUtilities.SETTINGS_PATH).isEnableMusic();
     private static boolean canPermiseFX = IOSettings.readSettings(GameUtilities.SETTINGS_PATH).isEnableSoundFx();
 

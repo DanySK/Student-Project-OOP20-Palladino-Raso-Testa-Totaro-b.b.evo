@@ -13,7 +13,7 @@ import model.entities.PowerUp;
 import model.utilities.Boundaries;
 import model.utilities.GameObjStatus;
 import model.utilities.ScoreAttribute;
-import view.utilities.PersonalSounds;
+import resource.routing.PersonalSounds;
 import model.utilities.GameUtilities;
 
 public class EventHandler {

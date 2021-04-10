@@ -9,8 +9,8 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import model.settings.GameSettingsBuilderImpl;
 import model.utilities.GameUtilities;
-import view.utilities.PersonalStyle;
-import view.utilities.PersonalViews;
+import resource.routing.PersonalStyle;
+import resource.routing.PersonalViews;
 
 /**
  * BRICK-BREAKER-EVO MAIN.
@@ -94,13 +94,12 @@ public class BrickBreakerEvo extends Application {
         if (new File(BrickBreakerEvo.LEVEL_FOLDER).mkdirs()) {
             System.out.println("Level Folder successfully created");
         }
-        if (!new File(BrickBreakerEvo.SETTINGS_FOLDER + "settings.json").exists()) {
-            if (new File(BrickBreakerEvo.SETTINGS_FOLDER).mkdirs()
-                    && new File(BrickBreakerEvo.SETTINGS_FOLDER + "settings.json").createNewFile()) {
-                //System.out.println("Settings Folder e json successfully created");
-                IOSettings.printInJsonFormat(GameUtilities.SETTINGS_PATH, 
+        if (!new File(BrickBreakerEvo.SETTINGS_FOLDER + "settings.json").exists()
+            && new File(BrickBreakerEvo.SETTINGS_FOLDER).mkdirs()
+            && new File(BrickBreakerEvo.SETTINGS_FOLDER + "settings.json").createNewFile()) {
+                System.out.println("Settings Folder e json successfully created");
+                IOSettings.printInJsonFormat(SETTINGS_FOLDER + "settings.json", 
                                              new GameSettingsBuilderImpl().defaultSettings().build());
-            }
         }
         if (new File(BrickBreakerEvo.MAPS_FOLDER).mkdirs()) {
             System.out.println("Maps Folder successfully created");

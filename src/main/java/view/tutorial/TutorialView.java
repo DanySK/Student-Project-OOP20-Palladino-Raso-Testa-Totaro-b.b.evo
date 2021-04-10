@@ -23,11 +23,11 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.utilities.GameUtilities;
-import view.utilities.PersonalFonts;
-import view.utilities.PersonalImages;
-import view.utilities.PersonalSounds;
-import view.utilities.PersonalStyle;
-import view.utilities.PersonalViews;
+import resource.routing.PersonalFonts;
+import resource.routing.PersonalImages;
+import resource.routing.PersonalSounds;
+import resource.routing.PersonalStyle;
+import resource.routing.PersonalViews;
 
 
 public class TutorialView implements Initializable {

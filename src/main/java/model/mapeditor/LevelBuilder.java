@@ -14,7 +14,7 @@ import model.utilities.Pair;
 import model.utilities.Position;
 import paranoid.model.entity.PlaceHolder;
 import paranoid.model.entity.Brick.Builder;
-import view.utilities.PersonalSounds;
+import resource.routing.PersonalSounds;
 
 public class LevelBuilder {
 

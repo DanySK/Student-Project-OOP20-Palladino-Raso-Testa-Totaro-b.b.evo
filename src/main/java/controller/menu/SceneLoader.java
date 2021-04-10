@@ -12,7 +12,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.utilities.GameUtilities;
-import view.utilities.PersonalImages;
+import resource.routing.PersonalImages;
 
 public final class SceneLoader {
 
