@@ -17,7 +17,7 @@ import view.graphics.PaddleComponentGraphics;
 public class Paddle extends GameObjectImpl {
 
     private static final int PADDLE_SPEED = 400;
-    private final Map<Ball, Boundaries> hitBall = new HashMap<>();
+    private final Map<GameObject, Boundaries> hit = new HashMap<>();
 
     public Paddle(final Position pos, final int height, final int width) {
         super(pos, new DirVector(0, 0), PADDLE_SPEED, height, width, new PaddleComponentPhysics(), 
@@ -52,8 +52,8 @@ public class Paddle extends GameObjectImpl {
      * 
      * @return a map containing the info of the ball in the game to facilitate the bounce with the paddle
      */
-    public Map<Ball, Boundaries> getHitBall() {
-        return this.hitBall;
+    public Map<GameObject, Boundaries> getHit() {
+        return this.hit;
     }
 
     public static final class Builder {

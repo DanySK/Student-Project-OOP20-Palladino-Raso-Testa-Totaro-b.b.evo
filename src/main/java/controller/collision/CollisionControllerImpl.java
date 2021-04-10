@@ -28,10 +28,6 @@ public class CollisionControllerImpl implements CollisionController {
      * 
      */
     @Override
-<<<<<<< HEAD
-    public Optional<Boundaries> checkGameObjCollisionsWithWall(GameObject obj) {
-        
-=======
     public Optional<Boundaries> checkGameObjCollisionsWithWall(final GameObject obj) {
         collision.put(Boundaries.SIDE_LEFT, checkCollisions(objX(obj), upperLeftCorner.getX(), Boundaries.SIDE_RIGHT));
         collision.put(Boundaries.SIDE_RIGHT, checkCollisions(objX(obj) + objWidth(obj), bottomRightCorner.getX(), Boundaries.SIDE_RIGHT));
@@ -42,9 +38,7 @@ public class CollisionControllerImpl implements CollisionController {
                 side = k;
             }
         });
-        
         return Optional.ofNullable(this.side);
->>>>>>> ea5ca0671d2bc93b49a3763a7b213b066f336709
     }
 
     /**
@@ -55,10 +49,10 @@ public class CollisionControllerImpl implements CollisionController {
         this.fillMap(ball, brick);
         collision.forEach((k, v) -> {
             if (!v.booleanValue()) {
-                brick.getHitBall().put(ball, k);
+                brick.getHit().put(ball, k);
             }
         });
-        return Optional.ofNullable(new Pair<>(brick, brick.getHitBall().get(ball)));
+        return Optional.ofNullable(new Pair<>(brick, brick.getHit().get(ball)));
     }
 
 
@@ -70,10 +64,10 @@ public class CollisionControllerImpl implements CollisionController {
         this.fillMap(ball, paddle);
         collision.forEach((k, v) -> {
             if (!v.booleanValue()) {
-                paddle.getHitBall().put(ball, k);
+                paddle.getHit().put(ball, k);
             }
         });
-        return Optional.ofNullable(paddle.getHitBall().get(ball));
+        return Optional.ofNullable(paddle.getHit().get(ball));
     }
 
     /**
@@ -84,10 +78,10 @@ public class CollisionControllerImpl implements CollisionController {
         this.fillMap(pwup, paddle);
         collision.forEach((k, v) -> {
             if (!v.booleanValue()) {
-                paddle.getHitBall().put(pwup, k);
+                paddle.getHit().put(pwup, k);
             }
         });
-        return null;
+        return Optional.ofNullable(new Pair<>(pwup, pwup.getHit().get(paddle)));
     }
 
     private Map<Boundaries, Boolean> fillMap(final GameObject obj1, final GameObject obj2) {

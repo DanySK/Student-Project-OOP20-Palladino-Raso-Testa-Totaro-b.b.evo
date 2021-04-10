@@ -21,7 +21,7 @@ public class Brick extends GameObjectImpl {
     private int durability;
 
 
-    private final Map<Ball, Boundaries> hitBall = new HashMap<>();
+    private final Map<GameObject, Boundaries> hit = new HashMap<>();
 
     public Brick(final Position pos, final double speed, final int height, final int width, final int durability, final GameObjStatus status) {
         super(pos, new DirVector(0, 0), 0, height, width, null, null, null, status);
@@ -78,8 +78,8 @@ public class Brick extends GameObjectImpl {
      * 
      * @return map
      */
-    public Map<Ball, Boundaries> getHitBall() {
-        return this.hitBall;
+    public Map<GameObject, Boundaries> getHit() {
+        return this.hit;
     }
     
     //creare builder
