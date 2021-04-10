@@ -28,7 +28,7 @@ public final class LevelManager {
     }
 
     /**
-     * Save the level in the game folder created in the os.
+     * Save the level in the game folder created in the OS.
      * @param level to save
      */
     public static void saveLevel(final Level level) {
