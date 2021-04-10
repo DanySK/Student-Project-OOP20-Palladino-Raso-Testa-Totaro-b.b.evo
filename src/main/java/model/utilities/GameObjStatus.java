@@ -25,7 +25,12 @@ public enum GameObjStatus {
     /**
      * Represent a broken gameObject.
      */
-    BROKEN;
+    BROKEN,
+
+    /**
+     * Represent an empty space/entity.
+     */
+    EMPTY;
 
     /**
      * Used to know all the possible status of gamObj.
