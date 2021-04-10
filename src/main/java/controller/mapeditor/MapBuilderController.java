@@ -2,8 +2,10 @@ package controller.mapeditor;
 
 import controller.utilities.GUIController;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import model.mapeditor.LevelBuilder;
+import paranoid.view.layoutmanager.LayoutManager;
 
 public class MapBuilderController implements GUIController {
 
