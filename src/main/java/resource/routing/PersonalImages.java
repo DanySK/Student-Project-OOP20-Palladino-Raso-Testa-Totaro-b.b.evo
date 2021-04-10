@@ -1,4 +1,4 @@
-package view.utilities;
+package resource.routing;
 
 import java.io.InputStream;
 import java.net.URL;

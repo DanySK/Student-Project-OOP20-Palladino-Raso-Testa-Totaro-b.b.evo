@@ -21,7 +21,18 @@ public enum GameObjStatus {
     /**
      * Represents a gamObj that can drop a PowerUp.
      */
-    DROP_POWERUP;
+    DROP_POWERUP,
+
+    /**
+     * Represent a broken gameObject.
+     */
+    BROKEN,
+
+    /**
+     * Represent an empty space/entity.
+     */
+    EMPTY;
+
     /**
      * Used to know all the possible status of gamObj.
      * 

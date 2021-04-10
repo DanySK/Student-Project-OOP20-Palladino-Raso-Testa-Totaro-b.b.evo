@@ -72,9 +72,9 @@ public interface GameObject {
 
     /**
      * @param timeElapsed from game loop
-     * @param world model
+     * @param board model
      */
-    void updatePhysics(int timeElapsed, GameBoardImpl world);
+    void updatePhysics(int timeElapsed, GameBoardImpl board);
 
     /**
      * @param controller of this gameObject
@@ -83,8 +83,8 @@ public interface GameObject {
 
     /**
      * 
-     * @param graphicsAdapter to adapt the object to the screen
+     * @param adapterGraphics to adapt the object to the screen
      */
-    void updateGraphics(AdapterGraphics graphicsAdapter);
+    void updateGraphics(AdapterGraphics adapterGraphics);
 
 }

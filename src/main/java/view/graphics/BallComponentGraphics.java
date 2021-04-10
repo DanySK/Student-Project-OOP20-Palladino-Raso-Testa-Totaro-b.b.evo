@@ -3,7 +3,7 @@ package view.graphics;
 import javafx.scene.image.Image;
 import model.entities.Ball;
 import model.entities.GameObject;
-import view.utilities.PersonalImages;
+import resource.routing.PersonalImages;
 
 public class BallComponentGraphics implements ComponentGraphics {
 

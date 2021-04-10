@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 import model.entities.Brick;
-import view.utilities.PersonalSounds;
+import resource.routing.PersonalSounds;
 
 /*
  * Provides to create a simple level

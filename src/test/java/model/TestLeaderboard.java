@@ -22,6 +22,7 @@ class TestLeaderboard {
     private LeaderboardImpl leaderboard;
     private final Map<String, Integer> testMap = new HashMap<>();
     private final LeaderboardSortingStrategy ls = new StandardScoreSortingStrategy();
+    private static final String PLAYER_ALIAS_ALEX = "Alex00";
     private static final int ALEX00_SCORE = 1800;
     private static final int ALEX00_SCORE_2 = 1300;
     private static final int JACK_SCORE = 1700;
@@ -31,13 +32,13 @@ class TestLeaderboard {
     @BeforeEach
     void initLeaderboard() {
         this.leaderboard = new LeaderboardImpl();
-        this.leaderboard.addPlayer("Alex00", ALEX00_SCORE);
+        this.leaderboard.addPlayer(PLAYER_ALIAS_ALEX, ALEX00_SCORE);
         this.leaderboard.addPlayer("-<Jack>-", JACK_SCORE);
         this.leaderboard.addPlayer("_Tommy_", TOMMY_SCORE);
         this.leaderboard.addPlayer("Marcus", MARCUS_SCORE);
 
         this.testMap.put("-<Jack>-", JACK_SCORE);
-        this.testMap.put("Alex00", ALEX00_SCORE);
+        this.testMap.put(PLAYER_ALIAS_ALEX, ALEX00_SCORE);
         this.testMap.put("_Tommy_", TOMMY_SCORE);
         this.testMap.put("Marcus", MARCUS_SCORE);
     }
@@ -50,16 +51,16 @@ class TestLeaderboard {
     @Test
     void testOverWritePlayer() {
 
-        this.leaderboard.addPlayer("Alex00", ALEX00_SCORE_2);
-        this.testMap.put("Alex00", ALEX00_SCORE_2);
+        this.leaderboard.addPlayer(PLAYER_ALIAS_ALEX, ALEX00_SCORE_2);
+        this.testMap.put(PLAYER_ALIAS_ALEX, ALEX00_SCORE_2);
 
         assertEquals(this.leaderboard.getLeaderBoard(), testMap);
     }
 
     @Test
     void testRemovePlayer() {
-        this.leaderboard.removePlayer("Alex00", ALEX00_SCORE);
-        this.testMap.remove("Alex00", ALEX00_SCORE);
+        this.leaderboard.removePlayer(PLAYER_ALIAS_ALEX, ALEX00_SCORE);
+        this.testMap.remove(PLAYER_ALIAS_ALEX, ALEX00_SCORE);
 
         assertEquals(this.leaderboard.getLeaderBoard(), testMap);
     }

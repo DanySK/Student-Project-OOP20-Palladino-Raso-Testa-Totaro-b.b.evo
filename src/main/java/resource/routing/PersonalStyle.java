@@ -1,4 +1,4 @@
-package view.utilities;
+package resource.routing;
 
 public enum PersonalStyle {
 

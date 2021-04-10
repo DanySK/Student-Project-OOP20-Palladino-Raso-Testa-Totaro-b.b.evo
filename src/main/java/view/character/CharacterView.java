@@ -22,10 +22,10 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.utilities.GameUtilities;
-import view.utilities.PersonalFonts;
-import view.utilities.PersonalSounds;
-import view.utilities.PersonalStyle;
-import view.utilities.PersonalViews;
+import resource.routing.PersonalFonts;
+import resource.routing.PersonalSounds;
+import resource.routing.PersonalStyle;
+import resource.routing.PersonalViews;
 
 public class CharacterView implements Initializable {
 
@@ -81,6 +81,7 @@ public class CharacterView implements Initializable {
         this.characterNameField.setOnMouseClicked(event -> {
             //Clear prompt text when user click
             this.characterNameField.setPromptText(CLEAN_TEXT);
+            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
         });
 
         //Button next Listener

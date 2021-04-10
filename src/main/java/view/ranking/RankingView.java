@@ -32,10 +32,10 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import model.utilities.GameUtilities;
-import view.utilities.PersonalFonts;
-import view.utilities.PersonalSounds;
-import view.utilities.PersonalStyle;
-import view.utilities.PersonalViews;
+import resource.routing.PersonalFonts;
+import resource.routing.PersonalSounds;
+import resource.routing.PersonalStyle;
+import resource.routing.PersonalViews;
 
 public class RankingView implements Initializable {
 
@@ -71,6 +71,7 @@ public class RankingView implements Initializable {
 
     private final Font fontColumn = Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE);
     private final LeaderboardController controller = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
+    private static final String DEFAULT_TABLE_MESSAGE = "Play the game please :)";
 
      /**
      *  Method that initialize all component of scene.
@@ -85,6 +86,7 @@ public class RankingView implements Initializable {
     }
 
 
+    @SuppressWarnings("unchecked") //Use for delete generic warning parameter.
     private void initializeTableView() {
         this.aliasColumn
             .setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getKey()));
@@ -95,6 +97,8 @@ public class RankingView implements Initializable {
 
         this.displayRanking.setItems(data);
         this.displayRanking.getColumns().setAll(this.aliasColumn, this.scoreColumn);
+
+        this.displayRanking.setPlaceholder(new Label(DEFAULT_TABLE_MESSAGE));
     }
 
     private void loadAnimation() {
