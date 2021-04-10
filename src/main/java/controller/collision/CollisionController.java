@@ -4,7 +4,9 @@ import java.util.Optional;
 
 import model.entities.Ball;
 import model.entities.Brick;
+import model.entities.GameObject;
 import model.entities.Paddle;
+import model.entities.PowerUp;
 import model.utilities.Boundaries;
 import model.utilities.Pair;
 
@@ -22,7 +24,7 @@ public interface CollisionController {
      * @param ball
      * @return collision
      */
-    Optional<Boundaries> checkBallCollisionsWithWall(Brick wall, Ball ball);
+    Optional<Boundaries> checkGameObjCollisionsWithWall( GameObject obj);
     /**
      * 
      * @param paddle
@@ -30,11 +32,13 @@ public interface CollisionController {
      * @return collision
      */
     Optional<Boundaries> checkBallCollisionsWithPaddle(Ball ball, Paddle paddle);
+
     /**
      * 
-     * @param wall
+     * @param pwup
      * @param paddle
      * @return collision
      */
-    Optional<Boundaries> checkPaddleCollisionsWithWall(Brick wall, Paddle paddle);
+    Optional<Pair<PowerUp, Boundaries>> checkPwUpCollisionWithPaddle(PowerUp pwup, Paddle paddle);
+
 } 

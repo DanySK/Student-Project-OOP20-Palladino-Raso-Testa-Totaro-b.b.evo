@@ -1,3 +1,4 @@
+
 package model.utilities;
 
 import java.util.Arrays;
@@ -10,12 +11,12 @@ public enum GameObjStatus {
     /**
      * Represents a gamObj that can not be destroyed.
      */
-    NOT_DESTR,
+    NOT_DESTRUCTIBLE,
 
     /**
      * Represents a gamObj that can be destroyed.
      */
-    DESTR,
+    DESTRUCTIBLE,
 
     /**
      * Represents a gamObj that can drop a PowerUp.

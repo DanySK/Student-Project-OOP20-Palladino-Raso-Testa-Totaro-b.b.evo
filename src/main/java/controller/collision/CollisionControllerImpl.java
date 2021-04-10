@@ -1,3 +1,4 @@
+
 package controller.collision;
 
 import java.util.HashMap;
@@ -7,22 +8,29 @@ import model.entities.Ball;
 import model.entities.Brick;
 import model.entities.GameObject;
 import model.entities.Paddle;
+import model.entities.PowerUp;
 import model.utilities.Boundaries;
 import model.utilities.GameUtilities;
 import model.utilities.Pair;
 import model.utilities.Position;
+import paranoid.model.collision.Collision;
 
 /**
  * collision implementation.
  */
 public class CollisionControllerImpl implements CollisionController {
-    private final Position upperLeftCorner = new Position((int) GameUtilities.UPPER_LEFT_CORNER_X + (int) GameUtilities.WALL_WIDTH,
-                                            (int) GameUtilities.UPPER_LEFT_CORNER_Y + (int) GameUtilities.WALL_HEIGHT);
-    private final Position bottomRightCorner = new Position((int) GameUtilities.BOTTOM_RIGHT_CORNER_X - (int) GameUtilities.WALL_WIDTH, 
-                                            (int) GameUtilities.BOTTOM_RIGHT_CORNER_Y - (int) GameUtilities.WALL_HEIGHT);
-
+    private final Position upperLeftCorner = GameUtilities.getUpperLeftCorner();
+    private final Position bottomRightCorner = GameUtilities.getRightBottomCorner();
     private final Map<Boundaries, Boolean> collision = new HashMap<>();
 
+    /**
+     * 
+     */
+    @Override
+    public Optional<Boundaries> checkGameObjCollisionsWithWall(GameObject obj) {
+
+    }
+    
     /**
      * Check if there has been a collision between the ball and the brick. If yes then it returns a Pair of bricks and border
      */
@@ -37,15 +45,6 @@ public class CollisionControllerImpl implements CollisionController {
         return Optional.ofNullable(new Pair<>(brick, brick.getHitBall().get(ball)));
     }
 
-    /**
-     * Check if there has been a collision between the ball and the wall. If yes then return the border
-     */
-    @Override
-    public Optional<Boundaries> checkBallCollisionsWithWall(final Brick wall, final Ball ball) {
-
-        /////////////////////////////////////
-        return null;
-    }
 
     /**
      * Check if there has been a collision between the ball and the paddle. If yes then return the border
@@ -62,12 +61,10 @@ public class CollisionControllerImpl implements CollisionController {
     }
 
     /**
-     * Check if there has been a collision between the paddle and the paddle. If yes then return the border
+     * 
      */
     @Override
-    public Optional<Boundaries> checkPaddleCollisionsWithWall(final Brick wall, final Paddle paddle) {
-        //collision.put(Boundaries.SIDE_LEFT, checkCollisions(paddleX(paddle), brickX(brick) + brickWidth(brick), Boundaries.SIDE_RIGHT));
-        //collision.put(Boundaries.SIDE_RIGHT, checkCollisions(ballX(ball) + ballWidth(ball), brickX(brick), Boundaries.SIDE_RIGHT));
+    public Optional<Pair<PowerUp, Boundaries>> checkPwUpCollisionWithPaddle(final PowerUp pwup, final Paddle paddle) {
         return null;
     }
 
@@ -124,4 +121,8 @@ public class CollisionControllerImpl implements CollisionController {
         }
         return checkedBounds;
     }
+
+
+
+
 }

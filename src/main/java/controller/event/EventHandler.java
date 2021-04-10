@@ -1,3 +1,4 @@
+
 package controller.event;
 
 import java.util.LinkedList;
@@ -33,17 +34,16 @@ public class EventHandler {
 
         this.eventList.stream().forEach(event -> {
             final HitEvent hit = (HitEvent) event;
-            if (hit.getGameObj().get() instanceof Brick && hit.getGameObj().get().getStatus() == GameObjStatus.DESTR) {
+            if (hit.getGameObj().get() instanceof Brick && hit.getGameObj().get().getStatus() == GameObjStatus.DESTRUCTIBLE) {
                 final Brick brick = (Brick) hit.getGameObj().get();
                 brick.decreaseDurability(ballDamage);
                 state.addPoint(ScoreAttribute.BRICK_DAMAGED.getValue());            //add the score of the brick hit
                 if (checkDurability(brick)) {
-                    brick.setStatus(GameObjStatus.BROKEN); //non so se ci servira'
                     state.addPoint(ScoreAttribute.BRICK_BREAK.getValue());          //add the score of the broken brick
                     state.getBoard().removeBrick(brick);
                 }
                 SoundController.playMusic(PersonalSounds.SOUND_BRICK.getURL().getPath());    //throw the sound for hitting the brick
-            } else if (hit.getGameObj().get() instanceof PowerUp && hit.getGameObj().get().getStatus() == GameObjStatus.DESTR) {
+            } else if (hit.getGameObj().get() instanceof PowerUp && hit.getGameObj().get().getStatus() == GameObjStatus.DESTRUCTIBLE) {
                 final PowerUp pwup = (PowerUp) hit.getGameObj().get();
                 pwup.decreaseDurability(ballDamage);
                 if (checkDurability(pwup)) {
@@ -85,7 +85,7 @@ public class EventHandler {
         if (state.getLives() == 0) {
             state.setPhase(GamePhase.LOST);
         } else if (state.getBoard().getBricks().stream()
-                                                .filter(i -> i.getStatus().equals(GameObjStatus.DESTR))
+                                                .filter(i -> i.getStatus().equals(GameObjStatus.DESTRUCTIBLE))
                                                 .count() == 0) {
             //state.addBonus();
             state.setPhase(GamePhase.WIN);
