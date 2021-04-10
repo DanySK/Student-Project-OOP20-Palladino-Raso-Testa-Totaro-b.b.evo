@@ -9,7 +9,7 @@ public enum GamePhase {
     /**
      * Initial phase of entity creation.
      */
-    INIT,
+    START,
 
     /**
      * Run the game with gameloop cycle.
