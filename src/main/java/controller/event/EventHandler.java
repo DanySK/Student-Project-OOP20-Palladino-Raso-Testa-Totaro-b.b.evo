@@ -87,7 +87,6 @@ public class EventHandler {
         } else if (state.getBoard().getBricks().stream()
                                                 .filter(i -> i.getStatus().equals(GameObjStatus.DESTRUCTIBLE))
                                                 .count() == 0) {
-            //state.addBonus();
             state.setPhase(GamePhase.WIN);
         }
     }

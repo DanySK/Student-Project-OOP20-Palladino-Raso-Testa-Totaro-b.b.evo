@@ -28,7 +28,7 @@ public class CollisionControllerImpl implements CollisionController {
      */
     @Override
     public Optional<Boundaries> checkGameObjCollisionsWithWall(GameObject obj) {
-
+        
     }
     
     /**
@@ -65,6 +65,12 @@ public class CollisionControllerImpl implements CollisionController {
      */
     @Override
     public Optional<Pair<PowerUp, Boundaries>> checkPwUpCollisionWithPaddle(final PowerUp pwup, final Paddle paddle) {
+        this.fillMap(pwup, paddle);
+        collision.forEach((k, v) -> {
+            if (!v.booleanValue()) {
+                paddle.getHitBall().put(pwup, k);
+            }
+        });
         return null;
     }
 
