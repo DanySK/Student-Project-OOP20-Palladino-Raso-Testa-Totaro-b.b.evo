@@ -10,23 +10,20 @@ import javafx.scene.paint.Color;
 import model.entities.Brick;
 import model.entities.GameObject;
 import model.entities.GameObjectEmpty;
+import model.utilities.GameObjStatus;
 import model.utilities.GameUtilities;
 import model.utilities.Pair;
 import model.utilities.Position;
-<<<<<<< HEAD
-import paranoid.model.entity.PlaceHolder;
-import paranoid.model.entity.Brick.Builder;
+import resource.routing.BackGround;
 import resource.routing.PersonalSounds;
-=======
-import view.utilities.PersonalSounds;
->>>>>>> 3435e7c91786ecc47d7cfcd22daf2a2236977dd8
 
 public class LevelBuilder {
 
     //build the map between bricks in the board and coordinates
     private final Map<GameObject, Pair<Integer, Integer>> builderGrid = new HashMap<>();
-    //build the map between bricks in the show and in the grid and coordinates DA SISTEMARE IL COMMENTO PERCHE NON SI CAPISCE BENISSIMO
+    //build the map between bricks in the show and in the grid and coordinates
     private final Map<Pair<Integer, Integer>, Pair<GameObject, Optional<Brick>>> gameGrid = new HashMap<>();
+
     private final int builderBrickDimY = (int) (GameUtilities.CANVAS_HEIGHT / GameUtilities.BRICK_NUMBER_Y);
     private final int builderBrickDimX = (int) (GameUtilities.CANVAS_WIDTH / GameUtilities.BRICK_NUMBER_X);
     private final int gameBrickDimY = (int) (GameUtilities.WORLD_HEIGHT / GameUtilities.BRICK_NUMBER_Y);
@@ -43,8 +40,8 @@ public class LevelBuilder {
             for (int j = 0; j < GameUtilities.BRICK_NUMBER_Y; j++) {
                 final Pair<Integer, Integer> coordinates = new Pair<>(i, j);
                 //Ho lasciato gameobject ma forse ci va gameobjectEmpty da riguardare forse, nel caso anche nelle map da sistemare
-                final GameObject ph = new GameObjectEmpty(new Position(currentXpos, currentYpos), builderBrickDimY, builderBrickDimX);
-                this.builderGrid.put(ph, coordinates);
+                final GameObject objectEmpty = new GameObjectEmpty(new Position(currentXpos, currentYpos), builderBrickDimY, builderBrickDimX);
+                this.builderGrid.put(objectEmpty, coordinates);
                 currentYpos += builderBrickDimY;
             }
             currentXpos += builderBrickDimX;
@@ -54,8 +51,8 @@ public class LevelBuilder {
             int currentYpos = 0;
             for (int j = 0; j < GameUtilities.BRICK_NUMBER_Y; j++) {
                 final Pair<Integer, Integer> coordinates = new Pair<>(i, j);
-                final GameObject ph = new GameObjectEmpty(new Position(currentXpos, currentYpos), builderBrickDimY, builderBrickDimX);
-                this.gameGrid.put(coordinates, new Pair<>(ph, Optional.empty()));
+                final GameObject objectEmpty = new GameObjectEmpty(new Position(currentXpos, currentYpos), builderBrickDimY, builderBrickDimX);
+                this.gameGrid.put(coordinates, new Pair<>(objectEmpty, Optional.empty()));
                 currentYpos += gameBrickDimY;
             }
             currentXpos += gameBrickDimX;
@@ -63,61 +60,56 @@ public class LevelBuilder {
     }
 
     /**
-     * DA RIGUARDARE IN GENERALE IL COMMENTO, SISTEMARE IL BUILDER, SISTEMARE I NOMI PROBABILMENTE E AGGIUNGERE TEXTURE E VEDERE COME FARE
-     * PER POINTS E VITE
      * First compare the x, y coordinates of the click with the grid containing, then
      * the game object built on the dimensions of the current size of the screen 
-     * by returning the number of the brick hit.
-     * Check in the grid containing the game object built on the size of the world 
-     * which coordinate was hit. 
+     * by returning the number of the brick selected.
+     * Check in the grid containing the game object built on the size of the board which coordinate was selected.
      * Checks if the paddle has already selected that brick 
      * if he had not selected I call the brick builder and build the brick with the form inputs 
-     * and the dimensions of the placeholder built on the size of the world 
+     * and the dimensions of the GameObjectEmpty built on the size of the board
      * @param x mouse coordinates mouse x coordinate
      * @param y mouse coordinates mouse y coordinate
      * @param color color selected
-     * @param isIndestructible if the brick is indestructible
-     * @param point point earned
-     * @param lives lives remaining
+     * @param state check if is indestructible or not
+     * @param durability lives remaining before destroy the brick
      * @return current game grid state
      */
     public Pair<GameObject, Boolean> brickSelected(final double x, final double y, 
-                                                    final Color color, final boolean isIndestructible, 
-                                                    final int point, final int lives) { //PUNTI E VITE SARANNO DA MODIFICARE PROBABILMENTE
-        Pair<GameObject, Boolean> res = new Pair<>(new GameObjectEmpty(new Position(0, 0), 0, 0), false);
-        for (final GameObject ph : this.builderGrid.keySet()) {
-            if (x > ph.getPos().getX() && x < ph.getPos().getX() + ph.getWidth() && y > ph.getPos().getY()
-                    && y < ph.getPos().getY() + ph.getHeight()) {
-                final Pair<Integer, Integer> hit = this.builderGrid.get(ph);
-                if (this.gameGrid.get(hit).getY().isPresent()) {
-                    this.gameGrid.replace(hit, new Pair<>(this.gameGrid.get(hit).getX(), Optional.empty()));
-                    res = new Pair<>(ph, false);
+                                                    final Color color, final GameObjStatus state, final int durability) {
+        Pair<GameObject, Boolean> retState = new Pair<>(new GameObjectEmpty(new Position(0, 0), 0, 0), false);
+        for (final GameObject objectEmpty : this.builderGrid.keySet()) {
+            if (x > objectEmpty.getPos().getX() && x < objectEmpty.getPos().getX() + objectEmpty.getWidth() && y > objectEmpty.getPos().getY()
+                    && y < objectEmpty.getPos().getY() + objectEmpty.getHeight()) {
+                final Pair<Integer, Integer> brickSelected = this.builderGrid.get(objectEmpty);
+                if (this.gameGrid.get(brickSelected).getY().isPresent()) {
+                    this.gameGrid.replace(brickSelected, new Pair<>(this.gameGrid.get(brickSelected).getX(), Optional.empty()));
+                    retState = new Pair<>(objectEmpty, false);
                 } else {
-                    final Builder builder = new Builder(); //BUILDER DEL BRICK, DEVE IMPLEMENTARLO LUI
-                    final GameObject gamePlaceHolder = this.gameGrid.get(hit).getX();
-                    final Brick brick = builder.position(new Position(gamePlaceHolder.getPos().getX(), gamePlaceHolder.getPos().getY()))
-                                               .height(this.gameGrid.get(hit).getX().getHeight())
-                                               .width(this.gameGrid.get(hit).getX().getWidth())
-                                               .pointEarned(point)
+                    final Builder brickBuilder = new Builder(); //BUILDER DEL BRICK, DEVE IMPLEMENTARLO LUI
+                    final GameObject gameObjectEmpty = this.gameGrid.get(brickSelected).getX();
+                    final Brick brick = brickBuilder.position(new Position(gameObjectEmpty.getPos().getX(), gameObjectEmpty.getPos().getY()))
+                                               .height(this.gameGrid.get(brickSelected).getX().getHeight())
+                                               .width(this.gameGrid.get(brickSelected).getX().getWidth())
                                                .color(color)
-                                               .indestructible(isIndestructible)
-                                               .energy(lives)
+                                               //eventuale texture
+                                               //state destroyable
+                                               //durability 
                                                .build();
-                    this.gameGrid.replace(hit, new Pair<>(this.gameGrid.get(hit).getX(), Optional.of(brick)));
-                    res = new Pair<>(ph, true);
+                    this.gameGrid.replace(brickSelected, new Pair<>(this.gameGrid.get(brickSelected).getX(), Optional.of(brick)));
+                    retState = new Pair<>(objectEmpty, true);
                 }
             }
         }
-        return res;
+        return retState;
     }
 
     /**
      * @return level built
      */
     public Level build() {
-        final Set<Brick> level = this.gameGrid.entrySet().stream()
+        final Set<Brick> levelBrick = this.gameGrid.entrySet().stream()
                 .map(i -> i.getValue().getY()).filter(i -> i.isPresent()).map(i -> i.get()).collect(Collectors.toSet());
-        return new Level(level, levelName, music, background);
+        return new Level(levelBrick, levelName, music, background);
     }
 
     /**
