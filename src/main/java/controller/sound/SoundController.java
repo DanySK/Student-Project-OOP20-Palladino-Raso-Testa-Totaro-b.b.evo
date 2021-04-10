@@ -82,7 +82,7 @@ public final class SoundController {
 }
 
     public static void stopMusic() {
-        if (clip.isActive()) {
+        if (clipIsActived) {
             clip.stop();
         }
         clipIsActived = false;

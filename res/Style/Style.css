@@ -94,6 +94,10 @@ TextField {
    -fx-text-background-color: linear-gradient(from 25% 25% to 100% 100%, #ff3d7c, #ffc549);
 }
 
+.table-view .table-column{
+	-fx-alignment: CENTER;	
+}
+
 .table-view .column-header-background .filler {
     -fx-background-color: transparent;
 }
