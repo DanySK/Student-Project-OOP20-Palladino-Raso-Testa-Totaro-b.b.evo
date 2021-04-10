@@ -1,4 +1,4 @@
-package model.mapeditor;
+package resource.routing;
 
 import java.io.Serializable;
 import java.util.Arrays;
