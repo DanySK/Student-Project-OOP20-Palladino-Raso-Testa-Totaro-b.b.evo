@@ -26,7 +26,7 @@ public enum ObjectInit {
      * 
      * @return start position
      */
-    public Position getPos() {
+    public Position getStartPos() {
         return pos;
     }
 
