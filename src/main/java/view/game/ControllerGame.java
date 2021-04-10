@@ -18,8 +18,8 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.utilities.GameUtilities;
+import resource.routing.BackGround;
 import model.entities.GameObject;
-import model.mapeditor.BackGround;
 
 public class ControllerGame implements Initializable {
 
