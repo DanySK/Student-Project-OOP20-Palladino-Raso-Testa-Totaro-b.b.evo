@@ -9,11 +9,14 @@ import org.testfx.api.FxAssert;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.matcher.base.NodeMatchers;
 import org.testfx.matcher.control.LabeledMatchers;
+import org.testfx.matcher.control.TextInputControlMatchers;
 
 import controller.BrickBreakerEvo;
 
 
-
+/**
+ * This class represent a navigable test of the menu view.
+ */
 
 class TestMainMenu extends ApplicationTest {
 
@@ -88,17 +91,10 @@ class TestMainMenu extends ApplicationTest {
                             NodeMatchers.isEnabled());
     }
 
-    /*
-    @Test
-    void testResizeWindow() {
-
-    }
-    */
-
     @Test
     void testNavigableView() {
         assertDoesNotThrow(() -> {
-            clickOn("#btnPlay");
+            clickOn(ID_BUTTON_PLAY);
             sleep(1000);
             clickOn("#btnBack");
             sleep(1000);
@@ -113,6 +109,46 @@ class TestMainMenu extends ApplicationTest {
             clickOn("#btnRanking");
             sleep(1000);
             clickOn("#buttonBack");
+        });
+    }
+
+    @Test
+    void testCharacterView() {
+        assertDoesNotThrow(() -> {
+            clickOn(ID_BUTTON_PLAY);
+            sleep(1000);
+            clickOn("#characterNameField");
+            write("Alex");
+            sleep(1000);
+            FxAssert.verifyThat("#characterNameField", TextInputControlMatchers.hasText("Alex"));
+        });
+    }
+
+    @Test
+    void testSettingsView() {
+        assertDoesNotThrow(() -> {
+            clickOn(ID_BUTTON_SETTINGS);
+            sleep(1000);
+            clickOn("#ckSoundFX");
+            sleep(1000);
+            clickOn("#ckSound");
+            sleep(1000);
+            clickOn("#rbUseLeftRight");
+            sleep(1000);
+            clickOn("#rbUseUpDown");
+        });
+    }
+
+    @Test
+    void testDifficultyView() {
+        assertDoesNotThrow(() -> {
+            clickOn(ID_BUTTON_PLAY);
+            sleep(1000);
+            clickOn("#btnNext");
+            sleep(1000);
+            clickOn("#ckNormalDifficulty");
+            sleep(1000);
+            clickOn("#ckHardDifficulty");
         });
     }
 }

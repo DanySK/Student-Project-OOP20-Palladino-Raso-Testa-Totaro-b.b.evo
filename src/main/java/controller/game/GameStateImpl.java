@@ -9,6 +9,7 @@ import model.leaderboard.Player;
 import model.leaderboard.PlayerImpl;
 import model.mapeditor.Level;
 import model.utilities.GameUtilities;
+import model.utilities.ObjectInit;
 import model.utilities.Difficulty;
 import model.utilities.Angle;
 
@@ -35,11 +36,11 @@ public class GameStateImpl implements GameState {
     @Override
     public void init() {
         this.board.setBalls(Arrays.asList(new Ball.Builder()
-                                             .position(Start.BALL.getSpawnPoint())
+                                             .position(ObjectInit.BALL.getSpawnPoint()) // da sistemare
                                              .direction(Angle.EDGE_LEFT.getVector().mul(-1)) //da sistemare
-                                             .height(Start.BALL.getInitHeight())
-                                             .width(Start.BALL.getInitWidth())
-                                             .speed(setting.getDifficulty().getSpeed()) //da sistemare
+                                             .height(ObjectInit.BALL.getInitHeight())
+                                             .width(ObjectInit.BALL.getInitWidth())
+                                             .speed(setting.getDifficulty().getBallVelocity()) //da sistemare
                                              .build()));
         this.phase = GamePhase.PAUSE;
     }
