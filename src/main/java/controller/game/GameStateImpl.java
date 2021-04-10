@@ -2,32 +2,36 @@ package controller.game;
 
 import java.util.Arrays;
 
-import controller.settings.SettingsControllerImpl;
 import model.entities.Ball;
 import model.entities.GameBoard;
+import model.entities.GameBoardImpl;
+import model.entities.Paddle;
 import model.leaderboard.Player;
 import model.leaderboard.PlayerImpl;
 import model.mapeditor.Level;
-import model.utilities.GameUtilities;
+import model.settings.GameSettingsImpl;
 import model.utilities.ObjectInit;
+import model.utilities.Wall;
 import model.utilities.Difficulty;
+import model.utilities.GameUtilities;
 import model.utilities.Angle;
 
 public class GameStateImpl implements GameState {
 
     //dovrebbe essere quasi tutto a posto, bisognera inserire i test e i controlli per tutti i metodi pero
     private GamePhase phase;
+    private int multiplier;
     private final GameBoard board;
     private final Level level;
     private final Player player;
-    private final SettingsControllerImpl setting;
+    private final GameSettingsImpl setting;
 
-    public GameStateImpl(final String alias, final int life) {
-        this.phase = GamePhase.INIT;
-        this.player = new PlayerImpl(alias, 0, life);
-        this.setting = new SettingsControllerImpl();
-        this.board = new GameBoardImpl(new Border(GameUtilities.WORLD_WIDTH, GameUtilities.WORLD_HEIGHT), this); // da sistemare
-        this.board.setBricks(level.getBricks());
+    public GameStateImpl() {
+        this.phase = GamePhase.START;
+        this.player = new PlayerImpl(player.getAlias(), 0, player.getLife(), player.getMaxNumberOfLife()); // da sistemare
+        this.setting = new GameSettingsImpl(false, false, false, false, null); // da sistemare
+        this.board = new GameBoardImpl(new Wall(GameUtilities.WORLD_WIDTH, GameUtilities.WORLD_HEIGHT), this);
+        this.board.setBricks(level.getBricks()); // da sistemare, derivante dal setting
     }
 
     /**
@@ -35,22 +39,37 @@ public class GameStateImpl implements GameState {
      */
     @Override
     public void init() {
+        this.baseMultiplier();
+        final Paddle.Builder paddleBuilder = new Paddle.Builder();
+        this.board.setPaddle(paddleBuilder.position(ObjectInit.PADDLE.getStartPos())
+                                         .width(ObjectInit.PADDLE.getInitWidth())
+                                         .height(ObjectInit.PADDLE.getInitHeight())
+                                         .build());
         this.board.setBalls(Arrays.asList(new Ball.Builder()
-                                             .position(ObjectInit.BALL.getSpawnPoint()) // da sistemare
-                                             .direction(Angle.EDGE_LEFT.getVector().mul(-1)) //da sistemare
+                                             .position(ObjectInit.BALL.getStartPos())
+                                             .direction(Angle.MIDDLE_LEFT.getAngleVector().mul(-1))
                                              .height(ObjectInit.BALL.getInitHeight())
                                              .width(ObjectInit.BALL.getInitWidth())
-                                             .speed(setting.getDifficulty().getBallVelocity()) //da sistemare
+                                             .speed(setting.getDifficulty().getBallVelocity())
                                              .build()));
         this.phase = GamePhase.PAUSE;
     }
 
     /**
+     * Secondo me puo essere eliminato.
      * {@inheritDoc}
      */
     @Override
     public int getPlayerScore() {
-        return player.getScore();    }
+        return player.getScore(); 
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void baseMultiplier() {
+        this.multiplier = this.setting.getDifficulty().getMultiplyScoreValue();
+    }
 
     /**
      * {@inheritDoc}
@@ -145,7 +164,7 @@ public class GameStateImpl implements GameState {
      */
     @Override
     public boolean isMusicActive() {
-        return setting.isMusicEnable();
+        return setting.isEnableMusic();
     }
 
     /**
@@ -153,7 +172,7 @@ public class GameStateImpl implements GameState {
      */
     @Override
     public boolean isEffectActive() {
-        return setting.isSoundFxEnable();
+        return setting.isEnableSoundFx();
     }
 
 }

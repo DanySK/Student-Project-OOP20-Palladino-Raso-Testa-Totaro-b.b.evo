@@ -13,9 +13,15 @@ public interface GameState {
     void init();
 
     /**
+     * 
      * @return score values
      */
     int getPlayerScore();
+
+    /**
+     * Set brick value score in base of difficulty selected.
+     */
+    void baseMultiplier();
 
     /**
      * 
@@ -40,6 +46,7 @@ public interface GameState {
     int getLives();
 
     /**
+     * 
      * @return the board
      */
     GameBoard getBoard();
