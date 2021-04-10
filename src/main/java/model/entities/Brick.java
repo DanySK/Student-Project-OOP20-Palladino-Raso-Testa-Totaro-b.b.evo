@@ -1,3 +1,4 @@
+
 package model.entities;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +19,7 @@ public class Brick extends GameObjectImpl {
      * 
      */
     private int durability;
-    
+
 
     private final Map<Ball, Boundaries> hitBall = new HashMap<>();
 
@@ -80,4 +81,6 @@ public class Brick extends GameObjectImpl {
     public Map<Ball, Boundaries> getHitBall() {
         return this.hitBall;
     }
+    
+    //creare builder
 }

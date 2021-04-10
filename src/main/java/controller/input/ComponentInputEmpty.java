@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import model.entities.GameObject;
 
-public class ComponentInputImpl implements ComponentInput, Serializable {
+public class ComponentInputEmpty implements ComponentInput, Serializable {
 
     private static final long serialVersionUID = 912897323541408067L;
 

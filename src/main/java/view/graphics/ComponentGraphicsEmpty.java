@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import model.entities.GameObject;
 
-public class ComponentGraphicsImpl implements ComponentGraphics, Serializable {
+public class ComponentGraphicsEmpty implements ComponentGraphics, Serializable {
 
     private static final long serialVersionUID = 520121868558537070L;
 

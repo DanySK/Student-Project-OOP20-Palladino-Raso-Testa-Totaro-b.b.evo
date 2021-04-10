@@ -191,4 +191,16 @@ public final class GameUtilities {
 
     }
 
+    /**
+     * 
+     * @return position of the upper left corner
+     */
+    public static Position getUpperLeftCorner() {
+        return new Position(UPPER_LEFT_CORNER_X + WALL_WIDTH, UPPER_LEFT_CORNER_Y +  WALL_HEIGHT);
+    }
+
+    public static Position getRightBottomCorner() {
+        return new Position(BOTTOM_RIGHT_CORNER_X + WALL_WIDTH, BOTTOM_RIGHT_CORNER_Y + WALL_HEIGHT);
+    }
+
 }

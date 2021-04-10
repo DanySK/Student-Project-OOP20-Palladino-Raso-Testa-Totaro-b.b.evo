@@ -13,7 +13,7 @@ public final class Ball extends GameObjectImpl {
 
     private Ball(final Position pos, final DirVector dir, final double speed, final int height, final int width) {
         super(pos, dir, speed, height, width, new BallComponentPhysics(), new ComponentInputImpl(), new BallComponentGraphics(), 
-                GameObjStatus.NOT_DESTR);
+                GameObjStatus.NOT_DESTRUCTIBLE);
     }
 
     @Override

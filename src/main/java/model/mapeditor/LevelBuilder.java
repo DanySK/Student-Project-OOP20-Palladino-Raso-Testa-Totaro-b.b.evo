@@ -9,12 +9,17 @@ import java.util.stream.Collectors;
 import javafx.scene.paint.Color;
 import model.entities.Brick;
 import model.entities.GameObject;
+import model.entities.GameObjectEmpty;
 import model.utilities.GameUtilities;
 import model.utilities.Pair;
 import model.utilities.Position;
+<<<<<<< HEAD
 import paranoid.model.entity.PlaceHolder;
 import paranoid.model.entity.Brick.Builder;
 import resource.routing.PersonalSounds;
+=======
+import view.utilities.PersonalSounds;
+>>>>>>> 3435e7c91786ecc47d7cfcd22daf2a2236977dd8
 
 public class LevelBuilder {
 
@@ -37,7 +42,8 @@ public class LevelBuilder {
             int currentYpos = 0;
             for (int j = 0; j < GameUtilities.BRICK_NUMBER_Y; j++) {
                 final Pair<Integer, Integer> coordinates = new Pair<>(i, j);
-                final GameObject ph = new GameObject(new Position(currentXpos, currentYpos), builderBrickDimY, builderBrickDimX);
+                //Ho lasciato gameobject ma forse ci va gameobjectEmpty da riguardare forse, nel caso anche nelle map da sistemare
+                final GameObject ph = new GameObjectEmpty(new Position(currentXpos, currentYpos), builderBrickDimY, builderBrickDimX);
                 this.builderGrid.put(ph, coordinates);
                 currentYpos += builderBrickDimY;
             }
@@ -48,7 +54,7 @@ public class LevelBuilder {
             int currentYpos = 0;
             for (int j = 0; j < GameUtilities.BRICK_NUMBER_Y; j++) {
                 final Pair<Integer, Integer> coordinates = new Pair<>(i, j);
-                final GameObject ph = new GameObject(new Position(currentXpos, currentYpos), gameBrickDimY, gameBrickDimX);
+                final GameObject ph = new GameObjectEmpty(new Position(currentXpos, currentYpos), builderBrickDimY, builderBrickDimX);
                 this.gameGrid.put(coordinates, new Pair<>(ph, Optional.empty()));
                 currentYpos += gameBrickDimY;
             }
@@ -78,7 +84,7 @@ public class LevelBuilder {
     public Pair<GameObject, Boolean> brickSelected(final double x, final double y, 
                                                     final Color color, final boolean isIndestructible, 
                                                     final int point, final int lives) { //PUNTI E VITE SARANNO DA MODIFICARE PROBABILMENTE
-        Pair<GameObject, Boolean> res = new Pair<>(new GameObject(new Position(0, 0), 0, 0), false);
+        Pair<GameObject, Boolean> res = new Pair<>(new GameObjectEmpty(new Position(0, 0), 0, 0), false);
         for (final GameObject ph : this.builderGrid.keySet()) {
             if (x > ph.getPos().getX() && x < ph.getPos().getX() + ph.getWidth() && y > ph.getPos().getY()
                     && y < ph.getPos().getY() + ph.getHeight()) {
