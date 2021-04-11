@@ -4,6 +4,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -17,8 +20,11 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import model.utilities.GameUtilities;
 import resource.routing.BackGround;
+import view.graphics.AdapterGraphics;
+import view.graphics.AdapterGraphicsImpl;
 import model.entities.GameObject;
 
 public class ControllerGame implements Initializable {
@@ -29,6 +35,9 @@ public class ControllerGame implements Initializable {
     private Canvas canvas;
 
     @FXML
+    private Label lblTitle;
+
+    @FXML
     private Label lblScore;
 
     @FXML
@@ -36,6 +45,9 @@ public class ControllerGame implements Initializable {
 
     @FXML
     private Label lblPlay;
+
+    @FXML
+    private Label lblEsc;
 
     @FXML
     private Pane panel;
@@ -56,6 +68,15 @@ public class ControllerGame implements Initializable {
         this.panel.setMinHeight(GameUtilities.CANVAS_HEIGHT);
         this.panel.setMaxHeight(GameUtilities.CANVAS_HEIGHT);
         this.gc = canvas.getGraphicsContext2D();
+        this.loadAnimation();
+    }
+
+    private void loadAnimation() {
+        final Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(1.00), evt -> this.lblTitle.setVisible(false)),
+                new KeyFrame(Duration.seconds(0.50), evt -> this.lblTitle.setVisible(true)));
+                timeline.setCycleCount(Animation.INDEFINITE);
+                timeline.play();
     }
 
     /**
@@ -74,7 +95,7 @@ public class ControllerGame implements Initializable {
      * @param lives The remained life ot the player.
      */
     public void render(final Set<GameObject> gameEntities, final int score, final int highScore, final int lives) {
-        drawScoreAndLives(score, highScore, lives);
+        drawScoreAndLives(score, lives);
         drawWorld(gameEntities);
     }
 
@@ -85,10 +106,10 @@ public class ControllerGame implements Initializable {
      */
     private void drawWorld(final Set<GameObject> gameEntities) {
         gc.clearRect(0, 0, GameUtilities.CANVAS_WIDTH, GameUtilities.CANVAS_HEIGHT);
-        //final GraphicsAdapter ga = new GraphicsAdapterImpl(gc);
-        //gameEntities.stream().forEach(e -> {
-        //    e.updateGraphics(ga);
-        //});
+        final AdapterGraphics ga = new AdapterGraphicsImpl(gc);
+        gameEntities.stream().forEach(e -> {
+            e.updateGraphics(ga);
+        });
     }
 
     /**
@@ -97,7 +118,7 @@ public class ControllerGame implements Initializable {
      * @param score
      * @param lives
      */
-    private void drawScoreAndLives(final Integer highScore, final Integer score, final Integer lives) {
+    private void drawScoreAndLives(final Integer score, final Integer lives) {
         this.lblScore.setText("SCORE: " + score.toString());
         this.lblLives.setText("LIVES: " + lives.toString());
     }
@@ -108,14 +129,14 @@ public class ControllerGame implements Initializable {
      */
     public void setBackgroundImage(final BackGround backGround) {
         final BackgroundImage bg = new BackgroundImage(new Image(backGround.getPath(), 
-                GameUtilities.CANVAS_WIDTH,
-                GameUtilities.CANVAS_HEIGHT,
-                false,
-                true),
-                BackgroundRepeat.REPEAT, 
-                BackgroundRepeat.NO_REPEAT, 
-                BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT);
+                                                    GameUtilities.CANVAS_WIDTH,
+                                                    GameUtilities.CANVAS_HEIGHT,
+                                                    false,
+                                                    true),
+                                                    BackgroundRepeat.REPEAT, 
+                                                    BackgroundRepeat.NO_REPEAT, 
+                                                    BackgroundPosition.DEFAULT,
+                                                    BackgroundSize.DEFAULT);
         this.panel.setBackground(new Background(bg));
     }
 
