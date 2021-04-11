@@ -42,7 +42,7 @@ public class BrickBreakerEvo extends Application {
     /**
      * Folder where settings are saved.
      */
-    private static final String SETTINGS_FOLDER = MAIN_FOLDER + SEP + "Settings" + SEP;
+    public static final String SETTINGS_FOLDER = MAIN_FOLDER + SEP + "Settings" + SEP;
 
     /**
      * Folder where maps are saved.
