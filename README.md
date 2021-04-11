@@ -55,8 +55,11 @@ Il progetto ha come scopo quello di implementare la logica del famosissimo gioco
 
 <h2>Giacomo Totaro</h2>
 <ul>
-    <li>Creazione e gestione della barra, pallina e statistiche con relative interfacce grafiche.</li>
-    <li>Creazione del menu.</li>
+    <li>Creazione e gestione del paddle con relativa interfaccia grafica</li>
+    <li>Creazione e gestione della pallina con relativa interfaccia grafica</li>
+    <li>Controllo e gestione delle collisioni con Francesco</li>
+    <li>Controllo e gestione dell'input dell'utente</li>
+    <li>Creazione della view del gioco</li>
 </ul>
 </br>
 
