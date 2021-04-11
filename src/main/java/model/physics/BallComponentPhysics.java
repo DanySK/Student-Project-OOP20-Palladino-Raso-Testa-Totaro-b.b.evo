@@ -26,10 +26,10 @@ public class BallComponentPhysics implements ComponentPhysics {
 
         ball.setPos(ball.getPos().sum(dirVectBall.mul(COST_VELOCITY * timeElapsed * ball.getSpeed())));
 
-        final Optional<Boundaries> wallCollisionInfo = world.checkBallCollisionsWithWall(ball);
+        final Optional<Boundaries> wallCollisionInfo = world.checkGameObjCollisionsWithWall(ball);
         if (wallCollisionInfo.isPresent()) {
             ball.setPos(posBall);
-            world.eventListener(new HitEvent(ball, wallCollisionInfo.get()));
+            world.eventListener(new HitEvent(Optional.of(ball), Optional.of(wallCollisionInfo.get())));
             if (wallCollisionInfo.get().equals(Boundaries.SIDE_LEFT) 
                     || wallCollisionInfo.get().equals(Boundaries.SIDE_RIGHT)) {
                 ball.setDirOnX();
@@ -41,7 +41,7 @@ public class BallComponentPhysics implements ComponentPhysics {
         final Optional<Pair<Brick, Boundaries>> brickCollisionInfo = world.checkBallCollisionsWithBrick(ball);
         if (brickCollisionInfo.isPresent()) {
             ball.setPos(posBall);
-            world.eventListener(new HitEvent(brickCollisionInfo.get().getX(), brickCollisionInfo.get().getY()));
+            world.eventListener(new HitEvent(Optional.of(brickCollisionInfo.get().getX()), Optional.of(brickCollisionInfo.get().getY())));
             if (brickCollisionInfo.get().getY().equals(Boundaries.SIDE_LEFT) 
                     || brickCollisionInfo.get().getY().equals(Boundaries.SIDE_RIGHT)) {
                 ball.setDirOnX();
@@ -49,8 +49,19 @@ public class BallComponentPhysics implements ComponentPhysics {
                 ball.setDirOnY();
             }
         }
-        
-        final Pair<Optional<Boundaries>, Optional<Angle>> paddleCollisionInfo = world.checkBallCollisionsWithPaddle(ball, paddle);
+
+        final Pair<Optional<Boundaries>, Optional<Angle>> paddleCollisionInfo = world.checkBallCollisionsWithPaddle(ball);
+        if (paddleCollisionInfo.getX().isPresent()) {
+            final Boundaries collisionSide = paddleCollisionInfo.getX().get();
+            if (collisionSide.equals(Boundaries.SIDE_LEFT) || collisionSide.equals(Boundaries.SIDE_RIGHT)) {
+                ball.setDirOnX();
+            } else if (collisionSide.equals(Boundaries.UPPER)) {
+                ball.setPos(posBall);
+                ball.setDirVector(paddleCollisionInfo.getY().get().getAngleVector());
+                ball.setDirOnY();
+                world.eventListener(new HitEvent(Optional.empty(), Optional.empty()));
+            }
+        }
     }
 
 }
