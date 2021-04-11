@@ -65,15 +65,11 @@ public class PlayerImpl implements Player {
     }
 
     /**
-     * 
-     * {@inheritDoc}
-     *
-     */
-    @Override
-    public void increaseLife() {
-        if (this.getLife() < this.getMaxNumberOfLife()) {
-            this.life++;
-        }
+     * Set the life.
+     * @param value
+     * */
+    private void setLife(final int value) {
+        this.life = value;
     }
 
     /**
@@ -82,10 +78,8 @@ public class PlayerImpl implements Player {
      *
      */
     @Override
-    public void decreaseLife() {
-        if (this.getLife() > 0) {
-            this.life--;
-        }
+    public void lifeOperation(final LifeOperationStrategy operation, final int value) {
+        this.setLife(operation.lifeOperation(this.getLife(), value, this.getMaxNumberOfLife()));
     }
 
     /**
@@ -159,4 +153,5 @@ public class PlayerImpl implements Player {
 
         return player.getAlias().equals(this.alias);
     }
+
 }

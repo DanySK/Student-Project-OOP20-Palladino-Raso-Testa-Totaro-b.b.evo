@@ -18,16 +18,11 @@ public interface Player {
     int getLife();
 
     /**
-     *  Method that allows to add, of a one unit, the life
-     *  only if life does not exceed the maximum number allowed.
+     *  Method that allows to manipulate the life of the player.
+     *  @param operation - define an operation on the life.
+     *  @param value - represents the value that must be added or subtract to the life.
      */
-    void increaseLife();
-
-    /**
-     *  Method that allows to subtract, of a one unit, the life
-     *  only if life is greater than zero.
-     */
-    void decreaseLife();
+    void lifeOperation(LifeOperationStrategy operation, int value);
 
     /**
      *  Return the maximum number of life 

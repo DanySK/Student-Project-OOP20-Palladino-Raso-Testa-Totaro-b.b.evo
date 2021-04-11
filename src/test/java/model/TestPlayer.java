@@ -11,7 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import model.leaderboard.BasicLifeOperationStrategy;
 import model.leaderboard.BasicScoreOperationStrategy;
+import model.leaderboard.LifeOperationStrategy;
 import model.leaderboard.Player;
 import model.leaderboard.PlayerImpl;
 import model.leaderboard.ScoreOperationStrategy;
@@ -24,6 +26,7 @@ public class TestPlayer {
     private static final String PLAYER_NAME = "Alex";
     private static final int ZERO = 0;
     private static final int TWO = 2;
+    private static final int ONE_UNIT = 1;
     private static final int PLAYER_SCORE = 50;
     private static final int PLAYER_LIFE = 3;
     private static final int INITIAL_SCORE = 0;
@@ -34,6 +37,7 @@ public class TestPlayer {
     private static final String SECOND_NAME_PLAYER = "Jango";
     private PlayerImpl currentPlayer;
     private final ScoreOperationStrategy operation = new BasicScoreOperationStrategy();
+    private final LifeOperationStrategy lifeOperation = new BasicLifeOperationStrategy();
 
     /**
      * Method that initialize PlayerImpl.
@@ -55,17 +59,11 @@ public class TestPlayer {
 
     @Test
     void testDecreaseScore() {
-       System.out.println("Number : " + (-SCORE_OPERATION));
        this.currentPlayer.scoreOperation(operation, -SCORE_OPERATION);
-       System.out.println("First : " + this.currentPlayer.getScore());
        this.currentPlayer.scoreOperation(operation, -SCORE_OPERATION);
-       System.out.println("Second : " + this.currentPlayer.getScore());
        this.currentPlayer.scoreOperation(operation, -SCORE_OPERATION);
-       System.out.println("Third : " + this.currentPlayer.getScore());
        this.currentPlayer.scoreOperation(operation, -SCORE_OPERATION);
-       System.out.println("Fourty : " + this.currentPlayer.getScore());
        this.currentPlayer.scoreOperation(operation, -SCORE_OPERATION);
-       System.out.println("Fifty : " + this.currentPlayer.getScore());
        assertEquals(ESPECTED_PLAYER_DECREASE_SCORE, this.currentPlayer.getScore());
 
        //Try to decrease score but it's always 0
@@ -120,15 +118,15 @@ public class TestPlayer {
 
     @Test
     void testDecreaseLife() {
-        this.currentPlayer.decreaseLife();
-        this.currentPlayer.decreaseLife();
+        this.currentPlayer.lifeOperation(lifeOperation, -ONE_UNIT);
+        this.currentPlayer.lifeOperation(lifeOperation, -ONE_UNIT);
         assertEquals(ESPECTED_PLAYER_DECREASE_LIFE, this.currentPlayer.getLife());
-        this.currentPlayer.decreaseLife();
+        this.currentPlayer.lifeOperation(lifeOperation, -ONE_UNIT);
         assertEquals(ZERO, this.currentPlayer.getLife());
 
         //Not negative life
         for (int i = 0; i < ESPECTED_PLAYER_INCREASE_SCORE; i++) {
-            this.currentPlayer.decreaseLife();
+            this.currentPlayer.lifeOperation(lifeOperation, -ONE_UNIT);
         }
 
         assertEquals(ZERO, this.currentPlayer.getLife());
@@ -136,17 +134,17 @@ public class TestPlayer {
 
     @Test
     void testIncreaseLife() {
-        this.currentPlayer.decreaseLife();
-        this.currentPlayer.decreaseLife();
-        this.currentPlayer.decreaseLife();
+        this.currentPlayer.lifeOperation(lifeOperation, -ONE_UNIT);
+        this.currentPlayer.lifeOperation(lifeOperation, -ONE_UNIT);
+        this.currentPlayer.lifeOperation(lifeOperation, -ONE_UNIT);
         assertEquals(ZERO, this.currentPlayer.getLife());
-        this.currentPlayer.increaseLife();
-        this.currentPlayer.increaseLife();
+        this.currentPlayer.lifeOperation(lifeOperation, +ONE_UNIT);
+        this.currentPlayer.lifeOperation(lifeOperation, +ONE_UNIT);
         assertEquals(TWO, this.currentPlayer.getLife());
 
         //Not increase at the max value
         for (int i = 0; i < ESPECTED_PLAYER_INCREASE_SCORE; i++) {
-            this.currentPlayer.increaseLife();
+            this.currentPlayer.lifeOperation(lifeOperation, +ONE_UNIT);
         }
         assertEquals(PLAYER_LIFE, this.currentPlayer.getLife());
     }
@@ -154,13 +152,13 @@ public class TestPlayer {
     @Test
     void testAlive() {
         assertTrue(this.currentPlayer.isAlive());
-        this.currentPlayer.decreaseLife();
+        this.currentPlayer.lifeOperation(lifeOperation, -ONE_UNIT);
         assertTrue(this.currentPlayer.isAlive());
-        this.currentPlayer.decreaseLife();
+        this.currentPlayer.lifeOperation(lifeOperation, -ONE_UNIT);
         assertTrue(this.currentPlayer.isAlive());
-        this.currentPlayer.decreaseLife();
+        this.currentPlayer.lifeOperation(lifeOperation, -ONE_UNIT);
         assertFalse(this.currentPlayer.isAlive());
-        this.currentPlayer.decreaseLife();
+        this.currentPlayer.lifeOperation(lifeOperation, -ONE_UNIT);
         assertFalse(this.currentPlayer.isAlive());
     }
 
@@ -174,7 +172,7 @@ public class TestPlayer {
     @Test
     void testToString() {
         assertEquals(this.currentPlayer.toString(), "[alias = " + PLAYER_NAME + " ,score = " + PLAYER_SCORE + " ,life = " + PLAYER_LIFE + " ,maxLife = " + PLAYER_LIFE + "]");
-        System.out.println(this.currentPlayer.toString());
         assertNotEquals(this.currentPlayer.toString(), "[alias= " + PLAYER_NAME + " ,score= " + PLAYER_SCORE + " ,life= " + PLAYER_LIFE + " ,maxLife = " + PLAYER_LIFE + "]");
     }
+
 }
