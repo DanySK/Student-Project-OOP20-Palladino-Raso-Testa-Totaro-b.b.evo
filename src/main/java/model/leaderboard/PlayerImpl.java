@@ -20,9 +20,9 @@ public class PlayerImpl implements Player {
      *
      */
     @Override
-    public void scoreOperation(final int value) {
-        if (this.isAlive() && this.getScore() > 0) {
-            this.score += value;
+    public void scoreOperation(final ScoreOperationStrategy operation, final int value) {
+        if (this.isAlive()) {
+            this.setScore(operation.scoreOperation(this.score, value));
         }
     }
 
@@ -44,6 +44,14 @@ public class PlayerImpl implements Player {
     @Override
     public int getScore() {
         return this.score;
+    }
+
+    /**
+     * Set the score.
+     * @param value
+     * */
+    private void setScore(final int value) {
+        this.score = value;
     }
 
     /**
@@ -151,6 +159,4 @@ public class PlayerImpl implements Player {
 
         return player.getAlias().equals(this.alias);
     }
-
-
 }

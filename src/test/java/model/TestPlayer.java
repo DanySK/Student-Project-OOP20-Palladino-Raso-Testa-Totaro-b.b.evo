@@ -11,7 +11,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import model.leaderboard.BasicScoreOperationStrategy;
+import model.leaderboard.Player;
 import model.leaderboard.PlayerImpl;
+import model.leaderboard.ScoreOperationStrategy;
 
 /**
  * Class that test the PlayerClass.
@@ -23,12 +26,14 @@ public class TestPlayer {
     private static final int TWO = 2;
     private static final int PLAYER_SCORE = 50;
     private static final int PLAYER_LIFE = 3;
+    private static final int INITIAL_SCORE = 0;
     private static final int ESPECTED_PLAYER_INCREASE_SCORE = 100;
     private static final int ESPECTED_PLAYER_DECREASE_SCORE = 0;
     private static final int ESPECTED_PLAYER_DECREASE_LIFE = 1;
     private static final int SCORE_OPERATION = 10;
     private static final String SECOND_NAME_PLAYER = "Jango";
     private PlayerImpl currentPlayer;
+    private final ScoreOperationStrategy operation = new BasicScoreOperationStrategy();
 
     /**
      * Method that initialize PlayerImpl.
@@ -40,28 +45,56 @@ public class TestPlayer {
 
     @Test
     void testIncreaseScore() {
-       this.currentPlayer.scoreOperation(SCORE_OPERATION);
-       this.currentPlayer.scoreOperation(SCORE_OPERATION);
-       this.currentPlayer.scoreOperation(SCORE_OPERATION);
-       this.currentPlayer.scoreOperation(SCORE_OPERATION);
-       this.currentPlayer.scoreOperation(SCORE_OPERATION);
+       this.currentPlayer.scoreOperation(operation, SCORE_OPERATION);
+       this.currentPlayer.scoreOperation(operation, SCORE_OPERATION);
+       this.currentPlayer.scoreOperation(operation, SCORE_OPERATION);
+       this.currentPlayer.scoreOperation(operation, SCORE_OPERATION);
+       this.currentPlayer.scoreOperation(operation, SCORE_OPERATION);
        assertEquals(ESPECTED_PLAYER_INCREASE_SCORE, this.currentPlayer.getScore());
     }
 
     @Test
     void testDecreaseScore() {
-       this.currentPlayer.scoreOperation(-SCORE_OPERATION);
-       this.currentPlayer.scoreOperation(-SCORE_OPERATION);
-       this.currentPlayer.scoreOperation(-SCORE_OPERATION);
-       this.currentPlayer.scoreOperation(-SCORE_OPERATION);
-       this.currentPlayer.scoreOperation(-SCORE_OPERATION);
+       System.out.println("Number : " + (-SCORE_OPERATION));
+       this.currentPlayer.scoreOperation(operation, -SCORE_OPERATION);
+       System.out.println("First : " + this.currentPlayer.getScore());
+       this.currentPlayer.scoreOperation(operation, -SCORE_OPERATION);
+       System.out.println("Second : " + this.currentPlayer.getScore());
+       this.currentPlayer.scoreOperation(operation, -SCORE_OPERATION);
+       System.out.println("Third : " + this.currentPlayer.getScore());
+       this.currentPlayer.scoreOperation(operation, -SCORE_OPERATION);
+       System.out.println("Fourty : " + this.currentPlayer.getScore());
+       this.currentPlayer.scoreOperation(operation, -SCORE_OPERATION);
+       System.out.println("Fifty : " + this.currentPlayer.getScore());
        assertEquals(ESPECTED_PLAYER_DECREASE_SCORE, this.currentPlayer.getScore());
 
        //Try to decrease score but it's always 0
        for (int i = 0; i < ESPECTED_PLAYER_INCREASE_SCORE; i++) {
-           this.currentPlayer.scoreOperation(-SCORE_OPERATION);
+           this.currentPlayer.scoreOperation(operation, -SCORE_OPERATION);
        }
        assertEquals(ESPECTED_PLAYER_DECREASE_SCORE, this.currentPlayer.getScore());
+ 
+    }
+
+    @Test
+    void testIncreaseDecreasScore() {
+        this.currentPlayer.scoreOperation(operation, SCORE_OPERATION);
+        this.currentPlayer.scoreOperation(operation, -SCORE_OPERATION);
+        this.currentPlayer.scoreOperation(operation, SCORE_OPERATION);
+        this.currentPlayer.scoreOperation(operation, -SCORE_OPERATION);
+        this.currentPlayer.scoreOperation(operation, SCORE_OPERATION);
+        this.currentPlayer.scoreOperation(operation, -SCORE_OPERATION);
+        this.currentPlayer.scoreOperation(operation, SCORE_OPERATION);
+        this.currentPlayer.scoreOperation(operation, -SCORE_OPERATION);
+        this.currentPlayer.scoreOperation(operation, SCORE_OPERATION);
+        this.currentPlayer.scoreOperation(operation, -SCORE_OPERATION);
+        assertEquals(PLAYER_SCORE, this.currentPlayer.getScore());
+    }
+
+    @Test
+    void testFunctionalOperation() {
+        this.currentPlayer.scoreOperation((x, y) -> x - y, PLAYER_SCORE);
+        assertEquals(ESPECTED_PLAYER_DECREASE_SCORE, this.currentPlayer.getScore());
     }
 
     @Test
@@ -129,6 +162,13 @@ public class TestPlayer {
         assertFalse(this.currentPlayer.isAlive());
         this.currentPlayer.decreaseLife();
         assertFalse(this.currentPlayer.isAlive());
+    }
+
+    @Test
+    void testInitialScore() {
+        final Player newPlayer = new PlayerImpl(PLAYER_NAME, INITIAL_SCORE, PLAYER_LIFE, PLAYER_LIFE);
+        newPlayer.scoreOperation(operation, 100);
+        assertEquals(100, newPlayer.getScore());
     }
 
     @Test
