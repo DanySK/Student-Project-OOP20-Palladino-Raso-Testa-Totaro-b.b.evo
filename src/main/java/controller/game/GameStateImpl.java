@@ -81,14 +81,6 @@ public class GameStateImpl implements GameState {
      * {@inheritDoc}
      */
     @Override
-    public void addPoint(final int point) {
-        player.scoreOperation(point);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public int getLives() {
         return player.getLife();
     }

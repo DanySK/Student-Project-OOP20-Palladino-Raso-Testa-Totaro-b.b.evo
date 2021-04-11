@@ -25,12 +25,6 @@ public interface GameState {
 
     /**
      * 
-     * @param point to add to the total.
-     */
-    void addPoint(int point);
-
-    /**
-     * 
      * @return current number of lives
      */
     int getLives();

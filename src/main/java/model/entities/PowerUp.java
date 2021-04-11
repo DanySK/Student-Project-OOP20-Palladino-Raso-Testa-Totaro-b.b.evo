@@ -49,20 +49,6 @@ public class PowerUp extends Brick {
             Thread.currentThread().interrupt();
         }
     }
-    
-    public void damagePowerUp(int damageModifier) {
-        
-    }
-    
-    public void lifePowerUp(int lifeModifier) {
-        
-    }
-    
-    public void speedPowerUp(float speedModifier) {
-        
-    }
-    
-    
 
     /**
      * getter for {@link PowerUpType} attribute.

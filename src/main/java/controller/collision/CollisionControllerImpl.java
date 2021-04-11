@@ -122,22 +122,12 @@ public class CollisionControllerImpl implements CollisionController {
     private Boolean checkCollisions(final double obj1, final double obj2, final Boundaries bounds) {
         Boolean checkedBounds = false;
         switch (bounds) {
-        case LOWER:
+        case LOWER, SIDE_LEFT:
             if (obj1 < obj2) {
                 checkedBounds = true;
             }
             break;
-        case SIDE_LEFT:
-            if (obj1 < obj2) { 
-                checkedBounds = true;
-                }
-            break;
-        case SIDE_RIGHT:
-            if (obj1 > obj2) {
-                checkedBounds = true;
-            }
-            break;
-        case UPPER:
+        case UPPER, SIDE_RIGHT:
             if (obj1 > obj2) {
                 checkedBounds = true;
             }

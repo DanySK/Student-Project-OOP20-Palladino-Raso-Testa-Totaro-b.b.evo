@@ -12,6 +12,7 @@ import model.entities.Brick;
 import model.entities.Paddle;
 import model.entities.PowerUp;
 import model.leaderboard.LifeOperationStrategy;
+import model.leaderboard.ScoreOperationStrategy;
 import model.utilities.Boundaries;
 import model.utilities.GameObjStatus;
 import model.utilities.ScoreAttribute;
@@ -24,6 +25,7 @@ public class EventHandler {
     private final GameState state;
     private int ballDamage = GameUtilities.DEFAULT_BALL_DAMAGE; //da importare dai settings e viene modificato dai powerup
     private LifeOperationStrategy lifeOperation;
+    private ScoreOperationStrategy scoreOperation;
 
     public EventHandler(final GameState state) {
         this.state = state;
@@ -39,21 +41,22 @@ public class EventHandler {
             if (hit.getGameObj().get() instanceof Brick && hit.getGameObj().get().getStatus() == GameObjStatus.DESTRUCTIBLE) {
                 final Brick brick = (Brick) hit.getGameObj().get();
                 brick.decreaseDurability(ballDamage);
-                state.addPoint(ScoreAttribute.BRICK_DAMAGED.getValue());            //add the score of the brick hit
+                addPoints(ScoreAttribute.BRICK_DAMAGED.getValue());            //add the score of the brick hit
                 if (checkDurability(brick)) {
-                    state.addPoint(ScoreAttribute.BRICK_BREAK.getValue());          //add the score of the broken brick
-                    state.getBoard().removeBrick(brick);
+                    addPoints(ScoreAttribute.BRICK_BREAK.getValue());          //add the score of the broken brick
+                    this.state.getBoard().removeBrick(brick);
                 }
                 SoundController.playMusic(PersonalSounds.SOUND_BRICK.getURL().getPath());    //throw the sound for hitting the brick
             } else if (hit.getGameObj().get() instanceof PowerUp && hit.getGameObj().get().getStatus() == GameObjStatus.DESTRUCTIBLE) {
                 final PowerUp pwup = (PowerUp) hit.getGameObj().get();
                 pwup.decreaseDurability(ballDamage);
+                addPoints(ScoreAttribute.BRICK_DAMAGED.getValue());
                 if (checkDurability(pwup)) {
+                    addPoints(ScoreAttribute.BRICK_BREAK.getValue());
                     pwup.setStatus(GameObjStatus.DROP_POWERUP);
                     pwup.dropPowerUp();
                 }
-            } 
-            else if (hit.getGameObj().get() instanceof PowerUp && hit.getGameObj().get().getStatus() == GameObjStatus.DROP_POWERUP) {
+            } else if (hit.getGameObj().get() instanceof PowerUp && hit.getGameObj().get().getStatus() == GameObjStatus.DROP_POWERUP) {
                 final PowerUp pwup = (PowerUp) hit.getGameObj().get();
                 activatePowerUp(pwup);
             } else if (hit.getGameObj().get() instanceof Paddle) {
@@ -62,7 +65,8 @@ public class EventHandler {
                 if (hit.getBounds().get().equals(Boundaries.LOWER)) {
                     this.state.getBoard().removeBall((Ball) hit.getGameObj().get());
                     if (this.state.getBoard().getBalls().isEmpty()) {
-                        //this.state.decLives();
+                        this.state.getPlayer().lifeOperation(lifeOperation, -1);
+                        addPoints(ScoreAttribute.LOST_LIFE.getValue());
                         this.state.setPhase(GamePhase.START);
                     }
                 }
@@ -75,24 +79,45 @@ public class EventHandler {
 
     private void activatePowerUp(final PowerUp pwup) {
         switch (pwup.getPowerUpType()) {
-        case DAMAGE_DOWN, DAMAGE_UP:
+        case DAMAGE_DOWN:
+            addPoints(ScoreAttribute.NEGATIVE_POWERUP.getValue());
             this.ballDamage = GameUtilities.DEFAULT_BALL_DAMAGE + pwup.getDamageModifier();
             pwup.waitSeconds(pwup.getActiveTime());
             this.ballDamage = GameUtilities.DEFAULT_BALL_DAMAGE;
             break;
-        case LIFE_DOWN, LIFE_UP:
+        case DAMAGE_UP:
+            addPoints(ScoreAttribute.POSITIVE_POWERUP.getValue());
+            this.ballDamage = GameUtilities.DEFAULT_BALL_DAMAGE + pwup.getDamageModifier();
+            pwup.waitSeconds(pwup.getActiveTime());
+            this.ballDamage = GameUtilities.DEFAULT_BALL_DAMAGE;
+            break;
+        case LIFE_DOWN:
+            addPoints(ScoreAttribute.NEGATIVE_POWERUP.getValue());
             state.getPlayer().lifeOperation(lifeOperation, pwup.getLifeModifier());
             break;
-        case SPEED_UP, SPEED_DOWN:
+        case LIFE_UP:
+            addPoints(ScoreAttribute.POSITIVE_POWERUP.getValue());
+            state.getPlayer().lifeOperation(lifeOperation, pwup.getLifeModifier());
+            break;
+        case SPEED_UP:
+            addPoints(ScoreAttribute.POSITIVE_POWERUP.getValue());
+            break;
+        case SPEED_DOWN:
+            addPoints(ScoreAttribute.NEGATIVE_POWERUP.getValue());
             break;
         default:
             break;
         }
-        //attiva il powerup
-        //aspetta X secondi 
-        //disattiva il powerUp
-        
     }
+
+    /**
+     * adds points to the player's score.
+     * @param value
+     */
+    private void addPoints(final int value) {
+        this.state.getPlayer().scoreOperation(scoreOperation, value);
+    }
+
 
     /**
      * 
