@@ -1,6 +1,6 @@
 package model.entities;
 
-import controller.input.ComponentInputImpl;
+import controller.input.ComponentInputEmpty;
 import controller.input.ControllerInput;
 import model.physics.BallComponentPhysics;
 import model.utilities.DirVector;
@@ -12,7 +12,7 @@ import view.graphics.BallComponentGraphics;
 public final class Ball extends GameObjectImpl {
 
     private Ball(final Position pos, final DirVector dir, final double speed, final int height, final int width) {
-        super(pos, dir, speed, height, width, new BallComponentPhysics(), new ComponentInputImpl(), new BallComponentGraphics(), 
+        super(pos, dir, speed, height, width, new BallComponentPhysics(), new ComponentInputEmpty(), new BallComponentGraphics(), 
                 GameObjStatus.NOT_DESTRUCTIBLE);
     }
 
@@ -35,7 +35,7 @@ public final class Ball extends GameObjectImpl {
      * 
      * Sets the new direction relative to the Y axis.
      */
-    public void flipVelOnY() {
+    public void setDirOnY() {
         this.setDirVector(new DirVector(this.getDirVector().getX(), -this.getDirVector().getY()));
     }
 
@@ -43,7 +43,7 @@ public final class Ball extends GameObjectImpl {
      * 
      * Sets the new direction relative to the X axis.
      */
-    public void flipVelOnX() {
+    public void setDirOnX() {
         this.setDirVector(new DirVector(-this.getDirVector().getX(), this.getDirVector().getY()));
     }
 
