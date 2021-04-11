@@ -22,7 +22,7 @@ public class GameBoardImpl implements GameBoard {
 
     private final Set<Ball> balls; // da guardare perche abbiamo solo una pallina
     private final Set<Brick> bricks;
-    private Optional<Paddle> paddle; //dubbio qui
+    private final Set<Paddle> paddle; //dubbio qui
     private final Wall wall;
     private final EventHandler eventHandler;
     private final CollisionController collision;
@@ -30,7 +30,7 @@ public class GameBoardImpl implements GameBoard {
     public GameBoardImpl(final Wall wall, final GameState state) {
         this.balls = new HashSet<>();
         this.bricks = new HashSet<>();
-        this.paddle = Optional.empty(); //dubbio qui
+        this.paddle = new HashSet<>();
         this.wall = wall;
         this.eventHandler = new EventHandler(state);
         this.collision = new CollisionControllerImpl();
@@ -74,9 +74,9 @@ public class GameBoardImpl implements GameBoard {
      * {@inheritDoc}
      */
     @Override
-    public void setPaddle(final Paddle paddle) {
-        //dubbio qui
-        this.paddle = Optional.of(paddle);
+    public void setPaddle(final Collection<Paddle> paddles) {
+        this.paddle.clear();
+        this.paddle.addAll(paddles);
     }
 
     /**
@@ -93,14 +93,6 @@ public class GameBoardImpl implements GameBoard {
     @Override
     public Set<Brick> getBricks() {
         return this.bricks;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Paddle getPaddle() {
-        return this.paddle.get();
     }
 
     /**
@@ -131,16 +123,8 @@ public class GameBoardImpl implements GameBoard {
      * {@inheritDoc}
      */
     @Override
-    public Optional<Boundaries> checkBallCollisionsWithWall(final Ball ball) {
-        return this.collision.checkBallCollisionsWithWall(this.wall, ball);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Optional<Boundaries> checkPaddleCollisionsWithWall(final Paddle paddle) {
-        return this.collision.checkPaddleCollisionsWithWall(this.wall, paddle);
+    public Optional<Boundaries> checkGameObjCollisionsWithWall(final GameObject obj) {
+        return this.collision.checkGameObjCollisionsWithWall(obj);
     }
 
     /**
@@ -162,20 +146,33 @@ public class GameBoardImpl implements GameBoard {
      * {@inheritDoc}
      */
     @Override
-    public Pair<Optional<Boundaries>, Optional<Angle>> checkBallCollisionsWithPaddle(final Ball ball, final Paddle paddle) {
+    public Pair<Optional<Boundaries>, Optional<Angle>> checkBallCollisionsWithPaddle(final Ball ball) {
         Optional<Boundaries> result = Optional.empty();
-        result = this.collision.checkBallCollisionsWithPaddle(ball, paddle);
-        if (result.get().equals(Boundaries.UPPER)) {
-            final double centerBall = ball.getPos().getX() + (ball.getWidth() / 2);
-            final double zonePlayer = paddle.getWidth() / Angle.values().length;
-            for (int i = 0; i < Angle.values().length; i++) {
-                if (centerBall > paddle.getPos().getX() + (i * zonePlayer) 
-                        && centerBall < paddle.getPos().getX() + ((i + 1) * zonePlayer)) {
-                   return new Pair<>(Optional.of(result.get()), Optional.of(Angle.values()[i]));
+        for (final var paddle : this.paddle) {
+            result = this.collision.checkBallCollisionsWithPaddle(ball, paddle);
+            if (result.isPresent() && result.get().equals(Boundaries.UPPER)) {
+                final double centerBall = ball.getPos().getX() + (ball.getWidth() / 2);
+                final double zonePlayer = paddle.getWidth() / Angle.values().length;
+                for (int i = 0; i < Angle.values().length; i++) {
+                    if (centerBall > paddle.getPos().getX() + (i * zonePlayer) 
+                            && centerBall < paddle.getPos().getX() + ((i + 1) * zonePlayer)) {
+                       return new Pair<>(Optional.of(result.get()), Optional.of(Angle.values()[i]));
+                    }
                 }
+            } else if (result.isPresent() && (result.get().equals(Boundaries.SIDE_LEFT) || result.get().equals(Boundaries.SIDE_RIGHT))) {
+                return new Pair<>(result, Optional.empty());
             }
         }
         return new Pair<>(Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Optional<Pair<Brick, Boundaries>> checkPowerUpCollisionsWithPaddle(final PowerUp pwUp, final Paddle paddle) {
+        // TODO Auto-generated method stub                      //DA FARE
+        return null;
     }
 
     /**
@@ -203,7 +200,7 @@ public class GameBoardImpl implements GameBoard {
      */
     @Override
     public void movePlayer(final ControllerInput inputController) {
-        this.paddle.get().updateInput(inputController); //qui non so se va bene
+        this.paddle.forEach(e -> e.updateInput(inputController));
     }
 
     /**

@@ -11,9 +11,9 @@ public class HitEvent implements Event {
     private final Optional<GameObject> gameObj;
     private final Optional<Boundaries> bounds;
 
-    public HitEvent(final GameObjectImpl gameObj, final Boundaries bounds) {
-        this.gameObj = Optional.of(gameObj);
-        this.bounds = Optional.of(bounds);
+    public HitEvent(final Optional<GameObject> gameObj, final Optional<Boundaries> bounds) {
+        this.gameObj = gameObj;
+        this.bounds = bounds;
     }
 
     /**

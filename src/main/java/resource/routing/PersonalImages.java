@@ -33,7 +33,12 @@ public enum PersonalImages {
     /**
      * Path for Ball Image.
      */
-    BALL_IMG("Images/Ball/MarioBall");
+    BALL_IMG("Images/Ball/MarioBall.png"),
+
+    /**
+     * Path for Paddle Image.
+     */
+    PADDLE_IMG("Images/paddle/redPaddle.png");
 
 
     private String path;
