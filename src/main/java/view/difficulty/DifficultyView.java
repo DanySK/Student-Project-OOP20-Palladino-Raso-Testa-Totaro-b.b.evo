@@ -108,13 +108,13 @@ public class DifficultyView implements Initializable {
         this.ckNormalDifficulty.selectedProperty().addListener((obs, oldV, newV) -> {
             this.controller.changeDifficulty(Difficulty.NORMAL);
             //Play Sound
-            SoundController.playSoundFx(PersonalSounds.TICK_SPECIALBUTTON.getURL().getPath());
+            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
         });
 
         this.ckHardDifficulty.selectedProperty().addListener((obs, oldV, newV) -> {
             this.controller.changeDifficulty(Difficulty.HARD);
             //Play Sound
-            SoundController.playSoundFx(PersonalSounds.TICK_SPECIALBUTTON.getURL().getPath());
+            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
         });
     }
 

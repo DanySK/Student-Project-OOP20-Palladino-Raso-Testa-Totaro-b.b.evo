@@ -29,11 +29,6 @@ public enum PersonalSounds {
     SOUND_WALL("Sounds/soundFx/Tic-Wall.wav", "SoundWall"),
 
     /***
-     * Sound generate by click event of CheckBox and Radio Button.
-     * */
-    TICK_SPECIALBUTTON("Sounds/soundFx/SoundSpecialButton.wav", "TickSpecialButton"),
-
-    /***
      * Main Menu Theme.
      * */
     MAIN_THEME("Sounds/music/mainTheme.wav", "MainMenuTheme");

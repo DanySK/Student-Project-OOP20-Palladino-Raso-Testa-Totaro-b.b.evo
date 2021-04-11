@@ -117,25 +117,25 @@ public class SettingsView implements Initializable {
             this.ckSoundFX.selectedProperty().addListener((obs, oldV, newV) -> {
                 this.controller.changeSoundFxState(newV);
                 //Play Sound
-                SoundController.playSoundFx(PersonalSounds.TICK_SPECIALBUTTON.getURL().getPath());
+                SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
             });
 
             this.ckSound.selectedProperty().addListener((obs, oldV, newV) -> {
                 this.controller.changeMusicState(newV);
                 //Play Sound
-                SoundController.playSoundFx(PersonalSounds.TICK_SPECIALBUTTON.getURL().getPath());
+                SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
             });
 
             this.rbUseLeftRight.selectedProperty().addListener((obs, oldV, newV) -> {
                 this.controller.useLeftAndRightCommand();
                 //Play Sound
-                SoundController.playSoundFx(PersonalSounds.TICK_SPECIALBUTTON.getURL().getPath());
+                SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
             });
 
             this.rbUseUpDown.selectedProperty().addListener((obs, oldV, newV) -> {
                 this.controller.useUpAndDownCommand();
                 //Play Sound
-                SoundController.playSoundFx(PersonalSounds.TICK_SPECIALBUTTON.getURL().getPath());
+                SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
             });
         }
 
