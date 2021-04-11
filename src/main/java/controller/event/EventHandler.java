@@ -56,7 +56,7 @@ public class EventHandler {
                     this.state.getBoard().removeBall((Ball) hit.getGameObj().get());
                     if (this.state.getBoard().getBalls().isEmpty()) {
                         this.state.decLives();
-                        this.state.setPhase(GamePhase.INIT);
+                        this.state.setPhase(GamePhase.START);
                     }
                 }
                 SoundController.playSound(PersonalSounds.SOUND_WALL.getURL().getPath());    //throw sound for hitting the wall
