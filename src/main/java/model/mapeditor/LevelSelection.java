@@ -45,7 +45,7 @@ public enum LevelSelection implements Iterator<LevelSelection> {
     /**
      * Level 7 location and the input to fit the iterator interface.
      */
-    LEVEL7("standardLevel/Super Mario tribute", 6, false);
+    LEVEL7("standardLevel/Super Mario tribute", 6, true);
 
     private int index;
     private String path;
