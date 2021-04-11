@@ -89,22 +89,6 @@ public class GameStateImpl implements GameState {
      * {@inheritDoc}
      */
     @Override
-    public void decLives() {
-        player.decreaseLife();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void incLives() {
-        player.increaseLife();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public int getLives() {
         return player.getLife();
     }

@@ -30,16 +30,6 @@ public interface GameState {
     void addPoint(int point);
 
     /**
-     * Decreases the player's lives.
-     */
-    void decLives();
-
-    /**
-     * Increases the player's lives.
-     */
-    void incLives();
-
-    /**
      * 
      * @return current number of lives
      */
