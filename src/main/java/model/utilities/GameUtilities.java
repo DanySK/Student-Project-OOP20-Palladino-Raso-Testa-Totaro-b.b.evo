@@ -115,12 +115,12 @@ public final class GameUtilities {
     /**
      * Convert every entity of the game width (adapted to the current resolution).
      */
-    public static final double RATIO_X = CANVAS_WIDTH / WORLD_WIDTH;
+    public static final double REAL_X = CANVAS_WIDTH / WORLD_WIDTH;
 
     /**
      * Convert every entity of the game height (adapted to the current resolution).
      */
-    public static final double RATIO_Y = CANVAS_HEIGHT / WORLD_HEIGHT;
+    public static final double REAL_Y = CANVAS_HEIGHT / WORLD_HEIGHT;
 
     /**
      * the number of bricks on the x-axis.
