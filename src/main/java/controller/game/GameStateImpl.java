@@ -2,6 +2,8 @@ package controller.game;
 
 import java.util.Arrays;
 
+import controller.BrickBreakerEvo;
+import controller.settings.SettingsControllerImpl;
 import model.entities.Ball;
 import model.entities.GameBoard;
 import model.entities.GameBoardImpl;
@@ -9,9 +11,11 @@ import model.entities.Paddle;
 import model.leaderboard.Player;
 import model.leaderboard.PlayerImpl;
 import model.mapeditor.Level;
+import model.mapeditor.LevelSelection;
 import model.settings.GameSettingsImpl;
 import model.utilities.ObjectInit;
 import model.utilities.Wall;
+import resource.routing.BackGround;
 import model.utilities.Difficulty;
 import model.utilities.GameUtilities;
 import model.utilities.Angle;
@@ -24,14 +28,16 @@ public class GameStateImpl implements GameState {
     private final GameBoard board;
     private final Level level;
     private final Player player;
-    private final GameSettingsImpl setting;
+    private final String settingFilePath = BrickBreakerEvo.SETTINGS_FOLDER + ".settings.json ";
+    private final SettingsControllerImpl setting;
 
     public GameStateImpl() {
         this.phase = GamePhase.START;
-        this.player = new PlayerImpl(player.getAlias(), 0, player.getLife(), player.getMaxNumberOfLife()); // da sistemare
-        this.setting = new GameSettingsImpl(false, false, false, false, null); // da sistemare
+        this.level = new Level(null/*brick*/, LevelSelection.LEVEL1, null/*music*/, BackGround.BACKGROUND_1);
+        this.player = new PlayerImpl(player.getAlias(), 0, player.getLife(), player.getMaxNumberOfLife()); //Li dovrei prendere da GameController
+        this.setting = new SettingsControllerImpl(settingFilePath);
         this.board = new GameBoardImpl(new Wall(GameUtilities.WORLD_WIDTH, GameUtilities.WORLD_HEIGHT), this);
-        this.board.setBricks(level.getBricks()); // da sistemare, derivante dal setting
+        this.board.setBricks(level.getBricks());
     }
 
     /**
@@ -151,6 +157,7 @@ public class GameStateImpl implements GameState {
         return this.level;
     }
 
+    //DA GUARDARE PERCHE AVENDO IL SETTING CONTROLLER A QUESTO PUNTO POTREBBE NON SERVIRE
     /**
      * {@inheritDoc}
      */
@@ -164,7 +171,7 @@ public class GameStateImpl implements GameState {
      */
     @Override
     public boolean isMusicActive() {
-        return setting.isEnableMusic();
+        return setting.isMusicEnable();
     }
 
     /**
@@ -172,7 +179,7 @@ public class GameStateImpl implements GameState {
      */
     @Override
     public boolean isEffectActive() {
-        return setting.isEnableSoundFx();
+        return setting.isSoundFxEnable();
     }
 
 }
