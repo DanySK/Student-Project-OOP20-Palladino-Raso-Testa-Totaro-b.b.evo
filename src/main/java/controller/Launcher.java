@@ -22,6 +22,5 @@ public final class Launcher {
      */
     public static void main(final String[] args) throws IOException {
         BrickBreakerEvo.main(args);
-        //LauncherImpl.launchApplication(Main.class, args);
     }
 }
