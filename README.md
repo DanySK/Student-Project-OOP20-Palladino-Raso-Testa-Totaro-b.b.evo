@@ -45,7 +45,9 @@ Il progetto ha come scopo quello di implementare la logica del famosissimo gioco
 <h2>Alex Testa</h2>
 <ul>
     <li>Gestione della GUI principale: menù, texture, font, portabilità della grafica, animazioni.</li>
-    <li>Implementazione della GUI e delle meccaniche di gioco dei livelli custom.</li>
+    <li>Gestione dei settaggi di gico</li>
+    <li>Gestione della classifica</li>
+    <li>Gestione del giocatore</li>
     <li>Gestione dell’user experience.</li>
     <li>Gestione dei suoni all’interno dei livelli</li>
 </ul>
