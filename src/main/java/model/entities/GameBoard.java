@@ -38,15 +38,9 @@ public interface GameBoard extends GameBoardEventListeners {
 
     /**
      * 
-     * @param paddle to add to the world
+     * @param paddles to add to the world
      */
-    void setPaddle(Paddle paddle);
-
-    /**
-     * 
-     * @return the paddle
-     */
-    Paddle getPaddle();
+    void setPaddle(Collection<Paddle> paddles);
 
     /**
      * 
@@ -80,19 +74,11 @@ public interface GameBoard extends GameBoardEventListeners {
 
     /**
      * the world asks the collision manager to check 
-     * if there have been collisions between wall and ball.
-     * @param ball the object to be checked
+     * if there have been collisions between wall and object.
+     * @param obj the object to be checked
      * @return on what surface the object collides
      */
-    Optional<Boundaries> checkBallCollisionsWithWall(Ball ball);
-
-    /**
-     * the world asks the collision manager to check 
-     * if there have been collisions between the paddle and ball.
-     * @param paddle the object to be checked
-     * @return on what surface the object collides
-     */
-    Optional<Boundaries> checkPaddleCollisionsWithWall(Paddle paddle);
+    Optional<Boundaries> checkGameObjCollisionsWithWall(GameObject obj);
 
     /**
      * the world asks the collision manager to check 
@@ -106,11 +92,19 @@ public interface GameBoard extends GameBoardEventListeners {
      * the world asks the collision manager to check 
      * if there have been collisions between ball and the paddle.
      * @param ball object that can collide
-     * @param paddle object that can collide
      * @return if a collision has occurred in the upper part of the player, 
      * the direction the ball will take is also calculated. 
      */
-    Pair<Optional<Boundaries>, Optional<Angle>> checkBallCollisionsWithPaddle(Ball ball, Paddle paddle);
+    Pair<Optional<Boundaries>, Optional<Angle>> checkBallCollisionsWithPaddle(Ball ball);
+
+    /**
+     * the world asks the collision manager to check 
+     * if there have been collisions between powerUp and bricks.
+     * @param pwUp object that can collide
+     * @param paddle object that can collide
+     * @return Pair of pwUp and border
+     */
+    Optional<Pair<Brick, Boundaries>> checkPowerUpCollisionsWithPaddle(PowerUp pwUp, Paddle paddle);
 
     /**
      * 
