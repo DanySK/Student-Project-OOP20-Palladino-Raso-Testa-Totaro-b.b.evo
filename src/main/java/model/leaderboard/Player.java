@@ -3,11 +3,12 @@ package model.leaderboard;
 public interface Player {
 
     /**
-     *  Method that allows to add or subtract the score to the player.
+     *  Method that allows to manipulate the score of the player,
+     *  only if it's alive.
+     *  @param operation - define an operation on the score.
      *  @param value - represents the value that must be added or subtract to the score.
-     *
      */
-    void scoreOperation(int value);
+    void scoreOperation(ScoreOperationStrategy operation, int value);
 
     /**
      *  Return an Integer that represents the value of the life.
@@ -17,12 +18,14 @@ public interface Player {
     int getLife();
 
     /**
-     *  Method that allows to add, of a one unit, the life.
+     *  Method that allows to add, of a one unit, the life
+     *  only if life does not exceed the maximum number allowed.
      */
     void increaseLife();
 
     /**
-     *  Method that allows to subtract, of a one unit, the life.
+     *  Method that allows to subtract, of a one unit, the life
+     *  only if life is greater than zero.
      */
     void decreaseLife();
 
