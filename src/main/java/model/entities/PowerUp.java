@@ -36,32 +36,33 @@ public class PowerUp extends Brick {
         //se tocca il fondo non attiva il pwrup e distrugge il gameobj
     }
 
-    /**
-     * activates the powerup when its boundaries hit the paddle.
-     * @param seconds
-     */
-    public void activatePowerUp() {
 
-        switch (this.pwtype) {
-        case DAMAGE_DOWN:
-            break;
-        case DAMAGE_UP:
-            break;
-        case LIFE_DOWN:
-            break;
-        case LIFE_UP:
-            break;
-        case SPEED_UP:
-            break;
-        case SPEED_DOWN:
-            break;
-        default:
-            break;
+    /**
+     * 
+     * @param ms amount of milliseconds to wait
+     */
+    public void waitSeconds(final float ms) {
+        try {
+            Thread.sleep((long) ms);
         }
-        //attiva il powerup
-        //aspetta X secondi 
-        //disattiva il powerUp
+        catch  (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
     }
+    
+    public void damagePowerUp(int damageModifier) {
+        
+    }
+    
+    public void lifePowerUp(int lifeModifier) {
+        
+    }
+    
+    public void speedPowerUp(float speedModifier) {
+        
+    }
+    
+    
 
     /**
      * getter for {@link PowerUpType} attribute.
