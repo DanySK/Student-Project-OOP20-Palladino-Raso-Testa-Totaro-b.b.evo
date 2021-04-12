@@ -106,12 +106,15 @@ public class DifficultyView implements Initializable {
 
         //Button StartGame Listener
         this.btnStartGame.setOnAction(event -> {
+            /*
             SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
                                     PersonalViews.SCENE_GAME.getURL(), 
                                     PersonalViews.SCENE_GAME.getTitleScene(), 
                                     this.window.getWidth(), 
                                     this.window.getHeight(),
                                     PersonalStyle.DEFAULT_STYLE.getStylePath());
+                                    */
+            //new Stage();
             this.controller.saveNewSettings();
             //Play Button CLick Sound
             SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());

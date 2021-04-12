@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.9672897196261683" maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.game.ControllerGame">
+<SplitPane dividerPositions="0.9672897196261683" maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.game.ControllerGame">
    <items>
       <AnchorPane fx:id="dashBoard" prefHeight="100.0" prefWidth="700.0" style="-fx-background-image: url('/Images/background/BlackBackground.png'); -fx-background-size: stretch;">
          <children>
