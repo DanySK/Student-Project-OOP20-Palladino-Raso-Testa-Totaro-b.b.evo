@@ -6,7 +6,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javafx.scene.paint.Color;
 import model.entities.Brick;
 import model.entities.Brick.Builder;
 import model.entities.GameObject;
@@ -15,8 +14,10 @@ import model.utilities.GameObjStatus;
 import model.utilities.GameUtilities;
 import model.utilities.Pair;
 import model.utilities.Position;
+import model.utilities.Texture;
 import resource.routing.BackGround;
 import resource.routing.PersonalSounds;
+import resource.routing.Theme;
 
 public class LevelBuilder {
 
@@ -70,13 +71,13 @@ public class LevelBuilder {
      * and the dimensions of the GameObjectEmpty built on the size of the board
      * @param x mouse coordinates mouse x coordinate
      * @param y mouse coordinates mouse y coordinate
-     * @param color color selected
-     * @param state check if is indestructible or not
+     * @param texture texture selected
+     * @param state check if is destroyable or not
      * @param durability lives remaining before destroy the brick
      * @return current game grid state
      */
     public Pair<GameObject, Boolean> brickSelected(final double x, final double y, 
-                                                    final Color color, final GameObjStatus state, final int durability) {
+                                                    final Texture texture, final GameObjStatus state, final int durability) {
         Pair<GameObject, Boolean> retState = new Pair<>(new GameObjectEmpty(new Position(0, 0), 0, 0), false);
         for (final GameObject objectEmpty : this.builderGrid.keySet()) {
             if (x > objectEmpty.getPos().getX() && x < objectEmpty.getPos().getX() + objectEmpty.getWidth() && y > objectEmpty.getPos().getY()
@@ -92,10 +93,8 @@ public class LevelBuilder {
                                                .setHeight(this.gameGrid.get(brickSelected).getX().getHeight())
                                                .setWidth(this.gameGrid.get(brickSelected).getX().getWidth())
                                                .setStatus(state)
-                                               //.setColor(color) manca un color/texture
-                                               //eventuale texture
-                                               //state destroyable
-                                               //durability 
+                                               .setTexture(texture.buildTexturePath())
+                                               .setDurability(durability)
                                                .build();
                     this.gameGrid.replace(brickSelected, new Pair<>(this.gameGrid.get(brickSelected).getX(), Optional.of(brick)));
                     retState = new Pair<>(objectEmpty, true);
@@ -124,7 +123,7 @@ public class LevelBuilder {
     /**
      * @param backGround to set
      */
-    public void setBackGround(final String backGround) {
+    public void setBackGround(final Theme backGround) {
         this.background = BackGround.getBackGroundByName(backGround);
     }
 
