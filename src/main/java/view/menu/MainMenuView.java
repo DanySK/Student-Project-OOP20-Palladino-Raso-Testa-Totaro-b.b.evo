@@ -56,6 +56,9 @@ public class MainMenuView implements Initializable {
     private Button btnSettings;
 
     @FXML
+    private Button btnCreativeMode;
+
+    @FXML
     private Button btnTutorial;
 
     @FXML
@@ -94,6 +97,13 @@ public class MainMenuView implements Initializable {
                                      this.window.getWidth(), 
                                      this.window.getHeight(),
                                      PersonalStyle.DEFAULT_STYLE.getStylePath());
+            //Play Button CLick Sound
+            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+        });
+
+        // CreativeMode Listener
+        this.btnCreativeMode.setOnAction(event -> {
+
             //Play Button CLick Sound
             SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
         });
@@ -139,6 +149,8 @@ public class MainMenuView implements Initializable {
                 .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnSettings
                 .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
+        this.btnCreativeMode
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnTutorial
                 .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnRanking
@@ -151,6 +163,7 @@ public class MainMenuView implements Initializable {
 
         this.btnPlay.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
         this.btnSettings.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+        this.btnCreativeMode.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
         this.btnTutorial.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
         this.btnRanking.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
 

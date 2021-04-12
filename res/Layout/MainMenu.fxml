@@ -33,6 +33,7 @@
                <children>
                   <Button fx:id="btnPlay" mnemonicParsing="false" prefHeight="90.0" prefWidth="557.0" styleClass="menuButton" text="Play" />
                   <Button fx:id="btnSettings" mnemonicParsing="false" prefHeight="90.0" prefWidth="557.0" styleClass="menuButton" text="Settings" />
+                  <Button fx:id="btnCreativeMode" mnemonicParsing="false" prefHeight="90.0" prefWidth="557.0" styleClass="menuButton" text="Creative Mode" />
                   <Button fx:id="btnTutorial" mnemonicParsing="false" prefHeight="90.0" prefWidth="557.0" styleClass="menuButton" text="Tutorial" />
                   <Button fx:id="btnRanking" mnemonicParsing="false" prefHeight="90.0" prefWidth="557.0" styleClass="menuButton" text="Ranking" />
                </children>

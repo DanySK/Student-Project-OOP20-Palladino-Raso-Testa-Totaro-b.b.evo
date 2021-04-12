@@ -86,12 +86,12 @@ public final class GameUtilities {
     /**
      * The minimum WIDTH number that the stage can have.
      */
-    public static final int MIN_RESIZE_WIDTH = 450;
+    public static final int MIN_RESIZE_WIDTH = 460;
 
     /**
      * The minimum HEIGHT number that the stage can have.
      */
-    public static final int MIN_RESIZE_HEIGHT = 550;
+    public static final int MIN_RESIZE_HEIGHT = 650;
     /**
      * Width of the game world (used in model World).
      */
@@ -187,8 +187,6 @@ public final class GameUtilities {
      */
     public static final int SPEED_MODIFIER = 1;
 
-
-    
 
     private GameUtilities() {
 
