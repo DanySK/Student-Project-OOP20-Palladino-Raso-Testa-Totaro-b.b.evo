@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import javafx.scene.paint.Color;
 import model.entities.Brick;
+import model.entities.Brick.Builder;
 import model.entities.GameObject;
 import model.entities.GameObjectEmpty;
 import model.utilities.GameObjStatus;
@@ -85,12 +86,13 @@ public class LevelBuilder {
                     this.gameGrid.replace(brickSelected, new Pair<>(this.gameGrid.get(brickSelected).getX(), Optional.empty()));
                     retState = new Pair<>(objectEmpty, false);
                 } else {
-                    final Builder brickBuilder = new Builder(); //BUILDER DEL BRICK, DEVE IMPLEMENTARLO LUI
+                    final Builder brickBuilder = new Builder();
                     final GameObject gameObjectEmpty = this.gameGrid.get(brickSelected).getX();
-                    final Brick brick = brickBuilder.position(new Position(gameObjectEmpty.getPos().getX(), gameObjectEmpty.getPos().getY()))
-                                               .height(this.gameGrid.get(brickSelected).getX().getHeight())
-                                               .width(this.gameGrid.get(brickSelected).getX().getWidth())
-                                               .color(color)
+                    final Brick brick = brickBuilder.setPos(new Position(gameObjectEmpty.getPos().getX(), gameObjectEmpty.getPos().getY()))
+                                               .setHeight(this.gameGrid.get(brickSelected).getX().getHeight())
+                                               .setWidth(this.gameGrid.get(brickSelected).getX().getWidth())
+                                               .setStatus(state)
+                                               //.setColor(color) manca un color/texture
                                                //eventuale texture
                                                //state destroyable
                                                //durability 
