@@ -6,7 +6,6 @@ import java.util.Map;
 import controller.input.ComponentInput;
 import controller.input.ControllerInput;
 import model.utilities.Position;
-import paranoid.model.entity.IllegalStateException;
 import model.utilities.GameObjStatus;
 import model.physics.ComponentPhysics;
 import model.utilities.Boundaries;
@@ -78,6 +77,11 @@ public class Brick extends GameObjectImpl {
          */
         public Builder setWidth(final int width) {
             this.width = width;
+            return this;
+        }
+        
+        public Builder setDurability(final int durability) {
+            this.durability = durability;
             return this;
         }
         /**
