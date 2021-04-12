@@ -3,7 +3,6 @@ package view.menu;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
 import controller.menu.SceneLoader;
 import controller.sound.SoundController;
 import javafx.animation.Animation;
@@ -57,6 +56,9 @@ public class MainMenuView implements Initializable {
     private Button btnSettings;
 
     @FXML
+    private Button btnCreativeMode;
+
+    @FXML
     private Button btnTutorial;
 
     @FXML
@@ -99,6 +101,13 @@ public class MainMenuView implements Initializable {
             SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
         });
 
+        // CreativeMode Listener
+        this.btnCreativeMode.setOnAction(event -> {
+
+            //Play Button CLick Sound
+            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+        });
+
         // Tutorial Listener
         this.btnTutorial.setOnAction(event -> {
             SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
@@ -125,6 +134,7 @@ public class MainMenuView implements Initializable {
     }
 
     private void loadAnimation() {
+        //Blink insert coin label
         final Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(1.00), evt -> this.lblCoins.setVisible(false)),
                 new KeyFrame(Duration.seconds(0.50), evt -> this.lblCoins.setVisible(true)));
@@ -139,6 +149,8 @@ public class MainMenuView implements Initializable {
                 .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnSettings
                 .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
+        this.btnCreativeMode
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnTutorial
                 .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnRanking
@@ -151,6 +163,7 @@ public class MainMenuView implements Initializable {
 
         this.btnPlay.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
         this.btnSettings.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+        this.btnCreativeMode.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
         this.btnTutorial.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
         this.btnRanking.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
 

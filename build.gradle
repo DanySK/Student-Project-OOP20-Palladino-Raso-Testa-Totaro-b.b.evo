@@ -53,4 +53,5 @@ dependencies {
     //Use to test GUI
     testCompile "org.testfx:testfx-core:4.0.16-alpha"
     testCompile "org.testfx:testfx-junit5:4.0.16-alpha"
+    
 }
