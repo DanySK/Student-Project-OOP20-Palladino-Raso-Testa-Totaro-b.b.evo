@@ -101,6 +101,7 @@ public class EventHandler {
             break;
         case SPEED_UP:
             addPoints(ScoreAttribute.POSITIVE_POWERUP.getValue());
+            this.state.getBoard().getBalls();
             break;
         case SPEED_DOWN:
             addPoints(ScoreAttribute.NEGATIVE_POWERUP.getValue());
