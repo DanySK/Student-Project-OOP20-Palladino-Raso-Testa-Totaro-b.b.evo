@@ -177,10 +177,6 @@ public final class GameUtilities {
      */
     public static final int SPEED_MODIFIER = 1;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> a9e837f80d5f1a24c633b5c6b9dbbb15e4ba347e
     private GameUtilities() {
 
     }
