@@ -106,18 +106,28 @@ public class DifficultyView implements Initializable {
 
         //Button StartGame Listener
         this.btnStartGame.setOnAction(event -> {
-            /*
-            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
-                                    PersonalViews.SCENE_GAME.getURL(), 
-                                    PersonalViews.SCENE_GAME.getTitleScene(), 
-                                    this.window.getWidth(), 
-                                    this.window.getHeight(),
-                                    PersonalStyle.DEFAULT_STYLE.getStylePath());
-                                    */
-            //new Stage();
+            //Close old resizable stage.
+            final Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            oldStage.close();
+            //Create new stage not resizable
+            final Stage playStage = new Stage();
+            playStage.setHeight(GameUtilities.SCREEN_HEIGHT);
+            playStage.setWidth(GameUtilities.SCREEN_WIDTH);
+            playStage.setResizable(false);
+
+            SceneLoader.switchScene(playStage, 
+                    PersonalViews.SCENE_GAME.getURL(), 
+                    PersonalViews.SCENE_GAME.getTitleScene(), 
+                    this.window.getWidth(), 
+                    this.window.getHeight(),
+                    PersonalStyle.DEFAULT_STYLE.getStylePath());
+
+            //Save the current game settings
             this.controller.saveNewSettings();
+
             //Play Button CLick Sound
             SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+            SoundController.stopMusic();
          });
 
         //RadioButton change difficulty

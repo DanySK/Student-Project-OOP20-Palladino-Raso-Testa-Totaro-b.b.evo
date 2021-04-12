@@ -16,12 +16,12 @@ public final class GameUtilities {
     /**
      * Width of the gui (portion adapted to the resolution).
      */
-    public static final double SCREEN_WIDTH = SCREEN_RES.getWidth() / 2; 
+    public static final double SCREEN_WIDTH = SCREEN_RES.getWidth() / 1.2; 
 
     /**
      * Height of the gui (portion adapted to the resolution).
      */
-    public static final double SCREEN_HEIGHT = SCREEN_RES.getHeight() / 2;
+    public static final double SCREEN_HEIGHT = SCREEN_RES.getHeight() / 1.2;
 
     /**
      * System Separator.
