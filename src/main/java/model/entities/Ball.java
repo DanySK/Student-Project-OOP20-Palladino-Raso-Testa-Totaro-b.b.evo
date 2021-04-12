@@ -11,9 +11,12 @@ import view.graphics.BallComponentGraphics;
 
 public final class Ball extends GameObjectImpl {
 
-    private Ball(final Position pos, final DirVector dir, final double speed, final int height, final int width) {
-        super(pos, dir, speed, height, width, new BallComponentPhysics(), new ComponentInputEmpty(), new BallComponentGraphics(), 
+    private final String texturePath;
+
+    private Ball(final Position pos, final DirVector dir, final double speed, final int height, final int width, final String tPath) {
+        super(pos, dir, speed, height, width, new BallComponentPhysics(), new ComponentInputEmpty(), new BallComponentGraphics(tPath), 
                 GameObjStatus.NOT_DESTRUCTIBLE);
+        this.texturePath = tPath;
     }
 
     @Override
@@ -47,11 +50,20 @@ public final class Ball extends GameObjectImpl {
         this.setDirVector(new DirVector(-this.getDirVector().getX(), this.getDirVector().getY()));
     }
 
+    /**
+     * 
+     * @return texture path
+     */
+    public String getTexturePath() {
+        return texturePath;
+    }
+
     public static class Builder {
 
         private int height;
         private int width;
         private double speed;
+        private String tPath;
         private Position pos;
         private DirVector dir;
 
@@ -86,6 +98,16 @@ public final class Ball extends GameObjectImpl {
 
         /**
          * 
+         * @param tPath
+         * @return return himself
+         */
+        public Builder path(final String tPath) {
+            this.tPath = tPath;
+            return this;
+        }
+
+        /**
+         * 
          * @param width
          * @return himself
          */
@@ -109,10 +131,10 @@ public final class Ball extends GameObjectImpl {
          * @return the new Ball object
          */
         public Ball build() {
-            if (this.dir == null || this.height <= 0 || this.width <= 0 || this.speed < 0 || this.pos == null) {
+            if (this.dir == null || this.height <= 0 || this.width <= 0 || this.speed < 0 || this.pos == null || this.tPath == null) {
                 throw new IllegalStateException();
             }
-            return new Ball(pos, dir, speed, height, width);
+            return new Ball(this.pos, this.dir, this.speed, this.height, this.width, this.tPath);
         }
     }
 
