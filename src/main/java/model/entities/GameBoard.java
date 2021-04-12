@@ -10,7 +10,6 @@ import controller.input.ControllerInput;
 import model.utilities.Angle;
 import model.utilities.Boundaries;
 import model.utilities.Pair;
-import model.utilities.Wall;
 
 /**
  * Interface that instantiates methods for creating the game board.
