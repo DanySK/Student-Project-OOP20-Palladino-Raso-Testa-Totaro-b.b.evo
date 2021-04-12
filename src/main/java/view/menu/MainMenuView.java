@@ -3,7 +3,6 @@ package view.menu;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
 import controller.menu.SceneLoader;
 import controller.sound.SoundController;
 import javafx.animation.Animation;
@@ -125,6 +124,7 @@ public class MainMenuView implements Initializable {
     }
 
     private void loadAnimation() {
+        //Blink insert coin label
         final Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(1.00), evt -> this.lblCoins.setVisible(false)),
                 new KeyFrame(Duration.seconds(0.50), evt -> this.lblCoins.setVisible(true)));
