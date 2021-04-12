@@ -9,7 +9,7 @@ public class PaddleComponentGraphics implements ComponentGraphics {
 
     private final Image paddleImage;
 
-    public PaddleComponentGraphics() {
+    public PaddleComponentGraphics(final String tPath) {
         this.paddleImage = new Image(PersonalImages.PADDLE_IMG.getResourceAsStream());
     }
 

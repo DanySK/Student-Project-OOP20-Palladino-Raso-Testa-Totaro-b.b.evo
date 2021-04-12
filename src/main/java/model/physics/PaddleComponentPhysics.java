@@ -23,7 +23,7 @@ public class PaddleComponentPhysics implements ComponentPhysics {
         final Paddle paddle = (Paddle) gameObject;
         final Position posPaddle = paddle.getPos();
         final DirVector dirVectPaddle = paddle.getDirVector();
-        paddle.setPos(posPaddle.sum(dirVectPaddle.mul(COST_VELOCITY * timeElapsed * paddle.getSpeed())));
+        paddle.setPos(posPaddle.sum(dirVectPaddle.mul(timeElapsed * paddle.getSpeed())));
         final Optional<Boundaries> collisionInfo = world.checkGameObjCollisionsWithWall(paddle);
         if (collisionInfo.isPresent()) {
             if (collisionInfo.get().equals(Boundaries.SIDE_RIGHT)) {

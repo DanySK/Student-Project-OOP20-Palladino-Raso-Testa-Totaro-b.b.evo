@@ -24,7 +24,7 @@ public class BallComponentPhysics implements ComponentPhysics {
         final Position posBall = ball.getPos();
         final DirVector dirVectBall = ball.getDirVector();
 
-        ball.setPos(ball.getPos().sum(dirVectBall.mul(COST_VELOCITY * timeElapsed * ball.getSpeed())));
+        ball.setPos(ball.getPos().sum(dirVectBall.mul(timeElapsed * ball.getSpeed())));
 
         final Optional<Boundaries> wallCollisionInfo = world.checkGameObjCollisionsWithWall(ball);
         if (wallCollisionInfo.isPresent()) {
