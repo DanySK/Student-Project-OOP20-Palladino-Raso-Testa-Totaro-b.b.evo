@@ -9,7 +9,7 @@ public class BallComponentGraphics implements ComponentGraphics {
 
     private final Image imageBall;
 
-    public BallComponentGraphics() {
+    public BallComponentGraphics(final String tPath) {
         this.imageBall = new Image(PersonalImages.BALL_IMG.getResourceAsStream());
     }
 

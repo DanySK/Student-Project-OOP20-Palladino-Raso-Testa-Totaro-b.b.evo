@@ -6,6 +6,7 @@ import model.utilities.Position;
 import model.utilities.PowerUpType;
 
 public class PowerUp extends Brick {
+
     private PowerUpType pwtype;
 
     private float activeTime;
@@ -13,13 +14,16 @@ public class PowerUp extends Brick {
     private int lifeModifier;
     private int damageModifier;
 
-    public PowerUp(final Position pos, final double speed, final int height, final int width, final int durability, final GameObjStatus gameObjStatus) {
-        super(pos, speed, height, width, durability, gameObjStatus);
+    private String texturePath;
+
+    public PowerUp(final Position pos, final double speed, final int height, final int width, final int durability, final GameObjStatus gameObjStatus, final String texture) {
+        super(pos, speed, height, width, durability, gameObjStatus, texture);
         this.pwtype = PowerUpType.randomPowerUpType();
         this.setActiveTime(PowerUpType.valueOf(this.pwtype.toString()).getActiveTime());
         this.setDamageModifier(PowerUpType.valueOf(this.pwtype.toString()).getDamageModifier());
         this.setLifeModifier(PowerUpType.valueOf(this.pwtype.toString()).getLifeModifier());
         this.setSpeedModifier(PowerUpType.valueOf(this.pwtype.toString()).getSpeedModifier());
+        this.texturePath = texture;
     }
 
     /**

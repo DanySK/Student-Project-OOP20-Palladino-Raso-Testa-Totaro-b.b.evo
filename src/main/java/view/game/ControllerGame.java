@@ -13,13 +13,13 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import model.utilities.GameUtilities;
 import resource.routing.BackGround;
@@ -53,10 +53,10 @@ public class ControllerGame implements Initializable {
     private Pane panel;
 
     @FXML
-    private VBox dashBoard;
+    private AnchorPane dashBoard;
 
     /**
-     * At Game.fxml load it initialize the width and height of the canvas and set his 
+     * At FinalGame.fxml load it initialize the width and height of the canvas and set his 
      * graphic context for draw entity.
      */
     @Override

@@ -3,10 +3,11 @@ package model.entities;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.sun.prism.Texture;
+
 import controller.input.ComponentInput;
 import controller.input.ControllerInput;
 import model.utilities.Position;
-import paranoid.model.entity.IllegalStateException;
 import model.utilities.GameObjStatus;
 import model.physics.ComponentPhysics;
 import model.utilities.Boundaries;
@@ -18,10 +19,12 @@ public class Brick extends GameObjectImpl {
 
     private int durability;
     private final Map<GameObject, Boundaries> hit = new HashMap<>();
+    private final String texturePath;
 
-    public Brick(final Position pos, final double speed, final int height, final int width, final int durability, final GameObjStatus status) {
+    protected Brick(final Position pos, final double speed, final int height, final int width, final int durability, final GameObjStatus status, final String texturePath) {
         super(pos, new DirVector(0, 0), speed, height, width, null, null, null, status);
         this.durability = durability;
+        this.texturePath = texturePath;
     }
 
     /**
@@ -35,13 +38,19 @@ public class Brick extends GameObjectImpl {
         private int width;
         private int durability;
         private GameObjStatus status;
+        private String texturePath;
 
         /**
          * used to build the brick.
          * @return brick builder
          */
         public Brick build() {
-            return new Brick(this.pos, this.speed, this.height, this.width, this.durability, this.status);
+            return new Brick(this.pos, this.speed, this.height, this.width, this.durability, this.status, this.texturePath);
+        }
+        
+        public Builder setTexture(final String texturePath) {
+            this.texturePath = texturePath;
+            return this;
         }
         /**
          * setter for the position. 
@@ -78,6 +87,11 @@ public class Brick extends GameObjectImpl {
          */
         public Builder setWidth(final int width) {
             this.width = width;
+            return this;
+        }
+        
+        public Builder setDurability(final int durability) {
+            this.durability = durability;
             return this;
         }
         /**

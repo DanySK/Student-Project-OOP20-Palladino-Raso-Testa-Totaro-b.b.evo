@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="100.0" maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.9672897196261683" maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.game.ControllerGame">
    <items>
-      <AnchorPane fx:id="dashBoard" prefHeight="100.0" prefWidth="600.0" style="-fx-background-image: url('/Images/background/BlackBackground.png'); -fx-background-size: stretch;">
+      <AnchorPane fx:id="dashBoard" prefHeight="100.0" prefWidth="700.0" style="-fx-background-image: url('/Images/background/BlackBackground.png'); -fx-background-size: stretch;">
          <children>
-            <Label fx:id="lblTitle" layoutX="227.0" layoutY="1.0" text="BRICK-BREAKER" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="lblTitle" layoutX="277.0" layoutY="3.0" text="BRICK-BREAKER" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
@@ -20,7 +20,7 @@
                   <Insets top="10.0" />
                </padding>
             </Label>
-            <Label fx:id="lblScore" layoutX="14.0" layoutY="21.0" text="SCORE:" textFill="WHITE">
+            <Label fx:id="lblScore" layoutX="27.0" layoutY="23.0" text="SCORE:" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -28,7 +28,7 @@
                   <Insets top="10.0" />
                </padding>
             </Label>
-            <Label fx:id="lblLives" layoutX="514.0" layoutY="21.0" text="LIVES:" textFill="WHITE">
+            <Label fx:id="lblLives" layoutX="594.0" layoutY="21.0" text="LIVES:" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -36,12 +36,12 @@
                   <Insets top="10.0" />
                </padding>
             </Label>
-            <Label fx:id="lblEsc" layoutX="14.0" layoutY="59.0" text="Press esc to return to menu" textFill="WHITE">
+            <Label fx:id="lblEsc" layoutX="27.0" layoutY="59.0" text="Press esc to return to menu" textFill="WHITE">
                <padding>
                   <Insets top="10.0" />
                </padding>
             </Label>
-            <Label fx:id="lblPlay" layoutX="410.0" layoutY="59.0" text="-- Insert Coin using space --" textFill="WHITE">
+            <Label fx:id="lblPlay" layoutX="490.0" layoutY="59.0" text="-- Insert Coin using space --" textFill="WHITE">
                <padding>
                   <Insets top="10.0" />
                </padding>

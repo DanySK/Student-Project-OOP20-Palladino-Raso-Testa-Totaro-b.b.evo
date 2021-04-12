@@ -16,12 +16,14 @@ import view.graphics.PaddleComponentGraphics;
 
 public class Paddle extends GameObjectImpl {
 
-    private static final int PADDLE_SPEED = 400;
+    private static final double PADDLE_SPEED = 0.4;
     private final Map<GameObject, Boundaries> hit = new HashMap<>();
+    private final String tPath;
 
-    public Paddle(final Position pos, final int height, final int width) {
+    public Paddle(final Position pos, final int height, final int width, final String tPath) {
         super(pos, new DirVector(0, 0), PADDLE_SPEED, height, width, new PaddleComponentPhysics(), 
-                new PaddleComponentInput(), new PaddleComponentGraphics(), GameObjStatus.NOT_DESTRUCTIBLE);
+                new PaddleComponentInput(), new PaddleComponentGraphics(tPath), GameObjStatus.NOT_DESTRUCTIBLE);
+        this.tPath = tPath;
     }
 
     /**
@@ -56,11 +58,20 @@ public class Paddle extends GameObjectImpl {
         return this.hit;
     }
 
+    /**
+     * 
+     * @return texture path
+     */
+    public String getTexturePath() {
+        return tPath;
+    }
+
     public static final class Builder {
 
         private int height;
         private int width;
         private Position pos;
+        private String tPath;
 
         /**
          * 
@@ -93,14 +104,24 @@ public class Paddle extends GameObjectImpl {
         }
 
         /**
+         * 
+         * @param tPath
+         * @return himself
+         */
+        public Builder texturePath(final String tPath) {
+            this.tPath = tPath;
+            return this;
+        }
+
+        /**
          * builds the paddle if the characteristics are valid.
          * @return the new Paddle object
          */
         public Paddle build() {
-            if (this.height <= 0 || this.width <= 0 || this.pos == null) {
+            if (this.height <= 0 || this.width <= 0 || this.pos == null || this.tPath == null) {
                 throw new IllegalStateException();
             }
-            return new Paddle(this.pos, this.height, this.width);
+            return new Paddle(this.pos, this.height, this.width, tPath);
         }
     }
 }

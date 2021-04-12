@@ -6,13 +6,13 @@ public enum Difficulty {
      * Use to set the number of lives of the player, the ball velocity 
      * and The value that will be multiplied to the score.
      */
-    NORMAL(3, 0.5, 1),
+    NORMAL(3, 0.4, 1),
 
     /**
      * Use to set the number of lives of the player, the ball velocity 
      * and The value that will be multiplied to the score.
      */
-    HARD(1, 1.0, 3);
+    HARD(1, 0.6, 3);
 
     private int numberOfLives;
     private double ballVelocity;
