@@ -100,10 +100,9 @@ public interface GameBoard extends GameBoardEventListeners {
      * the world asks the collision manager to check 
      * if there have been collisions between powerUp and bricks.
      * @param pwUp object that can collide
-     * @param paddle object that can collide
      * @return Pair of pwUp and border
      */
-    Optional<Pair<Brick, Boundaries>> checkPowerUpCollisionsWithPaddle(PowerUp pwUp, Paddle paddle);
+    Optional<Pair<PowerUp, Boundaries>> checkPowerUpCollisionsWithPaddle(PowerUp pwUp);
 
     /**
      * 

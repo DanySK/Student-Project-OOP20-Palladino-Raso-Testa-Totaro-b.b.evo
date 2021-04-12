@@ -169,9 +169,17 @@ public class GameBoardImpl implements GameBoard {
      * {@inheritDoc}
      */
     @Override
-    public Optional<Pair<Brick, Boundaries>> checkPowerUpCollisionsWithPaddle(final PowerUp pwUp, final Paddle paddle) {
-        // TODO Auto-generated method stub                      //DA FARE
-        return null;
+    public Optional<Pair<PowerUp, Boundaries>> checkPowerUpCollisionsWithPaddle(final PowerUp pwUp) {
+        Optional<Pair<PowerUp, Boundaries>> result = Optional.empty();
+        for (final var paddle : this.paddle) {
+            result = this.collision.checkPwUpCollisionWithPaddle(pwUp, paddle);
+            if (result.isPresent() && (result.get().getY().equals(Boundaries.UPPER) 
+                    || result.get().getY().equals(Boundaries.SIDE_LEFT) 
+                    || result.get().getY().equals(Boundaries.SIDE_RIGHT))) {
+                return result;
+            }
+        }
+        return result;
     }
 
     /**

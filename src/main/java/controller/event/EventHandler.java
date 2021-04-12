@@ -23,7 +23,7 @@ public class EventHandler {
 
     private final List<Event> eventList = new LinkedList<>();
     private final GameState state;
-    private int ballDamage = GameUtilities.DEFAULT_BALL_DAMAGE; //da importare dai settings e viene modificato dai powerup
+    private int ballDamage = GameUtilities.DEFAULT_BALL_DAMAGE;
     private LifeOperationStrategy lifeOperation;
     private ScoreOperationStrategy scoreOperation;
 
@@ -45,33 +45,33 @@ public class EventHandler {
                 if (checkDurability(brick)) {
                     addPoints(ScoreAttribute.BRICK_BREAK.getValue());          //add the score of the broken brick
                     this.state.getBoard().removeBrick(brick);
+                    if (hit.getGameObj().get() instanceof PowerUp) {
+                        final PowerUp pwup = (PowerUp) hit.getGameObj().get();
+                        pwup.setStatus(GameObjStatus.DROP_POWERUP);
+                        pwup.dropPowerUp();
+                    }
                 }
                 SoundController.playMusic(PersonalSounds.SOUND_BRICK.getURL().getPath());    //throw the sound for hitting the brick
-            } else if (hit.getGameObj().get() instanceof PowerUp && hit.getGameObj().get().getStatus() == GameObjStatus.DESTRUCTIBLE) {
-                final PowerUp pwup = (PowerUp) hit.getGameObj().get();
-                pwup.decreaseDurability(ballDamage);
-                addPoints(ScoreAttribute.BRICK_DAMAGED.getValue());
-                if (checkDurability(pwup)) {
-                    addPoints(ScoreAttribute.BRICK_BREAK.getValue());
-                    pwup.setStatus(GameObjStatus.DROP_POWERUP);
-                    pwup.dropPowerUp();
+            } else if (hit.getGameObj().get() instanceof PowerUp && hit.getGameObj().get().getStatus().equals(GameObjStatus.DROP_POWERUP)) {
+                if (hit.getBounds().isPresent()) {
+                    this.state.getBoard().removeBrick((PowerUp) hit.getGameObj().get());
+                } else {
+                    final PowerUp pwup = (PowerUp) hit.getGameObj().get();
+                    activatePowerUp(pwup);
+                    this.state.getBoard().removeBrick(pwup);
                 }
-            } else if (hit.getGameObj().get() instanceof PowerUp && hit.getGameObj().get().getStatus() == GameObjStatus.DROP_POWERUP) {
-                final PowerUp pwup = (PowerUp) hit.getGameObj().get();
-                activatePowerUp(pwup);
+
             } else if (hit.getGameObj().get() instanceof Paddle) {
+
                 SoundController.playSound(PersonalSounds.SOUND_PADDLE.getURL().getPath());    //throw sound for hitting the paddle
+
             } else if (hit.getBounds().isPresent()) {
                 if (hit.getBounds().get().equals(Boundaries.LOWER)) {
-                    if (hit.getGameObj().get() instanceof Ball) {
-                        this.state.getBoard().removeBall((Ball) hit.getGameObj().get());
-                        if (this.state.getBoard().getBalls().isEmpty()) {
-                            this.state.getPlayer().lifeOperation(lifeOperation, -1);
-                            addPoints(ScoreAttribute.LOST_LIFE.getValue());
-                            this.state.setPhase(GamePhase.START);
-                        }
-                    } else if (hit.getGameObj().get() instanceof PowerUp) {
-                        ///////
+                    this.state.getBoard().removeBall((Ball) hit.getGameObj().get());
+                    if (this.state.getBoard().getBalls().isEmpty()) {
+                        this.state.getPlayer().lifeOperation(lifeOperation, -1);
+                        addPoints(ScoreAttribute.LOST_LIFE.getValue());
+                        this.state.setPhase(GamePhase.START);
                     }
                 }
                 SoundController.playSound(PersonalSounds.SOUND_WALL.getURL().getPath());    //throw sound for hitting the wall
