@@ -12,39 +12,39 @@ import java.util.stream.Collectors;
 public enum BackGround implements Serializable {
 
     /**
-     * Default theme.
+     * Default theme, background
      */
-    BACKGROUND_1("Images/background/DefaultBackground.png ", Theme.DEFAULT),
+    BACKGROUND_DEFAULT("Images/background/DefaultBackground.png ", Theme.DEFAULT),
 
     /**
-     * Arkanoid theme.
+     * Arkanoid theme, background
      */
-    BACKGROUND_2("Images/background/ArkanoidBackground.png ", Theme.ARKANOID),
+    BACKGROUND_ARKANOID("Images/background/ArkanoidBackground.png ", Theme.ARKANOID),
 
     /**
-     * Galaga theme.
+     * Galaga theme, background
      */
-    BACKGROUND_3("Images/background/GalagaBackground.jpg ", Theme.GALAGA),
+    BACKGROUND_GALAGA("Images/background/GalagaBackground.jpg ", Theme.GALAGA),
 
     /**
-     * Pacman theme.
+     * Pacman theme, background
      */
-    BACKGROUND_4("Images/background/BlackBackground.png ", Theme.PACMAN),
+    BACKGROUND_PACMAN("Images/background/BlackBackground.png ", Theme.PACMAN),
 
     /**
-     * Donkey Kong theme.
+     * Donkey Kong theme, background
      */
-    BACKGROUND_5("Images/background/DonkeyKongBackground.jpeg ", Theme.DONKEY_KONG),
+    BACKGROUND_DONKEYKONG("Images/background/DonkeyKongBackground.jpeg ", Theme.DONKEY_KONG),
 
     /**
-     * Crash Bandicoot theme.
+     * Crash Bandicoot theme, background
      */
-    BACKGROUND_6("Images/background/CrashBackground1.png ", Theme.CRASH_BANDICOOT),
+    BACKGROUND_CRASH("Images/background/CrashBackground1.png ", Theme.CRASH_BANDICOOT),
 
     /**
-     * Super Mario theme.
+     * Super Mario theme, background
      */
-    BACKGROUND_7("Images/background/SuperMarioBackground.png ", Theme.SUPER_MARIO);
+    BACKGROUND_SUPERMARIO("Images/background/SuperMarioBackground.png ", Theme.SUPER_MARIO);
 
     private String path;
     private Theme theme;
@@ -80,12 +80,12 @@ public enum BackGround implements Serializable {
 
     /**
      * The reference to the enumeration of a background by name.
-     * @param name to map
+     * @param theme to map
      * @return backGround enum
      */
-    public static BackGround getBackGroundByName(final String name) {
+    public static BackGround getBackGroundByName(final Theme theme) {
         return Arrays.asList(BackGround.values()).stream()
-                                                 .filter(i -> i.getTheme().equals(name))
+                                                 .filter(i -> i.getTheme().equals(theme))
                                                  .findFirst()
                                                  .get();
     }
