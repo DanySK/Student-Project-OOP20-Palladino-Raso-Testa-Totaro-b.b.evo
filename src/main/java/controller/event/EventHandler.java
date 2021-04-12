@@ -63,11 +63,15 @@ public class EventHandler {
                 SoundController.playSound(PersonalSounds.SOUND_PADDLE.getURL().getPath());    //throw sound for hitting the paddle
             } else if (hit.getBounds().isPresent()) {
                 if (hit.getBounds().get().equals(Boundaries.LOWER)) {
-                    this.state.getBoard().removeBall((Ball) hit.getGameObj().get());
-                    if (this.state.getBoard().getBalls().isEmpty()) {
-                        this.state.getPlayer().lifeOperation(lifeOperation, -1);
-                        addPoints(ScoreAttribute.LOST_LIFE.getValue());
-                        this.state.setPhase(GamePhase.START);
+                    if (hit.getGameObj().get() instanceof Ball) {
+                        this.state.getBoard().removeBall((Ball) hit.getGameObj().get());
+                        if (this.state.getBoard().getBalls().isEmpty()) {
+                            this.state.getPlayer().lifeOperation(lifeOperation, -1);
+                            addPoints(ScoreAttribute.LOST_LIFE.getValue());
+                            this.state.setPhase(GamePhase.START);
+                        }
+                    } else if (hit.getGameObj().get() instanceof PowerUp) {
+                        ///////
                     }
                 }
                 SoundController.playSound(PersonalSounds.SOUND_WALL.getURL().getPath());    //throw sound for hitting the wall
@@ -101,10 +105,15 @@ public class EventHandler {
             break;
         case SPEED_UP:
             addPoints(ScoreAttribute.POSITIVE_POWERUP.getValue());
-            this.state.getBoard().getBalls();
+            this.state.getBoard().getBalls().forEach(e -> e.setSpeed(e.getSpeed() + pwup.getSpeedModifier()));
+            pwup.waitSeconds(pwup.getActiveTime());
+            this.state.getBoard().getBalls().forEach(e -> e.setSpeed(e.getSpeed() - pwup.getSpeedModifier()));
             break;
         case SPEED_DOWN:
             addPoints(ScoreAttribute.NEGATIVE_POWERUP.getValue());
+            this.state.getBoard().getBalls().forEach(e -> e.setSpeed(e.getSpeed() + pwup.getSpeedModifier()));
+            pwup.waitSeconds(pwup.getActiveTime());
+            this.state.getBoard().getBalls().forEach(e -> e.setSpeed(e.getSpeed() - pwup.getSpeedModifier()));
             break;
         default:
             break;
