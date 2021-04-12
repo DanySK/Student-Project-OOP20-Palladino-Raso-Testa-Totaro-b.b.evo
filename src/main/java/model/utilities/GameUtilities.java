@@ -153,16 +153,6 @@ public final class GameUtilities {
     public static final double BOTTOM_RIGHT_CORNER_Y = WORLD_HEIGHT;
 
     /**
-     * width of the wall.
-     */
-    public static final double WALL_WIDTH = 10;
-
-    /**
-     * height of the wall.
-     */
-    public static final double WALL_HEIGHT = 10;
-
-    /**
      * default damage dealt by the ball.
      */
     public static final int DEFAULT_BALL_DAMAGE = 1;
@@ -187,9 +177,6 @@ public final class GameUtilities {
      */
     public static final int SPEED_MODIFIER = 1;
 
-
-    
-
     private GameUtilities() {
 
     }
@@ -199,11 +186,10 @@ public final class GameUtilities {
      * @return position of the upper left corner
      */
     public static Position getUpperLeftCorner() {
-        return new Position(UPPER_LEFT_CORNER_X + WALL_WIDTH, UPPER_LEFT_CORNER_Y +  WALL_HEIGHT);
+        return new Position(UPPER_LEFT_CORNER_X, UPPER_LEFT_CORNER_Y);
     }
 
     public static Position getRightBottomCorner() {
-        return new Position(BOTTOM_RIGHT_CORNER_X + WALL_WIDTH, BOTTOM_RIGHT_CORNER_Y + WALL_HEIGHT);
+        return new Position(BOTTOM_RIGHT_CORNER_X, BOTTOM_RIGHT_CORNER_Y);
     }
-
 }
