@@ -28,18 +28,7 @@ public enum PersonalImages {
     /**
      * Path for Game Video Tutorial.
      */
-    TUTORIAL_VIDEO("Images/video/Tutorial.mp4"),
-
-    /**
-     * Path for Ball Image.
-     */
-    BALL_IMG("Images/ball/defaultBall.png"),
-
-    /**
-     * Path for Paddle Image.
-     */
-    PADDLE_IMG("Images/paddle/redPaddle.png");
-
+    TUTORIAL_VIDEO("Images/video/Tutorial.mp4");
 
     private String path;
 

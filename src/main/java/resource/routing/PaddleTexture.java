@@ -8,37 +8,37 @@ public enum PaddleTexture {
     /**
      * Default theme, paddle.
      */
-    PADDLE_DEFAULT("Images/paddle/defaultBall.png ", Theme.DEFAULT),
+    PADDLE_DEFAULT("Images/paddle/defaultBall.png ", "Default"),
 
     /**
      * Arkanoid theme, paddle.
      */
-    PADDLE_ARKANOID("Images/paddle/araknoidBall.png ", Theme.ARKANOID),
+    PADDLE_ARKANOID("Images/paddle/araknoidBall.png ", "Arkanoid"),
 
     /**
      * Galaga theme, paddle.
      */
-    PADDLE_GALAGA("Images/paddle/galagaBall.jpg ", Theme.GALAGA),
+    PADDLE_GALAGA("Images/paddle/galagaBall.jpg ", "Galaga"),
 
     /**
      * Pacman theme, ball.
      */
-    PADDLE_PACMAN("Images/paddle/pacmanBall.png ", Theme.PACMAN),
+    PADDLE_PACMAN("Images/paddle/pacmanBall.png ", "Pacman"),
 
     /**
      * Crash Bandicoot theme, paddle.
      */
-    PADDLE_CRASH("Images/paddle/crashBall.png ", Theme.CRASH_BANDICOOT),
+    PADDLE_CRASH("Images/paddle/crashBall.png ", "Crash"),
 
     /**
      * Super Mario theme, paddle.
      */
-    PADDLE_SUPERMARIO("Images/paddle/marioBall.png ", Theme.SUPER_MARIO);
+    PADDLE_SUPERMARIO("Images/paddle/marioBall.png ", "SuperMario");
 
     private String path;
-    private Theme theme;
+    private String theme;
 
-    PaddleTexture(final String path, final Theme theme) {
+    PaddleTexture(final String path, final String theme) {
         this.path = path;
         this.theme = theme;
     }
@@ -53,15 +53,8 @@ public enum PaddleTexture {
     /**
      * @return the name of paddle
      */
-    public Theme getTheme() {
+    public String getTheme() {
         return theme;
-    }
-
-    /**
-     * @return the String name of paddle
-     */
-    public String getStringTheme() {
-        return theme.getThemeName();
     }
 
     /**
@@ -70,7 +63,7 @@ public enum PaddleTexture {
      */
     public static List<String> getPaddleTexturedNames() {
         return Arrays.asList(PaddleTexture.values()).stream()
-                                          .map(i -> i.getStringTheme())
+                                          .map(i -> i.getTheme())
                                           .collect(Collectors.toList());
     }
 
@@ -79,7 +72,7 @@ public enum PaddleTexture {
      * @param theme to map
      * @return paddle enum
      */
-    public static PaddleTexture getPaddleTextureByName(final Theme theme) {
+    public static PaddleTexture getPaddleTextureByName(final String theme) {
         return Arrays.asList(PaddleTexture.values()).stream()
                                                  .filter(i -> i.getTheme().equals(theme))
                                                  .findFirst()

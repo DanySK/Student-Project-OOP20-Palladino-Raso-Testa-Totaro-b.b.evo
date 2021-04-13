@@ -8,42 +8,38 @@ public enum PowerUpTexture {
     /**
      * Default theme, power up texture.
      */
-    POWERUP_TEXTURE_DEFAULT("Images/PowerUpTexture/DefaultPowerUpTexture.png ", Theme.DEFAULT),
+    POWERUP_TEXTURE_DEFAULT("Images/PowerUpTexture/DefaultPowerUpTexture.png ", "Default"),
 
     /**
      * Arkanoid theme, power up texture.
      */
-    POWERUP_TEXTURE_ARKANOID("Images/PowerUpTexture/ArkanoidPowerUpTexture.png ", Theme.ARKANOID),
+    POWERUP_TEXTURE_ARKANOID("Images/PowerUpTexture/ArkanoidPowerUpTexture.png ", "Arkanoid"),
 
     /**
      * Galaga theme, power up texture.
      */
-    POWERUP_TEXTURE_GALAGA("Images/PowerUpTexture/GalagaPowerUpTexture.jpg ", Theme.GALAGA),
+    POWERUP_TEXTURE_GALAGA("Images/PowerUpTexture/GalagaPowerUpTexture.jpg ", "Galaga"),
 
     /**
      * Pacman theme, power up texture.
      */
-    POWERUP_TEXTURE_PACMAN("Images/PowerUpTexture/BlackPowerUpTexture.png ", Theme.PACMAN),
-
-    /**
-     * Donkey Kong theme, power up texture.
-     */
-    POWERUP_TEXTURE_DONKEYKONG("Images/PowerUpTexture/DonkeyKongPowerUpTexture.jpeg ", Theme.DONKEY_KONG),
+    POWERUP_TEXTURE_PACMAN("Images/PowerUpTexture/BlackPowerUpTexture.png ", "Pacman"),
 
     /**
      * Crash Bandicoot theme, power up texture.
      */
-    POWERUP_TEXTURE_CRASH("Images/PowerUpTexture/CrashPowerUpTexture.png ", Theme.CRASH_BANDICOOT),
+    POWERUP_TEXTURE_CRASH("Images/PowerUpTexture/CrashPowerUpTexture.png ", "Crash"),
 
     /**
      * Super Mario theme, power up texture.
      */
-    POWERUP_TEXTURE_SUPERMARIO("Images/PowerUpTexture/SuperMarioPowerUpTexture.png ", Theme.SUPER_MARIO);
+    POWERUP_TEXTURE_SUPERMARIO("Images/PowerUpTexture/SuperMarioPowerUpTexture.png ", "SuperMario");
 
     private String path;
-    private Theme theme;
+    private String theme;
 
-    PowerUpTexture(final String path, final Theme theme) {
+    PowerUpTexture(final String path, final String theme) {
+
         this.path = path;
         this.theme = theme;
     }
@@ -58,7 +54,7 @@ public enum PowerUpTexture {
     /**
      * @return the name of PowerUpTexture
      */
-    public Theme getTheme() {
+    public String getTheme() {
         return theme;
     }
 
@@ -66,18 +62,18 @@ public enum PowerUpTexture {
      * 
      * @return a list of all available PowerUpTexture
      */
-    public static List<Theme> getPowerupTextureNames() {
+    public static List<String> getPowerupTextureNames() {
         return Arrays.asList(PowerUpTexture.values()).stream()
                                           .map(i -> i.getTheme())
                                           .collect(Collectors.toList());
     }
 
     /**
-     * Return String to indicate the path of the source by theme.
+     * The reference to the enumeration of a powerup by name.
      * @param theme to map
      * @return String path of PowerUpTexture
      */
-    public static String getPowerUpTextureByName(final Theme theme) {
+    public static String getPowerUpTextureByName(final String theme) {
         return Arrays.asList(PowerUpTexture.values()).stream()
                                                  .filter(i -> i.getTheme().equals(theme))
                                                  .findFirst()

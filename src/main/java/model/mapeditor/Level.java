@@ -5,6 +5,8 @@ import java.util.Set;
 
 import model.entities.Brick;
 import resource.routing.BackGround;
+import resource.routing.BallTexture;
+import resource.routing.PaddleTexture;
 import resource.routing.PersonalSounds;
 
 /*
@@ -18,6 +20,8 @@ public class Level implements Serializable {
     private final String levelName;
     private final PersonalSounds music; 
     private final BackGround background;
+    private final BallTexture ball;
+    private final PaddleTexture paddle;
 
     /**
      * Set all required variables. 
@@ -25,12 +29,17 @@ public class Level implements Serializable {
      * @param levelName
      * @param music
      * @param background
+     * @param ball
+     * @param paddle
      */
-    public Level(final Set<Brick> bricks, final String levelName, final PersonalSounds music, final BackGround background) {
+    public Level(final Set<Brick> bricks, final String levelName, final PersonalSounds music, final BackGround background,
+                    final BallTexture ball, final PaddleTexture paddle) {
         this.bricks = bricks;
         this.levelName = levelName;
         this.music = music;
         this.background = background;
+        this.ball = ball;
+        this.paddle = paddle;
     }
 
     /**
@@ -62,6 +71,20 @@ public class Level implements Serializable {
      */
     public BackGround getBackground() {
         return background;
+    }
+
+    /**
+     * @return ball texture
+     */
+    public BallTexture getBallTexture() {
+        return ball;
+    }
+
+    /**
+     * @return paddle texture
+     */
+    public PaddleTexture getPaddleTexture() {
+        return paddle;
     }
 
     /**

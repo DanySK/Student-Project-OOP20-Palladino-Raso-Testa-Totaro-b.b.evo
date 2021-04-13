@@ -17,12 +17,13 @@ import model.utilities.GameObjStatus;
 import model.utilities.ScoreAttribute;
 import resource.routing.PersonalSounds;
 import model.utilities.GameUtilities;
+import model.utilities.PowerUpUtilities;
 
 public class EventHandler {
 
     private final List<Event> eventList = new LinkedList<>();
     private final GameState state;
-    private int ballDamage = GameUtilities.DEFAULT_BALL_DAMAGE;
+    private int ballDamage = PowerUpUtilities.DEFAULT_BALL_DAMAGE;
     private LifeOperationStrategy lifeOperation;
     private ScoreOperationStrategy scoreOperation;
 

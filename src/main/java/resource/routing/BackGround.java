@@ -12,44 +12,39 @@ import java.util.stream.Collectors;
 public enum BackGround implements Serializable {
 
     /**
-     * Default theme, background
+     * Default theme, background.
      */
-    BACKGROUND_DEFAULT("Images/background/DefaultBackground.png ", Theme.DEFAULT),
+    BACKGROUND_DEFAULT("Images/background/DefaultBackground.png ", "Default"),
 
     /**
-     * Arkanoid theme, background
+     * Arkanoid theme, background.
      */
-    BACKGROUND_ARKANOID("Images/background/ArkanoidBackground.png ", Theme.ARKANOID),
+    BACKGROUND_ARKANOID("Images/background/ArkanoidBackground.png ", "Arkanoid"),
 
     /**
-     * Galaga theme, background
+     * Galaga theme, background.
      */
-    BACKGROUND_GALAGA("Images/background/GalagaBackground.jpg ", Theme.GALAGA),
+    BACKGROUND_GALAGA("Images/background/GalagaBackground.jpg ", "Galaga"),
 
     /**
-     * Pacman theme, background
+     * Pacman theme, background.
      */
-    BACKGROUND_PACMAN("Images/background/BlackBackground.png ", Theme.PACMAN),
+    BACKGROUND_PACMAN("Images/background/BlackBackground.png ", "Pacman"),
 
     /**
-     * Donkey Kong theme, background
+     * Crash Bandicoot theme, background.
      */
-    BACKGROUND_DONKEYKONG("Images/background/DonkeyKongBackground.jpeg ", Theme.DONKEY_KONG),
+    BACKGROUND_CRASH("Images/background/CrashBackground1.png ", "Crash"),
 
     /**
-     * Crash Bandicoot theme, background
+     * Super Mario theme, background.
      */
-    BACKGROUND_CRASH("Images/background/CrashBackground1.png ", Theme.CRASH_BANDICOOT),
-
-    /**
-     * Super Mario theme, background
-     */
-    BACKGROUND_SUPERMARIO("Images/background/SuperMarioBackground.png ", Theme.SUPER_MARIO);
+    BACKGROUND_SUPERMARIO("Images/background/SuperMarioBackground.png ", "SuperMario");
 
     private String path;
-    private Theme theme;
+    private String theme;
 
-    BackGround(final String path, final Theme theme) {
+    BackGround(final String path, final String theme) {
         this.path = path;
         this.theme = theme;
     }
@@ -62,9 +57,9 @@ public enum BackGround implements Serializable {
     }
 
     /**
-     * @return the name of background
+     * @return the  name of background 
      */
-    public Theme getTheme() {
+    public String getTheme() {
         return theme;
     }
 
@@ -72,7 +67,7 @@ public enum BackGround implements Serializable {
      * 
      * @return a list of all available backgrounds
      */
-    public static List<Theme> getBackGroundNames() {
+    public static List<String> getBackGroundNames() {
         return Arrays.asList(BackGround.values()).stream()
                                           .map(i -> i.getTheme())
                                           .collect(Collectors.toList());
@@ -83,7 +78,7 @@ public enum BackGround implements Serializable {
      * @param theme to map
      * @return backGround enum
      */
-    public static BackGround getBackGroundByName(final Theme theme) {
+    public static BackGround getBackGroundByName(final String theme) {
         return Arrays.asList(BackGround.values()).stream()
                                                  .filter(i -> i.getTheme().equals(theme))
                                                  .findFirst()
