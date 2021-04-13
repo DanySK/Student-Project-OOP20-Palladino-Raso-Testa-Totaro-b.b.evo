@@ -117,7 +117,7 @@ public class PowerUp extends GameObjectImpl {
     public void updateGraphics(final AdapterGraphics graphicsAdapter) {
         this.getComponentGraphics().update(this, graphicsAdapter);
     }
-    
+
     /**
      * 
      * @return map
