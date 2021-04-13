@@ -57,45 +57,46 @@ public void failBallCreation() {
  */
 @Test
 public void ballMovement() {
-  final GameBoard world = new GameBoardImpl(new Wall(100, 100), null);
+  final GameBoard board = new GameBoardImpl(new Wall(100, 100), null);
   final Ball.Builder ballBuilder = new Ball.Builder();
   ballBuilder.height(ObjectInit.BALL.getInitHeight()).width(ObjectInit.BALL.getInitWidth())
           .speed(Difficulty.NORMAL.getBallVelocity());
   // north direction
   double py = Math.sin(Math.toRadians(90));
   double px = Math.cos(Math.toRadians(90));
-  ballBuilder.position(new Position(50, 50)).direction(new DirVector(px, py));
-  world.setBalls(Arrays.asList(ballBuilder.build()));
-  assertEquals(new Position(50, 50), world.getBalls().stream().findFirst().get().getPos());
-  world.updateState(10);
-  assertEquals(new Position(50, 52), world.getBalls().stream().findFirst().get().getPos());
+  ballBuilder.position(new Position(50, 50)).direction(new DirVector(px, py))
+  .path(new String("aaaa"));
+  board.setBalls(Arrays.asList(ballBuilder.build()));
+  assertEquals(new Position(50, 50), board.getBalls().stream().findFirst().get().getPos());
+  board.updateState(10);
+  assertEquals(new Position(50, 52), board.getBalls().stream().findFirst().get().getPos());
 
   // south direction
   py = Math.sin(Math.toRadians(270));
   px = Math.cos(Math.toRadians(270));
   ballBuilder.position(new Position(50, 50)).direction(new DirVector(px, py));
-  world.setBalls(Arrays.asList(ballBuilder.build()));
-  assertEquals(new Position(50, 50), world.getBalls().stream().findFirst().get().getPos());
-  world.updateState(10);
-  assertEquals(new Position(50, 48), world.getBalls().stream().findFirst().get().getPos());
+  board.setBalls(Arrays.asList(ballBuilder.build()));
+  assertEquals(new Position(50, 50), board.getBalls().stream().findFirst().get().getPos());
+  board.updateState(10);
+  assertEquals(new Position(50, 48), board.getBalls().stream().findFirst().get().getPos());
 
   // east direction
   py = Math.sin(Math.toRadians(0));
   px = Math.cos(Math.toRadians(0));
   ballBuilder.position(new Position(50, 50)).direction(new DirVector(px, py));
-  world.setBalls(Arrays.asList(ballBuilder.build()));
-  assertEquals(new Position(50, 50), world.getBalls().stream().findFirst().get().getPos());
-  world.updateState(10);
-  assertEquals(new Position(52, 50), world.getBalls().stream().findFirst().get().getPos());
+  board.setBalls(Arrays.asList(ballBuilder.build()));
+  assertEquals(new Position(50, 50), board.getBalls().stream().findFirst().get().getPos());
+  board.updateState(10);
+  assertEquals(new Position(52, 50), board.getBalls().stream().findFirst().get().getPos());
 
   // west direction
   py = Math.sin(Math.toRadians(180));
   px = Math.cos(Math.toRadians(180));
   ballBuilder.position(new Position(50, 50)).direction(new DirVector(px, py));
-  world.setBalls(Arrays.asList(ballBuilder.build()));
-  assertEquals(new Position(50, 50), world.getBalls().stream().findFirst().get().getPos());
-  world.updateState(10);
-  assertEquals(new Position(48, 50), world.getBalls().stream().findFirst().get().getPos());
+  board.setBalls(Arrays.asList(ballBuilder.build()));
+  assertEquals(new Position(50, 50), board.getBalls().stream().findFirst().get().getPos());
+  board.updateState(10);
+  assertEquals(new Position(48, 50), board.getBalls().stream().findFirst().get().getPos());
 }
 
 
