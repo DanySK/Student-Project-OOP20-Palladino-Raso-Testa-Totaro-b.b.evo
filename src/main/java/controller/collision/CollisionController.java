@@ -7,6 +7,7 @@ import model.entities.Brick;
 import model.entities.GameObject;
 import model.entities.Paddle;
 import model.entities.PowerUp;
+import model.entities.Wall;
 import model.utilities.Boundaries;
 import model.utilities.Pair;
 
@@ -23,9 +24,10 @@ public interface CollisionController {
     /**
      * Check for collisions between the object and the wall.
      * @param obj the object that can collide with the border
+     * @param wall border of the world
      * @return the side of the collision
      */
-    Optional<Boundaries> checkGameObjCollisionsWithWall(GameObject obj);
+    Optional<Boundaries> checkGameObjCollisionsWithWall(Wall wall, GameObject obj);
 
     /**
      * Check for collisions between the ball and the paddle.

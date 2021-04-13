@@ -28,6 +28,18 @@ public interface GameBoard extends GameBoardEventListeners {
      * @param ball to add to the gameboard.
      */
     void addBall(Ball ball);
+    
+    /**
+     * 
+     * @param powerup to set to the gameboard
+     */
+    void setPowerUps(Collection<PowerUp> pwup);
+
+    /**
+     * 
+     * @param powerup to add to the gameboard.
+     */
+    void addPowerUp(PowerUp pwup);
 
     /**
      * 
@@ -55,6 +67,13 @@ public interface GameBoard extends GameBoardEventListeners {
 
     /**
      * 
+     * @return all the powerups in the gameboard
+     */
+    Set<PowerUp> getPowerUp();
+
+
+    /**
+     * 
      * @return the border of the gameboard
      */
     Wall getWall();
@@ -70,6 +89,12 @@ public interface GameBoard extends GameBoardEventListeners {
      * @param brick to remove
      */
     void removeBrick(Brick brick);
+
+    /**
+     * 
+     * @param pwup to remove
+     */
+    void removePowerUp(PowerUp pwup);
 
     /**
      * the world asks the collision manager to check 
