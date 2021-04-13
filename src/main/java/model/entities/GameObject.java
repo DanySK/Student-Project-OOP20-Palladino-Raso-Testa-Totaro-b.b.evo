@@ -51,14 +51,14 @@ public interface GameObject {
     void setPos(Position pos);
 
     /**
-     * @return the velocity
+     * @return the direction of velocity
      */
     DirVector getDirVector();
 
     /**
-     * @param vel to set
+     * @param dirVel to set
      */
-    void setDirVector(DirVector vel);
+    void setDirVector(DirVector dirVel);
 
     /**
      * @param speed to set

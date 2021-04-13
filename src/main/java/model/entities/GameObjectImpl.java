@@ -12,7 +12,7 @@ import view.graphics.ComponentGraphics;
 public abstract class GameObjectImpl implements GameObject {
 
     private Position pos;
-    private DirVector vel;
+    private DirVector dirVel;
     private double speed;
     private int height;
     private int width;
@@ -21,10 +21,10 @@ public abstract class GameObjectImpl implements GameObject {
     private final ComponentGraphics graphics;
     private GameObjStatus status;
 
-    public GameObjectImpl(final Position pos, final DirVector vel, final double speed, final int height, final int width, final ComponentPhysics physics,
+    public GameObjectImpl(final Position pos, final DirVector dirVel, final double speed, final int height, final int width, final ComponentPhysics physics,
             final ComponentInput input, final ComponentGraphics graphics, final GameObjStatus status) {
         this.pos = pos;
-        this.vel = vel;
+        this.dirVel = dirVel;
         this.speed = speed;
         this.height = height;
         this.width = width;
@@ -104,15 +104,15 @@ public abstract class GameObjectImpl implements GameObject {
      */
     @Override
     public DirVector getDirVector() {
-        return this.vel;
+        return this.dirVel;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void setDirVector(final DirVector vel) {
-        this.vel = vel;
+    public void setDirVector(final DirVector dirVel) {
+        this.dirVel = dirVel;
     }
 
     /**

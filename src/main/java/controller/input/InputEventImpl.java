@@ -51,6 +51,9 @@ public class InputEventImpl implements InputEvent {
         });
     }
 
+    /**
+     * Change player status based on the key pressed.
+     */
     private void isPressing() {
         this.canvas.setOnKeyReleased(e -> {
             switch (e.getCode()) {

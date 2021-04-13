@@ -12,7 +12,7 @@ import model.utilities.Position;
 public class PaddleComponentPhysics implements ComponentPhysics {
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void update(final int timeElapsed, final GameObject gameObject, final GameBoardImpl board) {
