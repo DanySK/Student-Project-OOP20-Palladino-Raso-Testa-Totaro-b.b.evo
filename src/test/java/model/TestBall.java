@@ -27,7 +27,7 @@ public class TestBall {
      final Ball ball = new Ball.Builder().position(ObjectInit.BALL.getStartPos())
              .direction(Angle.MIDDLE_LEFT.getAngleVector().mul(-1)).height(ObjectInit.BALL.getInitHeight())
              .width(ObjectInit.BALL.getInitWidth()).speed(Difficulty.HARD.getBallVelocity())
-             .path(new String("aaaa"))                  //non c'è bisogno ora nel test
+             .path("Images/ball/defaultBall.png")                  //non c'è bisogno ora nel test
              .build();
      assertEquals(ObjectInit.BALL.getStartPos(), ball.getPos());
      assertEquals(Angle.MIDDLE_LEFT.getAngleVector().mul(-1), ball.getDirVector());
@@ -65,10 +65,10 @@ public void ballMovement() {
   double py = Math.sin(Math.toRadians(90));
   double px = Math.cos(Math.toRadians(90));
   ballBuilder.position(new Position(50, 50)).direction(new DirVector(px, py))
-  .path(new String("aaaa"));
+  .path(new String("Images/ball/defaultBall.png"));
   board.setBalls(Arrays.asList(ballBuilder.build()));
   assertEquals(new Position(50, 50), board.getBalls().stream().findFirst().get().getPos());
-  board.updateState(10);
+  board.updateState(0.001);
   assertEquals(new Position(50, 52), board.getBalls().stream().findFirst().get().getPos());
 
   // south direction
