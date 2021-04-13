@@ -16,13 +16,15 @@ import model.utilities.Pair;
 import model.utilities.Position;
 import model.utilities.Texture;
 import resource.routing.BackGround;
+import resource.routing.BallTexture;
+import resource.routing.PaddleTexture;
 import resource.routing.PersonalSounds;
 import resource.routing.Theme;
 
 public class LevelBuilder {
 
     //build the map between bricks in the board and coordinates
-    private final Map<GameObject, Pair<Integer, Integer>> builderGrid = new HashMap<>();
+    private final Map<GameObjectEmpty, Pair<Integer, Integer>> builderGrid = new HashMap<>();
     //build the map between bricks in the show and in the grid and coordinates
     private final Map<Pair<Integer, Integer>, Pair<GameObject, Optional<Brick>>> gameGrid = new HashMap<>();
 
@@ -34,6 +36,8 @@ public class LevelBuilder {
     private String levelName;
     private BackGround background;
     private PersonalSounds music;
+    private BallTexture ball;
+    private PaddleTexture paddle;
 
     public LevelBuilder() {
         int currentXpos = 0;
@@ -41,8 +45,7 @@ public class LevelBuilder {
             int currentYpos = 0;
             for (int j = 0; j < GameUtilities.BRICK_NUMBER_Y; j++) {
                 final Pair<Integer, Integer> coordinates = new Pair<>(i, j);
-                //Ho lasciato gameobject ma forse ci va gameobjectEmpty da riguardare forse, nel caso anche nelle map da sistemare
-                final GameObject objectEmpty = new GameObjectEmpty(new Position(currentXpos, currentYpos), builderBrickDimY, builderBrickDimX);
+                final GameObjectEmpty objectEmpty = new GameObjectEmpty(new Position(currentXpos, currentYpos), builderBrickDimY, builderBrickDimX);
                 this.builderGrid.put(objectEmpty, coordinates);
                 currentYpos += builderBrickDimY;
             }
@@ -53,7 +56,7 @@ public class LevelBuilder {
             int currentYpos = 0;
             for (int j = 0; j < GameUtilities.BRICK_NUMBER_Y; j++) {
                 final Pair<Integer, Integer> coordinates = new Pair<>(i, j);
-                final GameObject objectEmpty = new GameObjectEmpty(new Position(currentXpos, currentYpos), builderBrickDimY, builderBrickDimX);
+                final GameObjectEmpty objectEmpty = new GameObjectEmpty(new Position(currentXpos, currentYpos), builderBrickDimY, builderBrickDimX);
                 this.gameGrid.put(coordinates, new Pair<>(objectEmpty, Optional.empty()));
                 currentYpos += gameBrickDimY;
             }
@@ -76,10 +79,10 @@ public class LevelBuilder {
      * @param durability lives remaining before destroy the brick
      * @return current game grid state
      */
-    public Pair<GameObject, Boolean> brickSelected(final double x, final double y, 
-                                                    final Texture texture, final GameObjStatus state, final int durability) {
-        Pair<GameObject, Boolean> retState = new Pair<>(new GameObjectEmpty(new Position(0, 0), 0, 0), false);
-        for (final GameObject objectEmpty : this.builderGrid.keySet()) {
+    public Pair<GameObjectEmpty, Boolean> brickSelected(final double x, final double y, 
+                                                    final String texture, final GameObjStatus state, final int durability) {
+        Pair<GameObjectEmpty, Boolean> retState = new Pair<>(new GameObjectEmpty(new Position(0, 0), 0, 0), false);
+        for (final GameObjectEmpty objectEmpty : this.builderGrid.keySet()) {
             if (x > objectEmpty.getPos().getX() && x < objectEmpty.getPos().getX() + objectEmpty.getWidth() && y > objectEmpty.getPos().getY()
                     && y < objectEmpty.getPos().getY() + objectEmpty.getHeight()) {
                 final Pair<Integer, Integer> brickSelected = this.builderGrid.get(objectEmpty);
@@ -93,7 +96,7 @@ public class LevelBuilder {
                                                .setHeight(this.gameGrid.get(brickSelected).getX().getHeight())
                                                .setWidth(this.gameGrid.get(brickSelected).getX().getWidth())
                                                .setStatus(state)
-                                               .setTexture(texture.buildTexturePath())
+                                               .setTexture(new Texture(texture).buildBrickTexturePath())
                                                .setDurability(durability)
                                                .build();
                     this.gameGrid.replace(brickSelected, new Pair<>(this.gameGrid.get(brickSelected).getX(), Optional.of(brick)));
@@ -110,7 +113,7 @@ public class LevelBuilder {
     public Level build() {
         final Set<Brick> levelBrick = this.gameGrid.entrySet().stream()
                 .map(i -> i.getValue().getY()).filter(i -> i.isPresent()).map(i -> i.get()).collect(Collectors.toSet());
-        return new Level(levelBrick, levelName, music, background);
+        return new Level(levelBrick, levelName, music, background, ball, paddle);
     }
 
     /**
@@ -123,7 +126,7 @@ public class LevelBuilder {
     /**
      * @param backGround to set
      */
-    public void setBackGround(final Theme backGround) {
+    public void setBackGround(final String backGround) {
         this.background = BackGround.getBackGroundByName(backGround);
     }
 
@@ -132,6 +135,20 @@ public class LevelBuilder {
      */
     public void setMusic(final String music) {
         this.music = PersonalSounds.getSoundsByName(music);
+    }
+
+    /**
+     * @param ball
+     */
+    public void setBall(final String ball) {
+        this.ball = BallTexture.getBallTextureByName(ball);
+    }
+
+    /**
+     * @param paddle
+     */
+    public void setPaddle(final String paddle) {
+        this.paddle = PaddleTexture.getPaddleTextureByName(paddle);
     }
 
     /**
