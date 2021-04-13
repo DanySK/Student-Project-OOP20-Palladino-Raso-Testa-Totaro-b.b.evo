@@ -19,16 +19,25 @@ public final class Ball extends GameObjectImpl {
         this.texturePath = tPath;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updatePhysics(final int timeElapsed, final GameBoardImpl world) {
         this.getComponentPhysics().update(timeElapsed, this, world);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateInput(final ControllerInput controller) {
         this.getComponentInput().update(this, controller);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateGraphics(final AdapterGraphics graphicsAdapter) {
         this.getComponentGraphics().update(this, graphicsAdapter);
@@ -56,6 +65,41 @@ public final class Ball extends GameObjectImpl {
      */
     public String getTexturePath() {
         return texturePath;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((texturePath == null) ? 0 : texturePath.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Ball other = (Ball) obj;
+        if (texturePath == null) {
+            if (other.texturePath != null) {
+                return false;
+            }
+        } else if (!texturePath.equals(other.texturePath)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Ball [texturePath=" + texturePath + "]";
     }
 
     public static class Builder {

@@ -133,26 +133,6 @@ public final class GameUtilities {
     public static final double BRICK_NUMBER_Y = 26;
 
     /**
-     * position of the upper left corner on the x-axis.
-     */
-    public static final double UPPER_LEFT_CORNER_X = 0;
-
-    /**
-     * position of the upper left corner on the y-axis.
-     */
-    public static final double UPPER_LEFT_CORNER_Y = 0;
-
-    /**
-     * position of the bottom right corner on the x-axis.
-     */
-    public static final double BOTTOM_RIGHT_CORNER_X = WORLD_WIDTH;
-
-    /**
-     * position of the bottom right corner on the y-axis.
-     */
-    public static final double BOTTOM_RIGHT_CORNER_Y = WORLD_HEIGHT;
-
-    /**
      * default damage dealt by the ball.
      */
     public static final int DEFAULT_BALL_DAMAGE = 1;
@@ -179,17 +159,5 @@ public final class GameUtilities {
 
     private GameUtilities() {
 
-    }
-
-    /**
-     * 
-     * @return position of the upper left corner
-     */
-    public static Position getUpperLeftCorner() {
-        return new Position(UPPER_LEFT_CORNER_X, UPPER_LEFT_CORNER_Y);
-    }
-
-    public static Position getRightBottomCorner() {
-        return new Position(BOTTOM_RIGHT_CORNER_X, BOTTOM_RIGHT_CORNER_Y);
     }
 }

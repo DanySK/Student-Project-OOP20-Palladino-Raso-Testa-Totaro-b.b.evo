@@ -14,7 +14,7 @@ import model.utilities.Pair;
 public class PwUpComponentPhysics implements ComponentPhysics {
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void update(final int timeElapsed, final GameObject gameObject, final GameBoardImpl board) {

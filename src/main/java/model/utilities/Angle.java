@@ -6,7 +6,7 @@ public enum Angle {
     /**
      * Used to represent the left edge of the paddle.
      */
-    lEFT(150),
+    LEFT(150),
     /**
      * Used to represent the middle-left portion of the paddle.
      */

@@ -1,45 +1,39 @@
 
 package model.entities;
 
+import controller.input.ComponentInput;
+import controller.input.ComponentInputEmpty;
+import controller.input.ControllerInput;
+import model.physics.ComponentPhysics;
+import model.physics.PwUpComponentPhysics;
+import model.utilities.DirVector;
 import model.utilities.GameObjStatus;
 import model.utilities.Position;
 import model.utilities.PowerUpType;
+import view.graphics.AdapterGraphics;
+import view.graphics.ComponentGraphics;
+import view.graphics.PwUpComponentGraphics;
 
-public class PowerUp extends Brick {
+public class PowerUp extends GameObjectImpl {
 
-    private PowerUpType pwtype;
+    private final PowerUpType pwtype;
 
-    private float activeTime;
-    private float speedModifier;
-    private int lifeModifier;
-    private int damageModifier;
+    private final float activeTime;
+    private final float speedModifier;
+    private final int lifeModifier;
+    private final int damageModifier;
 
     private String texturePath;
 
-    public PowerUp(final Position pos, final double speed, final int height, final int width, final int durability, final GameObjStatus gameObjStatus, final String texture) {
-        super(pos, speed, height, width, durability, gameObjStatus, texture);
+    public PowerUp(final Position pos, final DirVector dirVel, final double speed, final int height, final int width, ComponentPhysics physics, ComponentInput input, ComponentGraphics graphics, final GameObjStatus status, final String texturePath) {
+        super(pos, new DirVector(0, -1), speed, height, width, physics, input, graphics, status);
         this.pwtype = PowerUpType.randomPowerUpType();
-        this.setActiveTime(PowerUpType.valueOf(this.pwtype.toString()).getActiveTime());
-        this.setDamageModifier(PowerUpType.valueOf(this.pwtype.toString()).getDamageModifier());
-        this.setLifeModifier(PowerUpType.valueOf(this.pwtype.toString()).getLifeModifier());
-        this.setSpeedModifier(PowerUpType.valueOf(this.pwtype.toString()).getSpeedModifier());
-        this.texturePath = texture;
+        this.activeTime = PowerUpType.valueOf(this.pwtype.toString()).getActiveTime();
+        this.damageModifier = PowerUpType.valueOf(this.pwtype.toString()).getDamageModifier();
+        this.lifeModifier = PowerUpType.valueOf(this.pwtype.toString()).getLifeModifier();
+        this.speedModifier = PowerUpType.valueOf(this.pwtype.toString()).getSpeedModifier();
+        this.texturePath = texturePath;
     }
-
-    /**
-     * drops the {@link PowerUp} when the {@link GameObjStatus} is set on DROP_POWERUP.
-     */
-    public void dropPowerUp() {
-
-        //richiama la view per cambiare la grafica del brick(?)
-
-        //inizia a cadere verso il basso
-
-        //se tocca il paddle attiva il powerup e distrugge il gameobj 
-
-        //se tocca il fondo non attiva il pwrup e distrugge il gameobj
-    }
-
 
     /**
      * 
@@ -71,27 +65,11 @@ public class PowerUp extends Brick {
     }
 
     /**
-     * setter for the damage modifier.
-     * @param damageModifier
-     */
-    public void setDamageModifier(final int damageModifier) {
-        this.damageModifier = damageModifier;
-    }
-
-    /**
      * getter for the life modifier. 
      * @return the life modifier
      */
     public int getLifeModifier() {
         return lifeModifier;
-    }
-
-    /**
-     * setter for the life modifier.
-     * @param lifeModifier
-     */
-    public void setLifeModifier(final int lifeModifier) {
-        this.lifeModifier = lifeModifier;
     }
 
     /**
@@ -103,14 +81,6 @@ public class PowerUp extends Brick {
     }
 
     /**
-     * setter for the speed modifier.
-     * @param speedModifier
-     */
-    public void setSpeedModifier(final float speedModifier) {
-        this.speedModifier = speedModifier;
-    }
-
-    /**
      * getter for the active time.
      * @return active time in seconds
      */
@@ -118,11 +88,24 @@ public class PowerUp extends Brick {
         return activeTime;
     }
 
-    /**
-     * setter for the active time.
-     * @param activeTime
-     */
-    public void setActiveTime(final float activeTime) {
-        this.activeTime = activeTime;
+
+    @Override
+    public void updatePhysics(int timeElapsed, GameBoardImpl board) {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+    @Override
+    public void updateInput(ControllerInput controller) {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+    @Override
+    public void updateGraphics(AdapterGraphics adapterGraphics) {
+        // TODO Auto-generated method stub
+        
     }
 }

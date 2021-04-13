@@ -19,9 +19,9 @@ import model.utilities.Pair;
 
 public class GameBoardImpl implements GameBoard {
 
-    private final Set<Ball> balls; // da guardare perche abbiamo solo una pallina
+    private final Set<Ball> balls;
     private final Set<Brick> bricks;
-    private final Set<Paddle> paddle; //dubbio qui
+    private final Set<Paddle> paddle;
     private final Wall wall;
     private final EventHandler eventHandler;
     private final CollisionController collision;
@@ -190,7 +190,7 @@ public class GameBoardImpl implements GameBoard {
         final Set<GameObject> entities = new HashSet<>();
         entities.addAll(this.balls);
         entities.addAll(this.bricks);
-        entities.addAll(this.paddle); // bisogna modificare il paddle perche non accetta optional
+        entities.addAll(this.paddle);
         return Collections.unmodifiableSet(entities);
     }
 

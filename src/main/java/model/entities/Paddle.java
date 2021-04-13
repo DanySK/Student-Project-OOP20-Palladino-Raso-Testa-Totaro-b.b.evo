@@ -9,7 +9,6 @@ import model.physics.PaddleComponentPhysics;
 import model.utilities.Boundaries;
 import model.utilities.DirVector;
 import model.utilities.GameObjStatus;
-import model.utilities.GameObjectType;
 import model.utilities.Position;
 import view.graphics.AdapterGraphics;
 import view.graphics.PaddleComponentGraphics;
@@ -64,6 +63,58 @@ public class Paddle extends GameObjectImpl {
      */
     public String getTexturePath() {
         return tPath;
+    }
+
+    /**
+     * automatically generated method.
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((hit == null) ? 0 : hit.hashCode());
+        result = prime * result + ((tPath == null) ? 0 : tPath.hashCode());
+        return result;
+    }
+
+    /**
+     * automatically generated method.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Paddle other = (Paddle) obj;
+        if (hit == null) {
+            if (other.hit != null) {
+                return false;
+            }
+        } else if (!hit.equals(other.hit)) {
+            return false;
+        }
+        if (tPath == null) {
+            if (other.tPath != null) {
+                return false;
+            }
+        } else if (!tPath.equals(other.tPath)) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * automatically generated method.
+     */
+    @Override
+    public String toString() {
+        return "Paddle [hit=" + hit + ", tPath=" + tPath + "]";
     }
 
     public static final class Builder {

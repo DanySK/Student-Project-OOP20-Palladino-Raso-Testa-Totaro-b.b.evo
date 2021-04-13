@@ -16,7 +16,7 @@ import model.utilities.Position;
 public class BallComponentPhysics implements ComponentPhysics {
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void update(final int timeElapsed, final GameObject gameObject, final GameBoardImpl board) {

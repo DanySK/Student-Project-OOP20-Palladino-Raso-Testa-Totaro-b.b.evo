@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import model.entities.Ball;
 import model.entities.Brick;
 import model.entities.Paddle;
+import model.entities.PowerUp;
 import model.utilities.GameUtilities;
 
 public class AdapterGraphicsImpl implements AdapterGraphics {
@@ -43,8 +44,23 @@ public class AdapterGraphicsImpl implements AdapterGraphics {
      */
     @Override
     public void drawBrick(final Brick brick, final Image imageBrick) {
-        // TODO Auto-generated method stub
+        final double screenPosX = getXInPixel(brick.getPos().getX());
+        final double screenPosY = getYInPixel(brick.getPos().getY());
+        final double screenWidth = getWidthInPixel(brick.getWidth());
+        final double screenHeight = getHeightInPixel(brick.getHeight());
+        this.graphics.drawImage(imageBrick, screenPosX, screenPosY, screenWidth, screenHeight);
+    }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void drawPowerUp(final PowerUp pwup, final Image pwupImage) {
+        final double screenPosX = getXInPixel(pwup.getPos().getX());
+        final double screenPosY = getYInPixel(pwup.getPos().getY());
+        final double screenWidth = getWidthInPixel(pwup.getWidth());
+        final double screenHeight = getHeightInPixel(pwup.getHeight());
+        this.graphics.drawImage(pwupImage, screenPosX, screenPosY, screenWidth, screenHeight);
     }
 
     private double getXInPixel(final double posX) {
@@ -62,4 +78,5 @@ public class AdapterGraphicsImpl implements AdapterGraphics {
     private double getHeightInPixel(final double posHeight) {
         return posHeight * GameUtilities.REAL_Y;
     }
+
 }

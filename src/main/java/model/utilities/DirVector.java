@@ -1,7 +1,13 @@
 package model.utilities;
 
-public class DirVector {
+import java.io.Serializable;
 
+/**
+ * represents a vectors to represent a direction in the plane.
+ */
+public class DirVector implements Serializable {
+
+    private static final long serialVersionUID = -5517208558432027459L;
     private final double x;
     private final double y;
 
@@ -100,11 +106,8 @@ public class DirVector {
         final DirVector other = (DirVector) obj;
         if (Double.doubleToLongBits(x) != Double.doubleToLongBits(other.x)) {
             return false;
-            //return Double.doubleToLongBits(x) == Double.doubleToLongBits(other.x); avoid pmd warning
-        }
-        if (Double.doubleToLongBits(y) != Double.doubleToLongBits(other.y)) {
+        } else if (Double.doubleToLongBits(y) != Double.doubleToLongBits(other.y)) {
             return false;
-            //return Double.doubleToLongBits(y) == Double.doubleToLongBits(other.y); avoid pmd warning
         }
         return true;
     }
