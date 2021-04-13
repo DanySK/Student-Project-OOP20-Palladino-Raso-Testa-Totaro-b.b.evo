@@ -8,18 +8,15 @@ import model.entities.Brick;
 import model.entities.GameObject;
 import model.entities.Paddle;
 import model.entities.PowerUp;
+import model.entities.Wall;
 import model.utilities.Boundaries;
-import model.utilities.GameUtilities;
 import model.utilities.Pair;
-import model.utilities.Position;
 
 /**
  * collision implementation.
  */
 public class CollisionControllerImpl implements CollisionController {
 
-    private final Position upperLeftCorner = GameUtilities.getUpperLeftCorner();
-    private final Position bottomRightCorner = GameUtilities.getRightBottomCorner();
     private final Map<Boundaries, Boolean> collision = new HashMap<>();
     private Boundaries side = null;
     private boolean isCollision = false;
@@ -28,11 +25,11 @@ public class CollisionControllerImpl implements CollisionController {
      * {@inheritDoc}
      */
     @Override
-    public Optional<Boundaries> checkGameObjCollisionsWithWall(final GameObject obj) {
-        collision.put(Boundaries.SIDE_LEFT, checkCollisions(objX(obj), upperLeftCorner.getX(), Boundaries.SIDE_RIGHT));
-        collision.put(Boundaries.SIDE_RIGHT, checkCollisions(objX(obj) + objWidth(obj), bottomRightCorner.getX(), Boundaries.SIDE_RIGHT));
-        collision.put(Boundaries.LOWER, checkCollisions(objY(obj) + objHeight(obj), upperLeftCorner.getY(), Boundaries.LOWER));
-        collision.put(Boundaries.UPPER, checkCollisions(objY(obj), bottomRightCorner.getY(), Boundaries.UPPER));
+    public Optional<Boundaries> checkGameObjCollisionsWithWall(final Wall wall, final GameObject obj) {
+        collision.put(Boundaries.SIDE_LEFT, checkCollisions(objX(obj), wall.getUpperLeftCorner().getX(), Boundaries.SIDE_RIGHT));
+        collision.put(Boundaries.SIDE_RIGHT, checkCollisions(objX(obj) + objWidth(obj), wall.getRightBottomCorner().getX(), Boundaries.SIDE_RIGHT));
+        collision.put(Boundaries.LOWER, checkCollisions(objY(obj) + objHeight(obj), wall.getUpperLeftCorner().getY(), Boundaries.LOWER));
+        collision.put(Boundaries.UPPER, checkCollisions(objY(obj), wall.getRightBottomCorner().getY(), Boundaries.UPPER));
         collision.forEach((k, v) -> {
             if (v.booleanValue()) {
                 side = k;

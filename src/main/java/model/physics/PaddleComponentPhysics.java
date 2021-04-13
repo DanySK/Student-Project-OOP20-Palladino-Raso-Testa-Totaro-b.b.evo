@@ -16,8 +16,6 @@ public class PaddleComponentPhysics implements ComponentPhysics {
      */
     @Override
     public void update(final int timeElapsed, final GameObject gameObject, final GameBoardImpl board) {
-        final Position upperLeftCorner = board.getWall().getUpperleftCorner();
-        final Position bottomRightCorner = board.getWall().getBottomRightCorner();
 
         final Paddle paddle = (Paddle) gameObject;
         final Position posPaddle = paddle.getPos();
@@ -26,9 +24,9 @@ public class PaddleComponentPhysics implements ComponentPhysics {
         final Optional<Boundaries> collisionInfo = board.checkGameObjCollisionsWithWall(paddle);
         if (collisionInfo.isPresent()) {
             if (collisionInfo.get().equals(Boundaries.SIDE_RIGHT)) {
-                paddle.setPos(new Position(bottomRightCorner.getX() - paddle.getWidth(), paddle.getPos().getY()));
+                paddle.setPos(new Position(board.getWall().getRightBottomCorner().getX() - paddle.getWidth(), paddle.getPos().getY()));
             } else {
-                paddle.setPos(new Position(upperLeftCorner.getX(), paddle.getPos().getY()));
+                paddle.setPos(new Position(board.getWall().getUpperLeftCorner().getX(), paddle.getPos().getY()));
             }
         }
     }

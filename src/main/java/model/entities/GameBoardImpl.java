@@ -158,7 +158,7 @@ public class GameBoardImpl implements GameBoard {
      */
     @Override
     public Optional<Boundaries> checkGameObjCollisionsWithWall(final GameObject obj) {
-        return this.collision.checkGameObjCollisionsWithWall(obj);
+        return this.collision.checkGameObjCollisionsWithWall(this.wall, obj);
     }
 
     /**
