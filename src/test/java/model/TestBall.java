@@ -27,7 +27,7 @@ public class TestBall {
      final Ball ball = new Ball.Builder().position(ObjectInit.BALL.getStartPos())
              .direction(Angle.MIDDLE_LEFT.getAngleVector().mul(-1)).height(ObjectInit.BALL.getInitHeight())
              .width(ObjectInit.BALL.getInitWidth()).speed(Difficulty.HARD.getBallVelocity())
-             .path("Images/ball/defaultBall.png")                  //non c'è bisogno ora nel test
+             .path("Images/ball/defaultBall.png")
              .build();
      assertEquals(ObjectInit.BALL.getStartPos(), ball.getPos());
      assertEquals(Angle.MIDDLE_LEFT.getAngleVector().mul(-1), ball.getDirVector());
@@ -45,9 +45,9 @@ public void failBallCreation() {
   assertThrows(IllegalStateException.class, () -> ballBuilder.build());
   ballBuilder.position(ObjectInit.BALL.getStartPos()).direction(null);
   assertThrows(IllegalStateException.class, () -> ballBuilder.build());
-  ballBuilder.position(ObjectInit.BALL.getStartPos()).direction(Angle.MIDDLE_LEFT.getAngleVector().mul(-1)).height(-1);
+  ballBuilder.position(ObjectInit.BALL.getStartPos()).direction(Angle.RIGHT.getAngleVector().mul(-1)).height(-1);
   assertThrows(IllegalStateException.class, () -> ballBuilder.build());
-  ballBuilder.position(ObjectInit.BALL.getStartPos()).direction(Angle.MIDDLE_LEFT.getAngleVector().mul(-1))
+  ballBuilder.position(ObjectInit.BALL.getStartPos()).direction(Angle.MIDDLE_RIGHT.getAngleVector().mul(-1))
           .height(ObjectInit.BALL.getInitHeight()).width(-1);
   assertThrows(IllegalStateException.class, () -> ballBuilder.build());
 }
@@ -60,36 +60,16 @@ public void ballMovement() {
   final GameBoard board = new GameBoardImpl(new Wall(100, 100), null);
   final Ball.Builder ballBuilder = new Ball.Builder();
   ballBuilder.height(ObjectInit.BALL.getInitHeight()).width(ObjectInit.BALL.getInitWidth())
-          .speed(Difficulty.NORMAL.getBallVelocity());
-  // north direction
-  double py = Math.sin(Math.toRadians(90));
-  double px = Math.cos(Math.toRadians(90));
-  //System.out.println(px);
-  //System.out.println(py);
-  ballBuilder.position(new Position(50, 50)).direction(new DirVector(px, py))
-  .path(new String("Images/ball/defaultBall.png"));
-  board.setBalls(Arrays.asList(ballBuilder.build()));
-  assertEquals(new Position(50, 50), board.getBalls().stream().findFirst().get().getPos());
-  board.updateState(10);
-  assertEquals(new Position(50, 54), board.getBalls().stream().findFirst().get().getPos());
+          .speed(Difficulty.NORMAL.getBallVelocity()).path(new String("Images/ball/defaultBall.png"));;
 
   // south direction
-  py = Math.sin(Math.toRadians(270));
-  px = Math.cos(Math.toRadians(270));
+  double py = Math.sin(Math.toRadians(270));
+  double px = Math.cos(Math.toRadians(270));
   ballBuilder.position(new Position(50, 50)).direction(new DirVector(px, py));
   board.setBalls(Arrays.asList(ballBuilder.build()));
   assertEquals(new Position(50, 50), board.getBalls().stream().findFirst().get().getPos());
   board.updateState(10);
-  assertEquals(new Position(50, 48), board.getBalls().stream().findFirst().get().getPos());
-
-  // east direction
-  py = Math.sin(Math.toRadians(0));
-  px = Math.cos(Math.toRadians(0));
-  ballBuilder.position(new Position(50, 50)).direction(new DirVector(px, py));
-  board.setBalls(Arrays.asList(ballBuilder.build()));
-  assertEquals(new Position(50, 50), board.getBalls().stream().findFirst().get().getPos());
-  board.updateState(10);
-  assertEquals(new Position(52, 50), board.getBalls().stream().findFirst().get().getPos());
+  assertEquals(new Position(50, 46), board.getBalls().stream().findFirst().get().getPos());
 
   // west direction
   py = Math.sin(Math.toRadians(180));
@@ -98,70 +78,91 @@ public void ballMovement() {
   board.setBalls(Arrays.asList(ballBuilder.build()));
   assertEquals(new Position(50, 50), board.getBalls().stream().findFirst().get().getPos());
   board.updateState(10);
-  assertEquals(new Position(48, 50), board.getBalls().stream().findFirst().get().getPos());
+  assertEquals(new Position(46, 50), board.getBalls().stream().findFirst().get().getPos());
+
+  // north direction
+  py = Math.sin(Math.toRadians(90));
+  px = Math.cos(Math.toRadians(90));
+  ballBuilder.position(new Position(50, 50)).direction(new DirVector(px, py));
+  board.setBalls(Arrays.asList(ballBuilder.build()));
+  assertEquals(new Position(50, 50), board.getBalls().stream().findFirst().get().getPos());
+  board.updateState(10);
+  assertEquals(new Position(50, 54), board.getBalls().stream().findFirst().get().getPos());
+
+  // east direction
+  py = Math.sin(Math.toRadians(0));
+  px = Math.cos(Math.toRadians(0));
+  ballBuilder.position(new Position(50, 50)).direction(new DirVector(px, py));
+  board.setBalls(Arrays.asList(ballBuilder.build()));
+  assertEquals(new Position(50, 50), board.getBalls().stream().findFirst().get().getPos());
+  board.updateState(10);
+  assertEquals(new Position(54, 50), board.getBalls().stream().findFirst().get().getPos());
 }
 
-
-/*    update time in the world and check that for equal time intervals, if the ball
-    has a higher speed, it will have covered a greater space.
-
+/**
+ * update time in the world and check that for equal time intervals, if the ball
+ * has a higher speed, it will have covered a greater space.
+ */
 @Test
 public void ballSpeed() {
  final double py = Math.sin(Math.toRadians(0));
  final double px = Math.cos(Math.toRadians(0));
- final GameBoard world = new GameBoardImpl(new Border(100, 100), null);
+ final GameBoard world = new GameBoardImpl(new Wall(100, 100), null);
  final Ball.Builder ballBuilder = new Ball.Builder();
  ballBuilder.height(ObjectInit.BALL.getInitHeight()).width(ObjectInit.BALL.getInitWidth()).position(new Position(50, 50))
-         .direction(new DirVector(px, py));
- // 0 speed
+         .direction(new DirVector(px, py)).path("Images/ball/defaultBall.png");
+// 0 speed
  ballBuilder.speed(0);
  world.setBalls(Arrays.asList(ballBuilder.build()));
  assertEquals(new Position(50, 50), world.getBalls().stream().findFirst().get().getPos());
- world.updateState(1_000_000);
+ world.updateState(1000);
  assertEquals(new Position(50, 50), world.getBalls().stream().findFirst().get().getPos());
 
- // 100 speed
- ballBuilder.speed(100);
+ // 0.1 speed
+ ballBuilder.speed(0.1);
  world.setBalls(Arrays.asList(ballBuilder.build()));
  assertEquals(new Position(50, 50), world.getBalls().stream().findFirst().get().getPos());
  world.updateState(10);
+ //System.out.println(world.getBalls().stream().findFirst().get().getPos());
  assertEquals(new Position(51, 50), world.getBalls().stream().findFirst().get().getPos());
 
- // 1000 speed
- ballBuilder.speed(1000);
+ // 1 speed
+ ballBuilder.speed(1);
  world.setBalls(Arrays.asList(ballBuilder.build()));
  assertEquals(new Position(50, 50), world.getBalls().stream().findFirst().get().getPos());
  world.updateState(10);
  assertEquals(new Position(60, 50), world.getBalls().stream().findFirst().get().getPos());
-}*/
+}
 
-
-/*   put the ball near the edge and update time so that the ball collides with the
-    edge. if the ball collides with a horizontal wall invert the component x of
-    the velocity vector. if the ball collides with a vertical wall invert the
-    component y of the velocity vector.
-
+/**
+ * put the ball near the edge and update time so that the ball collides with the
+ * edge. if the ball collides with a horizontal wall invert the component x of
+ * the velocity vector. if the ball collides with a vertical wall invert the
+ * component y of the velocity vector.
+ */
 @Test
-public void ballBorderPhysics() {
- // collision with border vertical
+public void ballWallPhysics() {
+ // collision with wall vertical
  double py = Math.sin(Math.toRadians(0));
  double px = Math.cos(Math.toRadians(0));
- final GameBoard world = new GameBoardImpl(new Border(100, 100), null);
+ final GameBoard world = new GameBoardImpl(new Wall(100, 100), null);
  final Ball.Builder ballBuilder = new Ball.Builder();
- ballBuilder.height(10).width(10).position(new Position(90, 50)).direction(new DirVector(px, py)).speed(100);
+ ballBuilder.height(10).width(10).position(new Position(90, 50)).direction(new DirVector(px, py))
+ .speed(0.1).path(new String("Images/ball/defaultBall.png"));
  world.setBalls(Arrays.asList(ballBuilder.build()));
  assertEquals(new DirVector(px, py), world.getBalls().stream().findFirst().get().getDirVector());
  world.updateState(10);
  assertEquals(new DirVector(-px, py), world.getBalls().stream().findFirst().get().getDirVector());
 
- // collision with border orizontal
+ // collision with wall orizontal
  px = Math.cos(Math.toRadians(225));
  py = Math.sin(Math.toRadians(255));
- ballBuilder.height(10).width(10).direction(new DirVector(px, py)).position(new Position(50, 0)).speed(100);
+ ballBuilder.height(10).width(10).direction(new DirVector(px, py)).position(new Position(50, 0))
+ .speed(0.1).speed(0.1).path(new String("Images/ball/defaultBall.png"));;
  world.setBalls(Arrays.asList(ballBuilder.build()));
  assertEquals(new DirVector(px, py), world.getBalls().stream().findFirst().get().getDirVector());
  world.updateState(10);
  assertEquals(new DirVector(px, -py), world.getBalls().stream().findFirst().get().getDirVector());
-}*/
+}
 
 }
