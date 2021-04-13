@@ -34,25 +34,29 @@ public enum PersonalSounds {
     MAIN_THEME("Sounds/music/mainTheme.wav", "MainMenuTheme"),
 
     /***
+     * Used for arkanoid level.
+     * */
+    ARKANOID_THEME("Sounds/music/arkanoid.wav", "ArkanoidTheme"),
+
+    /**
+     * Used for galaga level.
+     */
+    GALAGA_THEME("", "GalagaTheme"),
+
+    /***
      * Used for pacman level.
      * */
     PACMAN_THEME("Sounds/music/pacman.wav", "PacmanTheme"),
 
     /***
-     * Used for arkanoid level.
+     * Used for crash level.
      * */
-    ARKANOID_THEME("Sounds/music/arkanoid.wav", "ArkanoidTheme"),
+    CRASH_THEME("Sounds/music/mario.wav", "CrashTheme"),
 
     /***
      * Used for mario level.
      * */
-    MARIO_THEME("Sounds/music/mario.wav", "MarioTheme"),
-
-    /***
-     * Used for crash level.
-     * */
-    CRASH_THEME("Sounds/music/mario.wav", "CrashTheme");
-
+    MARIO_THEME("Sounds/music/mario.wav", "MarioTheme");
 
     private String path;
     private String name;
@@ -97,5 +101,17 @@ public enum PersonalSounds {
                                             .filter(i -> i.getName().equals(name))
                                             .findFirst()
                                             .get();
+    }
+
+    /**
+     * @return a list of only the song avaible for the level
+     */
+    public static List<String> getSongLevelNames() {
+        return Arrays.asList(PersonalSounds.MAIN_THEME.name, 
+                                PersonalSounds.ARKANOID_THEME.name,
+                                PersonalSounds.GALAGA_THEME.name,
+                                PersonalSounds.PACMAN_THEME.name,
+                                PersonalSounds.CRASH_THEME.name,
+                                PersonalSounds.MARIO_THEME.name);
     }
 }

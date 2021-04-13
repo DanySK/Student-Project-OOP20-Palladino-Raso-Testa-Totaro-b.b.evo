@@ -38,7 +38,12 @@ public enum PersonalViews {
     /**
      * Path for load Game Layout.
      */
-    SCENE_GAME("Layout/FinalGame.fxml", "GAME");
+    SCENE_GAME("Layout/FinalGame.fxml", "GAME"),
+
+    /**
+     * Path for load Creative mode.
+     */
+    SCENE_CREATIVEMODE("Layout/MapEditor.fxml", "CREATIVEMODE");
 
     private String path;
     private String titleScene;
