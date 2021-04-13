@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.9672897196261683" maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.game.ControllerGame">
+<SplitPane dividerPositions="0.9672897196261683" orientation="VERTICAL" prefHeight="200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.game.ControllerGame">
    <items>
       <AnchorPane fx:id="dashBoard" prefHeight="100.0" prefWidth="700.0" style="-fx-background-image: url('/Images/background/BlackBackground.png'); -fx-background-size: stretch;">
          <children>
-            <Label fx:id="lblTitle" layoutX="277.0" layoutY="3.0" text="BRICK-BREAKER" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="lblTitle" layoutX="277.0" layoutY="3.0" text="BRICK-BREAKER" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="277.0" AnchorPane.rightAnchor="261.0" AnchorPane.topAnchor="3.0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -20,7 +20,7 @@
                   <Insets top="10.0" />
                </padding>
             </Label>
-            <Label fx:id="lblScore" layoutX="27.0" layoutY="23.0" text="SCORE:" textFill="WHITE">
+            <Label fx:id="lblScore" layoutX="27.0" layoutY="25.0" text="SCORE:" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="511.0" AnchorPane.topAnchor="25.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -28,7 +28,7 @@
                   <Insets top="10.0" />
                </padding>
             </Label>
-            <Label fx:id="lblLives" layoutX="594.0" layoutY="21.0" text="LIVES:" textFill="WHITE">
+            <Label fx:id="lblLives" layoutX="499.0" layoutY="25.0" text="LIVES:" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="499.0" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="25.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -36,12 +36,12 @@
                   <Insets top="10.0" />
                </padding>
             </Label>
-            <Label fx:id="lblEsc" layoutX="27.0" layoutY="59.0" text="Press esc to return to menu" textFill="WHITE">
+            <Label fx:id="lblEsc" layoutX="27.0" layoutY="59.0" text="Press esc to return to menu" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="492.0" AnchorPane.topAnchor="59.0">
                <padding>
                   <Insets top="10.0" />
                </padding>
             </Label>
-            <Label fx:id="lblPlay" layoutX="490.0" layoutY="59.0" text="-- Insert Coin using space --" textFill="WHITE">
+            <Label fx:id="lblPlay" layoutX="490.0" layoutY="59.0" text="-- Insert Coin using space --" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="490.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="59.0">
                <padding>
                   <Insets top="10.0" />
                </padding>

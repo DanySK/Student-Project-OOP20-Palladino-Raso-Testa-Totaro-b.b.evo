@@ -36,7 +36,7 @@ public final class SceneLoader {
 
             // Load cursor Image
             final Image cursor = new Image(PersonalImages.GLOW_POINTER.getResourceAsStream());
-            newScene.setCursor(new ImageCursor(cursor, GameUtilities.CURSOR_DIMENSION, GameUtilities.CURSOR_DIMENSION));
+            newScene.setCursor(new ImageCursor(cursor));
 
             //Apply Style
             parent.getStylesheets().add(cssStylePath);

@@ -10,7 +10,7 @@ public class PwUpComponentGraphics implements ComponentGraphics {
     private final Image pwupImage;
 
     public PwUpComponentGraphics(final String tPath) {
-        this.pwupImage = new Image(PersonalImages.PADDLE_IMG.getResourceAsStream());
+        this.pwupImage = new Image(ClassLoader.getSystemResourceAsStream(tPath));
     }
 
     /**

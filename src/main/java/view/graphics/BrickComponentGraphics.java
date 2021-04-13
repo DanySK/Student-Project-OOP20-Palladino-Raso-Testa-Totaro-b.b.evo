@@ -9,8 +9,8 @@ public class BrickComponentGraphics implements ComponentGraphics {
 
     private final Image brickImage;
 
-    public BrickComponentGraphics(final String tPath) {
-        this.brickImage = new Image(PersonalImages.PADDLE_IMG.getResourceAsStream());
+    public BrickComponentGraphics(final String texturePath) {
+        this.brickImage = new Image(ClassLoader.getSystemResourceAsStream(texturePath));
     }
 
     /**

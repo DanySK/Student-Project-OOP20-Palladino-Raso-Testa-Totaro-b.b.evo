@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Map.Entry;
+import java.util.Optional;
 
 import controller.leaderboard.LeaderboardController;
 import controller.leaderboard.LeaderboardControllerImpl;
@@ -18,7 +19,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -69,9 +73,15 @@ public class RankingView implements Initializable {
     @FXML
     private Button buttonBack;
 
+    @FXML
+    private Button buttonDelete;
+
     private final Font fontColumn = Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE);
     private final LeaderboardController controller = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
     private static final String DEFAULT_TABLE_MESSAGE = "Play the game please :)";
+    private static final String DEFAULT_ALERT_TITLE = "Delete Leaderboard";
+    private static final String DEFAULT_ALERT_CONTENT = "Are you sure to delete the leaderboard?";
+    private static final int MULTIPLIER = 2;
 
      /**
      *  Method that initialize all component of scene.
@@ -99,6 +109,7 @@ public class RankingView implements Initializable {
         this.displayRanking.getColumns().setAll(this.aliasColumn, this.scoreColumn);
 
         this.displayRanking.setPlaceholder(new Label(DEFAULT_TABLE_MESSAGE));
+
     }
 
     private void loadAnimation() {
@@ -113,6 +124,8 @@ public class RankingView implements Initializable {
         this.lblTitle
         .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
         this.buttonBack
+        .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+        this.buttonDelete
         .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
     }
 
@@ -130,6 +143,11 @@ public class RankingView implements Initializable {
             SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
 
          });
+
+        /* Button delete leaderboard */
+        this.buttonDelete.setOnAction(event -> {
+            this.showAlertDialog();
+        });
 
         /* Change column font */
         this.aliasColumn.setCellFactory(new Callback<TableColumn<Entry<String, Integer>, String>, TableCell<Entry<String, Integer>, String>>() {
@@ -167,6 +185,37 @@ public class RankingView implements Initializable {
         });
     }
 
+    private void showAlertDialog() {
+        //Create alert
+        final Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle(DEFAULT_ALERT_TITLE);
+        alert.setHeaderText(DEFAULT_ALERT_CONTENT);
+        alert.setContentText(DEFAULT_ALERT_CONTENT);
+
+        //Create Button in alert
+        final ButtonType yesButton = new ButtonType("Yes");
+        final ButtonType noButton = new ButtonType("No");
+
+        alert.getButtonTypes().setAll(yesButton, noButton);
+
+        //Control the choose
+        final Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == yesButton) {
+            this.controller.clearLeaderboard();
+            //Refresh all view
+            SceneLoader.switchScene((Stage) this.window.getScene().getWindow(), 
+                    PersonalViews.SCENE_RANKING.getURL(), 
+                    PersonalViews.SCENE_RANKING.getTitleScene(), 
+                    this.window.getWidth(), 
+                    this.window.getHeight(),
+                    PersonalStyle.DEFAULT_STYLE.getStylePath());
+            //Play Button CLick Sound
+            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+        } else {
+            alert.close();
+        }
+    }
+
     private void resizable() {
 
         this.panel.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
@@ -174,6 +223,7 @@ public class RankingView implements Initializable {
         this.panel.prefWidthProperty().bind(this.window.widthProperty());
         this.lblTitle.setWrapText(true);
         this.buttonBack.prefWidthProperty().bind(this.containerBackButton.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+        this.buttonDelete.prefWidthProperty().bind(this.containerBackButton.widthProperty().divide(GameUtilities.CENTER_DIVIDER * MULTIPLIER));
         this.displayRanking.prefHeightProperty().bind(this.rankingContainer.heightProperty());
         this.displayRanking.prefWidthProperty().bind(this.rankingContainer.widthProperty());
     }

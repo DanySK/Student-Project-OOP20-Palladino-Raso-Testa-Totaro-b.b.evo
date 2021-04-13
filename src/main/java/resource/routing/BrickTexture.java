@@ -9,31 +9,31 @@ public enum BrickTexture {
     /**
      * Default theme, brick texture.
      */
-    BRICK_TEXTURE_DEFAULT("Images/BrickTexture/DefaultBrickTexture.png ", "Default"),
+    BRICK_TEXTURE_DEFAULT("Images/brick/DefaultBrickTexture.png", "Default"),
 
     /**
      * Arkanoid theme, brick texture.
      */
-    BRICK_TEXTURE_ARKANOID("Images/BrickTexture/ArkanoidBrickTexture.png ", "Arkanoid"),
+    BRICK_TEXTURE_ARKANOID("Images/brick/ArkanoidBrickTexture.png", "Arkanoid"),
 
     /**
      * Galaga theme, brick texture.
      */
-    BRICK_TEXTURE_GALAGA("Images/BrickTexture/GalagaBrickTexture.jpg ", "Galaga"),
+    BRICK_TEXTURE_GALAGA("Images/brick/GalagaBrickTexture.jpg", "Galaga"),
 
     /**
      * Pacman theme, brick texture.
      */
-    BRICK_TEXTURE_PACMAN("Images/BrickTexture/PacmanBrickTexture.png ", "Pacman"),
+    BRICK_TEXTURE_PACMAN("Images/brick/PacmanBrickTexture.png", "Pacman"),
     /**
      * Crash Bandicoot theme, brick texture.
      */
-    BRICK_TEXTURE_CRASH("Images/BrickTexture/CrashBrickTexture.png ", "Crash"),
+    BRICK_TEXTURE_CRASH("Images/brick/CrashBrickTexture.png", "Crash"),
 
     /**
      * Super Mario theme, brick texture.
      */
-    BRICK_TEXTURE_SUPERMARIO("Images/BrickTexture/SuperMarioBrickTexture.png ", "SuperMario");
+    BRICK_TEXTURE_SUPERMARIO("Images/brick/SuperMarioBrickTexture.png", "Super Mario");
 
     private String path;
     private String theme;
@@ -77,7 +77,7 @@ public enum BrickTexture {
                                                  .filter(i -> i.getTheme().equals(theme))
                                                  .findFirst()
                                                  .get()
-                                                 .toString();
+                                                 .getPath();
     }
 
 }
