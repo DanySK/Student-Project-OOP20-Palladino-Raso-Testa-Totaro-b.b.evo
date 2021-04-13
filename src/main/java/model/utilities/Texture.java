@@ -1,44 +1,41 @@
 package model.utilities;
 
+import resource.routing.BrickTexture;
+import resource.routing.PowerUpDropTexture;
+import resource.routing.PowerUpTexture;
 import resource.routing.Theme;
 
 public class Texture {
-    /**
-     * Folder for Brick texture.
-     */
-    public static final String BRICK_TEXTURE = "Images/background/";
-    /**
-     * Folder for PowerUp brick texture.
-     */
-    public static final String BRICK_POWERUP_TEXTURE = "Images/background/";
-    /**
-     * Folder for PowerUp texture.
-     */
-    public static final String POWERUP_TEXTURE = "Images/background/";
 
-    /**
-     * Format of file.
-     */
-    public static final String FILE_FORMAT = ".png";
-
-    private final String path;
-    private final Theme currentTheme;
+    private final String theme;
 
     /**
      * 
-     * @param path
      * @param theme
      */
-    public Texture(final String path, final Theme theme) {
-        this.path = path;
-        this.currentTheme = theme;
+    public Texture(final String theme) {
+        this.theme = theme;
     }
 
     /**
-     * 
-     * @return texture path 
+     * @return Path of BrickTexture
      */
-    public String buildTexturePath() {
-        return path + currentTheme.getThemeName() + FILE_FORMAT;
+    public String buildBrickTexturePath() {
+        return BrickTexture.getBrickTextureByName(theme);
     }
+
+    /**
+     * @return Path of PowerUpTexture
+     */
+    public String buildPowerUpTexturePath() {
+        return PowerUpTexture.getPowerUpTextureByName(theme);
+    }
+
+    /**
+     * @return Path of PowerUpDropTexture
+     */
+    public String buildPowerUpDropTexturePath() {
+        return PowerUpDropTexture.getPowerUpDropTextureByName(theme);
+    }
+
 }
