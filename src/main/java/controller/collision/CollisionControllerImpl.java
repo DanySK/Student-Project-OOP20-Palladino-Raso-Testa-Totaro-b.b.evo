@@ -26,10 +26,10 @@ public class CollisionControllerImpl implements CollisionController {
      */
     @Override
     public Optional<Boundaries> checkGameObjCollisionsWithWall(final Wall wall, final GameObject obj) {
-        collision.put(Boundaries.SIDE_LEFT, checkCollisions(objX(obj), wall.getUpperLeftCorner().getX(), Boundaries.SIDE_RIGHT));
+        collision.put(Boundaries.SIDE_LEFT, checkCollisions(objX(obj), wall.getUpperLeftCorner().getX(), Boundaries.SIDE_LEFT));
         collision.put(Boundaries.SIDE_RIGHT, checkCollisions(objX(obj) + objWidth(obj), wall.getRightBottomCorner().getX(), Boundaries.SIDE_RIGHT));
-        collision.put(Boundaries.LOWER, checkCollisions(objY(obj) + objHeight(obj), wall.getUpperLeftCorner().getY(), Boundaries.LOWER));
-        collision.put(Boundaries.UPPER, checkCollisions(objY(obj), wall.getRightBottomCorner().getY(), Boundaries.UPPER));
+        collision.put(Boundaries.LOWER, checkCollisions(objY(obj) + objHeight(obj), wall.getRightBottomCorner().getY(), Boundaries.LOWER));
+        collision.put(Boundaries.UPPER, checkCollisions(objY(obj), wall.getUpperLeftCorner().getY(), Boundaries.UPPER));
         collision.forEach((k, v) -> {
             if (v.booleanValue()) {
                 side = k;
@@ -94,10 +94,10 @@ public class CollisionControllerImpl implements CollisionController {
     }
 
     private void fillMap(final GameObject obj1, final GameObject obj2) {
-        this.collision.put(Boundaries.SIDE_LEFT, checkCollisions(objX(obj1), objX(obj2) + objWidth(obj2), Boundaries.SIDE_RIGHT));
-        this.collision.put(Boundaries.SIDE_RIGHT, checkCollisions(objX(obj1) + objWidth(obj1), objX(obj2), Boundaries.SIDE_RIGHT));
-        this.collision.put(Boundaries.LOWER, checkCollisions(objY(obj1) + objHeight(obj1), objY(obj2), Boundaries.LOWER));
-        this.collision.put(Boundaries.UPPER, checkCollisions(objY(obj1), objY(obj2) + objHeight(obj2), Boundaries.UPPER));
+        this.collision.put(Boundaries.SIDE_LEFT, checkCollisions(objX(obj2), objX(obj1) + objWidth(obj1), Boundaries.SIDE_LEFT));
+        this.collision.put(Boundaries.SIDE_RIGHT, checkCollisions(objX(obj2) + objWidth(obj2), objX(obj1), Boundaries.SIDE_RIGHT));
+        this.collision.put(Boundaries.LOWER, checkCollisions(objY(obj2) + objHeight(obj1), objY(obj1), Boundaries.LOWER));
+        this.collision.put(Boundaries.UPPER, checkCollisions(objY(obj2), objY(obj2) + objHeight(obj1), Boundaries.UPPER));
     }
 
     private int objHeight(final GameObject obj) {
@@ -118,8 +118,8 @@ public class CollisionControllerImpl implements CollisionController {
 
     private Boolean checkCollisions(final double obj1, final double obj2, final Boundaries bounds) {
         switch (bounds) {
-        case LOWER, SIDE_LEFT: return obj1 < obj2;
-        case UPPER, SIDE_RIGHT: return obj1 > obj2;
+        case UPPER, SIDE_LEFT: return obj1 < obj2;
+        case LOWER, SIDE_RIGHT: return obj1 > obj2;
         default: return false;
         }
     }
