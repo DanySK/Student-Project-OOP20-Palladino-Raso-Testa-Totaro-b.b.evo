@@ -3,14 +3,13 @@ package view.graphics;
 import javafx.scene.image.Image;
 import model.entities.Ball;
 import model.entities.GameObject;
-import resource.routing.PersonalImages;
 
 public class BallComponentGraphics implements ComponentGraphics {
 
     private final Image imageBall;
 
     public BallComponentGraphics(final String tPath) {
-        this.imageBall = new Image(PersonalImages.BALL_IMG.getResourceAsStream());
+        this.imageBall = new Image(tPath);
     }
 
     /**
