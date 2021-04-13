@@ -20,9 +20,12 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 import model.utilities.GameUtilities;
 import resource.routing.BackGround;
+import resource.routing.PersonalFonts;
 import view.graphics.AdapterGraphics;
 import view.graphics.AdapterGraphicsImpl;
 import model.entities.GameObject;
@@ -53,7 +56,7 @@ public class ControllerGame implements Initializable {
     private Pane panel;
 
     @FXML
-    private AnchorPane dashBoard;
+    private VBox dashBoard;
 
     /**
      * At FinalGame.fxml load it initialize the width and height of the canvas and set his 
@@ -68,15 +71,26 @@ public class ControllerGame implements Initializable {
         this.panel.setMinHeight(GameUtilities.CANVAS_HEIGHT);
         this.panel.setMaxHeight(GameUtilities.CANVAS_HEIGHT);
         this.gc = canvas.getGraphicsContext2D();
+        this.loadFont();
         this.loadAnimation();
     }
 
+    private void loadFont() {
+        this.lblTitle
+        .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
+    }
+
     private void loadAnimation() {
-        final Timeline timeline = new Timeline(
+        final Timeline timelineTitolo = new Timeline(
                 new KeyFrame(Duration.seconds(1.00), evt -> this.lblTitle.setVisible(false)),
                 new KeyFrame(Duration.seconds(0.50), evt -> this.lblTitle.setVisible(true)));
-                timeline.setCycleCount(Animation.INDEFINITE);
-                timeline.play();
+                timelineTitolo.setCycleCount(Animation.INDEFINITE);
+                timelineTitolo.play();
+        final Timeline timelineStart = new Timeline(
+                new KeyFrame(Duration.seconds(1.00), evt -> this.lblPlay.setVisible(false)),
+                new KeyFrame(Duration.seconds(0.50), evt -> this.lblPlay.setVisible(true)));
+                timelineStart.setCycleCount(Animation.INDEFINITE);
+                timelineStart.play();
     }
 
     /**
