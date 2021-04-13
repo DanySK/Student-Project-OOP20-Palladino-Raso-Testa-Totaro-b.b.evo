@@ -44,13 +44,12 @@ public class PowerUp extends GameObjectImpl {
 
     /**
      * 
-     * @param ms amount of milliseconds to wait
+     * @param ms amount of seconds to wait
      */
     public void waitSeconds(final float ms) {
         try {
-            Thread.sleep((long) ms);
-        }
-        catch  (InterruptedException ex) {
+            Thread.sleep((long) ms * 1000);
+        } catch  (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
     }
@@ -95,25 +94,28 @@ public class PowerUp extends GameObjectImpl {
         return activeTime;
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void updatePhysics(int timeElapsed, GameBoardImpl board) {
-        // TODO Auto-generated method stub
-        
+    public void updatePhysics(final int timeElapsed, final GameBoardImpl world) {
+        this.getComponentPhysics().update(timeElapsed, this, world);
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void updateInput(ControllerInput controller) {
-        // TODO Auto-generated method stub
-        
+    public void updateInput(final ControllerInput controller) {
+        this.getComponentInput().update(this, controller);
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void updateGraphics(AdapterGraphics adapterGraphics) {
-        // TODO Auto-generated method stub
-        
+    public void updateGraphics(final AdapterGraphics graphicsAdapter) {
+        this.getComponentGraphics().update(this, graphicsAdapter);
     }
     
     /**

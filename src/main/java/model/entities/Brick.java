@@ -3,19 +3,15 @@ package model.entities;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.sun.prism.Texture;
-
-import controller.input.ComponentInput;
 import controller.input.ComponentInputEmpty;
 import controller.input.ControllerInput;
 import model.utilities.Position;
 import model.utilities.GameObjStatus;
-import model.physics.ComponentPhysics;
 import model.physics.PwUpComponentPhysics;
 import model.utilities.Boundaries;
 import model.utilities.DirVector;
 import view.graphics.AdapterGraphics;
-import view.graphics.ComponentGraphics;
+import view.graphics.BrickComponentGraphics;
 import view.graphics.PwUpComponentGraphics;
 
 public class Brick extends GameObjectImpl {
@@ -25,7 +21,7 @@ public class Brick extends GameObjectImpl {
     private final String texturePath;
 
     protected Brick(final Position pos, final double speed, final int height, final int width, final int durability, final GameObjStatus status, final String texturePath) {
-        super(pos, null, speed, height, width, null, null, null, status);
+        super(pos, null, speed, height, width, null, null, new BrickComponentGraphics(texturePath), status);
         this.durability = durability;
         this.texturePath = texturePath;
     }
