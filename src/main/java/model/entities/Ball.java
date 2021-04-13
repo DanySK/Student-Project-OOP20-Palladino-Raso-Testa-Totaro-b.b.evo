@@ -23,7 +23,7 @@ public final class Ball extends GameObjectImpl {
      * {@inheritDoc}
      */
     @Override
-    public void updatePhysics(final double timeElapsed, final GameBoardImpl world) {
+    public void updatePhysics(final int timeElapsed, final GameBoardImpl world) {
         this.getComponentPhysics().update(timeElapsed, this, world);
     }
 

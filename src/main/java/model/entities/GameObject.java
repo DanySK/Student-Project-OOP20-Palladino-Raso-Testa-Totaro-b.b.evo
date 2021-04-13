@@ -74,7 +74,7 @@ public interface GameObject {
      * @param timeElapsed from game loop
      * @param board model
      */
-    void updatePhysics(double timeElapsed, GameBoardImpl board);
+    void updatePhysics(int timeElapsed, GameBoardImpl board);
 
     /**
      * @param controller of this gameObject

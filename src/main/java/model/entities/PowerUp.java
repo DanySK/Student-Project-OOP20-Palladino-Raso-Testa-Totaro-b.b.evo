@@ -97,7 +97,7 @@ public class PowerUp extends GameObjectImpl {
 
 
     @Override
-    public void updatePhysics(double timeElapsed, GameBoardImpl board) {
+    public void updatePhysics(int timeElapsed, GameBoardImpl board) {
         // TODO Auto-generated method stub
         
     }

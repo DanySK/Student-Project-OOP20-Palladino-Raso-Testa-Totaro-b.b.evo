@@ -10,7 +10,7 @@ public class ComponentPhysicsEmpty implements ComponentPhysics, Serializable {
     private static final long serialVersionUID = -4098502184492343004L;
 
     @Override
-    public void update(final double timeElapsed, final GameObject gameObject, final GameBoardImpl board) {
+    public void update(final int timeElapsed, final GameObject gameObject, final GameBoardImpl board) {
         //this physical component does nothing.
     }
 

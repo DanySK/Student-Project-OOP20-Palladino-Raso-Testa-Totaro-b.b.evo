@@ -139,7 +139,7 @@ public interface GameBoard extends GameBoardEventListeners {
      * 
      * @param d the time difference delta time
      */
-    void updateState(double d);
+    void updateState(int d);
 
     /**
      * Update paddle input component.

@@ -19,12 +19,13 @@ public class BallComponentPhysics implements ComponentPhysics {
      * {@inheritDoc}
      */
     @Override
-    public void update(final double timeElapsed, final GameObject gameObject, final GameBoardImpl board) {
+    public void update(final int timeElapsed, final GameObject gameObject, final GameBoardImpl board) {
         final Ball ball = (Ball) gameObject;
         final Position posBall = ball.getPos();
         final DirVector dirVectBall = ball.getDirVector();
 
         ball.setPos(ball.getPos().sum(dirVectBall.mul(timeElapsed * ball.getSpeed())));
+
         final Optional<Boundaries> wallCollisionInfo = board.checkGameObjCollisionsWithWall(ball);
         if (wallCollisionInfo.isPresent()) {
             ball.setPos(posBall);

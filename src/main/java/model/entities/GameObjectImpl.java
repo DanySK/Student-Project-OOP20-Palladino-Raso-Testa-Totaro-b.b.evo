@@ -156,7 +156,7 @@ public abstract class GameObjectImpl implements GameObject {
      * {@inheritDoc}
      */
     @Override
-    public abstract void updatePhysics(double timeElapsed, GameBoardImpl board);
+    public abstract void updatePhysics(int timeElapsed, GameBoardImpl board);
 
     /**
      * {@inheritDoc}
