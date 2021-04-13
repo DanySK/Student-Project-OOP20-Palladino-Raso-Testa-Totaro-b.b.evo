@@ -9,37 +9,37 @@ public enum BallTexture {
     /**
      * Default theme, ball.
      */
-    BALL_DEFAULT("Images/ball/defaultBall.png ", Theme.DEFAULT),
+    BALL_DEFAULT("Images/ball/defaultBall.png", "Default"),
 
     /**
      * Arkanoid theme, ball.
      */
-    BALL_ARKANOID("Images/ball/araknoidBall.png ", Theme.ARKANOID),
+    BALL_ARKANOID("Images/ball/arkanoidBall.png", "Arkanoid"),
 
     /**
      * Galaga theme, ball.
      */
-    BALL_GALAGA("Images/ball/galagaBall.jpg ", Theme.GALAGA),
+    BALL_GALAGA("Images/ball/galagaBall.png", "Galaga"),
 
     /**
      * Pacman theme, ball.
      */
-    BALL_PACMAN("Images/ball/pacmanBall.png ", Theme.PACMAN),
+    BALL_PACMAN("Images/ball/pacmanBall.png", "Pacman"),
 
     /**
      * Crash Bandicoot theme, ball.
      */
-    BALL_CRASH("Images/ball/crashBall.png ", Theme.CRASH_BANDICOOT),
+    BALL_CRASH("Images/ball/crashBall.png", "Crash"),
 
     /**
      * Super Mario theme, ball.
      */
-    BALL_SUPERMARIO("Images/ball/marioBall.png ", Theme.SUPER_MARIO);
+    BALL_SUPERMARIO("Images/ball/marioBall.png", "SuperMario");
 
     private String path;
-    private Theme theme;
+    private String theme;
 
-    BallTexture(final String path, final Theme theme) {
+    BallTexture(final String path, final String theme) {
         this.path = path;
         this.theme = theme;
     }
@@ -54,15 +54,8 @@ public enum BallTexture {
     /**
      * @return the name of ball
      */
-    public Theme getTheme() {
+    public String getTheme() {
         return theme;
-    }
-
-    /**
-     * @return the String name of ball
-     */
-    public String getStringTheme() {
-        return theme.getThemeName();
     }
 
     /**
@@ -71,7 +64,7 @@ public enum BallTexture {
      */
     public static List<String> getBallTexturedNames() {
         return Arrays.asList(BallTexture.values()).stream()
-                                          .map(i -> i.getStringTheme())
+                                          .map(i -> i.getTheme())
                                           .collect(Collectors.toList());
     }
 
@@ -80,7 +73,7 @@ public enum BallTexture {
      * @param theme to map
      * @return ball enum
      */
-    public static BallTexture getBallTextureByName(final Theme theme) {
+    public static BallTexture getBallTextureByName(final String theme) {
         return Arrays.asList(BallTexture.values()).stream()
                                                  .filter(i -> i.getTheme().equals(theme))
                                                  .findFirst()
