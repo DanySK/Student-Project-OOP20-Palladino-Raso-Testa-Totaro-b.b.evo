@@ -4,12 +4,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 import controller.input.ControllerInput;
+import controller.menu.SceneLoader;
 import controller.sound.SoundController;
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
 import model.entities.GameBoard;
 import model.entities.Paddle;
 import model.mapeditor.LevelSelection;
+import model.utilities.GameUtilities;
+import paranoid.controller.fxmlcontroller.GameController;
+import paranoid.view.layoutmanager.LayoutManager;
+import resource.routing.PersonalStyle;
+import resource.routing.PersonalViews;
+import view.game.ControllerGame;
 
 
 public class GameLoop implements Runnable {
@@ -18,18 +27,19 @@ public class GameLoop implements Runnable {
     private final Scene scene;
     private final GameState gameState;
     private final GameBoard board;
-
+    private final ControllerGame controllerGame;
     private final Map<Paddle, ControllerInput> inputController = new HashMap<>();
-    //private final SoundController sound;
+    private final SoundController sound;
 
 
     public GameLoop(final Scene scene) {
         this.scene = scene;
         this.gameState = new GameStateImpl();
         this.board = gameState.getBoard();
-        //this.sound = new SoundController();
+        //this.sound = new SoundController(); da ragionarci
         //this.gameController = (GameController) LayoutManager.GAME.getGuiController();
-        //this.gameController.setBackGroundImage(gameState.getLevel().getBackGround());
+        this.controllerGame = (ControllerGame) new FXMLLoader(getClass().getResource(PersonalViews.SCENE_GAME.getURL().getPath())).load();
+        this.controllerGame.setBackgroundImage(gamestate.getLevel().getBackGround);
         //this.sound.setMusicEnable(gameState.isMusicActive());
         //this.sound.setEffectEnable(gameState.isEffectActive());
         //this.board.getEventHanlder().addMusicPlayer(player);
