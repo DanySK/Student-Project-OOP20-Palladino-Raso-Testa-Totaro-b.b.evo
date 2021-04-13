@@ -43,9 +43,13 @@
             </VBox>
          </center>
          <bottom>
-            <HBox fx:id="containerBackButton" alignment="TOP_CENTER" BorderPane.alignment="CENTER">
+            <HBox fx:id="containerBackButton" alignment="TOP_CENTER" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="buttonBack" mnemonicParsing="false" styleClass="menuButton" text="Back to Menù">
+                     <HBox.margin>
+                        <Insets bottom="20.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="buttonDelete" mnemonicParsing="false" text="Delete">
                      <HBox.margin>
                         <Insets bottom="20.0" />
                      </HBox.margin></Button>
