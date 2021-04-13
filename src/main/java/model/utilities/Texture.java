@@ -3,8 +3,6 @@ package model.utilities;
 import resource.routing.BrickTexture;
 import resource.routing.PowerUpDropTexture;
 import resource.routing.PowerUpTexture;
-import resource.routing.Theme;
-
 public class Texture {
 
     private final String theme;
