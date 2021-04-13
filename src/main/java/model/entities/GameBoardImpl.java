@@ -22,6 +22,7 @@ public class GameBoardImpl implements GameBoard {
     private final Set<Ball> balls;
     private final Set<Brick> bricks;
     private final Set<Paddle> paddle;
+    private final Set<PowerUp> pwup;
     private final Wall wall;
     private final EventHandler eventHandler;
     private final CollisionController collision;
@@ -30,6 +31,7 @@ public class GameBoardImpl implements GameBoard {
         this.balls = new HashSet<>();
         this.bricks = new HashSet<>();
         this.paddle = new HashSet<>();
+        this.pwup = new HashSet<>();
         this.wall = wall;
         this.eventHandler = new EventHandler(state);
         this.collision = new CollisionControllerImpl();
@@ -56,8 +58,25 @@ public class GameBoardImpl implements GameBoard {
      * {@inheritDoc}
      */
     @Override
+    public void setPowerUps(final Collection<PowerUp> pwup) {
+        this.pwup.clear();
+        this.pwup.addAll(pwup);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void addBall(final Ball ball) {
         this.addBall(ball);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addPowerUp(final PowerUp pwup) {
+        this.addPowerUp(pwup);
     }
 
     /**
@@ -98,6 +117,14 @@ public class GameBoardImpl implements GameBoard {
      * {@inheritDoc}
      */
     @Override
+    public Set<PowerUp> getPowerUp() {
+        return this.pwup;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Wall getWall() {
         return this.wall;
     }
@@ -116,6 +143,14 @@ public class GameBoardImpl implements GameBoard {
     @Override
     public void removeBrick(final Brick brick) {
         this.bricks.remove(brick);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void removePowerUp(final PowerUp pwup) {
+        this.pwup.remove(pwup);
     }
 
     /**
@@ -217,4 +252,6 @@ public class GameBoardImpl implements GameBoard {
     public EventHandler getEventHanlder() {
         return this.eventHandler;
     }
+
+
 }
