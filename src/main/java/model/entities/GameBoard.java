@@ -37,9 +37,9 @@ public interface GameBoard extends GameBoardEventListeners {
 
     /**
      * 
-     * @param paddles to add to the world
+     * @param paddle to add to the world
      */
-    void setPaddle(Collection<Paddle> paddles);
+    void setPaddle(Paddle paddle);
 
     /**
      * 

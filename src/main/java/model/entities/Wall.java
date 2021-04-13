@@ -1,7 +1,6 @@
 
 package model.entities;
 
-import model.utilities.GameUtilities;
 import model.utilities.Position;
 
 public class Wall {
@@ -30,19 +29,19 @@ public class Wall {
         return height;
     }
 
-    /**
-     * 
-     * @return the upper left corner
-     */
-    public Position getBottomRightCorner() {
-        return GameUtilities.getRightBottomCorner();
-    }
 
     /**
      * 
-     * @return the bottom right corner
+     * @return position of the upper left corner
      */
-    public Position getUpperleftCorner() {
-        return GameUtilities.getUpperLeftCorner();
+    public Position getUpperLeftCorner() {
+        return new Position(0, 0);
+    }
+    /**
+     * 
+     * @return position of the bottom right corner
+     */
+    public Position getRightBottomCorner() {
+        return new Position(this.width, this.height);
     }
 }
