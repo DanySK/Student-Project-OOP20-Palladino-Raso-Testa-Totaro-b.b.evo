@@ -31,7 +31,27 @@ public enum PersonalSounds {
     /***
      * Main Menu Theme.
      * */
-    MAIN_THEME("Sounds/music/mainTheme.wav", "MainMenuTheme");
+    MAIN_THEME("Sounds/music/mainTheme.wav", "MainMenuTheme"),
+
+    /***
+     * Used for pacman level.
+     * */
+    PACMAN_THEME("Sounds/music/pacman.wav", "PacmanTheme"),
+
+    /***
+     * Used for arkanoid level.
+     * */
+    ARKANOID_THEME("Sounds/music/arkanoid.wav", "ArkanoidTheme"),
+
+    /***
+     * Used for mario level.
+     * */
+    MARIO_THEME("Sounds/music/mario.wav", "MarioTheme"),
+
+    /***
+     * Used for crash level.
+     * */
+    CRASH_THEME("Sounds/music/mario.wav", "CrashTheme");
 
 
     private String path;
