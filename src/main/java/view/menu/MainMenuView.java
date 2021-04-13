@@ -103,6 +103,12 @@ public class MainMenuView implements Initializable {
 
         // CreativeMode Listener
         this.btnCreativeMode.setOnAction(event -> {
+            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                                     PersonalViews.SCENE_CREATIVEMODE.getURL(), 
+                                     PersonalViews.SCENE_CREATIVEMODE.getTitleScene(), 
+                                     this.window.getWidth(), 
+                                     this.window.getHeight(),
+                                     PersonalStyle.DEFAULT_STYLE.getStylePath());
 
             //Play Button CLick Sound
             SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
