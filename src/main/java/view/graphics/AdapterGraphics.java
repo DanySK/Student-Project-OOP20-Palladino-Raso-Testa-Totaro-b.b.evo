@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import model.entities.Ball;
 import model.entities.Brick;
 import model.entities.Paddle;
+import model.entities.PowerUp;
 
 public interface AdapterGraphics {
 
@@ -27,4 +28,11 @@ public interface AdapterGraphics {
      * @param imageBrick the image to use
      */
     void drawBrick(Brick brick, Image imageBrick);
+
+    /**
+     * allows to draw the brick with the characteristics of the graphic component.
+     * @param pwup the object to draw
+     * @param pwupImage the image to use
+     */
+    void drawPowerUp(PowerUp pwup, Image pwupImage);
 }
