@@ -64,12 +64,14 @@ public void ballMovement() {
   // north direction
   double py = Math.sin(Math.toRadians(90));
   double px = Math.cos(Math.toRadians(90));
+  //System.out.println(px);
+  //System.out.println(py);
   ballBuilder.position(new Position(50, 50)).direction(new DirVector(px, py))
   .path(new String("Images/ball/defaultBall.png"));
   board.setBalls(Arrays.asList(ballBuilder.build()));
   assertEquals(new Position(50, 50), board.getBalls().stream().findFirst().get().getPos());
-  board.updateState(0.001);
-  assertEquals(new Position(50, 52), board.getBalls().stream().findFirst().get().getPos());
+  board.updateState(10);
+  assertEquals(new Position(50, 54), board.getBalls().stream().findFirst().get().getPos());
 
   // south direction
   py = Math.sin(Math.toRadians(270));
