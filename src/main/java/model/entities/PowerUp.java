@@ -1,18 +1,21 @@
 
 package model.entities;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import controller.input.ComponentInput;
 import controller.input.ComponentInputEmpty;
 import controller.input.ControllerInput;
 import model.physics.ComponentPhysics;
 import model.physics.PwUpComponentPhysics;
+import model.utilities.Boundaries;
 import model.utilities.DirVector;
 import model.utilities.GameObjStatus;
 import model.utilities.Position;
 import model.utilities.PowerUpType;
 import view.graphics.AdapterGraphics;
 import view.graphics.ComponentGraphics;
-import view.graphics.PwUpComponentGraphics;
 
 public class PowerUp extends GameObjectImpl {
 
@@ -25,7 +28,11 @@ public class PowerUp extends GameObjectImpl {
 
     private String texturePath;
 
-    public PowerUp(final Position pos, final DirVector dirVel, final double speed, final int height, final int width, ComponentPhysics physics, ComponentInput input, ComponentGraphics graphics, final GameObjStatus status, final String texturePath) {
+    private final Map<GameObject, Boundaries> hit = new HashMap<>();
+
+    public PowerUp(final Position pos, final DirVector dirVel, final double speed, final int height, final int width,
+            final ComponentPhysics physics, final ComponentInput input, final ComponentGraphics graphics,
+            final GameObjStatus status, final String texturePath) {
         super(pos, new DirVector(0, -1), speed, height, width, physics, input, graphics, status);
         this.pwtype = PowerUpType.randomPowerUpType();
         this.activeTime = PowerUpType.valueOf(this.pwtype.toString()).getActiveTime();
@@ -107,5 +114,13 @@ public class PowerUp extends GameObjectImpl {
     public void updateGraphics(AdapterGraphics adapterGraphics) {
         // TODO Auto-generated method stub
         
+    }
+    
+    /**
+     * 
+     * @return map
+     */
+    public Map<GameObject, Boundaries> getHit() {
+        return this.hit;
     }
 }

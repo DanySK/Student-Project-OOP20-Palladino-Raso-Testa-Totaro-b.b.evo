@@ -137,9 +137,9 @@ public interface GameBoard extends GameBoardEventListeners {
 
     /**
      * 
-     * @param timeElapsed the time difference delta time
+     * @param d the time difference delta time
      */
-    void updateState(int timeElapsed);
+    void updateState(int d);
 
     /**
      * Update paddle input component.

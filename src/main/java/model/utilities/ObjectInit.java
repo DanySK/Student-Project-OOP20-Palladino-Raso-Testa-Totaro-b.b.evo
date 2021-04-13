@@ -10,7 +10,7 @@ public enum ObjectInit {
     /**
      * default states.
      */
-    BALL(new Position(150, 540), 78, 20);
+    BALL(new Position(150, 540), 10, 10);
 
     private final Position pos;
     private final int initHeight;
