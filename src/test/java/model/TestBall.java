@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import model.entities.Ball;
 import model.entities.GameBoard;
 import model.entities.GameBoardImpl;
+import model.entities.Wall;
 import model.utilities.Angle;
 import model.utilities.Difficulty;
 import model.utilities.DirVector;
@@ -51,12 +52,12 @@ public void failBallCreation() {
   assertThrows(IllegalStateException.class, () -> ballBuilder.build());
 }
 
-/*
- put ball into the world. Update the time to see the movement of the ball.
-
+/**
+ *  put ball into the world. Update the time to see the movement of the ball.
+ */
 @Test
 public void ballMovement() {
-  final GameBoard world = new GameBoardImpl(new Border(100, 100), null);
+  final GameBoard world = new GameBoardImpl(new Wall(100, 100), null);
   final Ball.Builder ballBuilder = new Ball.Builder();
   ballBuilder.height(ObjectInit.BALL.getInitHeight()).width(ObjectInit.BALL.getInitWidth())
           .speed(Difficulty.NORMAL.getBallVelocity());
@@ -95,7 +96,7 @@ public void ballMovement() {
   assertEquals(new Position(50, 50), world.getBalls().stream().findFirst().get().getPos());
   world.updateState(10);
   assertEquals(new Position(48, 50), world.getBalls().stream().findFirst().get().getPos());
-}*/ 
+}
 
 
 /*    update time in the world and check that for equal time intervals, if the ball
