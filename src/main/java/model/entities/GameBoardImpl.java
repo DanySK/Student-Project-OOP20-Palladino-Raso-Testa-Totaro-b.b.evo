@@ -73,9 +73,9 @@ public class GameBoardImpl implements GameBoard {
      * {@inheritDoc}
      */
     @Override
-    public void setPaddle(final Collection<Paddle> paddles) {
+    public void setPaddle(final Paddle paddle) {
         this.paddle.clear();
-        this.paddle.addAll(paddles);
+        this.paddle.add(paddle);
     }
 
     /**
