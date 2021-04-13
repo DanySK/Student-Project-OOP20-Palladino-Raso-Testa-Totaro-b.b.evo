@@ -28,7 +28,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.leaderboard.PlayerImpl;
+import model.leaderboard.PlayerBuilderImpl;
 import model.leaderboard.StandardScoreSortingStrategy;
 import model.utilities.GameUtilities;
 import resource.routing.PersonalFonts;
@@ -68,7 +68,6 @@ public class CharacterView implements Initializable {
     private static final String CLEAN_TEXT = "";
     private static final String DEFAULT_ALERT_TITLE = "Overwrite player";
     private static final String DEFAULT_ALERT_CONTENT = "The name is already used, do you want overwrite it?";
-    private static final int INITIAL_VALUE = 0;
     private final LeaderboardController controller = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
 
     /**
@@ -132,8 +131,9 @@ public class CharacterView implements Initializable {
     }
 
     private void saveTemporaryPlayer(final String alias) {
-        this.controller.addPlayerInLeaderBoard(new PlayerImpl(alias.toUpperCase(Locale.ENGLISH), 
-                                                                                INITIAL_VALUE, INITIAL_VALUE, INITIAL_VALUE));
+        //Add a partial player
+        this.controller.addPlayerInLeaderBoard(new PlayerBuilderImpl()
+                                               .alias(alias.toUpperCase(Locale.ENGLISH)).build());
         this.controller.saveSortLeaderboard(new StandardScoreSortingStrategy());
     }
 
