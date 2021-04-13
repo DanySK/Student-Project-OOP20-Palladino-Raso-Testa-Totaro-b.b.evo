@@ -44,18 +44,18 @@ public class EventHandler {
                 if (checkDurability(brick)) {
                     addPoints(ScoreAttribute.BRICK_BREAK.getValue());          //add the score of the broken brick
                     this.state.getBoard().removeBrick(brick);
-                    if (brick.getStatus().equals(GameObjStatus.DROP_POWERUP)) {
-                        brick.dropPowerUp();
+                    if (brick.getStatus().equals(GameObjStatus.DROP_POWERUP)) { 
+                        this.state.getBoard().addPowerUp(brick.dropPowerUp());
                     }
                 }
                 SoundController.playMusic(PersonalSounds.SOUND_BRICK.getURL().getPath());    //throw the sound for hitting the brick
             } else if (hit.getGameObj().get() instanceof PowerUp) {
                 if (hit.getBounds().isPresent()) {
-                    //this.state.getBoard().removeBrick((PowerUp) hit.getGameObj().get());
+                    this.state.getBoard().removePowerUp((PowerUp) hit.getGameObj().get());
                 } else {
                     final PowerUp pwup = (PowerUp) hit.getGameObj().get();
                     activatePowerUp(pwup);
-                    //this.state.getBoard().removeBrick(pwup);
+                    this.state.getBoard().removePowerUp(pwup);
                 }
 
             } else if (hit.getGameObj().get() instanceof Paddle) {
