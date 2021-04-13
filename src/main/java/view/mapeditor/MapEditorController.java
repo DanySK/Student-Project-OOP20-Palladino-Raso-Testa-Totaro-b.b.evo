@@ -46,7 +46,8 @@ public class MapEditorController implements GUIController {
 
     private static final int COMBOBOX_HEIGHT = 30;
     private static final int PLAYER_ZONE = 4; // da capire
-    private int tileY;
+    private int rowsY;
+    private int colsX;
     private GraphicsContext graphicsContext;
     private LevelBuilder levelBuilder;
     private final CheckAlertController alert = new CheckAlertController();
@@ -139,13 +140,13 @@ public class MapEditorController implements GUIController {
         this.levelBuilder = new LevelBuilder();
         this.setCanvas();
         this.canvas.setOnMouseClicked(e -> {
-            if (e.getY() < (tileY * (GameUtilities.BRICK_NUMBER_Y - PLAYER_ZONE))) {
+            if (e.getY() < (rowsY * (GameUtilities.BRICK_NUMBER_Y - PLAYER_ZONE))) {
                 final Pair<GameObjectEmpty, Boolean> res = levelBuilder.brickSelected(e.getX(), e.getY(),
                                                brickTexture.getValue(),
                                                unbreakableCheck.isSelected() ? GameObjStatus.NOT_DESTRUCTIBLE : GameObjStatus.DESTRUCTIBLE,
                                                (int) durabilitySet.getValue());
                 if (res.getY()) {
-                    graphicsContext.setFill(new ImagePattern(new Image(brickTexture.getValue()))); // forse potrebbe andare
+                    graphicsContext.setFill(new ImagePattern(new Image(BrickTexture.getBrickTextureByName(brickTexture.getValue())), 0, 0, 1, 1, true));
                     graphicsContext.fillRect(res.getX().getPos().getX(), res.getX().getPos().getY(), res.getX().getWidth(), res.getX().getHeight());
                     graphicsContext.strokeRect(res.getX().getPos().getX(), res.getX().getPos().getY(), res.getX().getWidth(), res.getX().getHeight());
                 } else {
@@ -165,22 +166,22 @@ public class MapEditorController implements GUIController {
         this.graphicsContext = canvas.getGraphicsContext2D();
         this.graphicsContext.setStroke(Color.BLACK);
         this.graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        final int tileX = (int) (this.canvas.getWidth() / GameUtilities.BRICK_NUMBER_X);
-        this.tileY = (int) (this.canvas.getHeight() / GameUtilities.BRICK_NUMBER_Y);
+        this.colsX = (int) (this.canvas.getWidth() / GameUtilities.BRICK_NUMBER_X);
+        this.rowsY = (int) (this.canvas.getHeight() / GameUtilities.BRICK_NUMBER_Y);
         final double wastePixel = GameUtilities.CANVAS_WIDTH % GameUtilities.BRICK_NUMBER_X;
         int currentYpos = 0;
         for (int i = 0; i < GameUtilities.BRICK_NUMBER_Y; i++) {
             graphicsContext.strokeLine(0, currentYpos, canvas.getWidth() - wastePixel, currentYpos);
-            currentYpos += tileY;
+            currentYpos += rowsY;
         }
         int currentXpos = 0;
         for (int i = 0; i < GameUtilities.BRICK_NUMBER_X; i++) {
             graphicsContext.strokeLine(currentXpos, 0, currentXpos, canvas.getHeight());
-            currentXpos += tileX;
+            currentXpos += colsX;
         }
         this.graphicsContext.strokeLine(currentXpos, 0, currentXpos, canvas.getHeight());
         this.graphicsContext.setFill(Color.BLACK);
-        this.graphicsContext.fillRect(0, tileY * (GameUtilities.BRICK_NUMBER_Y - PLAYER_ZONE), canvas.getWidth() - wastePixel, canvas.getHeight());
+        this.graphicsContext.fillRect(0, rowsY * (GameUtilities.BRICK_NUMBER_Y - PLAYER_ZONE), canvas.getWidth() - wastePixel, canvas.getHeight());
     }
 
     /**
