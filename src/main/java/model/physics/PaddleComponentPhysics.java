@@ -15,7 +15,7 @@ public class PaddleComponentPhysics implements ComponentPhysics {
      * {@inheritDoc}
      */
     @Override
-    public void update(final int timeElapsed, final GameObject gameObject, final GameBoardImpl board) {
+    public void update(final double timeElapsed, final GameObject gameObject, final GameBoardImpl board) {
 
         final Paddle paddle = (Paddle) gameObject;
         final Position posPaddle = paddle.getPos();

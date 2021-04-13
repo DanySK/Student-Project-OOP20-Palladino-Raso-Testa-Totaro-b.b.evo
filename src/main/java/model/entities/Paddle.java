@@ -29,7 +29,7 @@ public class Paddle extends GameObjectImpl {
      * {@inheritDoc}
      */
     @Override
-    public void updatePhysics(final int timeElapsed, final GameBoardImpl world) {
+    public void updatePhysics(final double timeElapsed, final GameBoardImpl world) {
         super.getComponentPhysics().update(timeElapsed, this, world);
     }
 

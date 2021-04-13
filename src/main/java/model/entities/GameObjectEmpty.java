@@ -25,7 +25,7 @@ public class GameObjectEmpty extends GameObjectImpl {
      * This method is only to maintain a reference in space, simple it's an empty object.
      */
     @Override
-    public void updatePhysics(final int timeElapsed, final GameBoardImpl board) {
+    public void updatePhysics(final double timeElapsed, final GameBoardImpl board) {
         this.getComponentPhysics().update(timeElapsed, this, board);
     }
 

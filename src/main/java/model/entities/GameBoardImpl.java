@@ -233,7 +233,7 @@ public class GameBoardImpl implements GameBoard {
      * {@inheritDoc}
      */
     @Override
-    public void updateState(final int timeElapsed) {
+    public void updateState(final double timeElapsed) {
         this.getSceneEntities().forEach(i -> i.updatePhysics(timeElapsed, this));
     }
 

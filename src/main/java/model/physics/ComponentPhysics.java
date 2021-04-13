@@ -11,5 +11,5 @@ public interface ComponentPhysics {
      * @param gameObject entity of the game.
      * @param board board.
      */
-    void update(int timeElapsed, GameObject gameObject, GameBoardImpl board);
+    void update(double timeElapsed, GameObject gameObject, GameBoardImpl board);
 }

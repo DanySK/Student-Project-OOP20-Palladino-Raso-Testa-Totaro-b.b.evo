@@ -17,7 +17,7 @@ public class PwUpComponentPhysics implements ComponentPhysics {
      * {@inheritDoc}
      */
     @Override
-    public void update(final int timeElapsed, final GameObject gameObject, final GameBoardImpl board) {
+    public void update(final double timeElapsed, final GameObject gameObject, final GameBoardImpl board) {
         final PowerUp powerUp = (PowerUp) gameObject;
         final DirVector dirVectPwUp = powerUp.getDirVector();
         if (powerUp.getStatus().equals(GameObjStatus.DROP_POWERUP)) {
