@@ -79,6 +79,11 @@ public class MainMenuView implements Initializable, FXMLMenuController {
         this.loadMusic();
     }
 
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
     @Override
     public void loadListener() {
 
@@ -93,6 +98,11 @@ public class MainMenuView implements Initializable, FXMLMenuController {
         this.btnRanking.setOnAction(this.switchPage(PersonalViews.SCENE_RANKING, PersonalStyle.DEFAULT_STYLE));
     }
 
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
     @Override
     public EventHandler<ActionEvent> switchPage(final PersonalViews scene, final PersonalStyle style) {
         return new EventHandler<ActionEvent>() {
@@ -114,6 +124,11 @@ public class MainMenuView implements Initializable, FXMLMenuController {
         };
     }
 
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
     @Override
     public void loadAnimation() {
         //Blink insert coin label
@@ -124,6 +139,11 @@ public class MainMenuView implements Initializable, FXMLMenuController {
                 timeline.play();
     }
 
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
     @Override
     public void loadFont() {
         this.lblTitle
@@ -142,6 +162,11 @@ public class MainMenuView implements Initializable, FXMLMenuController {
                 .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
     }
 
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
     @Override
     public void resizable() {
 
@@ -155,6 +180,11 @@ public class MainMenuView implements Initializable, FXMLMenuController {
         this.lblTitle.setWrapText(true);
     }
 
+    /**
+     * 
+     * This method allow to start the game music.
+     *
+     */
     private void loadMusic() {
         //Play Button CLick Sound
         SoundController.playMusic(PersonalSounds.MAIN_THEME.getURL().getPath());
