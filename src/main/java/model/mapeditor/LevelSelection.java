@@ -15,48 +15,43 @@ public enum LevelSelection implements Iterator<LevelSelection> {
     /**
      * Level 1 location and the input to fit the iterator interface.
      */
-    LEVEL1("standardLevel/Default", 0, false),
+    LEVEL1("standardLevel/default", "default", 0, false),
 
     /**
      * Level 2 location and the input to fit the iterator interface.
      */
-    LEVEL2("standardLevel/Arkanoid tribute", 1, false),
+    LEVEL2("standardLevel/arkanoid", "arkanoid", 1, false),
 
     /**
      * Level 3 location and the input to fit the iterator interface.
      */
-    LEVEL3("standardLevel/Galaga tribute", 2, false),
+    LEVEL3("standardLevel/galaga", "galaga", 2, false),
 
     /**
      * Level 4 location and the input to fit the iterator interface.
      */
-    LEVEL4("standardLevel/Pacman tribute", 3, false),
+    LEVEL4("standardLevel/pacman", "pacman", 3, false),
 
     /**
      * Level 5 location and the input to fit the iterator interface.
      */
-    LEVEL5("standardLevel/Crash Bandicoot tribute", 4, false),
+    LEVEL5("standardLevel/crashBandicoot", "crashBandicoot", 4, false),
 
     /**
      * Level 6 location and the input to fit the iterator interface.
      */
-    LEVEL6("standardLevel/Super Mario tribute", 5, true);
+    LEVEL6("standardLevel/superMario", "superMario", 5, true);
 
-    private int index;
     private String path;
+    private String name;
+    private int index;
     private boolean isLast;
 
-    LevelSelection(final String path, final int index, final boolean isLast) {
+    LevelSelection(final String path, final String name, final int index, final boolean isLast) {
         this.path = path;
+        this.name = name;
         this.index = index;
         this.isLast = isLast;
-    }
-
-    /**
-     * @return index of level
-     */
-    public int getIndex() {
-        return index;
     }
 
     /**
@@ -64,6 +59,20 @@ public enum LevelSelection implements Iterator<LevelSelection> {
      */
     public String getPath() {
         return path;
+    }
+
+    /**
+     * @return name of level
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @return index of level
+     */
+    public int getIndex() {
+        return index;
     }
 
     /**
@@ -115,8 +124,8 @@ public enum LevelSelection implements Iterator<LevelSelection> {
      */
     public static boolean isStandardLevel(final String nameLvl) {
         return Arrays.asList(LevelSelection.values()).stream()
-                                                     .map(i -> i.getLevel().getLevelName())
-                                                     .anyMatch(i -> i.equals(nameLvl));
+                                                     .map(j -> j.getName())
+                                                     .anyMatch(j -> j.equals(nameLvl));
     }
 
     /**
