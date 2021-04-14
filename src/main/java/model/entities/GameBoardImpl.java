@@ -241,7 +241,7 @@ public class GameBoardImpl implements GameBoard {
      * {@inheritDoc}
      */
     @Override
-    public void movePlayer(final ControllerInput inputController) {
+    public void movePaddle(final ControllerInput inputController) {
         this.paddle.forEach(e -> e.updateInput(inputController));
     }
 

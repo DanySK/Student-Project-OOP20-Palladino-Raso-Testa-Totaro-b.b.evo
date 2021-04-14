@@ -3,6 +3,7 @@ package controller.game;
 import java.util.Arrays;
 
 import controller.BrickBreakerEvo;
+import controller.leaderboard.LeaderboardControllerImpl;
 import controller.settings.SettingsControllerImpl;
 import model.entities.Ball;
 import model.entities.GameBoard;
@@ -16,26 +17,32 @@ import model.mapeditor.LevelSelection;
 import model.settings.GameSettingsImpl;
 import model.utilities.ObjectInit;
 import resource.routing.BackGround;
+import resource.routing.BallTexture;
+import resource.routing.PaddleTexture;
+import resource.routing.PersonalSounds;
 import model.utilities.Difficulty;
 import model.utilities.GameUtilities;
 import model.utilities.Angle;
 
 public class GameStateImpl implements GameState {
 
-    //dovrebbe essere quasi tutto a posto, bisognera inserire i test e i controlli per tutti i metodi pero
+    /*
+     * Alex qui dovresti vedere se implementare o meno i Setting e il Player, e come implementare poi tutti i vari metodi,
+     * probabilmente non devi implementare molto pero io non ho idea di come fare visto che comunque e roba che hai gestito tu a modo tuo
+     */
     private GamePhase phase;
     private int multiplier;
     private final GameBoard board;
     private final Level level;
-    private final Player player;
-    private final String settingFilePath = BrickBreakerEvo.SETTINGS_FOLDER + ".settings.json ";
-    private final SettingsControllerImpl setting;
+    private final LeaderboardControllerImpl player; //Alex
+    private final String settingFilePath = BrickBreakerEvo.SETTINGS_FOLDER + ".settings.json "; //Alex
+    private final SettingsControllerImpl setting; //Alex
 
     public GameStateImpl() {
         this.phase = GamePhase.START;
-        this.level = new Level(null/*brick*/, LevelSelection.LEVEL1, null/*music*/, BackGround.BACKGROUND_1);
-        this.player = new PlayerImpl(player.getAlias(), 0, player.getLife(), player.getMaxNumberOfLife()); //Li dovrei prendere da GameController
-        this.setting = new SettingsControllerImpl(settingFilePath);
+        this.level = LevelSelection.LEVEL1.getLevel();
+        this.player = new LeaderboardControllerImpl(settingFilePath); //Li dovrei prendere da GameController o Usare la leaderboard? Alex
+        this.setting = new SettingsControllerImpl(settingFilePath); //Alex
         this.board = new GameBoardImpl(new Wall(GameUtilities.WORLD_WIDTH, GameUtilities.WORLD_HEIGHT), this);
         this.board.setBricks(level.getBricks());
     }
@@ -62,7 +69,7 @@ public class GameStateImpl implements GameState {
     }
 
     /**
-     * Secondo me puo essere eliminato.
+     * Alex.
      * {@inheritDoc}
      */
     @Override
@@ -78,6 +85,7 @@ public class GameStateImpl implements GameState {
     }
 
     /**
+     * Alex.
      * {@inheritDoc}
      */
     @Override
@@ -110,6 +118,7 @@ public class GameStateImpl implements GameState {
     }
 
     /**
+     * Alex.
      * {@inheritDoc}
      */
     @Override
@@ -118,6 +127,7 @@ public class GameStateImpl implements GameState {
     }
 
     /**
+     * Alex.
      * {@inheritDoc}
      */
     @Override
@@ -133,8 +143,8 @@ public class GameStateImpl implements GameState {
         return this.level;
     }
 
-    //DA GUARDARE PERCHE AVENDO IL SETTING CONTROLLER A QUESTO PUNTO POTREBBE NON SERVIRE
     /**
+     * Alex.
      * {@inheritDoc}
      */
     @Override
@@ -143,6 +153,7 @@ public class GameStateImpl implements GameState {
     }
 
     /**
+     * Alex.
      * {@inheritDoc}
      */
     @Override
@@ -151,6 +162,7 @@ public class GameStateImpl implements GameState {
     }
 
     /**
+     * Alex.
      * {@inheritDoc}
      */
     @Override
