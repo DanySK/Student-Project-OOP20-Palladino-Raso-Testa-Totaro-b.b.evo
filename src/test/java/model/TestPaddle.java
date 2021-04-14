@@ -25,24 +25,38 @@ import model.utilities.Position;
 public class TestPaddle {
 
     private static final String PATH = "Images/paddle/defaultPaddle.png";
+    private static final int WALL_DIM = 600;
+    private static final int POS_PADDLE_P1_X = 250;
+    private static final int POS_PADDLE_P1_Y = 540;
+    private static final int POS_PADDLE_P2_X = 600;
+    private static final int POS_PADDLE_P2_Y = 580;
+    private static final int POS_PADDLE_P3_Y = 580;
+    private static final int POS_PADDLE_P3_X = -10;
+    private static final int ZERO = 0;
+    private static final int NEWPOS_PADDLE_X = 258;
+    private static final int NEWPOS_PADDLE_Y = 540;
+    private static final int PADDLE_WIDTH = 78;
+    private static final int PADDLE_HEIGHT = 20;
+    private static final int TIME_ELAPSED = 20;
+
     private GameBoard board;
     private Paddle p1;
     private Paddle p2;
     private Paddle p3;
     private final Map<Paddle, ControllerInput> inputController = new HashMap<>();
 
-  /**
-   * Initialize fields before the test start.
-   */
-  @BeforeEach
-  public void createEntity() {
-      this.board = new GameBoardImpl(new Wall(600, 600), null);
-      this.p1 = createPaddle(ObjectInit.PADDLE.getStartPos());
-      this.p2 = createPaddle(new Position(600, 580));
-      this.p3 = createPaddle(new Position(-10, 580));
-      this.board.setPaddle(p1);
-      this.inputController.put(p1, new ControllerInputImpl());
-  }
+    /**
+     * Initialize fields before the test start.
+     */
+    @BeforeEach
+    public void createEntity() {
+        this.board = new GameBoardImpl(new Wall(WALL_DIM, WALL_DIM), null);
+        this.p1 = createPaddle(ObjectInit.PADDLE.getStartPos());
+        this.p2 = createPaddle(new Position(POS_PADDLE_P2_X, POS_PADDLE_P2_Y));
+        this.p3 = createPaddle(new Position(POS_PADDLE_P3_X, POS_PADDLE_P3_Y));
+        this.board.setPaddle(p1);
+        this.inputController.put(p1, new ControllerInputImpl());
+    }
 
     /**
      * Check that the builder sets all the fields correctly.
@@ -50,7 +64,7 @@ public class TestPaddle {
     @Test
     public void checkBuilderPaddle() {
         assertEquals(ObjectInit.PADDLE.getStartPos(), p1.getPos());
-        assertEquals(new DirVector(0, 0), p1.getDirVector());
+        assertEquals(new DirVector(ZERO, ZERO), p1.getDirVector());
         assertEquals(ObjectInit.PADDLE.getInitHeight(), p1.getHeight());
         assertEquals(ObjectInit.PADDLE.getInitWidth(), p1.getWidth());
     }
@@ -60,9 +74,9 @@ public class TestPaddle {
      */
     @Test
     public void testPaddleCreation() {
-        assertEquals(new Position(250, 540), p1.getPos());
-        assertEquals(78, p1.getWidth());
-        assertEquals(20, p1.getHeight());
+        assertEquals(new Position(POS_PADDLE_P1_X, POS_PADDLE_P1_Y), p1.getPos());
+        assertEquals(PADDLE_WIDTH, p1.getWidth());
+        assertEquals(PADDLE_HEIGHT, p1.getHeight());
         assertThrows(IllegalStateException.class, () -> new Paddle.Builder().build());
         assertThrows(IllegalStateException.class, () -> new Paddle.Builder()
                 .position(null).build());
@@ -82,7 +96,7 @@ public class TestPaddle {
         assertTrue(board.checkGameObjCollisionsWithWall(p3).isPresent());
         assertEquals(Boundaries.SIDE_LEFT, board.checkGameObjCollisionsWithWall(p3).get());
         assertEquals(Boundaries.SIDE_RIGHT, board.checkGameObjCollisionsWithWall(p2).get());
-  }
+    }
 
     /**
      * Test if the ControllerInput notify correctly the movement of the player
@@ -91,28 +105,28 @@ public class TestPaddle {
     @Test
     public void testPlayerMovement() {
         //move paddle right
-        assertEquals(new Position(250, 540), p1.getPos());
+        assertEquals(new Position(POS_PADDLE_P1_X, POS_PADDLE_P1_Y), p1.getPos());
         inputController.get(p1).setMoveRight(true);
         inputController.entrySet().forEach(i -> {
             board.movePaddle(i.getValue());
         });
-        board.updateState(20);
-        assertEquals(new Position(258,540), p1.getPos());
+        board.updateState(TIME_ELAPSED);
+        assertEquals(new Position(NEWPOS_PADDLE_X, NEWPOS_PADDLE_Y), p1.getPos());
 
         //move paddle left
         inputController.get(p1).setMoveLeft(true);
         inputController.entrySet().forEach(i -> {
             board.movePaddle(i.getValue());
         });
-        board.updateState(20);
-        assertEquals(new Position(250,540), p1.getPos());
+        board.updateState(TIME_ELAPSED);
+        assertEquals(new Position(POS_PADDLE_P1_X, POS_PADDLE_P1_Y), p1.getPos());
     }
 
     private Paddle createPaddle(final Position pos) {
         return new Paddle.Builder()
                 .position(pos)
-                .width(78)
-                .height(20)
+                .width(PADDLE_WIDTH)
+                .height(PADDLE_HEIGHT)
                 .texturePath(PATH)
                 .build();
     }
