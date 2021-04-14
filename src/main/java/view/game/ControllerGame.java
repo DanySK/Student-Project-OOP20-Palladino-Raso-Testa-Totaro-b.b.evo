@@ -104,10 +104,9 @@ public class ControllerGame implements Initializable {
      * Draw all entities of the game adapted to the current resolution.
      * @param gameEntities Collection of each game entity taken from the game loop.
      * @param score The score of the player.
-     * @param highScore The top score.
      * @param lives The remained life ot the player.
      */
-    public void render(final Set<GameObject> gameEntities, final int score, final int highScore, final int lives) {
+    public void render(final Set<GameObject> gameEntities, final int score, final int lives) {
         drawScoreAndLives(score, lives);
         drawWorld(gameEntities);
     }

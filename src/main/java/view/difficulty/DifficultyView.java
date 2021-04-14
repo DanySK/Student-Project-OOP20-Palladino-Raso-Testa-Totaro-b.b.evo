@@ -3,6 +3,7 @@ package view.difficulty;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import controller.game.GameLoop;
 import controller.menu.SceneLoader;
 import controller.settings.SettingsController;
 import controller.settings.SettingsControllerImpl;
@@ -13,6 +14,7 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -128,6 +130,11 @@ public class DifficultyView implements Initializable {
             //Play Button CLick Sound
             SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
             SoundController.stopMusic();
+            
+            final Scene scene = btnStartGame.getScene();
+            final Thread thread = new Thread(new GameLoop(scene));
+            thread.setDaemon(true);
+            thread.start();
          });
 
         //RadioButton change difficulty
