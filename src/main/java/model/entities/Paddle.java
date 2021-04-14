@@ -19,7 +19,7 @@ public class Paddle extends GameObjectImpl {
     private final Map<GameObject, Boundaries> hit = new HashMap<>();
     private final String tPath;
 
-    public Paddle(final Position pos, final int height, final int width, final String tPath) {
+    private  Paddle(final Position pos, final int height, final int width, final String tPath) {
         super(pos, new DirVector(0, 0), PADDLE_SPEED, height, width, new PaddleComponentPhysics(), 
                 new PaddleComponentInput(), new PaddleComponentGraphics(tPath), GameObjStatus.NOT_DESTRUCTIBLE);
         this.tPath = tPath;
