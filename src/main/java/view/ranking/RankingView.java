@@ -152,7 +152,7 @@ public class RankingView implements Initializable, FXMLMenuController {
     public void loadListener() {
         //Button back Listener
         this.buttonBack.setOnAction(event -> {
-            this.switchToMenuPage();
+            this.switchPage(PersonalViews.SCENE_MAIN_MENU, PersonalStyle.DEFAULT_STYLE);
             this.soundClick();
          });
 
@@ -199,15 +199,17 @@ public class RankingView implements Initializable, FXMLMenuController {
     }
 
     /**
-     * Method that allow to switch current scene with the next scene.
+     * This method allows to switch the current scene whit the next or previous scene.
+     * @param scene - use to set the next or previous scene.
+     * @param style - use to set the style for the next or previous scene.
      */
-    private void switchToMenuPage() {
+    private void switchPage(final PersonalViews view, final PersonalStyle style) {
         SceneLoader.switchScene((Stage) this.window.getScene().getWindow(), 
-                                PersonalViews.SCENE_MAIN_MENU.getURL(), 
-                                PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
+                                view.getURL(), 
+                                view.getTitleScene(), 
                                 this.window.getWidth(), 
                                 this.window.getHeight(),
-                                PersonalStyle.DEFAULT_STYLE.getStylePath());
+                                style.getStylePath());
     }
 
     /**
@@ -238,14 +240,8 @@ public class RankingView implements Initializable, FXMLMenuController {
         if (result.get() == yesButton) {
             this.controller.clearLeaderboard();
             //Refresh all view
-            SceneLoader.switchScene((Stage) this.window.getScene().getWindow(), 
-                    PersonalViews.SCENE_RANKING.getURL(), 
-                    PersonalViews.SCENE_RANKING.getTitleScene(), 
-                    this.window.getWidth(), 
-                    this.window.getHeight(),
-                    PersonalStyle.DEFAULT_STYLE.getStylePath());
-            //Play Button CLick Sound
-            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+            this.switchPage(PersonalViews.SCENE_RANKING, PersonalStyle.DEFAULT_STYLE);
+            this.soundClick();
         } else {
             alert.close();
         }
