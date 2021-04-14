@@ -11,6 +11,9 @@ import controller.menu.SceneLoader;
 import controller.settings.SettingsController;
 import controller.settings.SettingsControllerImpl;
 import controller.sound.SoundController;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -24,6 +27,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.utilities.GameUtilities;
 import resource.routing.PersonalFonts;
 import resource.routing.PersonalSounds;
@@ -75,6 +79,7 @@ public class SettingsView implements Initializable, FXMLMenuController {
             this.controller = new SettingsControllerImpl(GameUtilities.SETTINGS_PATH);
             this.resizable();
             this.loadFont();
+            this.loadAnimation();
             this.loadListener();
             this.updateViewComponent(this.controller.isSoundFxEnable(),
                                      this.controller.isMusicEnable(),
@@ -167,9 +172,18 @@ public class SettingsView implements Initializable, FXMLMenuController {
                     .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
         }
 
+        /**
+         * 
+         * {@inheritDoc}
+         *
+         */
         @Override
         public void loadAnimation() {
-
+            final Timeline timeline = new Timeline(
+                    new KeyFrame(Duration.seconds(1.00), evt -> this.lblTitle.setVisible(false)),
+                    new KeyFrame(Duration.seconds(0.50), evt -> this.lblTitle.setVisible(true)));
+                    timeline.setCycleCount(Animation.INDEFINITE);
+                    timeline.play();
         }
 
         /**

@@ -77,8 +77,8 @@ public class RankingView implements Initializable, FXMLMenuController {
     @FXML
     private Button buttonDelete;
 
-    private final Font fontColumn = Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE);
-    private final LeaderboardController controller = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
+    private Font fontColumn;
+    private LeaderboardController controller;
     private static final String DEFAULT_TABLE_MESSAGE = "Play the game please :)";
     private static final String DEFAULT_ALERT_TITLE = "Delete Leaderboard";
     private static final String DEFAULT_ALERT_CONTENT = "Are you sure to delete the leaderboard?";
@@ -89,6 +89,8 @@ public class RankingView implements Initializable, FXMLMenuController {
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
+        this.controller = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
+        this.fontColumn = Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE);
         this.initializeTableView();
         this.loadFont();
         this.loadAnimation();
