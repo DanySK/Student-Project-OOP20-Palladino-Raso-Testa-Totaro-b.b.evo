@@ -105,12 +105,12 @@ public final class GameUtilities {
     /**
      * Width of the canvas in GameController gui (adapted to the height res for make a square).
      */
-    public static final double CANVAS_WIDTH = SCREEN_HEIGHT / 1.025;
+    public static final double CANVAS_WIDTH = SCREEN_HEIGHT / 1.3;
 
     /**
      * Height of the canvas in GameController gui (adapted to the height res for make a square).
      */
-    public static final double CANVAS_HEIGHT = SCREEN_HEIGHT / 1.025;
+    public static final double CANVAS_HEIGHT = SCREEN_HEIGHT / 1.0;
 
     /**
      * Convert every entity of the game width (adapted to the current resolution).
