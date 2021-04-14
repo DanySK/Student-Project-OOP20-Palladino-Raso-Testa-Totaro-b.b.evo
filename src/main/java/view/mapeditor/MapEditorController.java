@@ -218,12 +218,14 @@ public class MapEditorController implements GUIController {
      */
     @FXML
     void backToMenu(final MouseEvent event) {
-        SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+        final var stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        SceneLoader.switchScene(stage, 
                 PersonalViews.SCENE_MAIN_MENU.getURL(), 
                 PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
-                this.pane.getWidth(), 
-                this.pane.getHeight(),
+                stage.getWidth(), 
+                stage.getHeight(),
                 PersonalStyle.DEFAULT_STYLE.getStylePath());
+        stage.setResizable(true);
     }
 
     /**

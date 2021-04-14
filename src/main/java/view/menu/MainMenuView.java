@@ -86,38 +86,66 @@ public class MainMenuView implements Initializable, FXMLMenuController {
      */
     @Override
     public void loadListener() {
-        this.btnPlay.setOnAction(this.switchPage(PersonalViews.SCENE_CHARACTER_MENU, PersonalStyle.DEFAULT_STYLE));
-        this.btnSettings.setOnAction(this.switchPage(PersonalViews.SCENE_SETTINGS, PersonalStyle.DEFAULT_STYLE));
-        this.btnCreativeMode.setOnAction(this.switchPage(PersonalViews.SCENE_CREATIVEMODE, PersonalStyle.DEFAULT_STYLE));
-        this.btnTutorial.setOnAction(this.switchPage(PersonalViews.SCENE_TUTORIAL, PersonalStyle.DEFAULT_STYLE));
-        this.btnRanking.setOnAction(this.switchPage(PersonalViews.SCENE_RANKING, PersonalStyle.DEFAULT_STYLE));
+        this.btnPlay.setOnAction(this.switchPage(PersonalViews.SCENE_CHARACTER_MENU, PersonalStyle.DEFAULT_STYLE,
+                                                 this.getCurrentWidth(), this.getCurrentHeight(), true));
+
+        this.btnSettings.setOnAction(this.switchPage(PersonalViews.SCENE_SETTINGS, PersonalStyle.DEFAULT_STYLE,
+                                                     this.getCurrentWidth(), this.getCurrentHeight(), true));
+
+        this.btnCreativeMode.setOnAction(this.switchPage(PersonalViews.SCENE_CREATIVEMODE, PersonalStyle.DEFAULT_STYLE, 
+                                                         GameUtilities.SCREEN_WIDTH, GameUtilities.SCREEN_HEIGHT, false));
+
+        this.btnTutorial.setOnAction(this.switchPage(PersonalViews.SCENE_TUTORIAL, PersonalStyle.DEFAULT_STYLE,
+                                                     this.getCurrentWidth(), this.getCurrentHeight(), true));
+
+        this.btnRanking.setOnAction(this.switchPage(PersonalViews.SCENE_RANKING, PersonalStyle.DEFAULT_STYLE,
+                                                    this.getCurrentWidth(), this.getCurrentHeight(), true));
     }
 
     /**
      * This method allows to switch the current scene whit the next scene.
      * @param scene - use to set the next scene.
      * @param style - use to set the style for the next scene.
+     * @param width - use to set the width for next scene.
+     * @param height - use to set the height for next scene.
+     * @param resizable - use to understand if the next scene will be resizable or not.
      * @return an ActionEvent that allow to change between the current scene and the next scene.
      */
-    private EventHandler<ActionEvent> switchPage(final PersonalViews scene, final PersonalStyle style) {
+    private EventHandler<ActionEvent> switchPage(final PersonalViews scene, final PersonalStyle style, 
+                                                 final double width, final double height, final boolean resizable) {
+
         return new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(final ActionEvent event) {
+                final var currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 //Switch Scene
-                SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                SceneLoader.switchScene(currentStage, 
                 scene.getURL(), 
                 scene.getTitleScene(), 
-                window.getWidth(), 
-                window.getHeight(),
+                width, 
+                height,
                 style.getStylePath());
-
+                currentStage.setResizable(resizable);
                 soundClick();
             }
 
         };
     }
 
+    /**
+     * Use to get the current scene width.
+     */
+    private double getCurrentWidth() {
+        return this.window.getWidth();
+    }
+
+    /**
+     * Use to get the current scene height.
+     */
+    private double getCurrentHeight() {
+        return this.window.getHeight();
+    }
     /**
      * Method that allow to play the button's sound.
      */
