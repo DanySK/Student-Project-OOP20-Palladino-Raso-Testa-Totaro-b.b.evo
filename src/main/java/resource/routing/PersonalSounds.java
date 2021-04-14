@@ -82,6 +82,13 @@ public enum PersonalSounds {
     }
 
     /**
+     * @return the path of the sound
+     */
+    public String getPath() {
+        return path;
+    }
+
+    /**
      * List to preserve the order in which the sounds are displayed.
      * @return the list of song names returns.
      */
