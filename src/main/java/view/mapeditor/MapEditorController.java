@@ -134,7 +134,11 @@ public class MapEditorController implements GUIController {
                                                unbreakableCheck.isSelected() ? GameObjStatus.NOT_DESTRUCTIBLE : GameObjStatus.DESTRUCTIBLE,
                                                (int) durabilitySet.getValue());
                 if (res.getY()) {
-                    graphicsContext.setFill(new ImagePattern(new Image(BrickTexture.getBrickTextureByName(brickTexture.getValue())), 0, 0, 1, 1, true));
+                    if  (unbreakableCheck.isSelected()) {
+                        graphicsContext.setFill(new ImagePattern(new Image(BrickTexture.getBrickTextureByName("Undestructible")), 0, 0, 1, 1, true));
+                    } else {
+                        graphicsContext.setFill(new ImagePattern(new Image(BrickTexture.getBrickTextureByName(brickTexture.getValue())), 0, 0, 1, 1, true));
+                    }
                     graphicsContext.fillRect(res.getX().getPos().getX(), res.getX().getPos().getY(), res.getX().getWidth(), res.getX().getHeight());
                     graphicsContext.strokeRect(res.getX().getPos().getX(), res.getX().getPos().getY(), res.getX().getWidth(), res.getX().getHeight());
                 } else {
@@ -188,18 +192,17 @@ public class MapEditorController implements GUIController {
     /**
      * Check if the forms have been filled correctly.
      * Call the level builder to create a level with elem.
-     * @param event
      */
     @FXML
-    public void buildLvl(final MouseEvent event) {
+    public void buildLvl() {
         if (levelName.getText().isBlank() || soundtrack.getValue() == null || backGround.getValue() == null) {
             alert.checkAllField();
         } else if (LevelSelection.isStandardLevel(levelName.getText())) {
-            alert.checkLevelName();
+           alert.checkLevelName();
         } else {
             this.levelBuilder.setLevelName(levelName.getText());
-            this.levelBuilder.setBackGround(backGround.getValue());
             this.levelBuilder.setMusic(soundtrack.getValue());
+            this.levelBuilder.setBackGround(backGround.getValue());
             this.levelBuilder.setBall(ballTexture.getValue());
             this.levelBuilder.setPaddle(paddleTexture.getValue());
             LevelManager.saveLevel(this.levelBuilder.build());
@@ -209,10 +212,9 @@ public class MapEditorController implements GUIController {
 
     /**
      * Clear all the elements on the grid.
-     * @param event
      */
     @FXML
-    public void clearAll(final MouseEvent event) {
+    public void clearAll() {
         levelBuilder.deleteAll();
         this.setCanvas();
     }
