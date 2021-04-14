@@ -50,7 +50,7 @@ public class GameLoop implements Runnable {
         }
         this.changeView(PersonalViews.SCENE_GAME);
         final InputEvent inputEvent = new InputEventImpl(this.controllerGame.getCanvas(), inputController, this.gameState);
-            inputEvent.notifyAll();
+            inputEvent.notifyEvent();
     }
 
 
