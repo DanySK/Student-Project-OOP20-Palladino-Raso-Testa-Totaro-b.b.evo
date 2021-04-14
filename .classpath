@@ -19,15 +19,7 @@
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
-<<<<<<< HEAD
-<<<<<<< HEAD
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11/"/>
-=======
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-15/"/>
->>>>>>> 5d555e491fefb94336ca6b4a232d5497840cc0a7
-=======
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-14/"/>
->>>>>>> e896e8fa1f7627cee648c3a788276d1a90ba462a
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>
