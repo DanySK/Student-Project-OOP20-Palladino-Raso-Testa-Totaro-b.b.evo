@@ -16,7 +16,6 @@ import model.utilities.Boundaries;
 import model.utilities.GameObjStatus;
 import model.utilities.ScoreAttribute;
 import resource.routing.PersonalSounds;
-import model.utilities.GameUtilities;
 import model.utilities.PowerUpUtilities;
 
 public class EventHandler {
@@ -83,15 +82,15 @@ public class EventHandler {
         switch (pwup.getPowerUpType()) {
         case DAMAGE_DOWN:
             addPoints(ScoreAttribute.NEGATIVE_POWERUP.getValue());
-            this.ballDamage = GameUtilities.DEFAULT_BALL_DAMAGE + pwup.getDamageModifier();
+            this.ballDamage = PowerUpUtilities.DEFAULT_BALL_DAMAGE + pwup.getDamageModifier();
             pwup.waitSeconds(pwup.getActiveTime());
-            this.ballDamage = GameUtilities.DEFAULT_BALL_DAMAGE;
+            this.ballDamage = PowerUpUtilities.DEFAULT_BALL_DAMAGE;
             break;
         case DAMAGE_UP:
             addPoints(ScoreAttribute.POSITIVE_POWERUP.getValue());
-            this.ballDamage = GameUtilities.DEFAULT_BALL_DAMAGE + pwup.getDamageModifier();
+            this.ballDamage = PowerUpUtilities.DEFAULT_BALL_DAMAGE + pwup.getDamageModifier();
             pwup.waitSeconds(pwup.getActiveTime());
-            this.ballDamage = GameUtilities.DEFAULT_BALL_DAMAGE;
+            this.ballDamage = PowerUpUtilities.DEFAULT_BALL_DAMAGE;
             break;
         case LIFE_DOWN:
             addPoints(ScoreAttribute.NEGATIVE_POWERUP.getValue());

@@ -1,8 +1,12 @@
 package view.character;
 
 import java.net.URL;
+import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
+import controller.leaderboard.LeaderboardController;
+import controller.leaderboard.LeaderboardControllerImpl;
 import controller.menu.SceneLoader;
 import controller.sound.SoundController;
 import javafx.animation.Animation;
@@ -11,9 +15,12 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -21,6 +28,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.leaderboard.PlayerBuilderImpl;
+import model.leaderboard.StandardScoreSortingStrategy;
 import model.utilities.GameUtilities;
 import resource.routing.PersonalFonts;
 import resource.routing.PersonalSounds;
@@ -57,6 +66,9 @@ public class CharacterView implements Initializable {
     private TextField characterNameField;
 
     private static final String CLEAN_TEXT = "";
+    private static final String DEFAULT_ALERT_TITLE = "Overwrite player";
+    private static final String DEFAULT_ALERT_CONTENT = "The name is already used, do you want overwrite it?";
+    private final LeaderboardController controller = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
 
     /**
      *  Initialize all javaFx view components.
@@ -86,12 +98,19 @@ public class CharacterView implements Initializable {
 
         //Button next Listener
         this.btnNext.setOnAction(event -> {
-            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
-                                     PersonalViews.SCENE_DIFFICULTY.getURL(), 
-                                     PersonalViews.SCENE_DIFFICULTY.getTitleScene(), 
-                                     this.window.getWidth(), 
-                                     this.window.getHeight(),
-                                     PersonalStyle.DEFAULT_STYLE.getStylePath());
+            //Control if the alias as present
+            if (this.controller.viewLeaderboard().containsKey(this.characterNameField.getText().toUpperCase(Locale.ENGLISH))) {
+                this.showAlertDialog();
+            } else {
+                this.saveTemporaryPlayer(this.characterNameField.getText());
+                SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                        PersonalViews.SCENE_DIFFICULTY.getURL(), 
+                        PersonalViews.SCENE_DIFFICULTY.getTitleScene(), 
+                        this.window.getWidth(), 
+                        this.window.getHeight(),
+                        PersonalStyle.DEFAULT_STYLE.getStylePath());
+            }
+
             //Play Button CLick Sound
             SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
         });
@@ -111,6 +130,13 @@ public class CharacterView implements Initializable {
          });
     }
 
+    private void saveTemporaryPlayer(final String alias) {
+        //Add a partial player
+        this.controller.addPlayerInLeaderBoard(new PlayerBuilderImpl()
+                                               .alias(alias.toUpperCase(Locale.ENGLISH)).build());
+        this.controller.saveSortLeaderboard(new StandardScoreSortingStrategy());
+    }
+
     private void loadAnimation() {
         final Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(1.00), evt -> this.lblTitle.setVisible(false)),
@@ -128,6 +154,36 @@ public class CharacterView implements Initializable {
             .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
         this.characterNameField
             .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+    }
+
+    private void showAlertDialog() {
+        //Create alert
+        final Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle(DEFAULT_ALERT_TITLE);
+        alert.setHeaderText(DEFAULT_ALERT_CONTENT);
+        alert.setContentText(DEFAULT_ALERT_CONTENT);
+
+        //Create Button in alert
+        final ButtonType yesButton = new ButtonType("Yes");
+        final ButtonType noButton = new ButtonType("No");
+
+        alert.getButtonTypes().setAll(yesButton, noButton);
+
+        //Control the choose
+        final Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == yesButton) {
+            this.saveTemporaryPlayer(this.characterNameField.getText());
+            SceneLoader.switchScene((Stage) this.window.getScene().getWindow(), 
+                    PersonalViews.SCENE_DIFFICULTY.getURL(), 
+                    PersonalViews.SCENE_DIFFICULTY.getTitleScene(), 
+                    this.window.getWidth(), 
+                    this.window.getHeight(),
+                    PersonalStyle.DEFAULT_STYLE.getStylePath());
+            //Play Button CLick Sound
+            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+        } else {
+            alert.close();
+        }
     }
 
     private void resizable() {

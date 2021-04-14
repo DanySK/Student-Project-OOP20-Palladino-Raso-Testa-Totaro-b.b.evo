@@ -38,7 +38,7 @@ public enum PersonalViews {
     /**
      * Path for load Game Layout.
      */
-    SCENE_GAME("Layout/FinalGame.fxml", "GAME"),
+    SCENE_GAME("Layout/Game.fxml", "GAME"),
 
     /**
      * Path for load Creative mode.
