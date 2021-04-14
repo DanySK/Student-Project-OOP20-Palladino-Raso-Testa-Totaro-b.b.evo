@@ -120,7 +120,7 @@ public class TextureController {
      * Load the Brick texture preview.
      */
     public void loadBrickTexture() {
-        this.brickTexture.getItems().addAll(BrickTexture.getBrickTextureNames());
+        this.brickTexture.getItems().addAll(BrickTexture.getBrickTextureNamesVisible());
         this.brickTexture.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
 
             @Override
@@ -178,7 +178,7 @@ public class TextureController {
                                 icon = new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
                             } catch (NullPointerException ex) {
                                 // in case the above image doesn't exist, use a default one
-                                final String iconPath = "Images/brick/SuperMarioBrickTexture.png";
+                                final String iconPath = "Images/powerup/galagaPowerUp.png";
                                 icon = new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
                             }
                             final ImageView iconImageView = new ImageView(icon);
