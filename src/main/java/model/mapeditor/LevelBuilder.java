@@ -89,17 +89,21 @@ public class LevelBuilder {
                     this.gameGrid.replace(brickSelected, new Pair<>(this.gameGrid.get(brickSelected).getX(), Optional.empty()));
                     retState = new Pair<>(objectEmpty, false);
                 } else {
-                    final Builder brickBuilder = new Builder();
-                    final GameObject gameObjectEmpty = this.gameGrid.get(brickSelected).getX();
-                    final Brick brick = brickBuilder.setPos(new Position(gameObjectEmpty.getPos().getX(), gameObjectEmpty.getPos().getY()))
-                                               .setHeight(this.gameGrid.get(brickSelected).getX().getHeight())
-                                               .setWidth(this.gameGrid.get(brickSelected).getX().getWidth())
-                                               .setStatus(state)
-                                               .setTexture(new Texture(texture).buildBrickTexturePath())
-                                               .setDurability(durability)
-                                               .build();
-                    this.gameGrid.replace(brickSelected, new Pair<>(this.gameGrid.get(brickSelected).getX(), Optional.of(brick)));
-                    retState = new Pair<>(objectEmpty, true);
+                    //if (state.equals(GameObjStatus.DESTRUCTIBLE)) {
+
+                    //} else {
+                        final Builder brickBuilder = new Builder();
+                        final GameObject gameObjectEmpty = this.gameGrid.get(brickSelected).getX();
+                        final Brick brick = brickBuilder.setPos(new Position(gameObjectEmpty.getPos().getX(), gameObjectEmpty.getPos().getY()))
+                                                         .setHeight(this.gameGrid.get(brickSelected).getX().getHeight())
+                                                         .setWidth(this.gameGrid.get(brickSelected).getX().getWidth())
+                                                         .setStatus(state)
+                                                         .setTexture(new Texture(texture).buildBrickTexturePath())
+                                                         .setDurability(durability)
+                                                         .build();
+                        this.gameGrid.replace(brickSelected, new Pair<>(this.gameGrid.get(brickSelected).getX(), Optional.of(brick)));
+                        retState = new Pair<>(objectEmpty, true);
+                   // }
                 }
             }
         }
