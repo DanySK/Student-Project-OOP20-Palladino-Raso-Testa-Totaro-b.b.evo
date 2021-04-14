@@ -112,11 +112,17 @@ public class MainMenuView implements Initializable, FXMLMenuController {
                 window.getHeight(),
                 style.getStylePath());
 
-                //PlaySound
-                SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+                soundClick();
             }
 
         };
+    }
+
+    /**
+     * Method that allow to play the button's sound.
+     */
+    private void soundClick() {
+        SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
     }
 
     /**

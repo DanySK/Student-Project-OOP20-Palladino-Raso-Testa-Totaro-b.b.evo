@@ -14,7 +14,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -100,35 +99,25 @@ public class CharacterView implements Initializable, FXMLMenuController {
         this.characterNameField.setOnMouseClicked(event -> {
             //Clear prompt text when user click
             this.characterNameField.setPromptText(CLEAN_TEXT);
-            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+            this.soundClick();
         });
 
         //Button next Listener
         this.btnNext.setOnAction(event -> {
             //Control if the alias as present
-            if (this.controller.viewLeaderboard().containsKey(this.getAliasTextToUpper())) {
+            if (this.controller.viewLeaderboard().containsKey(this.getValidateAlias())) {
                 this.showAlertDialog();
             } else {
-                this.saveTemporaryPlayer(this.characterNameField.getText());
-                this.switchToNextScene();
+                this.saveTemporaryPlayer(this.getValidateAlias());
+                this.switchPage(PersonalViews.SCENE_DIFFICULTY, PersonalStyle.DEFAULT_STYLE);
             }
-
-            //Play Button CLick Sound
-            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+            this.soundClick();
         });
 
         //Button back Listener
         this.btnBack.setOnAction(event -> {
-            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
-                                    PersonalViews.SCENE_MAIN_MENU.getURL(), 
-                                    PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
-                                    this.window.getWidth(), 
-                                    this.window.getHeight(),
-                                    PersonalStyle.DEFAULT_STYLE.getStylePath());
-
-            //Play Button CLick Sound
-            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
-
+            this.switchPage(PersonalViews.SCENE_MAIN_MENU, PersonalStyle.DEFAULT_STYLE);
+            this.soundClick();
          });
     }
 
@@ -138,19 +127,23 @@ public class CharacterView implements Initializable, FXMLMenuController {
      *
      */
     private void saveTemporaryPlayer(final String alias) {
-        this.controller.addPlayerInLeaderBoard(new PlayerBuilderImpl()
-                                               .alias(alias).build());
+        this.controller.addPlayerInLeaderBoard(new PlayerBuilderImpl().alias(alias).build());
         this.controller.saveSortLeaderboard(new StandardScoreSortingStrategy());
     }
 
     /**
      * 
      * Method that allows to get the text from text field 
-     * and transform it into upper text follow the English rule. 
+     * and transform it into upper text following the English rules,
+     * If the user don't insert the alias, the player will be labeled as a guest.
      *
      */
-    private String getAliasTextToUpper() {
-        return this.characterNameField.getText().toUpperCase(Locale.ENGLISH);
+    private String getValidateAlias() {
+        String alias = this.characterNameField.getText().toUpperCase(Locale.ENGLISH);
+        if (alias.isEmpty()) {
+            alias = "GUEST";
+        }
+        return alias;
     }
 
     /**
@@ -185,17 +178,25 @@ public class CharacterView implements Initializable, FXMLMenuController {
     }
 
     /**
-     * 
-     * Method used to switch to the next scene.
-     *
+     * This method allows to switch the current scene whit the next or previous scene.
+     * @param scene - use to set the next or previous scene.
+     * @param style - use to set the style for the next or previous scene.
      */
-    private void switchToNextScene() {
+    private void switchPage(final PersonalViews scene, final PersonalStyle style) {
+        //Switch Scene
         SceneLoader.switchScene((Stage) this.window.getScene().getWindow(), 
-                PersonalViews.SCENE_DIFFICULTY.getURL(), 
-                PersonalViews.SCENE_DIFFICULTY.getTitleScene(), 
-                this.window.getWidth(), 
-                this.window.getHeight(),
-                PersonalStyle.DEFAULT_STYLE.getStylePath());
+                                 scene.getURL(), 
+                                 scene.getTitleScene(), 
+                                 window.getWidth(), 
+                                 window.getHeight(),
+                                 style.getStylePath());
+    }
+
+    /**
+     * Method that allow to play the button's sound.
+     */
+    private void soundClick() {
+        SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
     }
 
     /**
@@ -219,10 +220,9 @@ public class CharacterView implements Initializable, FXMLMenuController {
         //Control the choose
         final Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == yesButton) {
-            this.saveTemporaryPlayer(this.getAliasTextToUpper());
-            this.switchToNextScene();
-            //Play Button CLick Sound
-            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+            this.saveTemporaryPlayer(this.getValidateAlias());
+            this.switchPage(PersonalViews.SCENE_DIFFICULTY, PersonalStyle.DEFAULT_STYLE);
+            this.soundClick();
         } else {
             alert.close();
         }
