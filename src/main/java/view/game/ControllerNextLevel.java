@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import model.leaderboard.Paddle;
+import model.leaderboard.Player;
 import model.mapeditor.Level;
 import model.utilities.GameUtilities;
 import resource.routing.PersonalStyle;
@@ -78,7 +78,7 @@ public class ControllerNextLevel {
      * @param lvl the current level to display.
      * @param player to retrieve the information about score and lives.
      */
-    public void update(final Level lvl, final Paddle player) {
+    public void update(final Level lvl, final Player player) {
         this.lblLevel.setText(lvl.getLevelName());
         this.lblLives.setText("YOUR LIVES: " + player.getLife());
         this.lblScore.setText("YOUR SCORE: " + player.getScore());

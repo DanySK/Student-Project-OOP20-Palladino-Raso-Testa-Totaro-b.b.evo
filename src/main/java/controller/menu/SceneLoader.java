@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.utilities.GameUtilities;
 import resource.routing.PersonalImages;
+import view.GUILayout;
 
 public final class SceneLoader {
 
@@ -55,5 +56,20 @@ public final class SceneLoader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static GUILayout loadScene(final URL path) {
+        final FXMLLoader loader = new FXMLLoader(path);
+        return loader.getController();
+    }
+
+    public static Parent loadParent(final URL path) {
+        Parent parent = null;
+        try {
+            parent = FXMLLoader.load(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return parent;
     }
 }

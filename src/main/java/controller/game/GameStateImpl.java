@@ -14,12 +14,7 @@ import model.leaderboard.Player;
 import model.leaderboard.PlayerImpl;
 import model.mapeditor.Level;
 import model.mapeditor.LevelSelection;
-import model.settings.GameSettingsImpl;
 import model.utilities.ObjectInit;
-import resource.routing.BackGround;
-import resource.routing.BallTexture;
-import resource.routing.PaddleTexture;
-import resource.routing.PersonalSounds;
 import model.utilities.Difficulty;
 import model.utilities.GameUtilities;
 import model.utilities.Angle;
@@ -34,15 +29,15 @@ public class GameStateImpl implements GameState {
     private int multiplier;
     private final GameBoard board;
     private final Level level;
-    private final LeaderboardControllerImpl player; //Alex
+    private final PlayerImpl player; //Alex
     private final String settingFilePath = BrickBreakerEvo.SETTINGS_FOLDER + ".settings.json "; //Alex
     private final SettingsControllerImpl setting; //Alex
 
     public GameStateImpl() {
         this.phase = GamePhase.START;
         this.level = LevelSelection.LEVEL1.getLevel();
-        this.player = new LeaderboardControllerImpl(settingFilePath); //Li dovrei prendere da GameController o Usare la leaderboard? Alex
-        this.setting = new SettingsControllerImpl(settingFilePath); //Alex
+        this.setting = new SettingsControllerImpl(settingFilePath); 
+        this.player = new PlayerImpl("Prova", 0, setting.getDifficulty().getNumberOfLives(), 3); // per le max life ci vuole metodo
         this.board = new GameBoardImpl(new Wall(GameUtilities.WORLD_WIDTH, GameUtilities.WORLD_HEIGHT), this);
         this.board.setBricks(level.getBricks());
     }
