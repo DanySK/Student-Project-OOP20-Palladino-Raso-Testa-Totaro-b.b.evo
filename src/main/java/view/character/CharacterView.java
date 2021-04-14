@@ -99,16 +99,11 @@ public class CharacterView implements Initializable {
         //Button next Listener
         this.btnNext.setOnAction(event -> {
             //Control if the alias as present
-            if (this.controller.viewLeaderboard().containsKey(this.characterNameField.getText().toUpperCase(Locale.ENGLISH))) {
+            if (this.controller.viewLeaderboard().containsKey(this.getAliasTextToUpper())) {
                 this.showAlertDialog();
             } else {
                 this.saveTemporaryPlayer(this.characterNameField.getText());
-                SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
-                        PersonalViews.SCENE_DIFFICULTY.getURL(), 
-                        PersonalViews.SCENE_DIFFICULTY.getTitleScene(), 
-                        this.window.getWidth(), 
-                        this.window.getHeight(),
-                        PersonalStyle.DEFAULT_STYLE.getStylePath());
+                this.switchToNextScene();
             }
 
             //Play Button CLick Sound
@@ -133,8 +128,12 @@ public class CharacterView implements Initializable {
     private void saveTemporaryPlayer(final String alias) {
         //Add a partial player
         this.controller.addPlayerInLeaderBoard(new PlayerBuilderImpl()
-                                               .alias(alias.toUpperCase(Locale.ENGLISH)).build());
+                                               .alias(alias).build());
         this.controller.saveSortLeaderboard(new StandardScoreSortingStrategy());
+    }
+ 
+    private String getAliasTextToUpper() {
+        return this.characterNameField.getText().toUpperCase(Locale.ENGLISH);
     }
 
     private void loadAnimation() {
@@ -156,6 +155,15 @@ public class CharacterView implements Initializable {
             .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
     }
 
+    private void switchToNextScene() {
+        SceneLoader.switchScene((Stage) this.window.getScene().getWindow(), 
+                PersonalViews.SCENE_DIFFICULTY.getURL(), 
+                PersonalViews.SCENE_DIFFICULTY.getTitleScene(), 
+                this.window.getWidth(), 
+                this.window.getHeight(),
+                PersonalStyle.DEFAULT_STYLE.getStylePath());
+    }
+
     private void showAlertDialog() {
         //Create alert
         final Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -172,13 +180,8 @@ public class CharacterView implements Initializable {
         //Control the choose
         final Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == yesButton) {
-            this.saveTemporaryPlayer(this.characterNameField.getText());
-            SceneLoader.switchScene((Stage) this.window.getScene().getWindow(), 
-                    PersonalViews.SCENE_DIFFICULTY.getURL(), 
-                    PersonalViews.SCENE_DIFFICULTY.getTitleScene(), 
-                    this.window.getWidth(), 
-                    this.window.getHeight(),
-                    PersonalStyle.DEFAULT_STYLE.getStylePath());
+            this.saveTemporaryPlayer(this.getAliasTextToUpper());
+            this.switchToNextScene();
             //Play Button CLick Sound
             SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
         } else {
