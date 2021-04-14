@@ -1,8 +1,7 @@
 package controller.game;
 
 import java.util.Arrays;
-
-import controller.BrickBreakerEvo;
+import controller.leaderboard.LeaderboardController;
 import controller.leaderboard.LeaderboardControllerImpl;
 import controller.settings.SettingsControllerImpl;
 import model.entities.Ball;
@@ -21,25 +20,37 @@ import model.utilities.Angle;
 
 public class GameStateImpl implements GameState {
 
-    /*
-     * Alex qui dovresti vedere se implementare o meno i Setting e il Player, e come implementare poi tutti i vari metodi,
-     * probabilmente non devi implementare molto pero io non ho idea di come fare visto che comunque e roba che hai gestito tu a modo tuo
-     */
     private GamePhase phase;
     private int multiplier;
     private final GameBoard board;
     private final Level level;
-    private final PlayerImpl player; //Alex
-    private final String settingFilePath = BrickBreakerEvo.SETTINGS_FOLDER + ".settings.json "; //da cambiare gameutilities
-    private final SettingsControllerImpl setting; //Alex
+    private final PlayerImpl player;
+    private final SettingsControllerImpl setting;
 
     public GameStateImpl() {
         this.phase = GamePhase.START;
         this.level = LevelSelection.LEVEL1.getLevel();
-        this.setting = new SettingsControllerImpl(settingFilePath); 
-        this.player = new PlayerImpl("Player", 0, setting.getDifficulty().getNumberOfLives(), 3); // per le max life ci vuole metodo
+        this.setting = new SettingsControllerImpl(GameUtilities.SETTINGS_PATH); 
+        this.player = new PlayerImpl(this.getPlayerAlias(), setting.getDifficulty().getInitialScore(), 
+                                     setting.getDifficulty().getNumberOfLives(), 
+                                     setting.getDifficulty().getMaxNumberOfLife());
         this.board = new GameBoardImpl(new Wall(GameUtilities.WORLD_WIDTH, GameUtilities.WORLD_HEIGHT), this);
         this.board.setBricks(level.getBricks());
+    }
+
+    /**
+     * This method allow to get the alias for the partial player.
+     * Saved in ranking whit alias zero.
+     */
+    private String getPlayerAlias() {
+        final LeaderboardController leaderboard = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
+        return leaderboard.viewLeaderboard()
+                          .entrySet()
+                          .stream()
+                          .filter(x -> x.getValue() == 0)
+                          .map(x -> x.getKey())
+                          .findFirst()
+                          .get();
     }
 
     /**
@@ -64,7 +75,6 @@ public class GameStateImpl implements GameState {
     }
 
     /**
-     * 
      * {@inheritDoc}
      */
     @Override
@@ -80,7 +90,7 @@ public class GameStateImpl implements GameState {
     }
 
     /**
-     * Alex.
+     *
      * {@inheritDoc}
      */
     @Override
@@ -113,7 +123,7 @@ public class GameStateImpl implements GameState {
     }
 
     /**
-     * Alex.
+     *
      * {@inheritDoc}
      */
     @Override
@@ -122,7 +132,7 @@ public class GameStateImpl implements GameState {
     }
 
     /**
-     * Alex.
+     *
      * {@inheritDoc}
      */
     @Override
@@ -139,7 +149,7 @@ public class GameStateImpl implements GameState {
     }
 
     /**
-     * Alex.
+     *
      * {@inheritDoc}
      */
     @Override
@@ -148,7 +158,7 @@ public class GameStateImpl implements GameState {
     }
 
     /**
-     * Alex.
+     *
      * {@inheritDoc}
      */
     @Override
@@ -157,7 +167,7 @@ public class GameStateImpl implements GameState {
     }
 
     /**
-     * Alex.
+     *
      * {@inheritDoc}
      */
     @Override
