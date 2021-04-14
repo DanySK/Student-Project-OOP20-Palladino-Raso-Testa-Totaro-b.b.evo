@@ -94,10 +94,9 @@ public class SettingsView implements Initializable, FXMLMenuController {
          * @param isLeftAndRightEnable
          * @param isUpAndDownEnable
          */
-        public void updateViewComponent(final boolean isSoundsFxEnable,
-                                        final boolean isMusicEnable,
-                                        final boolean isLeftAndRightEnable,
+        public void updateViewComponent(final boolean isSoundsFxEnable, final boolean isMusicEnable, final boolean isLeftAndRightEnable,
                                         final boolean isUpAndDownEnable) {
+
             this.ckSoundFX.setSelected(isSoundsFxEnable);
             this.ckSound.setSelected(isMusicEnable);
             this.rbUseLeftRight.setSelected(isLeftAndRightEnable);

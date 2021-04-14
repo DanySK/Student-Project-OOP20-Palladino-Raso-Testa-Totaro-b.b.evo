@@ -1,8 +1,11 @@
 package controller.game;
 
 import java.util.Arrays;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import controller.BrickBreakerEvo;
+import controller.leaderboard.LeaderboardController;
 import controller.leaderboard.LeaderboardControllerImpl;
 import controller.settings.SettingsControllerImpl;
 import model.entities.Ball;
@@ -37,11 +40,25 @@ public class GameStateImpl implements GameState {
         this.phase = GamePhase.START;
         this.level = LevelSelection.LEVEL1.getLevel();
         this.setting = new SettingsControllerImpl(settingFilePath); 
-        this.player = new PlayerImpl("Prova", 0, setting.getDifficulty().getNumberOfLives(), 3); // per le max life ci vuole metodo
+        this.player = new PlayerImpl(this.getPlayerAlias(), 0, setting.getDifficulty().getNumberOfLives(), 3); // per le max life ci vuole metodo
         this.board = new GameBoardImpl(new Wall(GameUtilities.WORLD_WIDTH, GameUtilities.WORLD_HEIGHT), this);
         this.board.setBricks(level.getBricks());
     }
 
+    /**
+     * This method allow to get the alias for the partial player.
+     * Saved in ranking whit alias zero.
+     */
+    private String getPlayerAlias() {
+        final LeaderboardController leaderboard = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
+        return leaderboard.viewLeaderboard()
+                          .entrySet()
+                          .stream()
+                          .filter((x) -> x.getValue() == 0)
+                          .map(x -> x.getKey())
+                          .findFirst()
+                          .get();
+    }
     /**
      *
      */
