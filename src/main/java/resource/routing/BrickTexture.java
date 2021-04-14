@@ -9,31 +9,37 @@ public enum BrickTexture {
     /**
      * Default theme, brick texture.
      */
-    BRICK_TEXTURE_DEFAULT("Images/brick/DefaultBrickTexture.png", "Default"),
+    BRICK_TEXTURE_DEFAULT("Images/brick/defaultBrick.jpg", "Default"),
 
     /**
      * Arkanoid theme, brick texture.
      */
-    BRICK_TEXTURE_ARKANOID("Images/brick/ArkanoidBrickTexture.png", "Arkanoid"),
+    BRICK_TEXTURE_ARKANOID("Images/brick/arkanoidBrick.png", "Arkanoid"),
 
     /**
      * Galaga theme, brick texture.
      */
-    BRICK_TEXTURE_GALAGA("Images/brick/GalagaBrickTexture.jpg", "Galaga"),
+    BRICK_TEXTURE_GALAGA("Images/brick/galagaBrick.png", "Galaga"),
 
     /**
      * Pacman theme, brick texture.
      */
-    BRICK_TEXTURE_PACMAN("Images/brick/PacmanBrickTexture.png", "Pacman"),
+    BRICK_TEXTURE_PACMAN("Images/brick/pacmanBrick.png", "Pacman"),
+
     /**
      * Crash Bandicoot theme, brick texture.
      */
-    BRICK_TEXTURE_CRASH("Images/brick/CrashBrickTexture.png", "Crash"),
+    BRICK_TEXTURE_CRASH("Images/brick/crashBrick.png", "Crash"),
 
     /**
      * Super Mario theme, brick texture.
      */
-    BRICK_TEXTURE_SUPERMARIO("Images/brick/SuperMarioBrickTexture.png", "Super Mario");
+    BRICK_TEXTURE_SUPERMARIO("Images/brick/marioBrick.png", "Super Mario"),
+
+    /**
+     * Undestructible brick.
+     */
+    BRICK_TEXTURE_UNDESTRUCTIBLE("Images/brick/greyBrick.png", "Undestructible");
 
     private String path;
     private String theme;
@@ -61,9 +67,10 @@ public enum BrickTexture {
      * 
      * @return a list of all available brickTexture
      */
-    public static List<String> getBrickTextureNames() {
+    public static List<String> getBrickTextureNamesVisible() {
         return Arrays.asList(BrickTexture.values()).stream()
                                           .map(i -> i.getTheme())
+                                          .filter(i -> !(i.equals(BrickTexture.BRICK_TEXTURE_UNDESTRUCTIBLE.getTheme())))
                                           .collect(Collectors.toList());
     }
 

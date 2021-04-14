@@ -8,32 +8,32 @@ public enum PowerUpTexture {
     /**
      * Default theme, power up texture.
      */
-    POWERUP_TEXTURE_DEFAULT("Images/PowerUpTexture/DefaultPowerUpTexture.png ", "Default"),
+    POWERUP_TEXTURE_DEFAULT("Images/powerup/defaultPowerUp.png", "Default"),
 
     /**
      * Arkanoid theme, power up texture.
      */
-    POWERUP_TEXTURE_ARKANOID("Images/PowerUpTexture/ArkanoidPowerUpTexture.png ", "Arkanoid"),
+    POWERUP_TEXTURE_ARKANOID("Images/powerup/arkanoidPowerUp.png", "Arkanoid"),
 
     /**
      * Galaga theme, power up texture.
      */
-    POWERUP_TEXTURE_GALAGA("Images/PowerUpTexture/GalagaPowerUpTexture.jpg ", "Galaga"),
+    POWERUP_TEXTURE_GALAGA("Images/powerup/galagaPowerUp.png", "Galaga"),
 
     /**
      * Pacman theme, power up texture.
      */
-    POWERUP_TEXTURE_PACMAN("Images/PowerUpTexture/BlackPowerUpTexture.png ", "Pacman"),
+    POWERUP_TEXTURE_PACMAN("Images/powerup/pacmanPowerUp.png", "Pacman"),
 
     /**
      * Crash Bandicoot theme, power up texture.
      */
-    POWERUP_TEXTURE_CRASH("Images/PowerUpTexture/CrashPowerUpTexture.png ", "Crash"),
+    POWERUP_TEXTURE_CRASH("Images/powerup/crashPowerUp.png", "Crash"),
 
     /**
      * Super Mario theme, power up texture.
      */
-    POWERUP_TEXTURE_SUPERMARIO("Images/PowerUpTexture/SuperMarioPowerUpTexture.png ", "SuperMario");
+    POWERUP_TEXTURE_SUPERMARIO("Images/powerup/marioPowerUp.png", "SuperMario");
 
     private String path;
     private String theme;
@@ -78,6 +78,6 @@ public enum PowerUpTexture {
                                                  .filter(i -> i.getTheme().equals(theme))
                                                  .findFirst()
                                                  .get()
-                                                 .toString();
+                                                 .getPath();
     }
 }
