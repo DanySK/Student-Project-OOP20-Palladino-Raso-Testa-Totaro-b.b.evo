@@ -13,7 +13,7 @@ import model.utilities.Position;
 import view.graphics.AdapterGraphics;
 import view.graphics.PaddleComponentGraphics;
 
-public class Paddle extends GameObjectImpl {
+public final class Paddle extends GameObjectImpl {
 
     private static final double PADDLE_SPEED = 0.4;
     private final Map<GameObject, Boundaries> hit = new HashMap<>();
