@@ -226,6 +226,7 @@ public class GameBoardImpl implements GameBoard {
         entities.addAll(this.balls);
         entities.addAll(this.bricks);
         entities.addAll(this.paddle);
+        entities.addAll(this.pwup);
         return Collections.unmodifiableSet(entities);
     }
 
