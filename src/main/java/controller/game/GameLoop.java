@@ -4,6 +4,8 @@ import controller.input.ControllerInput;
 import controller.input.ControllerInputImpl;
 import controller.input.InputEvent;
 import controller.input.InputEventImpl;
+import controller.leaderboard.LeaderboardController;
+import controller.leaderboard.LeaderboardControllerImpl;
 import controller.menu.SceneLoader;
 import controller.settings.SettingsController;
 import controller.settings.SettingsControllerImpl;
@@ -12,6 +14,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import model.entities.GameBoard;
+import model.leaderboard.LeaderboardSortingStrategy;
+import model.leaderboard.Player;
 import model.mapeditor.LevelSelection;
 import model.utilities.GameUtilities;
 import resource.routing.PersonalViews;
@@ -20,13 +24,6 @@ import view.game.ControllerNextLevel;
 
 
 public class GameLoop implements Runnable {
-
-    /* Alex in pratica devi vedere come gestire il sound perche non so come implementare la tua roba
-    * e poi vedere la funzione SaveState come salvare i progressi nei setting, perche li in base a se vinci o se perdi vai al livello successivo/ 
-    * torni al precendete io la mia parte che sapevo come implementare l'ho fatta,
-    *  adesso bisogna vedere come gestisci tu i setting, dovresti salvarti i progessi e poterli ricaricare.
-    * 
-    */
 
     private static final long PERIOD = 20;
     private final Scene scene;
@@ -46,7 +43,7 @@ public class GameLoop implements Runnable {
             SoundController.playMusic(gameState.getLevel().getMusic().getPath());
         }
         if (this.setting.isSoundFxEnable()) {
-            SoundController.playSoundFx(null); // da vedere cosa implementare
+            SoundController.playSoundFx(null); // selezionare musica
         }
         this.changeView(PersonalViews.SCENE_GAME);
         final InputEvent inputEvent = new InputEventImpl(this.controllerGame.getCanvas(), inputController, this.gameState);
@@ -85,7 +82,7 @@ public class GameLoop implements Runnable {
             waitForNextFrame(current);
             lastTime = current;
         }
-        //sound.stopMusic();
+        SoundController.stopMusic();
         if (gameState.getPhase().equals(GamePhase.WIN)
                 && LevelSelection.isStandardLevel(gameState.getLevel().getLevelName()) 
                 && LevelSelection.getSelectionFromLevel(gameState.getLevel()).hasNext()) {
@@ -122,29 +119,25 @@ public class GameLoop implements Runnable {
     }
 
     /**
-     * Alex, non capisco come gestisci il setting, in sostanza qui devi caricare il prossimo livello se completi il primo
-     * mentre se perdi devi selezionare il livello 1
-     * DA GUARDARE
      * stores the game progression as a checkpoint.
      * @param phase to set 
      */
-    /*private void saveState(final GamePhase state) {
+    private void saveState(final GamePhase state) {
         final SettingsBuilder settingsBuilder = new SettingsBuilder();
         if (state.equals(GamePhase.WIN)) {
-            UserManager.saveUser(gameState.getPlayer());
+            //UserManager.saveUser(gameState.getPlayer());
+            LevelSelection.getSelectionFromLevel(gameState.getLevel()).next().getLevel();
             SettingsManager.saveOption(settingsBuilder.fromSettings(SettingsManager.loadOption())
-                           .selectLevel(LevelSelection.getSelectionFromLevel(gameState.getLevel()).next().getLevel())
+                           .selectLevel()
                            .build());
         } else if (state.equals(GamePhase.LOST)) {
-            UserManager.saveUser(new User());
-            if (LevelSelection.isStandardLevel(gameState.getLevel().getLevelName())) {
-                SettingsManager.saveOption(settingsBuilder.fromSettings(SettingsManager.loadOption())
-                               .selectLevel(LevelSelection.LEVEL1.getLevel())
-                               .build());
-            }
+            //Ranking
+            LeaderboardController leaderboard = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
+            leaderboard.addPlayerInLeaderBoard(null);
+            //UserManager.saveUser(new User());
 
         }
-    }*/
+    }
 
     private void waitForNextFrame(final long current) {
         final long timeElapsed = System.currentTimeMillis() - current;
@@ -154,7 +147,6 @@ public class GameLoop implements Runnable {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
         }
     }
 

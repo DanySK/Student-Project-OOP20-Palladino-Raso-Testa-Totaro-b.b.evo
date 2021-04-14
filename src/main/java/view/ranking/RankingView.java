@@ -18,7 +18,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -153,16 +152,8 @@ public class RankingView implements Initializable, FXMLMenuController {
     public void loadListener() {
         //Button back Listener
         this.buttonBack.setOnAction(event -> {
-            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
-                                PersonalViews.SCENE_MAIN_MENU.getURL(), 
-                                PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
-                                this.window.getWidth(), 
-                                this.window.getHeight(),
-                                PersonalStyle.DEFAULT_STYLE.getStylePath());
-
-            //Play Button CLick Sound
-            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
-
+            this.switchPage(PersonalViews.SCENE_MAIN_MENU, PersonalStyle.DEFAULT_STYLE);
+            this.soundClick();
          });
 
         /* Button delete leaderboard */
@@ -170,7 +161,7 @@ public class RankingView implements Initializable, FXMLMenuController {
             this.showAlertDialog();
         });
 
-        /* Change column font */
+        /* Change column font, and set alias in column */
         this.aliasColumn.setCellFactory(new Callback<TableColumn<Entry<String, Integer>, String>, TableCell<Entry<String, Integer>, String>>() {
 
             @Override
@@ -188,6 +179,7 @@ public class RankingView implements Initializable, FXMLMenuController {
             }
         });
 
+        /* Change column font, and set score in column */
         this.scoreColumn.setCellFactory(new Callback<TableColumn<Entry<String, Integer>, Integer>, TableCell<Entry<String, Integer>, Integer>>() {
 
             @Override
@@ -206,6 +198,30 @@ public class RankingView implements Initializable, FXMLMenuController {
         });
     }
 
+    /**
+     * This method allows to switch the current scene whit the next or previous scene.
+     * @param scene - use to set the next or previous scene.
+     * @param style - use to set the style for the next or previous scene.
+     */
+    private void switchPage(final PersonalViews view, final PersonalStyle style) {
+        SceneLoader.switchScene((Stage) this.window.getScene().getWindow(), 
+                                view.getURL(), 
+                                view.getTitleScene(), 
+                                this.window.getWidth(), 
+                                this.window.getHeight(),
+                                style.getStylePath());
+    }
+
+    /**
+     * Method that allow to play the button's sound.
+     */
+    private void soundClick() {
+        SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+    }
+
+    /**
+     * Method that show dialog when the alias already exist in leaderboard.
+     */
     private void showAlertDialog() {
         //Create alert
         final Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -224,14 +240,8 @@ public class RankingView implements Initializable, FXMLMenuController {
         if (result.get() == yesButton) {
             this.controller.clearLeaderboard();
             //Refresh all view
-            SceneLoader.switchScene((Stage) this.window.getScene().getWindow(), 
-                    PersonalViews.SCENE_RANKING.getURL(), 
-                    PersonalViews.SCENE_RANKING.getTitleScene(), 
-                    this.window.getWidth(), 
-                    this.window.getHeight(),
-                    PersonalStyle.DEFAULT_STYLE.getStylePath());
-            //Play Button CLick Sound
-            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+            this.switchPage(PersonalViews.SCENE_RANKING, PersonalStyle.DEFAULT_STYLE);
+            this.soundClick();
         } else {
             alert.close();
         }
