@@ -1,7 +1,5 @@
 package controller.game;
 
-import java.util.Map;
-
 import controller.input.ControllerInput;
 import controller.input.ControllerInputImpl;
 import controller.input.InputEvent;
@@ -27,13 +25,6 @@ import view.game.ControllerNextLevel;
 
 public class GameLoop implements Runnable {
 
-    /* Alex in pratica devi vedere come gestire il sound perche non so come implementare la tua roba
-    * e poi vedere la funzione SaveState come salvare i progressi nei setting, perche li in base a se vinci o se perdi vai al livello successivo/ 
-    * torni al precendete io la mia parte che sapevo come implementare l'ho fatta,
-    *  adesso bisogna vedere come gestisci tu i setting, dovresti salvarti i progessi e poterli ricaricare.
-    * 
-    */
-
     private static final long PERIOD = 20;
     private final Scene scene;
     private final GameState gameState;
@@ -52,7 +43,7 @@ public class GameLoop implements Runnable {
             SoundController.playMusic(gameState.getLevel().getMusic().getPath());
         }
         if (this.setting.isSoundFxEnable()) {
-            SoundController.playSoundFx(null); // da vedere cosa implementare
+            SoundController.playSoundFx(null); // selezionare musica
         }
         this.changeView(PersonalViews.SCENE_GAME);
         final InputEvent inputEvent = new InputEventImpl(this.controllerGame.getCanvas(), inputController, this.gameState);
@@ -91,7 +82,7 @@ public class GameLoop implements Runnable {
             waitForNextFrame(current);
             lastTime = current;
         }
-        //sound.stopMusic();
+        SoundController.stopMusic();
         if (gameState.getPhase().equals(GamePhase.WIN)
                 && LevelSelection.isStandardLevel(gameState.getLevel().getLevelName()) 
                 && LevelSelection.getSelectionFromLevel(gameState.getLevel()).hasNext()) {
@@ -128,9 +119,6 @@ public class GameLoop implements Runnable {
     }
 
     /**
-     * Alex, non capisco come gestisci il setting, in sostanza qui devi caricare il prossimo livello se completi il primo
-     * mentre se perdi devi selezionare il livello 1
-     * DA GUARDARE
      * stores the game progression as a checkpoint.
      * @param phase to set 
      */
