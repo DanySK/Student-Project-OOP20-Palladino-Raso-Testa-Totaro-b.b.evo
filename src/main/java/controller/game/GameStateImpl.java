@@ -34,7 +34,6 @@ public class GameStateImpl implements GameState {
         this.player = new PlayerImpl(this.getPlayerAlias(), setting.getDifficulty().getInitialScore(), 
                                      setting.getDifficulty().getNumberOfLives(), 
                                      setting.getDifficulty().getMaxNumberOfLife());
-
         this.board = new GameBoardImpl(new Wall(GameUtilities.WORLD_WIDTH, GameUtilities.WORLD_HEIGHT), this);
         this.board.setBricks(level.getBricks());
     }
@@ -76,7 +75,6 @@ public class GameStateImpl implements GameState {
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override

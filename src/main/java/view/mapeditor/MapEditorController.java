@@ -32,6 +32,7 @@ import resource.routing.BrickTexture;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
+import resource.routing.PowerUpTexture;
 
 public class MapEditorController implements GUIController {
 
@@ -40,6 +41,7 @@ public class MapEditorController implements GUIController {
     private GraphicsContext graphicsContext;
     private LevelBuilder levelBuilder;
     private final CheckAlertController alert = new CheckAlertController();
+    private String textureType;
 
     @FXML
     private Pane pane;
@@ -110,6 +112,27 @@ public class MapEditorController implements GUIController {
     @FXML
     private Canvas canvas;
 
+    private String getTypeTexture() {
+        /*if (!powerupTexture.getValue().isEmpty() && !brickTexture.getValue().isEmpty()) {
+            return brickTexture.getValue();
+        } else if (!powerupTexture.getValue().isEmpty() && brickTexture.getValue().isEmpty()) {
+            return powerupTexture.getValue();
+        } else if (powerupTexture.getValue().isEmpty() && !brickTexture.getValue().isEmpty()) {
+            return brickTexture.getValue();
+        } else {
+            return null;
+        }*/
+        return textureType;
+    }
+
+    private void setTypeTexture(final String textureType) {
+        if (textureType.equals(brickTexture.getValue())) {
+            this.textureType = brickTexture.getValue();
+        } else {
+            this.textureType = powerupTexture.getValue();
+        }
+    }
+
     /**
      * Initialize the level customization and set the mouse listeners on the canvas.
      */
@@ -126,28 +149,42 @@ public class MapEditorController implements GUIController {
         this.backGround.getItems().addAll(BackGround.getBackGroundNames());
         this.levelBuilder = new LevelBuilder();
 
+        brickTexture.setOnAction(c -> {
+            setTypeTexture(brickTexture.getValue());
+        });
+        powerupTexture.setOnAction(c -> {
+            setTypeTexture(powerupTexture.getValue());
+        });
         this.setCanvas();
         this.canvas.setOnMouseClicked(e -> {
             if (e.getY() < (rowsY * (GameUtilities.BRICK_NUMBER_Y - NOT_BUILDABLE_ZONE))) {
-                final Pair<GameObjectEmpty, Boolean> res = levelBuilder.brickSelected(e.getX(), e.getY(),
-                                               brickTexture.getValue(),
-                                               unbreakableCheck.isSelected() ? GameObjStatus.NOT_DESTRUCTIBLE : GameObjStatus.DESTRUCTIBLE,
-                                               (int) durabilitySet.getValue());
-                if (res.getY()) {
+                Pair<GameObjectEmpty, Boolean> init = levelBuilder.brickSelected(e.getX(), e.getY(),
+                                                      getTypeTexture(),
+                                                      unbreakableCheck.isSelected() ? GameObjStatus.NOT_DESTRUCTIBLE : GameObjStatus.DESTRUCTIBLE,
+                                                      (int) durabilitySet.getValue());
+                if (init.getY()) {
                     if  (unbreakableCheck.isSelected()) {
                         graphicsContext.setFill(new ImagePattern(new Image(BrickTexture.getBrickTextureByName("Undestructible")), 0, 0, 1, 1, true));
                     } else {
-                        graphicsContext.setFill(new ImagePattern(new Image(BrickTexture.getBrickTextureByName(brickTexture.getValue())), 0, 0, 1, 1, true));
+                        if (getTypeTexture().equals(powerupTexture.getValue())) {
+                            graphicsContext.setFill(new ImagePattern(new Image(PowerUpTexture.getPowerUpTextureByName(brickTexture.getValue())), 0, 0, 1, 1, true));
+                        } else {
+                            graphicsContext.setFill(new ImagePattern(new Image(BrickTexture.getBrickTextureByName(brickTexture.getValue())), 0, 0, 1, 1, true));
+                        }
                     }
-                    graphicsContext.fillRect(res.getX().getPos().getX(), res.getX().getPos().getY(), res.getX().getWidth(), res.getX().getHeight());
-                    graphicsContext.strokeRect(res.getX().getPos().getX(), res.getX().getPos().getY(), res.getX().getWidth(), res.getX().getHeight());
+                    graphicsContext.fillRect(init.getX().getPos().getX(), init.getX().getPos().getY(), init.getX().getWidth(), init.getX().getHeight());
+                    graphicsContext.strokeRect(init.getX().getPos().getX(), init.getX().getPos().getY(), init.getX().getWidth(), init.getX().getHeight());
                 } else {
-                    graphicsContext.clearRect(res.getX().getPos().getX(), res.getX().getPos().getY(), res.getX().getWidth(), res.getX().getHeight());
-                    graphicsContext.strokeRect(res.getX().getPos().getX(), res.getX().getPos().getY(), res.getX().getWidth(), res.getX().getHeight());
+                    graphicsContext.clearRect(init.getX().getPos().getX(), init.getX().getPos().getY(), init.getX().getWidth(), init.getX().getHeight());
+                    graphicsContext.strokeRect(init.getX().getPos().getX(), init.getX().getPos().getY(), init.getX().getWidth(), init.getX().getHeight());
                 }
             }
         });
     }
+
+    /**
+     * @return 
+     */
 
     /**
      * Draw a grid on canvas.

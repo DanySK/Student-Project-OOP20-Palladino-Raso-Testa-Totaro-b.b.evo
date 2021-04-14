@@ -89,9 +89,19 @@ public class LevelBuilder {
                     this.gameGrid.replace(brickSelected, new Pair<>(this.gameGrid.get(brickSelected).getX(), Optional.empty()));
                     retState = new Pair<>(objectEmpty, false);
                 } else {
-                    //if (state.equals(GameObjStatus.DESTRUCTIBLE)) {
-
-                    //} else {
+                    if (state.equals(GameObjStatus.DROP_POWERUP)) {
+                        final Builder brickBuilder = new Builder();
+                        final GameObject gameObjectEmpty = this.gameGrid.get(brickSelected).getX();
+                        final Brick brick = brickBuilder.setPos(new Position(gameObjectEmpty.getPos().getX(), gameObjectEmpty.getPos().getY()))
+                                                         .setHeight(this.gameGrid.get(brickSelected).getX().getHeight())
+                                                         .setWidth(this.gameGrid.get(brickSelected).getX().getWidth())
+                                                         .setStatus(state)
+                                                         .setTexture(new Texture(texture).buildPowerUpTexturePath())
+                                                         .setDurability(durability)
+                                                         .build();
+                        this.gameGrid.replace(brickSelected, new Pair<>(this.gameGrid.get(brickSelected).getX(), Optional.of(brick)));
+                        retState = new Pair<>(objectEmpty, true);
+                    } else {
                         final Builder brickBuilder = new Builder();
                         final GameObject gameObjectEmpty = this.gameGrid.get(brickSelected).getX();
                         final Brick brick = brickBuilder.setPos(new Position(gameObjectEmpty.getPos().getX(), gameObjectEmpty.getPos().getY()))
@@ -103,7 +113,7 @@ public class LevelBuilder {
                                                          .build();
                         this.gameGrid.replace(brickSelected, new Pair<>(this.gameGrid.get(brickSelected).getX(), Optional.of(brick)));
                         retState = new Pair<>(objectEmpty, true);
-                   // }
+                   }
                 }
             }
         }
