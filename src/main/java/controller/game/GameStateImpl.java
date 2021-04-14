@@ -30,14 +30,14 @@ public class GameStateImpl implements GameState {
     private final GameBoard board;
     private final Level level;
     private final PlayerImpl player; //Alex
-    private final String settingFilePath = BrickBreakerEvo.SETTINGS_FOLDER + ".settings.json "; //Alex
+    private final String settingFilePath = BrickBreakerEvo.SETTINGS_FOLDER + ".settings.json "; //da cambiare gameutilities
     private final SettingsControllerImpl setting; //Alex
 
     public GameStateImpl() {
         this.phase = GamePhase.START;
         this.level = LevelSelection.LEVEL1.getLevel();
         this.setting = new SettingsControllerImpl(settingFilePath); 
-        this.player = new PlayerImpl("Prova", 0, setting.getDifficulty().getNumberOfLives(), 3); // per le max life ci vuole metodo
+        this.player = new PlayerImpl("Player", 0, setting.getDifficulty().getNumberOfLives(), 3); // per le max life ci vuole metodo
         this.board = new GameBoardImpl(new Wall(GameUtilities.WORLD_WIDTH, GameUtilities.WORLD_HEIGHT), this);
         this.board.setBricks(level.getBricks());
     }
@@ -64,7 +64,7 @@ public class GameStateImpl implements GameState {
     }
 
     /**
-     * Alex.
+     * 
      * {@inheritDoc}
      */
     @Override

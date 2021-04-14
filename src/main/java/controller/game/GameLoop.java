@@ -1,9 +1,13 @@
 package controller.game;
 
+import java.util.Map;
+
 import controller.input.ControllerInput;
 import controller.input.ControllerInputImpl;
 import controller.input.InputEvent;
 import controller.input.InputEventImpl;
+import controller.leaderboard.LeaderboardController;
+import controller.leaderboard.LeaderboardControllerImpl;
 import controller.menu.SceneLoader;
 import controller.settings.SettingsController;
 import controller.settings.SettingsControllerImpl;
@@ -12,6 +16,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import model.entities.GameBoard;
+import model.leaderboard.LeaderboardSortingStrategy;
+import model.leaderboard.Player;
 import model.mapeditor.LevelSelection;
 import model.utilities.GameUtilities;
 import resource.routing.PersonalViews;
@@ -128,23 +134,22 @@ public class GameLoop implements Runnable {
      * stores the game progression as a checkpoint.
      * @param phase to set 
      */
-    /*private void saveState(final GamePhase state) {
+    private void saveState(final GamePhase state) {
         final SettingsBuilder settingsBuilder = new SettingsBuilder();
         if (state.equals(GamePhase.WIN)) {
-            UserManager.saveUser(gameState.getPlayer());
+            //UserManager.saveUser(gameState.getPlayer());
+            LevelSelection.getSelectionFromLevel(gameState.getLevel()).next().getLevel();
             SettingsManager.saveOption(settingsBuilder.fromSettings(SettingsManager.loadOption())
-                           .selectLevel(LevelSelection.getSelectionFromLevel(gameState.getLevel()).next().getLevel())
+                           .selectLevel()
                            .build());
         } else if (state.equals(GamePhase.LOST)) {
-            UserManager.saveUser(new User());
-            if (LevelSelection.isStandardLevel(gameState.getLevel().getLevelName())) {
-                SettingsManager.saveOption(settingsBuilder.fromSettings(SettingsManager.loadOption())
-                               .selectLevel(LevelSelection.LEVEL1.getLevel())
-                               .build());
-            }
+            //Ranking
+            LeaderboardController leaderboard = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
+            leaderboard.addPlayerInLeaderBoard(null);
+            //UserManager.saveUser(new User());
 
         }
-    }*/
+    }
 
     private void waitForNextFrame(final long current) {
         final long timeElapsed = System.currentTimeMillis() - current;
@@ -154,7 +159,6 @@ public class GameLoop implements Runnable {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
         }
     }
 
