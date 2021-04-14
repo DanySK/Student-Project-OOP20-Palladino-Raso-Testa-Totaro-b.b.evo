@@ -49,7 +49,7 @@ public enum PersonalViews {
      * Path for load Next Level banner.
      */
     SCENE_NEXT_LEVEL("Layout/NextLevel.fxml", "NEXT_LEVEL"), 
-    
+
     /**
      * Path for load Game over banner.
      */
