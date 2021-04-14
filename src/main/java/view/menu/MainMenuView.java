@@ -8,6 +8,8 @@ import controller.sound.SoundController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -25,8 +27,9 @@ import resource.routing.PersonalFonts;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
+import view.FXMLMenuController;
 
-public class MainMenuView implements Initializable {
+public class MainMenuView implements Initializable, FXMLMenuController {
 
     @FXML
     private AnchorPane window;
@@ -76,70 +79,43 @@ public class MainMenuView implements Initializable {
         this.loadMusic();
     }
 
-    private void loadListener() {
-        //Play Listener
-        this.btnPlay.setOnAction(event -> {
-            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
-                                     PersonalViews.SCENE_CHARACTER_MENU.getURL(), 
-                                     PersonalViews.SCENE_CHARACTER_MENU.getTitleScene(), 
-                                     this.window.getWidth(), 
-                                     this.window.getHeight(),
-                                     PersonalStyle.DEFAULT_STYLE.getStylePath());
-            //Play Button CLick Sound
-            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
-        });
+    @Override
+    public void loadListener() {
 
-        // Settings Listener
-        this.btnSettings.setOnAction(event -> {
-            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
-                                     PersonalViews.SCENE_SETTINGS.getURL(), 
-                                     PersonalViews.SCENE_SETTINGS.getTitleScene(), 
-                                     this.window.getWidth(), 
-                                     this.window.getHeight(),
-                                     PersonalStyle.DEFAULT_STYLE.getStylePath());
-            //Play Button CLick Sound
-            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
-        });
+        this.btnPlay.setOnAction(this.switchPage(PersonalViews.SCENE_CHARACTER_MENU, PersonalStyle.DEFAULT_STYLE));
 
-        // CreativeMode Listener
-        this.btnCreativeMode.setOnAction(event -> {
-            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
-                                     PersonalViews.SCENE_CREATIVEMODE.getURL(), 
-                                     PersonalViews.SCENE_CREATIVEMODE.getTitleScene(), 
-                                     this.window.getWidth(), 
-                                     this.window.getHeight(),
-                                     PersonalStyle.DEFAULT_STYLE.getStylePath());
+        this.btnSettings.setOnAction(this.switchPage(PersonalViews.SCENE_SETTINGS, PersonalStyle.DEFAULT_STYLE));
 
-            //Play Button CLick Sound
-            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
-        });
+        this.btnCreativeMode.setOnAction(this.switchPage(PersonalViews.SCENE_CREATIVEMODE, PersonalStyle.DEFAULT_STYLE));
 
-        // Tutorial Listener
-        this.btnTutorial.setOnAction(event -> {
-            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
-                                    PersonalViews.SCENE_TUTORIAL.getURL(), 
-                                    PersonalViews.SCENE_TUTORIAL.getTitleScene(), 
-                                    this.window.getWidth(), 
-                                    this.window.getHeight(),
-                                    PersonalStyle.DEFAULT_STYLE.getStylePath());
-            //Play Button CLick Sound
-            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
-        });
+        this.btnTutorial.setOnAction(this.switchPage(PersonalViews.SCENE_TUTORIAL, PersonalStyle.DEFAULT_STYLE));
 
-        // Ranking Listener
-        this.btnRanking.setOnAction(event -> {
-            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
-                                    PersonalViews.SCENE_RANKING.getURL(), 
-                                    PersonalViews.SCENE_RANKING.getTitleScene(), 
-                                    this.window.getWidth(), 
-                                    this.window.getHeight(),
-                                    PersonalStyle.DEFAULT_STYLE.getStylePath());
-            //Play Button CLick Sound
-            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
-        });
+        this.btnRanking.setOnAction(this.switchPage(PersonalViews.SCENE_RANKING, PersonalStyle.DEFAULT_STYLE));
     }
 
-    private void loadAnimation() {
+    @Override
+    public EventHandler<ActionEvent> switchPage(final PersonalViews scene, final PersonalStyle style) {
+        return new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(final ActionEvent event) {
+                //Switch Scene
+                SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
+                scene.getURL(), 
+                scene.getTitleScene(), 
+                window.getWidth(), 
+                window.getHeight(),
+                style.getStylePath());
+
+                //PlaySound
+                SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+            }
+
+        };
+    }
+
+    @Override
+    public void loadAnimation() {
         //Blink insert coin label
         final Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(1.00), evt -> this.lblCoins.setVisible(false)),
@@ -148,7 +124,8 @@ public class MainMenuView implements Initializable {
                 timeline.play();
     }
 
-    private void loadFont() {
+    @Override
+    public void loadFont() {
         this.lblTitle
                 .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnPlay
@@ -165,7 +142,8 @@ public class MainMenuView implements Initializable {
                 .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
     }
 
-    private void resizable() {
+    @Override
+    public void resizable() {
 
         this.btnPlay.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
         this.btnSettings.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
@@ -181,4 +159,5 @@ public class MainMenuView implements Initializable {
         //Play Button CLick Sound
         SoundController.playMusic(PersonalSounds.MAIN_THEME.getURL().getPath());
     }
+
 }
