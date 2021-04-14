@@ -1,5 +1,8 @@
 package view;
 
-public interface GUIFactory {
+/*
+ * Simple interface used to load the fxml
+ */
+public interface GUILayout {
 
 }
