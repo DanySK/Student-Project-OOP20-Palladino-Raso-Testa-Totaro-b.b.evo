@@ -13,9 +13,11 @@
          <children>
             <Label fx:id="lblTitle" text="BRICK-BREAKER" textFill="WHITE">
                <font>
-                  <Font size="20.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
+            <Label />
+            <Label />
             <Label fx:id="lblScore" text="SCORE:" textFill="WHITE">
                <font>
                   <Font size="25.0" />
