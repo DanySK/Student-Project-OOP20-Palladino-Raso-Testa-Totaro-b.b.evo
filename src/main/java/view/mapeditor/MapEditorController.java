@@ -4,8 +4,6 @@ import controller.menu.SceneLoader;
 import controller.texture.TextureController;
 import controller.utilities.CheckAlertController;
 import controller.utilities.GUIController;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
@@ -14,18 +12,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import model.entities.GameObjectEmpty;
 import model.mapeditor.LevelBuilder;
 import model.mapeditor.LevelManager;
@@ -34,20 +28,15 @@ import model.utilities.GameObjStatus;
 import model.utilities.GameUtilities;
 import model.utilities.Pair;
 import resource.routing.BackGround;
-import resource.routing.BallTexture;
 import resource.routing.BrickTexture;
-import resource.routing.PaddleTexture;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
-import resource.routing.PowerUpTexture;
 
 public class MapEditorController implements GUIController {
 
-    private static final int COMBOBOX_HEIGHT = 30;
-    private static final int PLAYER_ZONE = 4; // da capire
+    private static final int NOT_BUILDABLE_ZONE = 4; // Number of rows where the player can't put brick
     private int rowsY;
-    private int colsX;
     private GraphicsContext graphicsContext;
     private LevelBuilder levelBuilder;
     private final CheckAlertController alert = new CheckAlertController();
@@ -127,20 +116,19 @@ public class MapEditorController implements GUIController {
     @FXML
     public void initialize() {
 
-        TextureController tc = new TextureController(ballTexture, brickTexture);
+        final TextureController tc = new TextureController(ballTexture, paddleTexture, brickTexture, powerupTexture);
         tc.loadBallTexture();
+        tc.loadPaddleTexture();
         tc.loadBrickTexture();
-
-        this.paddleTexture.getItems().addAll(PaddleTexture.getPaddleTexturedNames());
-        this.powerupTexture.getItems().addAll(PowerUpTexture.getPowerupTextureNames());
+        tc.loadPowerupTexture();
 
         this.soundtrack.getItems().addAll(PersonalSounds.getSongLevelNames());
         this.backGround.getItems().addAll(BackGround.getBackGroundNames());
-
         this.levelBuilder = new LevelBuilder();
+
         this.setCanvas();
         this.canvas.setOnMouseClicked(e -> {
-            if (e.getY() < (rowsY * (GameUtilities.BRICK_NUMBER_Y - PLAYER_ZONE))) {
+            if (e.getY() < (rowsY * (GameUtilities.BRICK_NUMBER_Y - NOT_BUILDABLE_ZONE))) {
                 final Pair<GameObjectEmpty, Boolean> res = levelBuilder.brickSelected(e.getX(), e.getY(),
                                                brickTexture.getValue(),
                                                unbreakableCheck.isSelected() ? GameObjStatus.NOT_DESTRUCTIBLE : GameObjStatus.DESTRUCTIBLE,
@@ -166,7 +154,7 @@ public class MapEditorController implements GUIController {
         this.graphicsContext = canvas.getGraphicsContext2D();
         this.graphicsContext.setStroke(Color.BLACK);
         this.graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        this.colsX = (int) (this.canvas.getWidth() / GameUtilities.BRICK_NUMBER_X);
+        final int colsX = (int) (this.canvas.getWidth() / GameUtilities.BRICK_NUMBER_X);
         this.rowsY = (int) (this.canvas.getHeight() / GameUtilities.BRICK_NUMBER_Y);
         final double wastePixel = GameUtilities.CANVAS_WIDTH % GameUtilities.BRICK_NUMBER_X;
         int currentYpos = 0;
@@ -181,7 +169,7 @@ public class MapEditorController implements GUIController {
         }
         this.graphicsContext.strokeLine(currentXpos, 0, currentXpos, canvas.getHeight());
         this.graphicsContext.setFill(Color.BLACK);
-        this.graphicsContext.fillRect(0, rowsY * (GameUtilities.BRICK_NUMBER_Y - PLAYER_ZONE), canvas.getWidth() - wastePixel, canvas.getHeight());
+        this.graphicsContext.fillRect(0, rowsY * (GameUtilities.BRICK_NUMBER_Y - NOT_BUILDABLE_ZONE), canvas.getWidth() - wastePixel, canvas.getHeight());
     }
 
     /**
@@ -227,30 +215,5 @@ public class MapEditorController implements GUIController {
     public void clearAll(final MouseEvent event) {
         levelBuilder.deleteAll();
         this.setCanvas();
-    }
-
-    public class StatusListCell extends ListCell<String> {
-
-        /**
-         * 
-         */
-        public static final int MAGIC = 40;
-        /**
-         * @param item
-         * @param empty
-         */
-        protected void updateItem(final String item, final boolean empty) {
-            super.updateItem(item, empty);
-            setGraphic(null);
-            setText(null);
-            if (item != null) {
-                final ImageView imageView = new ImageView(new Image(item));
-                imageView.setFitWidth(MAGIC);
-                imageView.setFitHeight(MAGIC);
-                setGraphic(imageView);
-                setText("a");
-            }
-        }
-
     }
 }
