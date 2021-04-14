@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <SplitPane dividerPositions="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.game.ControllerGame">
    <items>
       <VBox fx:id="dashboard" alignment="CENTER" prefHeight="410.0" prefWidth="188.0" spacing="20.0" style="-fx-background-image: url(&quot;/Images/background/BlackBackground.png&quot;); -fx-background-size: stretch;">
@@ -32,7 +31,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="lblPlay" text="-- Insert coin to start --" textFill="WHITE">
+            <Label fx:id="lblPlay" text="-- Insert coin to start using space--" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
