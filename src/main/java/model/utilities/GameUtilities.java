@@ -81,7 +81,12 @@ public final class GameUtilities {
                                                 + SEP
                                                 + "Settings"
                                                 + SEP
-                                                + "settings.json"; 
+                                                + "settings.json";
+
+    /**
+     * Used when player don't set the alias.
+     */
+    public static final String DEFAULT_PLAYER_NAME = "GUEST";
 
     /**
      * The minimum WIDTH number that the stage can have.
