@@ -1,53 +1,50 @@
 package controller.game;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import java.io.IOException;
 import controller.input.ControllerInput;
-import controller.menu.SceneLoader;
-import controller.sound.SoundController;
+import controller.input.ControllerInputImpl;
+import controller.input.InputEvent;
+import controller.input.InputEventImpl;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
 import model.entities.GameBoard;
-import model.entities.Paddle;
 import model.mapeditor.LevelSelection;
-import model.utilities.GameUtilities;
-import paranoid.controller.fxmlcontroller.GameController;
-import paranoid.view.layoutmanager.LayoutManager;
-import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
 import view.game.ControllerGame;
 
 
 public class GameLoop implements Runnable {
 
+    /* Alex in pratica devi vedere come gestire il sound perche non so come implementare la tua roba
+    * e poi vedere la funzione SaveState come salvare i progressi nei setting, perche li in base a se vinci o se perdi vai al livello successivo/ 
+    * torni al precendete io la mia parte che sapevo come implementare l'ho fatta,
+    *  adesso bisogna vedere come gestisci tu i setting, dovresti salvarti i progessi e poterli ricaricare.
+    * 
+    */
+
     private static final long PERIOD = 20;
     private final Scene scene;
     private final GameState gameState;
     private final GameBoard board;
     private final ControllerGame controllerGame;
-    private final Map<Paddle, ControllerInput> inputController = new HashMap<>();
-    private final SoundController sound;
+    private final ControllerInput inputController = new ControllerInputImpl();
+    //private final SoundController sound; //Alex
 
-
-    public GameLoop(final Scene scene) {
+    public GameLoop(final Scene scene) throws IOException {
         this.scene = scene;
         this.gameState = new GameStateImpl();
         this.board = gameState.getBoard();
-        //this.sound = new SoundController(); da ragionarci
-        //this.gameController = (GameController) LayoutManager.GAME.getGuiController();
+        //this.sound = new SoundController();
         this.controllerGame = (ControllerGame) new FXMLLoader(getClass().getResource(PersonalViews.SCENE_GAME.getURL().getPath())).load();
-        this.controllerGame.setBackgroundImage(gamestate.getLevel().getBackGround);
+        this.controllerGame.setBackgroundImage(gameState.getLevel().getBackground());
         //this.sound.setMusicEnable(gameState.isMusicActive());
         //this.sound.setEffectEnable(gameState.isEffectActive());
-        //this.board.getEventHanlder().addMusicPlayer(player);
+        //this.board.getEventHanlder().addMusicPlayer(sound);
         //this.sound.playMusic(gameState.getLevel().getMusic());
-        //this.changeView(LayoutManager.GAME);
-        //this.inputController.put(Paddle, new KeyboardInputController());
-        //final InputHandler inputHandler = new KeyboardInputHandler(this.inputController, this.gameController.getCanvas(), this.gameState);
-            //inputHandler.notifyInputEvent();
+        this.changeView(PersonalViews.SCENE_GAME);
+        final InputEvent inputEvent = new InputEventImpl(this.controllerGame.getCanvas(), inputController, this.gameState);
+            inputEvent.notifyAll();
     }
 
 
@@ -67,11 +64,11 @@ public class GameLoop implements Runnable {
                 gameState.init();
                 break;
             case PAUSE:
-                this.gameController.setPause(true);
+                this.controllerGame.setPlay(false);
                 render();
                 break;
             case RUNNING:
-                this.gameController.setPause(false);
+                this.controllerGame.setPlay(true);
                 processInput();
                 updateGame(elapsed);
                 render();
@@ -82,26 +79,46 @@ public class GameLoop implements Runnable {
             waitForNextFrame(current);
             lastTime = current;
         }
-        sound.stopMusic();
+        //sound.stopMusic();
         if (gameState.getPhase().equals(GamePhase.WIN)
-                && LevelSelection.isStoryLevel(gameState.getLevel().getLevelName()) 
+                && LevelSelection.isStandardLevel(gameState.getLevel().getLevelName()) 
                 && LevelSelection.getSelectionFromLevel(gameState.getLevel()).hasNext()) {
                 saveState(GamePhase.WIN);
-            changeView(LayoutManager.NEXT_LEVEL);
+            changeView(PersonalViews.SCENE_NEXT_LEVEL);
         } else if (gameState.getPhase().equals(GamePhase.MENU)) {
-            changeView(LayoutManager.MENU);
+            changeView(PersonalViews.SCENE_MAIN_MENU);
         } else { 
             saveState(GamePhase.LOST);
-            changeView(LayoutManager.GAME_OVER);
+            changeView(PersonalViews.SCENE_GAME_OVER);
         }
     }
 
 
-    private void changeView(final LayoutManager layoutManager) {
-        // TODO Auto-generated method stub
+    /**
+     * Alessandro, probabilmente mi serve una funzione loader per caricare tutti gli fxml.
+     * @param layout
+     */
+    private void changeView(final PersonalViews layout) {
+        if (layout.equals(PersonalViews.SCENE_NEXT_LEVEL)) {
+            final NextLevelController nextLevelController = (NextLevelController) new FXMLLoader(getClass().getResource(PersonalViews.SCENE_NEXT_LEVEL.getURL().getPath())).load();
+            //nextLevelController.update(gameState.getLevel(), gameState.getUser());
+        } else if (layout.equals(PersonalViews.SCENE_GAME_OVER)) {
+            final GameOverController gameOverController = (GameOverController) new FXMLLoader(getClass().getResource(PersonalViews.SCENE_GAME_OVER.getURL().getPath())).load();
+            //gameOverController.updateScore(gameState.getTopScores(), gameState.getUser(), gameState.getLevel());
+        }
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                scene.setRoot(new FXMLLoader(getClass().getResource(PersonalViews.SCENE_GAME.getURL().getPath())).load());
+            }
+        });
     }
 
     /**
+     * Alex, non capisco come gestisci il setting, in sostanza qui devi caricare il prossimo livello se completi il primo
+     * mentre se perdi devi selezionare il livello 1
+     * DA GUARDARE
      * stores the game progression as a checkpoint.
      * @param phase to set 
      */
@@ -114,7 +131,7 @@ public class GameLoop implements Runnable {
                            .build());
         } else if (state.equals(GamePhase.LOST)) {
             UserManager.saveUser(new User());
-            if (LevelSelection.isStoryLevel(gameState.getLevel().getLevelName())) {
+            if (LevelSelection.isStandardLevel(gameState.getLevel().getLevelName())) {
                 SettingsManager.saveOption(settingsBuilder.fromSettings(SettingsManager.loadOption())
                                .selectLevel(LevelSelection.LEVEL1.getLevel())
                                .build());
@@ -123,12 +140,11 @@ public class GameLoop implements Runnable {
         }
     }
 
-
     private void waitForNextFrame(final long current) {
-        final long diffTime = System.currentTimeMillis() - current;
-        if (diffTime < PERIOD) {
+        final long timeElapsed = System.currentTimeMillis() - current;
+        if (timeElapsed < PERIOD) {
                 try {
-                    Thread.sleep(PERIOD - diffTime);
+                    Thread.sleep(PERIOD - timeElapsed);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -136,28 +152,32 @@ public class GameLoop implements Runnable {
         }
     }
 
-
+    /**
+     * @param elapsed
+     */
     private void updateGame(final int elapsed) {
-        board.getEventHanlder().resolveEvent();
+        board.getEventHanlder().manageEvent();
         board.updateState(elapsed);
     }
 
 
+    /**
+     * 
+     */
     private void processInput() {
-        inputController.entrySet().forEach(i -> {
-            board.movePaddle(i.getKey(), i.getValue());
-        });
+            board.movePaddle(inputController);
     }
 
-
+    /**
+     * 
+     */
     private void render() {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                gameController.render(board.getSceneEntities(), gameState.getTopScores(), 
+                controllerGame.render(board.getSceneEntities(), gameState.getTopScores(), 
                                       gameState.getPlayerScore(), gameState.getLives());
             }
         });
     }
-
 }

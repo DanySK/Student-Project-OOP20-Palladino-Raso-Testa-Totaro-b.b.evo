@@ -145,7 +145,7 @@ public interface GameBoard extends GameBoardEventListeners {
      * Update paddle input component.
      * @param inputController controller that check the key pressed by user
      */
-    void movePlayer(ControllerInput inputController);
+    void movePaddle(ControllerInput inputController);
 
     /**
      * @return the eventHandler 
