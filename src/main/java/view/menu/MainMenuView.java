@@ -68,7 +68,7 @@ public class MainMenuView implements Initializable, FXMLMenuController {
     private Button btnRanking;
 
     /**
-     * Initialize all javafx view components.
+     * Initialize all view components.
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -86,15 +86,10 @@ public class MainMenuView implements Initializable, FXMLMenuController {
      */
     @Override
     public void loadListener() {
-
         this.btnPlay.setOnAction(this.switchPage(PersonalViews.SCENE_CHARACTER_MENU, PersonalStyle.DEFAULT_STYLE));
-
         this.btnSettings.setOnAction(this.switchPage(PersonalViews.SCENE_SETTINGS, PersonalStyle.DEFAULT_STYLE));
-
         this.btnCreativeMode.setOnAction(this.switchPage(PersonalViews.SCENE_CREATIVEMODE, PersonalStyle.DEFAULT_STYLE));
-
         this.btnTutorial.setOnAction(this.switchPage(PersonalViews.SCENE_TUTORIAL, PersonalStyle.DEFAULT_STYLE));
-
         this.btnRanking.setOnAction(this.switchPage(PersonalViews.SCENE_RANKING, PersonalStyle.DEFAULT_STYLE));
     }
 
@@ -169,14 +164,11 @@ public class MainMenuView implements Initializable, FXMLMenuController {
      */
     @Override
     public void resizable() {
-
         this.btnPlay.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
         this.btnSettings.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
         this.btnCreativeMode.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
         this.btnTutorial.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
         this.btnRanking.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-
-        // Title
         this.lblTitle.setWrapText(true);
     }
 
