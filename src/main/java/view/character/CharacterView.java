@@ -35,8 +35,9 @@ import resource.routing.PersonalFonts;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
+import view.FXMLMenuController;
 
-public class CharacterView implements Initializable {
+public class CharacterView implements Initializable, FXMLMenuController {
 
     @FXML
     private AnchorPane window;
@@ -81,7 +82,13 @@ public class CharacterView implements Initializable {
         this.loadAnimation();
     }
 
-    private void loadListener() {
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void loadListener() {
         //TextField listener, not permission a long name control
         this.characterNameField.textProperty().addListener((ob, oldValue, newValue) -> {
             if (this.characterNameField.getText().length() > GameUtilities.MAX_ALIAS_LENGHT) {
@@ -125,18 +132,34 @@ public class CharacterView implements Initializable {
          });
     }
 
+    /**
+     * 
+     * Method used to temporarily save the player.
+     *
+     */
     private void saveTemporaryPlayer(final String alias) {
-        //Add a partial player
         this.controller.addPlayerInLeaderBoard(new PlayerBuilderImpl()
                                                .alias(alias).build());
         this.controller.saveSortLeaderboard(new StandardScoreSortingStrategy());
     }
- 
+
+    /**
+     * 
+     * Method that allows to get the text from text field 
+     * and transform it into upper text follow the English rule. 
+     *
+     */
     private String getAliasTextToUpper() {
         return this.characterNameField.getText().toUpperCase(Locale.ENGLISH);
     }
 
-    private void loadAnimation() {
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void loadAnimation() {
         final Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(1.00), evt -> this.lblTitle.setVisible(false)),
                 new KeyFrame(Duration.seconds(0.50), evt -> this.lblTitle.setVisible(true)));
@@ -144,7 +167,13 @@ public class CharacterView implements Initializable {
                 timeline.play();
     }
 
-    private void loadFont() {
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void loadFont() {
         this.lblTitle
             .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnBack
@@ -155,6 +184,11 @@ public class CharacterView implements Initializable {
             .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
     }
 
+    /**
+     * 
+     * Method used to switch to the next scene.
+     *
+     */
     private void switchToNextScene() {
         SceneLoader.switchScene((Stage) this.window.getScene().getWindow(), 
                 PersonalViews.SCENE_DIFFICULTY.getURL(), 
@@ -164,6 +198,11 @@ public class CharacterView implements Initializable {
                 PersonalStyle.DEFAULT_STYLE.getStylePath());
     }
 
+    /**
+     * 
+     * Method used to display alert dialog.
+     *
+     */
     private void showAlertDialog() {
         //Create alert
         final Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -189,7 +228,13 @@ public class CharacterView implements Initializable {
         }
     }
 
-    private void resizable() {
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void resizable() {
         this.panel.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
         this.panel.prefHeightProperty().bind(this.window.heightProperty());
         this.panel.prefWidthProperty().bind(this.window.widthProperty());
@@ -204,8 +249,6 @@ public class CharacterView implements Initializable {
         this.characterNameField.setMinWidth(this.btnNext.getPrefWidth());
         this.characterNameField.setPrefWidth(this.btnNext.getPrefWidth());
         this.characterNameField.setFocusTraversable(false);
-
-
     }
 
 }

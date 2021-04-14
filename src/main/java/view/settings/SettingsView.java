@@ -29,9 +29,10 @@ import resource.routing.PersonalFonts;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
+import view.FXMLMenuController;
 
 
-public class SettingsView implements Initializable {
+public class SettingsView implements Initializable, FXMLMenuController {
 
         @FXML
         private AnchorPane window;
@@ -98,7 +99,13 @@ public class SettingsView implements Initializable {
             this.rbUseUpDown.setSelected(isUpAndDownEnable);
         }
 
-        private void loadListener() {
+        /**
+         * 
+         * {@inheritDoc}
+         *
+         */
+        @Override
+        public void loadListener() {
 
             //Button back Listener
             this.btnBack.setOnAction(event -> {
@@ -109,7 +116,7 @@ public class SettingsView implements Initializable {
                                         this.window.getHeight(),
                                         PersonalStyle.DEFAULT_STYLE.getStylePath());
                 this.controller.saveNewSettings();
-                //Play Button CLick Sound
+                //Play Sound
                 SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
              });
 
@@ -139,7 +146,13 @@ public class SettingsView implements Initializable {
             });
         }
 
-        private void loadFont() {
+        /**
+         * 
+         * {@inheritDoc}
+         *
+         */
+        @Override
+        public void loadFont() {
                 this.lblTitle
                     .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
                 this.ckSoundFX
@@ -154,7 +167,18 @@ public class SettingsView implements Initializable {
                     .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
         }
 
-        private void resizable() {
+        @Override
+        public void loadAnimation() {
+
+        }
+
+        /**
+         * 
+         * {@inheritDoc}
+         *
+         */
+        @Override
+        public void resizable() {
 
                 this.panel.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
                 this.panel.prefHeightProperty().bind(this.window.heightProperty());

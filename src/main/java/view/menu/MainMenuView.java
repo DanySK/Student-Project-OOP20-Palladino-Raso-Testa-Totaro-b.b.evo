@@ -94,12 +94,12 @@ public class MainMenuView implements Initializable, FXMLMenuController {
     }
 
     /**
-     * 
-     * {@inheritDoc}
-     *
+     * This method allows to switch the current scene whit the next scene.
+     * @param scene - use to set the next scene.
+     * @param style - use to set the style for the next scene.
+     * @return an ActionEvent that allow to change between the current scene and the next scene.
      */
-    @Override
-    public EventHandler<ActionEvent> switchPage(final PersonalViews scene, final PersonalStyle style) {
+    private EventHandler<ActionEvent> switchPage(final PersonalViews scene, final PersonalStyle style) {
         return new EventHandler<ActionEvent>() {
 
             @Override
