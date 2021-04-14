@@ -108,42 +108,28 @@ public class DifficultyView implements Initializable, FXMLMenuController {
     public void loadListener() {
         //Button back Listener
         this.btnBack.setOnAction(event -> {
-            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
-                                    PersonalViews.SCENE_CHARACTER_MENU.getURL(), 
-                                    PersonalViews.SCENE_CHARACTER_MENU.getTitleScene(), 
-                                    this.window.getWidth(), 
-                                    this.window.getHeight(),
-                                    PersonalStyle.DEFAULT_STYLE.getStylePath());
+            this.switchPage(PersonalViews.SCENE_MAIN_MENU, PersonalStyle.DEFAULT_STYLE);
             this.controller.saveNewSettings();
-            //Play Button CLick Sound
-            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+            this.soundClick();
          });
 
         //Button StartGame Listener
         this.btnStartGame.setOnAction(event -> {
-            //Close old resizable stage.
+            //Don't permit to resize the next scene.
             final Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            oldStage.close();
-            //Create new stage not resizable
-            final Stage playStage = new Stage();
-            playStage.setHeight(GameUtilities.SCREEN_HEIGHT);
-            playStage.setWidth(GameUtilities.SCREEN_WIDTH);
-            playStage.setResizable(false);
+            oldStage.setResizable(false);
 
-            SceneLoader.switchScene(playStage, 
-                    PersonalViews.SCENE_GAME.getURL(), 
-                    PersonalViews.SCENE_GAME.getTitleScene(), 
-                    this.window.getWidth(), 
-                    this.window.getHeight(),
-                    PersonalStyle.DEFAULT_STYLE.getStylePath());
+            this.switchPage(PersonalViews.SCENE_GAME, PersonalStyle.DEFAULT_STYLE);
 
             //Save the current game settings
             this.controller.saveNewSettings();
 
             //Play Button CLick Sound
-            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
-            SoundController.stopMusic();
-            
+            this.soundClick();
+
+            //Used to stop game music
+            this.stopCurrentGameMusic();
+
             final Scene scene = btnStartGame.getScene();
             final Thread thread = new Thread(new GameLoop(scene));
             thread.setDaemon(true);
@@ -153,17 +139,43 @@ public class DifficultyView implements Initializable, FXMLMenuController {
         //RadioButton change difficulty
         this.ckNormalDifficulty.selectedProperty().addListener((obs, oldV, newV) -> {
             this.controller.changeDifficulty(Difficulty.NORMAL);
-            //Play Sound
-            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+            this.soundClick();
         });
 
         this.ckHardDifficulty.selectedProperty().addListener((obs, oldV, newV) -> {
             this.controller.changeDifficulty(Difficulty.HARD);
-            //Play Sound
-            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+            this.soundClick();
         });
     }
 
+    /**
+     * Used to stop the current game music.
+     */
+    private void stopCurrentGameMusic() {
+        SoundController.stopMusic();
+    }
+
+    /**
+     * Method that allow to play the button's sound.
+     */
+    private void soundClick() {
+        SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+    }
+
+    /**
+     * This method allows to switch the current scene whit the next or previous scene.
+     * @param scene - use to set the next or previous scene.
+     * @param style - use to set the style for the next or previous scene.
+     */
+    private void switchPage(final PersonalViews scene, final PersonalStyle style) {
+        //Switch Scene
+        SceneLoader.switchScene((Stage) this.window.getScene().getWindow(), 
+                                 scene.getURL(), 
+                                 scene.getTitleScene(), 
+                                 window.getWidth(), 
+                                 window.getHeight(),
+                                 style.getStylePath());
+    }
     /**
      * 
      * {@inheritDoc}

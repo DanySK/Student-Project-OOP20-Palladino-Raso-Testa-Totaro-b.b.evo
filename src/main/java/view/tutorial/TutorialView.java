@@ -7,9 +7,11 @@ import java.util.ResourceBundle;
 
 import controller.menu.SceneLoader;
 import controller.sound.SoundController;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -81,7 +83,7 @@ public class TutorialView implements Initializable, FXMLMenuController {
      */
     private void loadVideo() throws MalformedURLException {
 
-        //Stop the menù music
+        //Stop the menu music
         SoundController.stopMusic();
 
         //Load the video
@@ -117,21 +119,27 @@ public class TutorialView implements Initializable, FXMLMenuController {
     public void loadListener() {
         // ButtonBack Listener
         this.buttonBack.setOnAction(event -> {
-            SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
-                                    PersonalViews.SCENE_MAIN_MENU.getURL(), 
-                                    PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
-                                    this.window.getWidth(), 
-                                    this.window.getHeight(),
-                                    PersonalStyle.DEFAULT_STYLE.getStylePath());
-
             //Play Button CLick Sound
             SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
 
             //Stop video
             player.stop();
 
+            this.switchToMenuPage();
         });
 
+    }
+
+    /**
+     * Method that allow to switch current scene with the next scene.
+     */
+    private void switchToMenuPage() {
+        SceneLoader.switchScene((Stage) this.window.getScene().getWindow(), 
+                                PersonalViews.SCENE_MAIN_MENU.getURL(), 
+                                PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
+                                this.window.getWidth(), 
+                                this.window.getHeight(),
+                                PersonalStyle.DEFAULT_STYLE.getStylePath());
     }
 
     /**
@@ -141,7 +149,11 @@ public class TutorialView implements Initializable, FXMLMenuController {
      */
     @Override
     public void loadAnimation() {
-
+        final Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(1.00), evt -> this.lblTitle.setVisible(false)),
+                new KeyFrame(Duration.seconds(0.50), evt -> this.lblTitle.setVisible(true)));
+                timeline.setCycleCount(Animation.INDEFINITE);
+                timeline.play();
     }
 
     /**

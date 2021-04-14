@@ -1,11 +1,7 @@
 package view.settings;
 
-
-
-
 import java.net.URL;
 import java.util.ResourceBundle;
-
 
 import controller.menu.SceneLoader;
 import controller.settings.SettingsController;
@@ -16,7 +12,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -34,7 +29,6 @@ import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
 import view.FXMLMenuController;
-
 
 public class SettingsView implements Initializable, FXMLMenuController {
 
@@ -81,10 +75,8 @@ public class SettingsView implements Initializable, FXMLMenuController {
             this.loadFont();
             this.loadAnimation();
             this.loadListener();
-            this.updateViewComponent(this.controller.isSoundFxEnable(),
-                                     this.controller.isMusicEnable(),
-                                     this.controller.isLeftAndRightEnable(),
-                                     this.controller.isUpAndDownEnable());
+            this.updateViewComponent(this.controller.isSoundFxEnable(), this.controller.isMusicEnable(), 
+                                     this.controller.isLeftAndRightEnable(), this.controller.isUpAndDownEnable());
         }
 
         /**
@@ -113,41 +105,51 @@ public class SettingsView implements Initializable, FXMLMenuController {
 
             //Button back Listener
             this.btnBack.setOnAction(event -> {
-                SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
-                                        PersonalViews.SCENE_MAIN_MENU.getURL(), 
-                                        PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
-                                        this.window.getWidth(), 
-                                        this.window.getHeight(),
-                                        PersonalStyle.DEFAULT_STYLE.getStylePath());
+                this.switchToMenuPage();
                 this.controller.saveNewSettings();
                 //Play Sound
-                SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+                this.soundClick();
              });
 
             //CheckBox SoundFx Listener
             this.ckSoundFX.selectedProperty().addListener((obs, oldV, newV) -> {
                 this.controller.changeSoundFxState(newV);
-                //Play Sound
-                SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+                this.soundClick();
             });
 
             this.ckSound.selectedProperty().addListener((obs, oldV, newV) -> {
                 this.controller.changeMusicState(newV);
-                //Play Sound
-                SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+                this.soundClick();
             });
 
             this.rbUseLeftRight.selectedProperty().addListener((obs, oldV, newV) -> {
                 this.controller.useLeftAndRightCommand();
-                //Play Sound
-                SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+                this.soundClick();
             });
 
             this.rbUseUpDown.selectedProperty().addListener((obs, oldV, newV) -> {
                 this.controller.useUpAndDownCommand();
-                //Play Sound
-                SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+                this.soundClick();
             });
+        }
+
+        /**
+         * Method that allow to switch current scene with the next scene.
+         */
+        private void switchToMenuPage() {
+            SceneLoader.switchScene((Stage) this.window.getScene().getWindow(), 
+                                    PersonalViews.SCENE_MAIN_MENU.getURL(), 
+                                    PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
+                                    this.window.getWidth(), 
+                                    this.window.getHeight(),
+                                    PersonalStyle.DEFAULT_STYLE.getStylePath());
+        }
+
+        /**
+         * Method that allow to play the button's sound.
+         */
+        private void soundClick() {
+            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
         }
 
         /**
@@ -157,18 +159,18 @@ public class SettingsView implements Initializable, FXMLMenuController {
          */
         @Override
         public void loadFont() {
-                this.lblTitle
-                    .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
-                this.ckSoundFX
-                    .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
-                this.ckSound
-                    .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
-                this.rbUseLeftRight
-                    .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
-                this.rbUseUpDown
-                    .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
-                this.btnBack
-                    .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+            this.lblTitle
+                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
+            this.ckSoundFX
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+            this.ckSound
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+            this.rbUseLeftRight
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+            this.rbUseUpDown
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+            this.btnBack
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
         }
 
         /**
@@ -192,19 +194,18 @@ public class SettingsView implements Initializable, FXMLMenuController {
          */
         @Override
         public void resizable() {
+            this.panel.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
+            this.panel.prefHeightProperty().bind(this.window.heightProperty());
+            this.panel.prefWidthProperty().bind(this.window.widthProperty());
 
-                this.panel.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
-                this.panel.prefHeightProperty().bind(this.window.heightProperty());
-                this.panel.prefWidthProperty().bind(this.window.widthProperty());
+            this.ckSoundFX.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+            this.ckSound.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+            this.rbUseLeftRight.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+            this.rbUseUpDown.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
 
+            this.btnBack.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
 
-                this.ckSoundFX.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-                this.ckSound.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-                this.rbUseLeftRight.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-                this.rbUseUpDown.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-                this.btnBack.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-
-                this.lblTitle.setWrapText(true);
+            this.lblTitle.setWrapText(true);
         }
 
 }
