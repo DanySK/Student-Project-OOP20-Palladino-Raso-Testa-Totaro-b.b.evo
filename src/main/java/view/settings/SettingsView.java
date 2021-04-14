@@ -11,6 +11,9 @@ import controller.menu.SceneLoader;
 import controller.settings.SettingsController;
 import controller.settings.SettingsControllerImpl;
 import controller.sound.SoundController;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -24,14 +27,16 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.utilities.GameUtilities;
 import resource.routing.PersonalFonts;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
+import view.FXMLMenuController;
 
 
-public class SettingsView implements Initializable {
+public class SettingsView implements Initializable, FXMLMenuController {
 
         @FXML
         private AnchorPane window;
@@ -74,6 +79,7 @@ public class SettingsView implements Initializable {
             this.controller = new SettingsControllerImpl(GameUtilities.SETTINGS_PATH);
             this.resizable();
             this.loadFont();
+            this.loadAnimation();
             this.loadListener();
             this.updateViewComponent(this.controller.isSoundFxEnable(),
                                      this.controller.isMusicEnable(),
@@ -98,7 +104,13 @@ public class SettingsView implements Initializable {
             this.rbUseUpDown.setSelected(isUpAndDownEnable);
         }
 
-        private void loadListener() {
+        /**
+         * 
+         * {@inheritDoc}
+         *
+         */
+        @Override
+        public void loadListener() {
 
             //Button back Listener
             this.btnBack.setOnAction(event -> {
@@ -109,7 +121,7 @@ public class SettingsView implements Initializable {
                                         this.window.getHeight(),
                                         PersonalStyle.DEFAULT_STYLE.getStylePath());
                 this.controller.saveNewSettings();
-                //Play Button CLick Sound
+                //Play Sound
                 SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
              });
 
@@ -139,7 +151,13 @@ public class SettingsView implements Initializable {
             });
         }
 
-        private void loadFont() {
+        /**
+         * 
+         * {@inheritDoc}
+         *
+         */
+        @Override
+        public void loadFont() {
                 this.lblTitle
                     .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
                 this.ckSoundFX
@@ -154,7 +172,27 @@ public class SettingsView implements Initializable {
                     .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
         }
 
-        private void resizable() {
+        /**
+         * 
+         * {@inheritDoc}
+         *
+         */
+        @Override
+        public void loadAnimation() {
+            final Timeline timeline = new Timeline(
+                    new KeyFrame(Duration.seconds(1.00), evt -> this.lblTitle.setVisible(false)),
+                    new KeyFrame(Duration.seconds(0.50), evt -> this.lblTitle.setVisible(true)));
+                    timeline.setCycleCount(Animation.INDEFINITE);
+                    timeline.play();
+        }
+
+        /**
+         * 
+         * {@inheritDoc}
+         *
+         */
+        @Override
+        public void resizable() {
 
                 this.panel.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
                 this.panel.prefHeightProperty().bind(this.window.heightProperty());

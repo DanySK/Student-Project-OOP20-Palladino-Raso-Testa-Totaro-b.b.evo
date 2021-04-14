@@ -31,8 +31,9 @@ import resource.routing.PersonalFonts;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
+import view.FXMLMenuController;
 
-public class DifficultyView implements Initializable {
+public class DifficultyView implements Initializable, FXMLMenuController {
 
     @FXML
     private AnchorPane window;
@@ -84,7 +85,13 @@ public class DifficultyView implements Initializable {
         this.ckHardDifficulty.setSelected(this.controller.getDifficulty().equals(Difficulty.HARD));
     }
 
-    private void loadAnimation() {
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void loadAnimation() {
         final Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(1.00), evt -> this.lblTitle.setVisible(false)),
                 new KeyFrame(Duration.seconds(0.50), evt -> this.lblTitle.setVisible(true)));
@@ -92,7 +99,13 @@ public class DifficultyView implements Initializable {
                 timeline.play();
     }
 
-    private void loadListener() {
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void loadListener() {
         //Button back Listener
         this.btnBack.setOnAction(event -> {
             SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
@@ -151,7 +164,13 @@ public class DifficultyView implements Initializable {
         });
     }
 
-    private void loadFont() {
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void loadFont() {
         this.lblTitle
             .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnStartGame
@@ -164,7 +183,13 @@ public class DifficultyView implements Initializable {
             .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
     }
 
-    private void resizable() {
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void resizable() {
         this.panel.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
         this.panel.prefHeightProperty().bind(this.window.heightProperty());
         this.panel.prefWidthProperty().bind(this.window.widthProperty());

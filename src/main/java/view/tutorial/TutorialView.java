@@ -28,9 +28,10 @@ import resource.routing.PersonalImages;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
+import view.FXMLMenuController;
 
 
-public class TutorialView implements Initializable {
+public class TutorialView implements Initializable, FXMLMenuController {
 
     @FXML
     private AnchorPane window;
@@ -73,6 +74,11 @@ public class TutorialView implements Initializable {
         }
     }
 
+    /**
+     * 
+     * Method used to load video into Mediaplayer.
+     *
+     */
     private void loadVideo() throws MalformedURLException {
 
         //Stop the menù music
@@ -91,12 +97,24 @@ public class TutorialView implements Initializable {
         this.videoTutorial.setMediaPlayer(player);
     }
 
-    private void loadFont() {
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void loadFont() {
         this.lblTitle.setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
         this.buttonBack.setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
     }
 
-    private void loadListener() {
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void loadListener() {
         // ButtonBack Listener
         this.buttonBack.setOnAction(event -> {
             SceneLoader.switchScene((Stage) ((Node) event.getSource()).getScene().getWindow(), 
@@ -116,7 +134,23 @@ public class TutorialView implements Initializable {
 
     }
 
-    private void resizable() {
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void loadAnimation() {
+
+    }
+
+    /**
+     * 
+     * {@inheritDoc}
+     *
+     */
+    @Override
+    public void resizable() {
 
         this.panel.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
         this.panel.prefHeightProperty().bind(this.window.heightProperty());
