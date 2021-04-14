@@ -43,7 +43,17 @@ public enum PersonalViews {
     /**
      * Path for load Creative mode.
      */
-    SCENE_CREATIVEMODE("Layout/MapEditor.fxml", "CREATIVEMODE");
+    SCENE_CREATIVEMODE("Layout/MapEditor.fxml", "CREATIVEMODE"),
+
+    /**
+     * Path for load Next Level banner.
+     */
+    SCENE_NEXT_LEVEL("Layout/NextLevel.fxml", "NEXT_LEVEL"), 
+    
+    /**
+     * Path for load Game over banner.
+     */
+    SCENE_GAME_OVER("Layout/ ", "GAMEOVER");
 
     private String path;
     private String titleScene;
