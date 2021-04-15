@@ -11,6 +11,7 @@ import view.graphics.BallComponentGraphics;
 
 public final class Ball extends GameObjectImpl {
 
+    private static final long serialVersionUID = 6752058765184851106L;
     private final String texturePath;
 
     private Ball(final Position pos, final DirVector dir, final double speed, final int height, final int width, final String tPath) {
