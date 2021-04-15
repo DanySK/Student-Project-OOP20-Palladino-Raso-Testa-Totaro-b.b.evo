@@ -43,7 +43,12 @@ public enum PersonalViews {
     /**
      * Path for load Creative mode.
      */
-    SCENE_CREATIVEMODE("Layout/MapEditor.fxml", "CREATIVEMODE"),
+    SCENE_CREATIVEMODE("Layout/CreativeMode.fxml", "CREATIVEMODE"),
+
+    /**
+     * Path for load Editor mode.
+     */
+    SCENE_EDITOR_MODE("Layout/MapEditor.fxml", "EDITORMODE"),
 
     /**
      * Path for load Next Level banner.
