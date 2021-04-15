@@ -1,13 +1,15 @@
 package view.graphics;
 
+import java.io.Serializable;
+
 import javafx.scene.image.Image;
 import model.entities.Brick;
 import model.entities.GameObject;
-import resource.routing.PersonalImages;
 
-public class BrickComponentGraphics implements ComponentGraphics {
+public class BrickComponentGraphics implements ComponentGraphics, Serializable {
 
-    private final Image brickImage;
+    private static final long serialVersionUID = -2268513013055385771L;
+    private final transient Image brickImage;
 
     public BrickComponentGraphics(final String texturePath) {
         this.brickImage = new Image(ClassLoader.getSystemResourceAsStream(texturePath));
