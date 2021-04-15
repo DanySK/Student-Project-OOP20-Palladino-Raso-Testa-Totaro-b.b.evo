@@ -47,6 +47,8 @@ public final class SceneLoader {
             stage.getIcons().add(new Image(PersonalImages.GAME_ICON_IMG.getResourceAsStream()));
             stage.setScene(newScene);
             stage.setTitle(title);
+            stage.setWidth(width);
+            stage.setHeight(height);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
