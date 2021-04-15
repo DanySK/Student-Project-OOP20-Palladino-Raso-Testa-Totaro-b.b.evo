@@ -1,3 +1,4 @@
+
 package model.entities;
 
 import java.util.HashMap;
@@ -8,7 +9,7 @@ import controller.input.PaddleComponentInput;
 import model.physics.PaddleComponentPhysics;
 import model.utilities.Boundaries;
 import model.utilities.DirVector;
-import model.utilities.GameObjStatus;
+import model.utilities.BrickStatus;
 import model.utilities.Position;
 import view.graphics.AdapterGraphics;
 import view.graphics.PaddleComponentGraphics;
@@ -21,7 +22,7 @@ public final class Paddle extends GameObjectImpl {
 
     private  Paddle(final Position pos, final int height, final int width, final String tPath) {
         super(pos, new DirVector(0, 0), PADDLE_SPEED, height, width, new PaddleComponentPhysics(), 
-                new PaddleComponentInput(), new PaddleComponentGraphics(tPath), GameObjStatus.NOT_DESTRUCTIBLE);
+                new PaddleComponentInput(), new PaddleComponentGraphics(tPath));
         this.tPath = tPath;
     }
 

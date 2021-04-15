@@ -11,11 +11,13 @@ import model.physics.ComponentPhysics;
 import model.physics.PwUpComponentPhysics;
 import model.utilities.Boundaries;
 import model.utilities.DirVector;
-import model.utilities.GameObjStatus;
+import model.utilities.BrickStatus;
 import model.utilities.Position;
 import model.utilities.PowerUpType;
+import model.utilities.PowerUpUtilities;
 import view.graphics.AdapterGraphics;
 import view.graphics.ComponentGraphics;
+import view.graphics.PwUpComponentGraphics;
 
 public class PowerUp extends GameObjectImpl {
 
@@ -30,10 +32,9 @@ public class PowerUp extends GameObjectImpl {
 
     private final Map<GameObject, Boundaries> hit = new HashMap<>();
 
-    public PowerUp(final Position pos, final DirVector dirVel, final double speed, final int height, final int width,
-            final ComponentPhysics physics, final ComponentInput input, final ComponentGraphics graphics,
-            final GameObjStatus status, final String texturePath) {
-        super(pos, new DirVector(0, -1), speed, height, width, physics, input, graphics, status);
+    public PowerUp(final Position pos, final int height, final int width, final String texturePath) {
+        super(pos, PowerUpUtilities.POWERUP_DROP_DIR, PowerUpUtilities.POWERUP_DROP_SPEED, height, width,  new PwUpComponentPhysics(),
+                new ComponentInputEmpty(), new PwUpComponentGraphics(texturePath));
         this.pwtype = PowerUpType.randomPowerUpType();
         this.activeTime = PowerUpType.valueOf(this.pwtype.toString()).getActiveTime();
         this.damageModifier = PowerUpType.valueOf(this.pwtype.toString()).getDamageModifier();

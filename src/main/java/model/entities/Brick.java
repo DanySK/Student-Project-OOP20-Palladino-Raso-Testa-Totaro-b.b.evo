@@ -6,7 +6,8 @@ import java.util.Map;
 import controller.input.ComponentInputEmpty;
 import controller.input.ControllerInput;
 import model.utilities.Position;
-import model.utilities.GameObjStatus;
+import model.utilities.BrickStatus;
+import model.physics.ComponentPhysicsEmpty;
 import model.physics.PwUpComponentPhysics;
 import model.utilities.Boundaries;
 import model.utilities.DirVector;
@@ -19,21 +20,21 @@ public class Brick extends GameObjectImpl {
     private int durability;
     private final Map<GameObject, Boundaries> hit = new HashMap<>();
     private final String texturePath;
+    private BrickStatus status;
 
-    protected Brick(final Position pos, final double speed, final int height, final int width, final int durability, final GameObjStatus status, final String texturePath) {
-        super(pos, null, speed, height, width, null, null, new BrickComponentGraphics(texturePath), status);
+    protected Brick(final Position pos, final double speed, final int height, final int width, final int durability, final BrickStatus status, final String texturePath) {
+        super(pos, new DirVector(0, 0), speed, height, width, new ComponentPhysicsEmpty(), new ComponentInputEmpty(), new BrickComponentGraphics(texturePath));
         this.durability = durability;
         this.texturePath = texturePath;
+        this.status = status;
     }
 
     /**
-     * drops the {@link PowerUp} if the {@link GameObjStatus} is set on DROP_POWERUP and its durability is <= 0.
+     * drops the {@link PowerUp} if the {@link BrickStatus} is set on DROP_POWERUP and its durability is <= 0.
      * @return a new PowerUp
      */
     public PowerUp dropPowerUp() {
-        return new PowerUp(this.getPos(), new DirVector(0, -1), this.getSpeed(),
-                this.getHeight(), this.getWidth(), new PwUpComponentPhysics(),
-                new ComponentInputEmpty(), new PwUpComponentGraphics(this.texturePath), this.getStatus(), this.texturePath);
+        return new PowerUp(this.getPos(), this.getHeight(), this.getWidth(), this.texturePath);
     }
 
 
@@ -47,7 +48,7 @@ public class Brick extends GameObjectImpl {
         private int height;
         private int width;
         private int durability;
-        private GameObjStatus status;
+        private BrickStatus status;
         private String texturePath;
 
         /**
@@ -109,18 +110,21 @@ public class Brick extends GameObjectImpl {
          * @param status
          * @return brick builder
          */
-        public Builder setStatus(final GameObjStatus status) {
+        public Builder setStatus(final BrickStatus status) {
             this.status = status;
             return this;
         }
     }
+
     /**
-     * 
+     * getter for gameoobject's status.
+     * @return gameoobject's status
      */
-    @Override
-    public GameObjStatus getStatus() {
-        return this.getStatus();
+    public BrickStatus getStatus() {
+        return this.status;
     }
+
+
 
     /**
      * {@inheritDoc}
