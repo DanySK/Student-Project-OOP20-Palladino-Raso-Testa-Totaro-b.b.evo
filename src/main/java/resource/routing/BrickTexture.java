@@ -1,6 +1,7 @@
 package resource.routing;
 
 import java.io.Serializable;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -55,6 +56,10 @@ public enum BrickTexture implements Serializable{
      */
     public String getPath() {
         return path;
+    }
+
+    public URL getURL() {
+        return ClassLoader.getSystemResource(path);
     }
 
     /**
