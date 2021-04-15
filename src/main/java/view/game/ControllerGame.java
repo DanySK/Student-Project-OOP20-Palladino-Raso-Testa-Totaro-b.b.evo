@@ -25,11 +25,12 @@ import javafx.util.Duration;
 import model.utilities.GameUtilities;
 import resource.routing.BackGround;
 import resource.routing.PersonalFonts;
+import view.GUILayout;
 import view.graphics.AdapterGraphics;
 import view.graphics.AdapterGraphicsImpl;
 import model.entities.GameObject;
 
-public class ControllerGame implements Initializable {
+public class ControllerGame implements Initializable, GUILayout {
 
     private GraphicsContext gc;
 
@@ -140,6 +141,7 @@ public class ControllerGame implements Initializable {
      * @param backGround use
      */
     public void setBackgroundImage(final BackGround backGround) {
+        System.out.println(backGround.getPath());
         final BackgroundImage bg = new BackgroundImage(new Image(backGround.getPath(), 
                                                     GameUtilities.CANVAS_WIDTH,
                                                     GameUtilities.CANVAS_HEIGHT,
@@ -149,6 +151,7 @@ public class ControllerGame implements Initializable {
                                                     BackgroundRepeat.NO_REPEAT, 
                                                     BackgroundPosition.DEFAULT,
                                                     BackgroundSize.DEFAULT);
+        System.out.println(bg.getImage().getUrl());
         this.panel.setBackground(new Background(bg));
     }
 
