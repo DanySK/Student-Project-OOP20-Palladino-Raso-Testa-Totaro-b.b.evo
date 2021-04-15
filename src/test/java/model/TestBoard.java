@@ -32,6 +32,7 @@ public class TestBoard {
 
     private static final String PATH_PADDLE = "Images/paddle/defaultPaddle.png";
     private static final String PATH_BALL = "Images/ball/defaultBall.png";
+    private static final String PATH_POWERUP= "Images/dropPowerup/marioDropPowerUp.png";
     private static final int STAND_POS_X = 50;
     private static final int STAND_POS_Y = 50;
     private static final int WALL_COST = 600;
@@ -59,7 +60,7 @@ public class TestBoard {
                                       .texturePath(PATH_PADDLE)
                                       .build();
 
-    private final PowerUp pwUp = new PowerUp(new Position(270, 510), null, 0.4, 10, 10, null, null, null, null, null);
+    private final PowerUp pwUp = new PowerUp(new Position(270, 510), 10, 10, PATH_POWERUP);
 
 //    /**
 //     * check that by inserting a number of ball in the board
@@ -140,7 +141,7 @@ public class TestBoard {
     }
 
     private PowerUp powerUpCreation() {
-        return new PowerUp(new Position(270, 510), null, 0.4, 10, 10, null, null, null, null, null);
+        return new PowerUp(new Position(270, 510), 10, 10, PATH_POWERUP);
     }
 
     /**
@@ -220,7 +221,7 @@ public class TestBoard {
         final GameBoard board = new GameBoardImpl(new Wall(100, 100), null);
         assertTrue(board.getSceneEntities().isEmpty());
         //set powerUp pos to the bottom edge and check for a collision
-        final PowerUp powerUp = new PowerUp(new Position(50, 95), null, 0.4, 10, 10, null, null, null, null, null);
+        final PowerUp powerUp = new PowerUp(new Position(50, 95), 10, 10, PATH_POWERUP);
         assertEquals(Boundaries.LOWER, board.checkGameObjCollisionsWithWall(powerUp).get());
         //set paddle pos to in the middle of the world and check for no collision;
         powerUp.setPos(new Position(5,50));
