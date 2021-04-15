@@ -1,10 +1,11 @@
 package resource.routing;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public enum PaddleTexture {
+public enum PaddleTexture implements Serializable{
     /**
      * Default theme, paddle.
      */

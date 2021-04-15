@@ -1,10 +1,11 @@
 package resource.routing;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public enum PowerUpDropTexture {
+public enum PowerUpDropTexture implements Serializable{
     /**
      * Default theme, drop powerup texture.
      */

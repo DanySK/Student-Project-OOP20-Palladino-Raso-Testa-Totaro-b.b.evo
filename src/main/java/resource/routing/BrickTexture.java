@@ -1,10 +1,11 @@
 package resource.routing;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public enum BrickTexture {
+public enum BrickTexture implements Serializable{
 
     /**
      * Default theme, brick texture.
