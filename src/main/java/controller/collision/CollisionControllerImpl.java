@@ -67,14 +67,15 @@ public class CollisionControllerImpl implements CollisionController {
      */
     @Override
     public Optional<Boundaries> checkBallCollisionsWithPaddle(final Ball ball, final Paddle paddle) {
-        this.fillMap(ball, paddle);
+        this.isCollision = false;
+        this.fillMap(paddle, ball);
         this.collision.forEach((k, v) -> {
-            if (!v.booleanValue()) {
+            if (!v.booleanValue() && !this.isCollision) {
                 paddle.getHit().put(ball, k);
                 this.isCollision = true;
             }
         });
-       if (!this.isCollision) {
+       if (this.isCollision) {
            return Optional.empty();
        }
         return Optional.of(paddle.getHit().get(ball));
@@ -85,16 +86,18 @@ public class CollisionControllerImpl implements CollisionController {
      */
     @Override
     public Optional<Pair<PowerUp, Boundaries>> checkPwUpCollisionWithPaddle(final PowerUp pwup, final Paddle paddle) {
-        this.fillMap(pwup, paddle);
+        this.isCollision = false;
+        this.fillMap(paddle, pwup);
         this.collision.forEach((k, v) -> {
-            if (!v.booleanValue()) {
-                paddle.getHit().put(pwup, k);
+            if (!v.booleanValue() && !this.isCollision) {
+                pwup.getHit().put(paddle, k);
                 this.isCollision = true;
             }
         });
-        if (!this.isCollision) {
+        if (this.isCollision) {
             return Optional.empty();
         }
+        System.out.println(pwup.getHit().get(paddle));
         return Optional.ofNullable(new Pair<>(pwup, pwup.getHit().get(paddle)));
     }
 
