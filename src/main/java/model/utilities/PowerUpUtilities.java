@@ -1,3 +1,4 @@
+
 package model.utilities;
 
 public final class PowerUpUtilities {
@@ -26,6 +27,16 @@ public final class PowerUpUtilities {
      * speed modifier used by powerups to speed the ball up or down.
      */
     public static final int SPEED_MODIFIER = 1;
+
+    /**
+     * speed for the powerup drop.
+     */
+    public static final double POWERUP_DROP_SPEED = 0.3;
+
+    /**
+     * default drop direction for powerups.
+     */
+    public static final DirVector POWERUP_DROP_DIR = new DirVector(0, -1);
 
     private PowerUpUtilities() {
         // TODO Auto-generated constructor stub

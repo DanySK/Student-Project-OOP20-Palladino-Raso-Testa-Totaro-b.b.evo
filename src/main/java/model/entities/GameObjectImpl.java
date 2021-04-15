@@ -1,10 +1,11 @@
+
 package model.entities;
 
 import controller.input.ComponentInput;
 import controller.input.ControllerInput;
 import model.utilities.Position;
 import model.physics.ComponentPhysics;
-import model.utilities.GameObjStatus;
+import model.utilities.BrickStatus;
 import model.utilities.DirVector;
 import view.graphics.AdapterGraphics;
 import view.graphics.ComponentGraphics;
@@ -19,10 +20,9 @@ public abstract class GameObjectImpl implements GameObject {
     private final ComponentPhysics physics;
     private final ComponentInput input;
     private final ComponentGraphics graphics;
-    private GameObjStatus status;
 
     public GameObjectImpl(final Position pos, final DirVector dirVel, final double speed, final int height, final int width, final ComponentPhysics physics,
-            final ComponentInput input, final ComponentGraphics graphics, final GameObjStatus status) {
+            final ComponentInput input, final ComponentGraphics graphics) {
         this.pos = pos;
         this.dirVel = dirVel;
         this.speed = speed;
@@ -31,25 +31,7 @@ public abstract class GameObjectImpl implements GameObject {
         this.physics = physics;
         this.input = input;
         this.graphics = graphics;
-        this.status = status;
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setStatus(final GameObjStatus status) {
-            this.status = status;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public GameObjStatus getStatus() {
-        return this.status;
-    }
-
 
     /**
      * {@inheritDoc}

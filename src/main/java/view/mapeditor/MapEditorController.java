@@ -24,7 +24,7 @@ import model.entities.GameObjectEmpty;
 import model.mapeditor.LevelBuilder;
 import model.mapeditor.LevelManager;
 import model.mapeditor.LevelSelection;
-import model.utilities.GameObjStatus;
+import model.utilities.BrickStatus;
 import model.utilities.GameUtilities;
 import model.utilities.Pair;
 import resource.routing.BackGround;
@@ -160,7 +160,7 @@ public class MapEditorController implements GUIController {
             if (e.getY() < (rowsY * (GameUtilities.BRICK_NUMBER_Y - NOT_BUILDABLE_ZONE))) {
                 Pair<GameObjectEmpty, Boolean> init = levelBuilder.brickSelected(e.getX(), e.getY(),
                                                       getTypeTexture(),
-                                                      unbreakableCheck.isSelected() ? GameObjStatus.NOT_DESTRUCTIBLE : GameObjStatus.DESTRUCTIBLE,
+                                                      unbreakableCheck.isSelected() ? BrickStatus.NOT_DESTRUCTIBLE : BrickStatus.DESTRUCTIBLE,
                                                       (int) durabilitySet.getValue());
                 if (init.getY()) {
                     if  (unbreakableCheck.isSelected()) {
