@@ -5,7 +5,6 @@ import java.net.URL;
 
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -35,10 +34,6 @@ public final class SceneLoader {
             final Parent parent = FXMLLoader.load(path);
             final Scene newScene = new Scene(parent, width, height);
 
-            // Load cursor Image
-            final Image cursor = new Image(PersonalImages.GLOW_POINTER.getResourceAsStream());
-            newScene.setCursor(new ImageCursor(cursor));
-
             //Apply Style
             parent.getStylesheets().add(cssStylePath);
 
@@ -52,6 +47,8 @@ public final class SceneLoader {
             stage.getIcons().add(new Image(PersonalImages.GAME_ICON_IMG.getResourceAsStream()));
             stage.setScene(newScene);
             stage.setTitle(title);
+            stage.setWidth(width);
+            stage.setHeight(height);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

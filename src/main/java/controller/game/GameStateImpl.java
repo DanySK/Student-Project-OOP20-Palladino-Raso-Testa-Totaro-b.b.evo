@@ -12,7 +12,8 @@ import model.entities.Wall;
 import model.leaderboard.Player;
 import model.leaderboard.PlayerImpl;
 import model.mapeditor.Level;
-import model.mapeditor.LevelSelection;
+import model.settings.SettingLevel;
+import model.settings.SettingLevelManager;
 import model.utilities.ObjectInit;
 import model.utilities.Difficulty;
 import model.utilities.GameUtilities;
@@ -29,8 +30,9 @@ public class GameStateImpl implements GameState {
 
     public GameStateImpl() {
         this.phase = GamePhase.START;
-        this.level = LevelSelection.LEVEL1.getLevel();
         this.setting = new SettingsControllerImpl(GameUtilities.SETTINGS_PATH); 
+        final SettingLevel settingLevel =  SettingLevelManager.loadOption();
+        this.level = settingLevel.getSelectedLevel();
         this.player = new PlayerImpl(this.getPlayerAlias(), setting.getDifficulty().getInitialScore(), 
                                      setting.getDifficulty().getNumberOfLives(), 
                                      setting.getDifficulty().getMaxNumberOfLife());
@@ -109,7 +111,7 @@ public class GameStateImpl implements GameState {
     /**
      * {@inheritDoc}
      */
-    @Override
+    @Override 
     public GamePhase getPhase() {
         return this.phase;
     }
@@ -129,15 +131,6 @@ public class GameStateImpl implements GameState {
     @Override
     public Player getPlayer() {
         return this.player;
-    }
-
-    /**
-     *
-     * {@inheritDoc}
-     */
-    @Override
-    public int getTopScores() {
-        return player.getScore();
     }
 
     /**

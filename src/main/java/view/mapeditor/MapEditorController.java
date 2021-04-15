@@ -40,7 +40,6 @@ public class MapEditorController implements GUIController {
     private int rowsY;
     private GraphicsContext graphicsContext;
     private LevelBuilder levelBuilder;
-    private final CheckAlertController alert = new CheckAlertController();
     private String textureType;
 
     @FXML
@@ -220,8 +219,8 @@ public class MapEditorController implements GUIController {
     void backToMenu(final MouseEvent event) {
         final var stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         SceneLoader.switchScene(stage, 
-                PersonalViews.SCENE_MAIN_MENU.getURL(), 
-                PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
+                PersonalViews.SCENE_CREATIVEMODE.getURL(), 
+                PersonalViews.SCENE_CREATIVEMODE.getTitleScene(), 
                 stage.getWidth(), 
                 stage.getHeight(),
                 PersonalStyle.DEFAULT_STYLE.getStylePath());
@@ -235,9 +234,9 @@ public class MapEditorController implements GUIController {
     @FXML
     public void buildLvl() {
         if (levelName.getText().isBlank() || soundtrack.getValue() == null || backGround.getValue() == null) {
-            alert.checkAllField();
+            CheckAlertController.checkAllField();
         } else if (LevelSelection.isStandardLevel(levelName.getText())) {
-           alert.checkLevelName();
+            CheckAlertController.checkLevelName();
         } else {
             this.levelBuilder.setLevelName(levelName.getText());
             this.levelBuilder.setMusic(soundtrack.getValue());
@@ -245,7 +244,7 @@ public class MapEditorController implements GUIController {
             this.levelBuilder.setBall(ballTexture.getValue());
             this.levelBuilder.setPaddle(paddleTexture.getValue());
             LevelManager.saveLevel(this.levelBuilder.build());
-            alert.checkLevelCreate();
+            CheckAlertController.checkLevelCreate();
         }
     }
 

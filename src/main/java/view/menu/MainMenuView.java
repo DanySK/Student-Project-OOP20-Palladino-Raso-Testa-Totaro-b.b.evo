@@ -118,7 +118,7 @@ public class MainMenuView implements Initializable, FXMLMenuController {
 
             @Override
             public void handle(final ActionEvent event) {
-                final var currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                final Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 //Switch Scene
                 SceneLoader.switchScene(currentStage, 
                 scene.getURL(), 

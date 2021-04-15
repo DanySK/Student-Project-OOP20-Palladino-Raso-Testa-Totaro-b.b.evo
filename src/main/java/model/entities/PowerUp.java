@@ -21,6 +21,8 @@ import view.graphics.PwUpComponentGraphics;
 
 public class PowerUp extends GameObjectImpl {
 
+    private static final long serialVersionUID = -3953133081190231594L;
+
     private final PowerUpType pwtype;
 
     private final float activeTime;

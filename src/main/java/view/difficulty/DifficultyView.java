@@ -25,6 +25,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.mapeditor.LevelSelection;
+import model.settings.SettingLevel.SettingLevelBuilder;
+import model.settings.SettingLevelManager;
 import model.utilities.Difficulty;
 import model.utilities.GameUtilities;
 import resource.routing.PersonalFonts;
@@ -125,15 +128,16 @@ public class DifficultyView implements Initializable, FXMLMenuController {
             this.controller.saveNewSettings();
 
             //Play Button CLick Sound
-<<<<<<< HEAD
-            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
-            SoundController.stopMusic();
-=======
             this.soundClick();
 
             //Used to stop game music
             this.stopCurrentGameMusic();
->>>>>>> eca947e2e334eeb9984f39ef7ebff2eff6363d6f
+
+            final SettingLevelBuilder setBuilder = new SettingLevelBuilder();
+            setBuilder.fromSettings(SettingLevelManager.loadOption());
+            setBuilder.selectLevel(LevelSelection.LEVEL1.getLevel());
+            SettingLevelManager.saveOption(setBuilder.build());
+            //UserManager.saveUser(new User());
 
             final Scene scene = btnStartGame.getScene();
             final Thread thread = new Thread(new GameLoop(scene));

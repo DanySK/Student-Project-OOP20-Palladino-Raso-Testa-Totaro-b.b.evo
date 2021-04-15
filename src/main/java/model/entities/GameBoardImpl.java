@@ -209,9 +209,7 @@ public class GameBoardImpl implements GameBoard {
         Optional<Pair<PowerUp, Boundaries>> result = Optional.empty();
         for (final var paddle : this.paddle) {
             result = this.collision.checkPwUpCollisionWithPaddle(pwUp, paddle);
-            if (result.isPresent() && (result.get().getY().equals(Boundaries.UPPER) 
-                    || result.get().getY().equals(Boundaries.SIDE_LEFT) 
-                    || result.get().getY().equals(Boundaries.SIDE_RIGHT))) {
+            if (!result.isEmpty()) {
                 return result;
             }
         }

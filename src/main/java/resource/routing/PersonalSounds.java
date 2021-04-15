@@ -1,12 +1,13 @@
 package resource.routing;
 
 import java.io.InputStream;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public enum PersonalSounds {
+public enum PersonalSounds implements Serializable{
 
     /***
      * Sound generate by click button event.

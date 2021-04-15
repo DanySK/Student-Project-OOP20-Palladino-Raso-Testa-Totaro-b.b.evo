@@ -25,7 +25,7 @@ public class LevelBuilder {
     //build the map between bricks in the board and coordinates
     private final Map<GameObjectEmpty, Pair<Integer, Integer>> builderGrid = new HashMap<>();
     //build the map between bricks in the show and in the grid and coordinates
-    private final Map<Pair<Integer, Integer>, Pair<GameObject, Optional<Brick>>> gameGrid = new HashMap<>();
+    private final Map<Pair<Integer, Integer>, Pair<GameObjectEmpty, Optional<Brick>>> gameGrid = new HashMap<>();
 
     private final int builderBrickDimY = (int) (GameUtilities.CANVAS_HEIGHT / GameUtilities.BRICK_NUMBER_Y);
     private final int builderBrickDimX = (int) (GameUtilities.CANVAS_WIDTH / GameUtilities.BRICK_NUMBER_X);
@@ -79,7 +79,11 @@ public class LevelBuilder {
      * @return current game grid state
      */
     public Pair<GameObjectEmpty, Boolean> brickSelected(final double x, final double y, 
+<<<<<<< HEAD
                                                     final String texture, final BrickStatus state, final int durability) {
+=======
+                                                        final String texture, final GameObjStatus state, final int durability) {
+>>>>>>> 898395ddae9ad05b907418dc43701fbbe81019c5
         Pair<GameObjectEmpty, Boolean> retState = new Pair<>(new GameObjectEmpty(new Position(0, 0), 0, 0), false);
         for (final GameObjectEmpty objectEmpty : this.builderGrid.keySet()) {
             if (x > objectEmpty.getPos().getX() && x < objectEmpty.getPos().getX() + objectEmpty.getWidth() && y > objectEmpty.getPos().getY()
@@ -89,31 +93,27 @@ public class LevelBuilder {
                     this.gameGrid.replace(brickSelected, new Pair<>(this.gameGrid.get(brickSelected).getX(), Optional.empty()));
                     retState = new Pair<>(objectEmpty, false);
                 } else {
+<<<<<<< HEAD
                     if (state.equals(BrickStatus.DROP_POWERUP)) {
+=======
+                        final String selectedTexture;
+                        if (state.equals(GameObjStatus.DROP_POWERUP)) {
+                            selectedTexture = new Texture(texture).buildPowerUpTexturePath();
+                        } else {
+                            selectedTexture = new Texture(texture).buildBrickTexturePath();
+                        }
+>>>>>>> 898395ddae9ad05b907418dc43701fbbe81019c5
                         final Builder brickBuilder = new Builder();
                         final GameObject gameObjectEmpty = this.gameGrid.get(brickSelected).getX();
                         final Brick brick = brickBuilder.setPos(new Position(gameObjectEmpty.getPos().getX(), gameObjectEmpty.getPos().getY()))
                                                          .setHeight(this.gameGrid.get(brickSelected).getX().getHeight())
                                                          .setWidth(this.gameGrid.get(brickSelected).getX().getWidth())
                                                          .setStatus(state)
-                                                         .setTexture(new Texture(texture).buildPowerUpTexturePath())
+                                                         .setTexture(selectedTexture)
                                                          .setDurability(durability)
                                                          .build();
                         this.gameGrid.replace(brickSelected, new Pair<>(this.gameGrid.get(brickSelected).getX(), Optional.of(brick)));
                         retState = new Pair<>(objectEmpty, true);
-                    } else {
-                        final Builder brickBuilder = new Builder();
-                        final GameObject gameObjectEmpty = this.gameGrid.get(brickSelected).getX();
-                        final Brick brick = brickBuilder.setPos(new Position(gameObjectEmpty.getPos().getX(), gameObjectEmpty.getPos().getY()))
-                                                         .setHeight(this.gameGrid.get(brickSelected).getX().getHeight())
-                                                         .setWidth(this.gameGrid.get(brickSelected).getX().getWidth())
-                                                         .setStatus(state)
-                                                         .setTexture(new Texture(texture).buildBrickTexturePath())
-                                                         .setDurability(durability)
-                                                         .build();
-                        this.gameGrid.replace(brickSelected, new Pair<>(this.gameGrid.get(brickSelected).getX(), Optional.of(brick)));
-                        retState = new Pair<>(objectEmpty, true);
-                   }
                 }
             }
         }
@@ -125,7 +125,10 @@ public class LevelBuilder {
      */
     public Level build() {
         final Set<Brick> levelBrick = this.gameGrid.entrySet().stream()
-                .map(i -> i.getValue().getY()).filter(i -> i.isPresent()).map(i -> i.get()).collect(Collectors.toSet());
+                                                               .map(i -> i.getValue().getY())
+                                                               .filter(i -> i.isPresent())
+                                                               .map(i -> i.get())
+                                                               .collect(Collectors.toSet());
         return new Level(levelBrick, levelName, music, background, ball, paddle);
     }
 

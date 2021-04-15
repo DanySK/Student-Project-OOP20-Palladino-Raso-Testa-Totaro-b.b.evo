@@ -55,12 +55,6 @@ public interface GameState {
 
     /**
      * 
-     * @return the topScore of the player who is playing
-     */
-    int getTopScores();
-
-    /**
-     * 
      * @return the level where the game is taking place
      */
     Level getLevel();

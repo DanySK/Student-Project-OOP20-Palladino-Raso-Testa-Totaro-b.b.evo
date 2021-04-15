@@ -67,14 +67,15 @@ public class CollisionControllerImpl implements CollisionController {
      */
     @Override
     public Optional<Boundaries> checkBallCollisionsWithPaddle(final Ball ball, final Paddle paddle) {
-        this.fillMap(ball, paddle);
+        this.isCollision = false;
+        this.fillMap(paddle, ball);
         this.collision.forEach((k, v) -> {
-            if (!v.booleanValue()) {
+            if (!v.booleanValue() && !this.isCollision) {
                 paddle.getHit().put(ball, k);
                 this.isCollision = true;
             }
         });
-       if (!this.isCollision) {
+       if (this.isCollision) {
            return Optional.empty();
        }
         return Optional.of(paddle.getHit().get(ball));
@@ -85,19 +86,26 @@ public class CollisionControllerImpl implements CollisionController {
      */
     @Override
     public Optional<Pair<PowerUp, Boundaries>> checkPwUpCollisionWithPaddle(final PowerUp pwup, final Paddle paddle) {
-        this.fillMap(pwup, paddle);
+        this.isCollision = false;
+        this.fillMap(paddle, pwup);
         this.collision.forEach((k, v) -> {
-            if (!v.booleanValue()) {
-                paddle.getHit().put(pwup, k);
+            if (!v.booleanValue() && !this.isCollision) {
+                pwup.getHit().put(paddle, k);
                 this.isCollision = true;
             }
         });
-        if (!this.isCollision) {
+        if (this.isCollision) {
             return Optional.empty();
         }
+        System.out.println(pwup.getHit().get(paddle));
         return Optional.ofNullable(new Pair<>(pwup, pwup.getHit().get(paddle)));
     }
 
+    /**
+     * 
+     * @param obj1
+     * @param obj2
+     */
     private void fillMap(final GameObject obj1, final GameObject obj2) {
         this.collision.put(Boundaries.SIDE_RIGHT, checkCollisions(objX(obj2), objX(obj1) + objWidth(obj1), Boundaries.SIDE_LEFT));
         this.collision.put(Boundaries.SIDE_LEFT, checkCollisions(objX(obj2) + objWidth(obj2), objX(obj1), Boundaries.SIDE_RIGHT));

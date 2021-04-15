@@ -131,14 +131,6 @@ public class TestBoard {
     public void insertPowerUpTest() {
         final GameBoard board = new GameBoardImpl(new Wall(WALL_COST, WALL_COST), null);
         powerUpCreation();
-        /*final Ball.Builder ballBuilder = new Ball.Builder();
-        ballBuilder.position(new Position(STAND_POS_X, STAND_POS_Y))
-                 .direction(Angle.MIDDLE_LEFT.getAngleVector().mul(-1))
-                 .height(ObjectInit.BALL.getInitHeight())
-                 .width(ObjectInit.BALL.getInitWidth())
-                 .speed(Difficulty.HARD.getBallVelocity())
-                 .path(BallTexture.BALL_DEFAULT.getPath())
-                 .build();*/
         assertTrue(board.getSceneEntities().isEmpty());
         this.listPwUp.addAll(IntStream.range(0, 100)
                 .mapToObj(i -> powerUpCreation())
@@ -170,7 +162,7 @@ public class TestBoard {
      * Check that collisions occur with the game wall.
      */
     @Test
-    public void checkBoardCollision() {
+    public void checkBallBoardCollision() {
         final GameBoard board = new GameBoardImpl(new Wall(100, 100), null);
         assertTrue(board.getSceneEntities().isEmpty());
         final Ball.Builder ballBuilder = new Ball.Builder();
@@ -198,7 +190,47 @@ public class TestBoard {
     }
 
     /**
+     * Check that collisions occur with the game wall.
+     */
+    @Test
+    public void checkPaddleBoardCollision() {
+        final GameBoard board = new GameBoardImpl(new Wall(100, 100), null);
+        assertTrue(board.getSceneEntities().isEmpty());
+        final Paddle.Builder paddleBuilder = new Paddle.Builder();
+        paddleBuilder.position(new Position(23, 50))
+            .height(ObjectInit.PADDLE.getInitHeight())
+            .width(ObjectInit.PADDLE.getInitWidth())
+            .texturePath(PATH_PADDLE);
+        board.setPaddle(paddleBuilder.build());
+        //set paddle pos to the right edge and check for a collision
+        assertEquals(Boundaries.SIDE_RIGHT, board.checkGameObjCollisionsWithWall(paddleBuilder.build()).get());
+        //set paddle pos to the left edge and check for a collision
+        paddleBuilder.position(new Position(-5, 50));
+        assertEquals(Boundaries.SIDE_LEFT, board.checkGameObjCollisionsWithWall(paddleBuilder.build()).get());
+        //set paddle pos to in the middle of the world and check for no collision;
+        paddleBuilder.position(new Position(5, 50));
+        assertEquals(Optional.empty(), board.checkGameObjCollisionsWithWall(paddleBuilder.build()));
+    }
+
+    /**
+     * Check that collisions occur with the game wall.
+     */
+    @Test
+    public void checkPowerUpBoardCollision() {
+        final GameBoard board = new GameBoardImpl(new Wall(100, 100), null);
+        assertTrue(board.getSceneEntities().isEmpty());
+        //set powerUp pos to the bottom edge and check for a collision
+        final PowerUp powerUp = new PowerUp(new Position(50, 95), null, 0.4, 10, 10, null, null, null, null, null);
+        assertEquals(Boundaries.LOWER, board.checkGameObjCollisionsWithWall(powerUp).get());
+        //set paddle pos to in the middle of the world and check for no collision;
+        powerUp.setPos(new Position(5,50));
+        assertEquals(Optional.empty(), board.checkGameObjCollisionsWithWall(powerUp));
+    }
+
+    /**
      * 
+     * Check that by positioning the ball in contact with a brick,
+     * a collision is detected based on the wall where it occurs.
      */
    @Test
     public void checkBrickCollision() {
@@ -208,7 +240,6 @@ public class TestBoard {
        board.setBalls(Arrays.asList(this.ball));
        //fill the map of the last presence areas of the bricks
        Optional<Pair<Brick, Boundaries>> collisionResult = board.checkBallCollisionsWithBrick(board.getBalls().stream().findFirst().get());
-       System.out.println(board.getBricks().stream().findFirst().get().getHit());
        assertEquals(Optional.empty(), collisionResult);
        board.getBalls().stream().findFirst().get().setPos(new Position(55, 45));
        //set ball pos on the same axis perpendicular to the brick wall and check the collisions
@@ -219,18 +250,85 @@ public class TestBoard {
     }
 
     /**
-     * 
+     * Check that according to the collision zone with the player 
+     * the ball has a direction. The more the collision zone will be to the right,
+     * the more acute the angle will be.
     */
     @Test
     public void checkBallPaddleCollision() {
-
+        paddle.setPos(new Position(50, 50));
+        ball.setPos(new Position(55, 30));
+        board.setPaddle(this.paddle);
+        board.setBalls(Arrays.asList(this.ball));
+        Pair<Optional<Boundaries>, Optional<Angle>> collisionResult = board.checkBallCollisionsWithPaddle(board.getBalls().stream().findFirst().get());
+        //fill the map of the last presence areas of the player
+        assertEquals(Optional.empty(), collisionResult.getX());
+        assertEquals(Optional.empty(), collisionResult.getY());
+        board.getBalls().stream().findFirst().get().setPos(new Position(55, 45));
+          collisionResult = board.checkBallCollisionsWithPaddle(board.getBalls().stream().findFirst().get());
+          //touching the top of the player will also present the direction that the ball will take after the collision
+          assertTrue(collisionResult.getX().isPresent());
+          assertTrue(collisionResult.getY().isPresent());
+          assertEquals(Boundaries.UPPER, collisionResult.getX().get());
+          assertEquals(Angle.LEFT, collisionResult.getY().get());
+          //I move the ball more and more to the right, making the corner more and more sharp
+          board.getBalls().stream().findFirst().get().setPos(new Position(60, 45));
+          collisionResult = board.checkBallCollisionsWithPaddle(board.getBalls().stream().findFirst().get());
+          assertEquals(Angle.LEFT, collisionResult.getY().get());
+          //I move the ball more and more to the right, making the corner more and more sharp
+          board.getBalls().stream().findFirst().get().setPos(new Position(75, 45));
+          collisionResult = board.checkBallCollisionsWithPaddle(board.getBalls().stream().findFirst().get());
+          assertEquals(Angle.MIDDLE_LEFT, collisionResult.getY().get());
+          //I move the ball more and more to the right, making the corner more and more sharp
+          board.getBalls().stream().findFirst().get().setPos(new Position(85, 45));
+          collisionResult = board.checkBallCollisionsWithPaddle(board.getBalls().stream().findFirst().get());
+          assertEquals(Angle.MIDDLE_RIGHT, collisionResult.getY().get());
+          //I move the ball more and more to the right, making the corner more and more sharp
+          board.getBalls().stream().findFirst().get().setPos(new Position(105, 45));
+          collisionResult = board.checkBallCollisionsWithPaddle(board.getBalls().stream().findFirst().get());
+          assertEquals(Angle.RIGHT, collisionResult.getY().get());
+          //I move the ball more and more to the right, making the corner more and more sharp
+          board.getBalls().stream().findFirst().get().setPos(new Position(120, 45));
+          collisionResult = board.checkBallCollisionsWithPaddle(board.getBalls().stream().findFirst().get());
+          assertEquals(Angle.RIGHT, collisionResult.getY().get());
+          //if the ball bounces on the player's side 
+          //the direction is changed as if it had bounced on a normal vertical wall
+          board.getBalls().stream().findFirst().get().setPos(new Position(30, 55));
+          collisionResult = board.checkBallCollisionsWithPaddle(board.getBalls().stream().findFirst().get());
+          assertTrue(collisionResult.getX().isEmpty());
+          assertTrue(collisionResult.getY().isEmpty());
+          board.getBalls().stream().findFirst().get().setPos(new Position(45, 55));
+          collisionResult = board.checkBallCollisionsWithPaddle(board.getBalls().stream().findFirst().get());
+          assertEquals(Boundaries.SIDE_LEFT, collisionResult.getX().get());
+          assertTrue(collisionResult.getY().isEmpty());
     }
 
     /**
-     * 
+     * Check that according to the collision zone with the player 
+     * the ball has a direction. The more the collision zone will be to the right,
+     * the more acute the angle will be.
     */
     @Test
     public void checkPowerUpPaddleCollision() {
-
+        paddle.setPos(new Position(50, 50));
+        pwUp.setPos(new Position(55, 30));
+        board.setPaddle(this.paddle);
+        board.setPowerUps(Arrays.asList(this.pwUp));
+        Optional<Pair<PowerUp, Boundaries>> collisionResult = board.checkPowerUpCollisionsWithPaddle(board.getPowerUp().stream().findFirst().get());
+        //fill the map of the last presence areas of the player
+        assertTrue(collisionResult.isEmpty());
+        board.getPowerUp().stream().findFirst().get().setPos(new Position(55, 45));
+        collisionResult = board.checkPowerUpCollisionsWithPaddle(board.getPowerUp().stream().findFirst().get());
+        //touching the top of the player will also present the direction that the ball will take after the collision
+        assertTrue(collisionResult.isPresent());
+        assertEquals(Boundaries.UPPER, collisionResult.get().getY());
+        //if the ball bounces on the player's side 
+        //the direction is changed as if it had bounced on a normal vertical wall
+        board.getPowerUp().stream().findFirst().get().setPos(new Position(30, 55));
+        collisionResult = board.checkPowerUpCollisionsWithPaddle(board.getPowerUp().stream().findFirst().get());
+        assertTrue(collisionResult.isEmpty());
+        board.getPowerUp().stream().findFirst().get().setPos(new Position(45, 55));
+        collisionResult = board.checkPowerUpCollisionsWithPaddle(board.getPowerUp().stream().findFirst().get());
+        assertEquals(Boundaries.SIDE_LEFT, collisionResult.get().getY());
     }
 }
