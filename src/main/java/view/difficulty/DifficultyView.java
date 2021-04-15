@@ -125,15 +125,10 @@ public class DifficultyView implements Initializable, FXMLMenuController {
             this.controller.saveNewSettings();
 
             //Play Button CLick Sound
-<<<<<<< HEAD
-            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
-            SoundController.stopMusic();
-=======
             this.soundClick();
 
             //Used to stop game music
             this.stopCurrentGameMusic();
->>>>>>> eca947e2e334eeb9984f39ef7ebff2eff6363d6f
 
             final Scene scene = btnStartGame.getScene();
             final Thread thread = new Thread(new GameLoop(scene));
