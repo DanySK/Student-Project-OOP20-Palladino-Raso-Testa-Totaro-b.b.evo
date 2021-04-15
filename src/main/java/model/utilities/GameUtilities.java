@@ -84,6 +84,17 @@ public final class GameUtilities {
                                                 + "settings.json"; 
 
     /**
+     * Path for save level setting.
+     */
+    public static final String SETTINGS_LEVEL_PATH =  RES_PATH
+                                                + SEP
+                                                + ".BrickBreakerEvo" 
+                                                + SEP
+                                                + "Settings"
+                                                + SEP
+                                                + "settinglevel.json"; 
+
+    /**
      * The minimum WIDTH number that the stage can have.
      */
     public static final int MIN_RESIZE_WIDTH = 460;
