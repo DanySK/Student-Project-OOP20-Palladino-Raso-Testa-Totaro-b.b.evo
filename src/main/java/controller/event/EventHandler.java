@@ -1,7 +1,7 @@
 package controller.event;
 
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Queue;
 
 import controller.game.GamePhase;
 import controller.game.GameState;
@@ -20,7 +20,7 @@ import model.utilities.PowerUpUtilities;
 
 public class EventHandler {
 
-    private final List<Event> eventList = new LinkedList<>();
+    private final Queue<Event> eventList = new LinkedList<>();
     private final GameState state;
     private int ballDamage = PowerUpUtilities.DEFAULT_BALL_DAMAGE;
     private LifeOperationStrategy lifeOperation;

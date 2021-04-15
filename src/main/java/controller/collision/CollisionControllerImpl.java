@@ -19,8 +19,8 @@ import model.utilities.Pair;
 public class CollisionControllerImpl implements CollisionController {
 
     private final Map<Boundaries, Boolean> collision = new HashMap<>();
-    private Boundaries side = null;
-    private boolean isCollision = false;
+    private Boundaries side;
+    private boolean isCollision;
 
     /**
      * {@inheritDoc}
@@ -97,7 +97,6 @@ public class CollisionControllerImpl implements CollisionController {
         if (this.isCollision) {
             return Optional.empty();
         }
-        System.out.println(pwup.getHit().get(paddle));
         return Optional.ofNullable(new Pair<>(pwup, pwup.getHit().get(paddle)));
     }
 

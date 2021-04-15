@@ -23,7 +23,7 @@ public interface CollisionController {
 
     /**
      * Check for collisions between the object and the wall.
-     * @param obj the object that can collide with the border
+     * @param obj the object that can collide with the wall
      * @param wall border of the world
      * @return the side of the collision
      */
@@ -31,16 +31,16 @@ public interface CollisionController {
 
     /**
      * Check for collisions between the ball and the paddle.
-     * @param paddle entity to check
-     * @param ball entity to check
+     * @param paddle the paddle to check the collision
+     * @param ball the object that can collide with the paddle
      * @return the side of the collision
      */
     Optional<Boundaries> checkBallCollisionsWithPaddle(Ball ball, Paddle paddle);
 
     /**
      * Check for collisions between the pwup and the paddle.
-     * @param pwup entity to check
-     * @param paddle entity to check
+     * @param pwup the object that can collide with the paddle
+     * @param paddle the paddle to check the collision
      * @return a pair consisting of the type of powerUp and the side it was hit on
      */
     Optional<Pair<PowerUp, Boundaries>> checkPwUpCollisionWithPaddle(PowerUp pwup, Paddle paddle);

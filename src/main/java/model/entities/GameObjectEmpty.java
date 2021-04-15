@@ -5,12 +5,13 @@ import controller.input.ComponentInputEmpty;
 import controller.input.ControllerInput;
 import model.physics.ComponentPhysicsEmpty;
 import model.utilities.DirVector;
-import model.utilities.BrickStatus;
 import model.utilities.Position;
 import view.graphics.AdapterGraphics;
 import view.graphics.ComponentGraphicsEmpty;
 
 public class GameObjectEmpty extends GameObjectImpl {
+
+    private static final long serialVersionUID = 7936686771251098459L;
 
     /**
      * Create an empty space/object.

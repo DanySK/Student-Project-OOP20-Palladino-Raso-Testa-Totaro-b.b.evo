@@ -1,4 +1,3 @@
-
 package model.entities;
 
 import java.util.Collection;
@@ -182,7 +181,7 @@ public class GameBoardImpl implements GameBoard {
      */
     @Override
     public Pair<Optional<Boundaries>, Optional<Angle>> checkBallCollisionsWithPaddle(final Ball ball) {
-        Optional<Boundaries> result = Optional.empty();
+        Optional<Boundaries> result;
         for (final var paddle : this.paddle) {
             result = this.collision.checkBallCollisionsWithPaddle(ball, paddle);
             if (result.isPresent() && result.get().equals(Boundaries.UPPER)) {
