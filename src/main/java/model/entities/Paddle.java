@@ -15,6 +15,7 @@ import view.graphics.PaddleComponentGraphics;
 
 public final class Paddle extends GameObjectImpl {
 
+    private static final long serialVersionUID = -854724973379080675L;
     private static final double PADDLE_SPEED = 0.4;
     private final Map<GameObject, Boundaries> hit = new HashMap<>();
     private final String tPath;
