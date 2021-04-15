@@ -108,7 +108,7 @@ public class DifficultyView implements Initializable, FXMLMenuController {
     public void loadListener() {
         //Button back Listener
         this.btnBack.setOnAction(event -> {
-            this.switchPage(PersonalViews.SCENE_MAIN_MENU, PersonalStyle.DEFAULT_STYLE);
+            this.switchPage(PersonalViews.SCENE_MAIN_MENU, this.window.getWidth(), this.window.getHeight(), PersonalStyle.DEFAULT_STYLE);
             this.controller.saveNewSettings();
             this.soundClick();
          });
@@ -119,16 +119,21 @@ public class DifficultyView implements Initializable, FXMLMenuController {
             final Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             oldStage.setResizable(false);
 
-            this.switchPage(PersonalViews.SCENE_GAME, PersonalStyle.DEFAULT_STYLE);
+            this.switchPage(PersonalViews.SCENE_GAME, GameUtilities.SCREEN_WIDTH, GameUtilities.SCREEN_HEIGHT, PersonalStyle.DEFAULT_STYLE);
 
             //Save the current game settings
             this.controller.saveNewSettings();
 
             //Play Button CLick Sound
+<<<<<<< HEAD
+            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+            SoundController.stopMusic();
+=======
             this.soundClick();
 
             //Used to stop game music
             this.stopCurrentGameMusic();
+>>>>>>> eca947e2e334eeb9984f39ef7ebff2eff6363d6f
 
             final Scene scene = btnStartGame.getScene();
             final Thread thread = new Thread(new GameLoop(scene));
@@ -165,15 +170,17 @@ public class DifficultyView implements Initializable, FXMLMenuController {
     /**
      * This method allows to switch the current scene whit the next or previous scene.
      * @param scene - use to set the next or previous scene.
+     * @param width - use to set the width for next scene.
+     * @param height - use to set the height for next scene.
      * @param style - use to set the style for the next or previous scene.
      */
-    private void switchPage(final PersonalViews scene, final PersonalStyle style) {
+    private void switchPage(final PersonalViews scene, final double width, final double height, final PersonalStyle style) {
         //Switch Scene
         SceneLoader.switchScene((Stage) this.window.getScene().getWindow(), 
                                  scene.getURL(), 
                                  scene.getTitleScene(), 
-                                 window.getWidth(), 
-                                 window.getHeight(),
+                                 width, 
+                                 height,
                                  style.getStylePath());
     }
     /**

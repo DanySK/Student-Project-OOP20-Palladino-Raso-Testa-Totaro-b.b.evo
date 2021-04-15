@@ -141,7 +141,7 @@ public class CharacterView implements Initializable, FXMLMenuController {
     private String getValidateAlias() {
         String alias = this.characterNameField.getText().toUpperCase(Locale.ENGLISH);
         if (alias.isEmpty()) {
-            alias = "GUEST";
+            alias = GameUtilities.DEFAULT_PLAYER_NAME;
         }
         return alias;
     }

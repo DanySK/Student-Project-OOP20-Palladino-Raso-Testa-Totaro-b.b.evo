@@ -2,6 +2,7 @@ package controller.collision;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 import model.entities.Ball;
 import model.entities.Brick;
@@ -26,6 +27,7 @@ public class CollisionControllerImpl implements CollisionController {
      */
     @Override
     public Optional<Boundaries> checkGameObjCollisionsWithWall(final Wall wall, final GameObject obj) {
+        this.side = null;
         collision.put(Boundaries.SIDE_LEFT, checkCollisions(objX(obj), wall.getUpperLeftCorner().getX(), Boundaries.SIDE_LEFT));
         collision.put(Boundaries.SIDE_RIGHT, checkCollisions(objX(obj) + objWidth(obj), wall.getRightBottomCorner().getX(), Boundaries.SIDE_RIGHT));
         collision.put(Boundaries.LOWER, checkCollisions(objY(obj) + objHeight(obj), wall.getRightBottomCorner().getY(), Boundaries.LOWER));
@@ -43,14 +45,17 @@ public class CollisionControllerImpl implements CollisionController {
      */
     @Override
     public Optional<Pair<Brick, Boundaries>> checkBallCollisionsWithBrick(final Ball ball, final Brick brick) {
-        this.fillMap(ball, brick);
-        this.collision.forEach((k, v) -> {
-            if (!v.booleanValue()) {
-                brick.getHit().put(ball, k);
+        this.isCollision = false;
+        this.fillMap(brick, ball);
+
+        for(final Entry<Boundaries, Boolean> entry : this.collision.entrySet()) {
+            if(!entry.getValue() && !this.isCollision) {
+                brick.getHit().put(ball, entry.getKey());
                 this.isCollision = true;
             }
-        });
-        if (!this.isCollision) {
+        }
+
+        if (this.isCollision) {
             return Optional.empty();
         }
         return Optional.of(new Pair<>(brick, brick.getHit().get(ball)));
@@ -94,10 +99,10 @@ public class CollisionControllerImpl implements CollisionController {
     }
 
     private void fillMap(final GameObject obj1, final GameObject obj2) {
-        this.collision.put(Boundaries.SIDE_LEFT, checkCollisions(objX(obj2), objX(obj1) + objWidth(obj1), Boundaries.SIDE_LEFT));
-        this.collision.put(Boundaries.SIDE_RIGHT, checkCollisions(objX(obj2) + objWidth(obj2), objX(obj1), Boundaries.SIDE_RIGHT));
-        this.collision.put(Boundaries.LOWER, checkCollisions(objY(obj2) + objHeight(obj1), objY(obj1), Boundaries.LOWER));
-        this.collision.put(Boundaries.UPPER, checkCollisions(objY(obj2), objY(obj2) + objHeight(obj1), Boundaries.UPPER));
+        this.collision.put(Boundaries.SIDE_RIGHT, checkCollisions(objX(obj2), objX(obj1) + objWidth(obj1), Boundaries.SIDE_LEFT));
+        this.collision.put(Boundaries.SIDE_LEFT, checkCollisions(objX(obj2) + objWidth(obj2), objX(obj1), Boundaries.SIDE_RIGHT));
+        this.collision.put(Boundaries.UPPER, checkCollisions(objY(obj2) + objHeight(obj2), objY(obj1), Boundaries.LOWER));
+        this.collision.put(Boundaries.LOWER, checkCollisions(objY(obj2), objY(obj1) + objHeight(obj1), Boundaries.UPPER));
     }
 
     private int objHeight(final GameObject obj) {
