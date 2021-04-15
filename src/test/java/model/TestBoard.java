@@ -20,7 +20,7 @@ import model.entities.Wall;
 import model.utilities.Angle;
 import model.utilities.Boundaries;
 import model.utilities.Difficulty;
-import model.utilities.GameObjStatus;
+import model.utilities.BrickStatus;
 import model.utilities.ObjectInit;
 import model.utilities.Pair;
 import model.utilities.Position;
@@ -42,7 +42,7 @@ public class TestBoard {
                                              .setHeight(10)
                                              .setWidth(10)
                                              .setTexture(BrickTexture.BRICK_TEXTURE_DEFAULT.getPath())
-                                             .setStatus(GameObjStatus.NOT_DESTRUCTIBLE)
+                                             .setStatus(BrickStatus.NOT_DESTRUCTIBLE)
                                              .setDurability(1)
                                              .build();
     private final Ball ball = new Ball.Builder().position(new Position(STAND_POS_X, STAND_POS_Y))
