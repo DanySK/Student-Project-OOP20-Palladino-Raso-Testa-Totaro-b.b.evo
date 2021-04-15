@@ -1,5 +1,7 @@
 package controller.game;
 
+import controller.settings.SettingLevelControllerImpl;
+import controller.settings.SettingsControllerImpl;
 import model.entities.GameBoard;
 import model.leaderboard.Player;
 import model.mapeditor.Level;
@@ -52,12 +54,6 @@ public interface GameState {
      * @return the current player
      */
     Player getPlayer();
-
-    /**
-     * 
-     * @return the topScore of the player who is playing
-     */
-    int getTopScores();
 
     /**
      * 
