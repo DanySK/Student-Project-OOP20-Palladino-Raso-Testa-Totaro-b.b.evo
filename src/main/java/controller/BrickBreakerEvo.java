@@ -8,6 +8,7 @@ import controller.utilities.IOSettings;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.settings.GameSettingsBuilderImpl;
+import model.settings.SettingLevelManager;
 import model.utilities.GameUtilities;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
@@ -43,6 +44,11 @@ public class BrickBreakerEvo extends Application {
      * Folder where settings are saved.
      */
     public static final String SETTINGS_FOLDER = MAIN_FOLDER + SEP + "Settings" + SEP;
+
+    /**
+     * 
+     */
+    public static final String SETTING_LEVEL = SETTINGS_FOLDER + SEP + "loadLevel";
 
     /**
      * Folder where maps are saved.
@@ -100,7 +106,10 @@ public class BrickBreakerEvo extends Application {
                 System.out.println("Settings Folder e json successfully created");
                 IOSettings.printInJsonFormat(SETTINGS_FOLDER + "settings.json", 
                                              new GameSettingsBuilderImpl().defaultSettings().build());
+                new File(BrickBreakerEvo.SETTINGS_FOLDER + "loadLevel").createNewFile();
+                    SettingLevelManager.init();
         }
+
         if (new File(BrickBreakerEvo.MAPS_FOLDER).mkdirs()) {
             System.out.println("Maps Folder successfully created");
         }
