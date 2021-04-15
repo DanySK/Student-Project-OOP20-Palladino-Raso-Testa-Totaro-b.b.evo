@@ -65,6 +65,7 @@ public class GameStateImpl implements GameState {
         this.board.setPaddle(paddleBuilder.position(ObjectInit.PADDLE.getStartPos())
                                          .width(ObjectInit.PADDLE.getInitWidth())
                                          .height(ObjectInit.PADDLE.getInitHeight())
+                                         .texturePath(level.getPaddleTexture().getPath())
                                          .build());
         this.board.setBalls(Arrays.asList(new Ball.Builder()
                                              .position(ObjectInit.BALL.getStartPos())
@@ -72,6 +73,7 @@ public class GameStateImpl implements GameState {
                                              .height(ObjectInit.BALL.getInitHeight())
                                              .width(ObjectInit.BALL.getInitWidth())
                                              .speed(setting.getDifficulty().getBallVelocity())
+                                             .path(level.getBallTexture().getPath())
                                              .build()));
         this.phase = GamePhase.PAUSE;
     }

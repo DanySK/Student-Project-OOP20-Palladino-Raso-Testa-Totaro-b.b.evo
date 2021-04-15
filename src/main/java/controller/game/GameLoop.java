@@ -17,6 +17,7 @@ import model.mapeditor.LevelSelection;
 import model.settings.SettingLevel.SettingLevelBuilder;
 import model.settings.SettingLevelManager;
 import model.utilities.GameUtilities;
+import resource.routing.BackGround;
 import resource.routing.PersonalViews;
 import view.game.ControllerGame;
 import view.game.ControllerNextLevel;
@@ -29,19 +30,22 @@ public class GameLoop implements Runnable {
     private final GameState gameState;
     private final GameBoard board;
     private final ControllerGame controllerGame;
-    private final ControllerInput inputController = new ControllerInputImpl();
+    private final ControllerInput inputController;
     private final SettingsController setting = new SettingsControllerImpl(GameUtilities.SETTINGS_PATH);
 
     public GameLoop(final Scene scene) {
         this.scene = scene;
         this.gameState = new GameStateImpl();
         this.board = gameState.getBoard();
-        this.controllerGame = (ControllerGame) SceneLoader.loadScene(PersonalViews.SCENE_GAME.getURL());
-        this.controllerGame.setBackgroundImage(gameState.getLevel().getBackground());
+        //System.out.println(SceneLoader.loadScene(ClassLoader.getSystemResource(PersonalViews.SCENE_GAME.getURL().getPath())));
+        this.controllerGame = (ControllerGame) PersonalViews.SCENE_GAME.loadScene();
+        //gameState.getLevel().getBackground()
+        this.controllerGame.setBackgroundImage(BackGround.BACKGROUND_SUPERMARIO);
         if (this.setting.isMusicEnable()) {
             SoundController.playMusic(gameState.getLevel().getMusic().getPath());
         }
         this.changeView(PersonalViews.SCENE_GAME);
+        this.inputController = new ControllerInputImpl();
         final InputEvent inputEvent = new InputEventImpl(this.controllerGame.getCanvas(), inputController, this.gameState);
             inputEvent.notifyEvent();
     }
@@ -59,19 +63,23 @@ public class GameLoop implements Runnable {
             final int elapsed = (int) (current - lastTime);
             switch (gameState.getPhase()) {
             case START:
+                System.out.println("dentro");
                 gameState.init();
                 break;
             case PAUSE:
                 this.controllerGame.setPlay(false);
+                //System.out.println("pausa");
                 render();
                 break;
             case RUNNING:
                 this.controllerGame.setPlay(true);
+                System.out.println("running");
                 processInput();
                 updateGame(elapsed);
                 render();
                 break;
             default:
+                System.out.println("Oh cazz");
                 break;
             }
             waitForNextFrame(current);
@@ -98,8 +106,8 @@ public class GameLoop implements Runnable {
      */
     private void changeView(final PersonalViews layout) {
         if (layout.equals(PersonalViews.SCENE_NEXT_LEVEL)) {
-            final ControllerNextLevel nextLevelController = (ControllerNextLevel) SceneLoader.loadScene(PersonalViews.SCENE_NEXT_LEVEL.getURL());
-            nextLevelController.update(gameState.getLevel(), gameState.getPlayer());
+            //final ControllerNextLevel nextLevelController = (ControllerNextLevel) SceneLoader.loadScene(PersonalViews.SCENE_NEXT_LEVEL.getURL());
+            //nextLevelController.update(gameState.getLevel(), gameState.getPlayer());
         } else if (layout.equals(PersonalViews.SCENE_GAME_OVER)) {
             //final ControllerGameOver controllerGameOver = (GameOverController) SceneLoader.loadScene(PersonalViews.SCENE_GAME_OVER.getURL());
             //gameOverController.updateScore(gameState.getTopScores(), gameState.getUser(), gameState.getLevel());

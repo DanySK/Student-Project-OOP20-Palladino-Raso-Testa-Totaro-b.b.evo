@@ -1,7 +1,11 @@
 package resource.routing;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+
+import javafx.fxml.FXMLLoader;
+import view.GUILayout;
 
 public enum PersonalViews {
 
@@ -62,6 +66,7 @@ public enum PersonalViews {
 
     private String path;
     private String titleScene;
+    private transient GUILayout guiLayout = null;
 
     PersonalViews(final String path, final String titleScene) {
         this.path = path;
@@ -78,5 +83,16 @@ public enum PersonalViews {
 
     public InputStream getResourceAsStream() {
         return ClassLoader.getSystemResourceAsStream(this.path);
+    }
+
+    public GUILayout loadScene() {
+        final FXMLLoader loader = new FXMLLoader(this.getURL());
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        guiLayout = loader.getController();
+        return guiLayout;
     }
 }

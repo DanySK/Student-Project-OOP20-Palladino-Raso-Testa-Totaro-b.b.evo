@@ -1,8 +1,5 @@
 package view.mapeditor;
 
-import java.util.Observable;
-import java.util.Observer;
-
 import controller.game.GameLoop;
 import controller.menu.SceneLoader;
 import controller.utilities.CheckAlertController;
@@ -12,15 +9,14 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.control.SplitPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.mapeditor.Level;
@@ -28,7 +24,6 @@ import model.mapeditor.LevelManager;
 import model.settings.SettingLevel.SettingLevelBuilder;
 import model.settings.SettingLevelManager;
 import model.utilities.GameUtilities;
-import resource.routing.BackGround;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
 
@@ -46,16 +41,19 @@ public class CreativeModeController implements GUIController {
     private Button menuBtn;
 
     @FXML
-    private Button playBtn;
+    private Button builderBtn;
 
     @FXML
-    private Button builderBtn;
+    private Button playBtn;
 
     @FXML
     private ScrollPane scrollPane;
 
     @FXML
     private VBox levelContainer;
+
+    @FXML
+    private AnchorPane paneLabel;
 
     @FXML
     private Label levelSelected;
@@ -71,8 +69,8 @@ public class CreativeModeController implements GUIController {
         this.panel.setMaxHeight(GameUtilities.SCREEN_HEIGHT);
         this.levelContainer.setMinWidth(GameUtilities.SCREEN_WIDTH / 2);
         this.levelContainer.setMaxWidth(GameUtilities.SCREEN_WIDTH / 2);
-        //this.starter.setMinWidth(GameUtilities.SCREEN_WIDTH / 2);
-        //this.starter.setMaxWidth(GameUtilities.SCREEN_WIDTH / 2);
+        this.levelContainer.setMinWidth(GameUtilities.SCREEN_WIDTH / 2);
+        this.levelContainer.setMaxWidth(GameUtilities.SCREEN_WIDTH / 2);
         this.scrollPane.setMinWidth(GameUtilities.SCREEN_WIDTH / 2);
         this.scrollPane.setMaxWidth(GameUtilities.SCREEN_WIDTH / 2);
         this.scrollPane.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
@@ -118,7 +116,7 @@ public class CreativeModeController implements GUIController {
                 stage.getWidth(), 
                 stage.getHeight(),
                 PersonalStyle.DEFAULT_STYLE.getStylePath());
-        stage.setResizable(true);
+        stage.setResizable(false);
     }
 
     /**
@@ -126,14 +124,17 @@ public class CreativeModeController implements GUIController {
      */
     @FXML
     void goToLevelBuilder(final MouseEvent event) {
-        final var stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        /*final var stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         SceneLoader.switchScene(stage, 
                 PersonalViews.SCENE_EDITOR_MODE.getURL(), 
                 PersonalViews.SCENE_EDITOR_MODE.getTitleScene(), 
-                stage.getWidth(), 
+                stage.getWidth() / 1.3, 
                 stage.getHeight(),
                 PersonalStyle.DEFAULT_STYLE.getStylePath());
         stage.setResizable(true);
+        */
+        this.builderBtn.setOnAction(this.switchPage(PersonalViews.SCENE_EDITOR_MODE, PersonalStyle.DEFAULT_STYLE, 
+                GameUtilities.SCREEN_WIDTH / 1.3, GameUtilities.SCREEN_HEIGHT, false));
     }
 
     /**
@@ -165,6 +166,36 @@ public class CreativeModeController implements GUIController {
         subject.setStyle(reference.getStyle());
         subject.setEffect(reference.getEffect());
         subject.setFont(reference.getFont());
+    }
+
+    /**
+     * This method allows to switch the current scene whit the next scene.
+     * @param scene - use to set the next scene.
+     * @param style - use to set the style for the next scene.
+     * @param width - use to set the width for next scene.
+     * @param height - use to set the height for next scene.
+     * @param resizable - use to understand if the next scene will be resizable or not.
+     * @return an ActionEvent that allow to change between the current scene and the next scene.
+     */
+    private EventHandler<ActionEvent> switchPage(final PersonalViews scene, final PersonalStyle style, 
+                                                 final double width, final double height, final boolean resizable) {
+
+        return new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(final ActionEvent event) {
+                final Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                //Switch Scene
+                SceneLoader.switchScene(currentStage, 
+                scene.getURL(), 
+                scene.getTitleScene(), 
+                width, 
+                height,
+                style.getStylePath());
+                currentStage.setResizable(resizable);
+            }
+
+        };
     }
 
 }

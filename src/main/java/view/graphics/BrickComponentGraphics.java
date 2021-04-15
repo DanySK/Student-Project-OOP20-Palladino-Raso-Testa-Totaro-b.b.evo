@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javafx.scene.image.Image;
 import model.entities.Brick;
 import model.entities.GameObject;
+import resource.routing.BrickTexture;
 
 public class BrickComponentGraphics implements ComponentGraphics, Serializable {
 
@@ -12,7 +13,8 @@ public class BrickComponentGraphics implements ComponentGraphics, Serializable {
     private final transient Image brickImage;
 
     public BrickComponentGraphics(final String texturePath) {
-        this.brickImage = new Image(ClassLoader.getSystemResourceAsStream(texturePath));
+        System.out.println(texturePath);
+        this.brickImage = new Image(ClassLoader.getSystemResourceAsStream(BrickTexture.BRICK_TEXTURE_DEFAULT.getPath()));
     }
 
     /**

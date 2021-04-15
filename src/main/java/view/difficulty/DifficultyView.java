@@ -139,7 +139,7 @@ public class DifficultyView implements Initializable, FXMLMenuController {
             SettingLevelManager.saveOption(setBuilder.build());
             //UserManager.saveUser(new User());
 
-            final Scene scene = btnStartGame.getScene();
+            final Scene scene = this.btnStartGame.getScene();
             final Thread thread = new Thread(new GameLoop(scene));
             thread.setDaemon(true);
             thread.start();

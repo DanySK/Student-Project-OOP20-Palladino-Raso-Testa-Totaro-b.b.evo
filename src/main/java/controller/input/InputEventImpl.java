@@ -28,7 +28,7 @@ public class InputEventImpl implements InputEvent {
     /**
      * Change player status and game status based on the key pressed.
      */
-    private void stoppedPressing() {
+    private void isPressing() {
         this.canvas.setOnKeyPressed(e -> {
             switch (e.getCode()) {
             case LEFT:
@@ -54,7 +54,7 @@ public class InputEventImpl implements InputEvent {
     /**
      * Change player status based on the key pressed.
      */
-    private void isPressing() {
+    private void stoppedPressing() {
         this.canvas.setOnKeyReleased(e -> {
             switch (e.getCode()) {
             case LEFT:

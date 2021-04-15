@@ -16,6 +16,8 @@ import view.GUILayout;
 
 public final class SceneLoader {
 
+
+
     private SceneLoader() {
 
     }
@@ -56,11 +58,6 @@ public final class SceneLoader {
         }
     }
 
-    public static GUILayout loadScene(final URL path) {
-        final FXMLLoader loader = new FXMLLoader(path);
-        return loader.getController();
-    }
-
     public static Parent loadParent(final URL path) {
         Parent parent = null;
         try {
@@ -68,6 +65,7 @@ public final class SceneLoader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println(parent);
         return parent;
     }
 }
