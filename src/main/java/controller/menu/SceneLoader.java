@@ -31,6 +31,7 @@ public final class SceneLoader {
     public static void switchScene(final Stage stage, final URL path, final String title, 
                                     final double width, final double height, final String cssStylePath)  {
         try {
+            System.out.println(path);
             final Parent parent = FXMLLoader.load(path);
             final Scene newScene = new Scene(parent, width, height);
 
