@@ -1,5 +1,7 @@
 package model.entities;
 
+import java.io.Serializable;
+
 import controller.input.ComponentInput;
 import controller.input.ControllerInput;
 import model.utilities.Position;
@@ -9,7 +11,9 @@ import model.utilities.DirVector;
 import view.graphics.AdapterGraphics;
 import view.graphics.ComponentGraphics;
 
-public abstract class GameObjectImpl implements GameObject {
+public abstract class GameObjectImpl implements GameObject, Serializable {
+
+    private static final long serialVersionUID = 9139431443544241120L;
 
     private Position pos;
     private DirVector dirVel;

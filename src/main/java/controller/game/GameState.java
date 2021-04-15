@@ -1,7 +1,5 @@
 package controller.game;
 
-import controller.settings.SettingLevelControllerImpl;
-import controller.settings.SettingsControllerImpl;
 import model.entities.GameBoard;
 import model.leaderboard.Player;
 import model.mapeditor.Level;

@@ -8,14 +8,18 @@ import javafx.scene.control.Alert.AlertType;
  * DA GUARDRE SE TENERLA QUI O SPOSTARLA
  *
  */
-public class CheckAlertController {
+public final class CheckAlertController {
 
-    private Alert alert;
+    private static Alert alert;
+
+    private CheckAlertController() {
+
+    }
 
     /**
      * Check if all fields are entered correctly. 
      */
-    public void checkAllField() {
+    public static void checkAllField() {
         alert = new Alert(AlertType.WARNING);
         alert.setHeaderText("Warning");
         alert.setContentText("You must fill all fields!");
@@ -25,7 +29,7 @@ public class CheckAlertController {
     /**
      * Check if the name entered is the same as a predefined level name.
      */
-    public void checkLevelName() {
+    public static void checkLevelName() {
         alert = new Alert(AlertType.WARNING);
         alert.setHeaderText("Warning");
         alert.setContentText("The name you have selected already belongs to a predefined level and cannot be overwritten!");
@@ -35,10 +39,20 @@ public class CheckAlertController {
     /**
      * Check if the level was created correctly.
      */
-    public void checkLevelCreate() {
+    public static void checkLevelCreate() {
         alert = new Alert(AlertType.INFORMATION);
         alert.setHeaderText(null);
         alert.setContentText("The level was successfully created");
+        alert.showAndWait();
+    }
+
+    /**
+     * Check if the level is selected correctly.
+     */
+    public static void checkLevelSelected() {
+        final Alert alert = new Alert(AlertType.WARNING);
+        alert.setHeaderText("Warning");
+        alert.setContentText("No level has been selected");
         alert.showAndWait();
     }
 }

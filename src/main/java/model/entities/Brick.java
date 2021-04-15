@@ -16,6 +16,7 @@ import view.graphics.PwUpComponentGraphics;
 
 public class Brick extends GameObjectImpl {
 
+    private static final long serialVersionUID = 6692878597912001932L;
     private int durability;
     private final Map<GameObject, Boundaries> hit = new HashMap<>();
     private final String texturePath;

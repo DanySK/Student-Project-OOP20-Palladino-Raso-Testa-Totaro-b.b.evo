@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.mapeditor.CreativeModeController">
+   <children>
+      <SplitPane dividerPositions="0.2638190954773869" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane fx:id="option" minHeight="0.0" minWidth="0.0" prefHeight="102.0" prefWidth="598.0" style="-fx-background-image: url(&quot;/Images/mainMenuImg/background.png&quot;);">
+               <children>
+                  <Button fx:id="menuBtn" layoutX="208.0" layoutY="42.0" mnemonicParsing="false" onMouseClicked="#backToMenu" text="MENU" />
+                  <Button fx:id="playBtn" layoutX="509.0" layoutY="42.0" mnemonicParsing="false" onMouseClicked="#playLevel" text="PLAY" />
+                  <Label layoutX="32.0" layoutY="46.0" text="Select level to play!" />
+                  <Button fx:id="builderBtn" layoutX="326.0" layoutY="42.0" mnemonicParsing="false" onMouseClicked="#goToLevelBuilder" text="CREATE LEVEL" />
+               </children>
+            </AnchorPane>
+            <SplitPane dividerPositions="0.560200668896321" prefHeight="200.0" prefWidth="200.0">
+               <items>
+                  <ScrollPane fx:id="scrollPane" prefHeight="290.0" prefWidth="327.0" style="-fx-background-image: url(&quot;/Images/mainMenuImg/background.png&quot;);">
+                     <content>
+                        <VBox fx:id="levelContainer" prefHeight="296.0" prefWidth="337.0" style="-fx-background-image: url(&quot;/Images/mainMenuImg/background.png&quot;);" />
+                     </content>
+                  </ScrollPane>
+                  <Label fx:id="levelSelected" prefHeight="301.0" prefWidth="260.0" style="-fx-background-image: url(&quot;/Images/mainMenuImg/background.png&quot;);" />
+               </items>
+            </SplitPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

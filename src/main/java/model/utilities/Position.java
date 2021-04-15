@@ -1,12 +1,14 @@
 package model.utilities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * A class which represents the positions of the various entities in this game.
  */
-public class Position {
+public class Position implements Serializable {
 
+    private static final long serialVersionUID = 6652064500933057752L;
     private final double x;
     private final double y;
 

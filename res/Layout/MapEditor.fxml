@@ -102,7 +102,7 @@
             </Pane>
             <Pane layoutY="362.0" prefHeight="134.0" prefWidth="388.0">
                <children>
-                  <Button fx:id="menu" layoutX="56.0" layoutY="84.0" mnemonicParsing="false" onMouseClicked="#backToMenu" style="-fx-background-color: linear-gradient(to bottom right, #FFFFFF, #FB7DFF);" text="MENU" textFill="#1b1919">
+                  <Button fx:id="menu" layoutX="56.0" layoutY="84.0" mnemonicParsing="false" onMouseClicked="#backToMenu" style="-fx-background-color: linear-gradient(to bottom right, #FFFFFF, #FB7DFF);" text="MENU CREATIVE" textFill="#1b1919">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
