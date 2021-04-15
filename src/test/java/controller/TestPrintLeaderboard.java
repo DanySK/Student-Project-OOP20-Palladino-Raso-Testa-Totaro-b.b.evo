@@ -19,7 +19,7 @@ class TestPrintLeaderboard {
 
     private Leaderboard rank;
     private Map<String, Integer> map;
-    private static final int NUMBER_PLAYER = 100;
+    private static final int NUMBER_PLAYER = 100_000;
     private final LeaderboardSortingStrategy ls = new StandardScoreSortingStrategy();
     private static final String SEP = System.getProperty("file.separator");
     private static final String RES_PATH = System.getProperty("user.home");

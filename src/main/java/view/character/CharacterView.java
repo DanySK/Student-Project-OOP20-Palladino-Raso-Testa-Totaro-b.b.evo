@@ -105,7 +105,9 @@ public class CharacterView implements Initializable, FXMLMenuController {
         //Button next Listener
         this.btnNext.setOnAction(event -> {
             //Control if the alias as present
-            if (this.controller.viewLeaderboard().containsKey(this.getValidateAlias())) {
+            if (this.controller.viewLeaderboard().containsKey(this.getValidateAlias()) 
+                && !this.getValidateAlias().equals(GameUtilities.DEFAULT_PLAYER_NAME)) {
+
                 this.showAlertDialog();
             } else {
                 this.saveTemporaryPlayer(this.getValidateAlias());
