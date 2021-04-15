@@ -11,12 +11,11 @@ import controller.settings.SettingsController;
 import controller.settings.SettingsControllerImpl;
 import controller.sound.SoundController;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import model.entities.GameBoard;
-import model.leaderboard.LeaderboardSortingStrategy;
-import model.leaderboard.Player;
 import model.mapeditor.LevelSelection;
+import model.settings.SettingLevel.SettingLevelBuilder;
+import model.settings.SettingLevelManager;
 import model.utilities.GameUtilities;
 import resource.routing.PersonalViews;
 import view.game.ControllerGame;
@@ -42,14 +41,10 @@ public class GameLoop implements Runnable {
         if (this.setting.isMusicEnable()) {
             SoundController.playMusic(gameState.getLevel().getMusic().getPath());
         }
-        if (this.setting.isSoundFxEnable()) {
-            SoundController.playSoundFx(null); // selezionare musica
-        }
         this.changeView(PersonalViews.SCENE_GAME);
         final InputEvent inputEvent = new InputEventImpl(this.controllerGame.getCanvas(), inputController, this.gameState);
             inputEvent.notifyEvent();
     }
-
 
     /**
      * Apply the three game loop steps based on the game phase.
@@ -86,19 +81,19 @@ public class GameLoop implements Runnable {
         if (gameState.getPhase().equals(GamePhase.WIN)
                 && LevelSelection.isStandardLevel(gameState.getLevel().getLevelName()) 
                 && LevelSelection.getSelectionFromLevel(gameState.getLevel()).hasNext()) {
-                //saveState(GamePhase.WIN);
+                saveState(GamePhase.WIN);
             changeView(PersonalViews.SCENE_NEXT_LEVEL);
         } else if (gameState.getPhase().equals(GamePhase.MENU)) {
             changeView(PersonalViews.SCENE_MAIN_MENU);
         } else { 
-            //saveState(GamePhase.LOST);
+            saveState(GamePhase.LOST);
             changeView(PersonalViews.SCENE_GAME_OVER);
         }
     }
 
 
     /**
-     * Alessandro, probabilmente mi serve una funzione loader per caricare tutti gli fxml.
+     * Alessandro, probabilmente mi serve una funzione loader per caricare tutti gli fxml. Funzionera? .
      * @param layout
      */
     private void changeView(final PersonalViews layout) {
@@ -123,19 +118,22 @@ public class GameLoop implements Runnable {
      * @param phase to set 
      */
     private void saveState(final GamePhase state) {
-        final SettingsBuilder settingsBuilder = new SettingsBuilder();
+        final SettingLevelBuilder levelLoader = new SettingLevelBuilder();
         if (state.equals(GamePhase.WIN)) {
-            //UserManager.saveUser(gameState.getPlayer());
-            LevelSelection.getSelectionFromLevel(gameState.getLevel()).next().getLevel();
-            SettingsManager.saveOption(settingsBuilder.fromSettings(SettingsManager.loadOption())
-                           .selectLevel()
-                           .build());
+            SettingLevelManager.saveOption(levelLoader.fromSettings(SettingLevelManager.loadOption())
+                    .selectLevel(LevelSelection.getSelectionFromLevel(gameState.getLevel()).next().getLevel())
+                    .build());
+
         } else if (state.equals(GamePhase.LOST)) {
             //Ranking
-            LeaderboardController leaderboard = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
+            final LeaderboardController leaderboard = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
             leaderboard.addPlayerInLeaderBoard(null);
-            //UserManager.saveUser(new User());
-
+ 
+            if (LevelSelection.isStandardLevel(gameState.getLevel().getLevelName())) {
+                SettingLevelManager.saveOption(levelLoader.fromSettings(SettingLevelManager.loadOption())
+                    .selectLevel(LevelSelection.LEVEL1.getLevel())
+                    .build());
+            }
         }
     }
 
