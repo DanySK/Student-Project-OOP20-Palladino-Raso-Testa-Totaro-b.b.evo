@@ -78,7 +78,7 @@ public class CreativeModeController implements GUIController {
         this.scrollPane.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
         this.scrollPane.setVbarPolicy(ScrollBarPolicy.NEVER);
         levelSelected.setOpacity(0);
-        //this.update();
+        this.update();
     }
 
     /**
@@ -145,7 +145,7 @@ public class CreativeModeController implements GUIController {
             //UserManager.saveUser(new User());
             final Scene scene = playBtn.getScene();
             final SettingLevelBuilder levelBuilder = new SettingLevelBuilder();
-            levelBuilder.fromSettings(SettingLevelManager.loadOption());
+            //levelBuilder.fromSettings(SettingLevelManager.loadOption());
             levelBuilder.selectLevel(currentLevel);
             SettingLevelManager.saveOption(levelBuilder.build());
             final Thread engine = new Thread(new GameLoop(scene));
