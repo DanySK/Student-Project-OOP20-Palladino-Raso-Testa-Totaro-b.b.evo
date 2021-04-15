@@ -33,7 +33,7 @@ public class Level implements Serializable {
      * @param paddle
      */
     public Level(final Set<Brick> bricks, final String levelName, final PersonalSounds music, final BackGround background,
-                    final BallTexture ball, final PaddleTexture paddle) {
+                                                                  final BallTexture ball, final PaddleTexture paddle) {
         this.bricks = bricks;
         this.levelName = levelName;
         this.music = music;
