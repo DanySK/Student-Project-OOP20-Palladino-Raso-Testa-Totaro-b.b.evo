@@ -8,32 +8,32 @@ public enum PaddleTexture {
     /**
      * Default theme, paddle.
      */
-    PADDLE_DEFAULT("Images/paddle/defaultBall.png", "Default"),
+    PADDLE_DEFAULT("Images/paddle/defaultPaddle.png", "Default"),
 
     /**
      * Arkanoid theme, paddle.
      */
-    PADDLE_ARKANOID("Images/paddle/araknoidBall.png", "Arkanoid"),
+    PADDLE_ARKANOID("Images/paddle/arkanoidPaddle.png", "Arkanoid"),
 
     /**
      * Galaga theme, paddle.
      */
-    PADDLE_GALAGA("Images/paddle/galagaBall.jpg", "Galaga"),
+    PADDLE_GALAGA("Images/paddle/galagaPaddle.png", "Galaga"),
 
     /**
      * Pacman theme, ball.
      */
-    PADDLE_PACMAN("Images/paddle/pacmanBall.png", "Pacman"),
+    PADDLE_PACMAN("Images/paddle/pacmanPaddle.png", "Pacman"),
 
     /**
      * Crash Bandicoot theme, paddle.
      */
-    PADDLE_CRASH("Images/paddle/crashBall.png", "Crash"),
+    PADDLE_CRASH("Images/paddle/crashPaddle.png", "Crash"),
 
     /**
      * Super Mario theme, paddle.
      */
-    PADDLE_SUPERMARIO("Images/paddle/marioBall.png", "SuperMario");
+    PADDLE_SUPERMARIO("Images/paddle/marioPaddle.png", "SuperMario");
 
     private String path;
     private String theme;
