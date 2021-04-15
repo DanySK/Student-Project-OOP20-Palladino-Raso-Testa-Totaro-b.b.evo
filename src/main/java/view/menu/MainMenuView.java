@@ -93,7 +93,7 @@ public class MainMenuView implements Initializable, FXMLMenuController {
                                                      this.getCurrentWidth(), this.getCurrentHeight(), true));
 
         this.btnCreativeMode.setOnAction(this.switchPage(PersonalViews.SCENE_CREATIVEMODE, PersonalStyle.DEFAULT_STYLE, 
-                                                         GameUtilities.SCREEN_WIDTH, GameUtilities.SCREEN_HEIGHT, false));
+                                                         GameUtilities.SCREEN_WIDTH / 1.5, GameUtilities.SCREEN_HEIGHT, false));
 
         this.btnTutorial.setOnAction(this.switchPage(PersonalViews.SCENE_TUTORIAL, PersonalStyle.DEFAULT_STYLE,
                                                      this.getCurrentWidth(), this.getCurrentHeight(), true));
