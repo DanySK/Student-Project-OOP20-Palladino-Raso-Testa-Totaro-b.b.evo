@@ -4,7 +4,7 @@ import controller.input.ComponentInputEmpty;
 import controller.input.ControllerInput;
 import model.physics.BallComponentPhysics;
 import model.utilities.DirVector;
-import model.utilities.GameObjStatus;
+import model.utilities.BrickStatus;
 import model.utilities.Position;
 import view.graphics.AdapterGraphics;
 import view.graphics.BallComponentGraphics;
@@ -16,8 +16,7 @@ public final class Ball extends GameObjectImpl {
     private final String texturePath;
 
     private Ball(final Position pos, final DirVector dir, final double speed, final int height, final int width, final String tPath) {
-        super(pos, dir, speed, height, width, new BallComponentPhysics(), new ComponentInputEmpty(), new BallComponentGraphics(tPath), 
-                GameObjStatus.NOT_DESTRUCTIBLE);
+        super(pos, dir, speed, height, width, new BallComponentPhysics(), new ComponentInputEmpty(), new BallComponentGraphics(tPath));
         this.texturePath = tPath;
     }
 

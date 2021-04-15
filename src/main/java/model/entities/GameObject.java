@@ -1,24 +1,13 @@
+
 package model.entities;
 
 import controller.input.ControllerInput;
 import model.utilities.Position;
 import model.utilities.DirVector;
-import model.utilities.GameObjStatus;
+import model.utilities.BrickStatus;
 import view.graphics.AdapterGraphics;
 
 public interface GameObject {
-
-    /**
-     * setter for the status.
-     * @param status
-     */
-    void setStatus(GameObjStatus status);
-
-    /**
-     * getter for gameoobject's status.
-     * @return gameoobject's status
-     */
-    GameObjStatus getStatus();
 
     /**
      * @param height to set

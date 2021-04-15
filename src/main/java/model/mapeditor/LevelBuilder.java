@@ -10,7 +10,7 @@ import model.entities.Brick;
 import model.entities.Brick.Builder;
 import model.entities.GameObject;
 import model.entities.GameObjectEmpty;
-import model.utilities.GameObjStatus;
+import model.utilities.BrickStatus;
 import model.utilities.GameUtilities;
 import model.utilities.Pair;
 import model.utilities.Position;
@@ -79,7 +79,11 @@ public class LevelBuilder {
      * @return current game grid state
      */
     public Pair<GameObjectEmpty, Boolean> brickSelected(final double x, final double y, 
+<<<<<<< HEAD
+                                                    final String texture, final BrickStatus state, final int durability) {
+=======
                                                         final String texture, final GameObjStatus state, final int durability) {
+>>>>>>> 898395ddae9ad05b907418dc43701fbbe81019c5
         Pair<GameObjectEmpty, Boolean> retState = new Pair<>(new GameObjectEmpty(new Position(0, 0), 0, 0), false);
         for (final GameObjectEmpty objectEmpty : this.builderGrid.keySet()) {
             if (x > objectEmpty.getPos().getX() && x < objectEmpty.getPos().getX() + objectEmpty.getWidth() && y > objectEmpty.getPos().getY()
@@ -89,12 +93,16 @@ public class LevelBuilder {
                     this.gameGrid.replace(brickSelected, new Pair<>(this.gameGrid.get(brickSelected).getX(), Optional.empty()));
                     retState = new Pair<>(objectEmpty, false);
                 } else {
+<<<<<<< HEAD
+                    if (state.equals(BrickStatus.DROP_POWERUP)) {
+=======
                         final String selectedTexture;
                         if (state.equals(GameObjStatus.DROP_POWERUP)) {
                             selectedTexture = new Texture(texture).buildPowerUpTexturePath();
                         } else {
                             selectedTexture = new Texture(texture).buildBrickTexturePath();
                         }
+>>>>>>> 898395ddae9ad05b907418dc43701fbbe81019c5
                         final Builder brickBuilder = new Builder();
                         final GameObject gameObjectEmpty = this.gameGrid.get(brickSelected).getX();
                         final Brick brick = brickBuilder.setPos(new Position(gameObjectEmpty.getPos().getX(), gameObjectEmpty.getPos().getY()))

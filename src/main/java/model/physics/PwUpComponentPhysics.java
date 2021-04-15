@@ -8,7 +8,7 @@ import model.entities.GameObject;
 import model.entities.PowerUp;
 import model.utilities.Boundaries;
 import model.utilities.DirVector;
-import model.utilities.GameObjStatus;
+import model.utilities.BrickStatus;
 import model.utilities.Pair;
 
 public class PwUpComponentPhysics implements ComponentPhysics {
@@ -20,9 +20,7 @@ public class PwUpComponentPhysics implements ComponentPhysics {
     public void update(final int timeElapsed, final GameObject gameObject, final GameBoardImpl board) {
         final PowerUp powerUp = (PowerUp) gameObject;
         final DirVector dirVectPwUp = powerUp.getDirVector();
-        if (powerUp.getStatus().equals(GameObjStatus.DROP_POWERUP)) {
-            powerUp.setPos(powerUp.getPos().sum(dirVectPwUp.mul(timeElapsed * powerUp.getSpeed())));
-        }
+        powerUp.setPos(powerUp.getPos().sum(dirVectPwUp.mul(timeElapsed * powerUp.getSpeed())));
 
         final Optional<Boundaries> sideCollisionInfo = board.checkGameObjCollisionsWithWall(powerUp);
         if (sideCollisionInfo.isPresent()) {

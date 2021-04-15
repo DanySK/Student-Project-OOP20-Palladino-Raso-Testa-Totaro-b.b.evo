@@ -13,7 +13,7 @@ import model.entities.PowerUp;
 import model.leaderboard.LifeOperationStrategy;
 import model.leaderboard.ScoreOperationStrategy;
 import model.utilities.Boundaries;
-import model.utilities.GameObjStatus;
+import model.utilities.BrickStatus;
 import model.utilities.ScoreAttribute;
 import resource.routing.PersonalSounds;
 import model.utilities.PowerUpUtilities;
@@ -37,15 +37,17 @@ public class EventHandler {
 
         this.eventList.stream().forEach(event -> {
             final HitEvent hit = (HitEvent) event;
-            if (hit.getGameObj().get() instanceof Brick && hit.getGameObj().get().getStatus().equals(GameObjStatus.DESTRUCTIBLE)) {
+            if (hit.getGameObj().get() instanceof Brick) {
                 final Brick brick = (Brick) hit.getGameObj().get();
-                brick.decreaseDurability(ballDamage);
-                addPoints(ScoreAttribute.BRICK_DAMAGED.getValue());            //add the score of the brick hit
-                if (checkDurability(brick)) {
-                    addPoints(ScoreAttribute.BRICK_BREAK.getValue());          //add the score of the broken brick
-                    this.state.getBoard().removeBrick(brick);
-                    if (brick.getStatus().equals(GameObjStatus.DROP_POWERUP)) { 
-                        this.state.getBoard().addPowerUp(brick.dropPowerUp());
+                if (brick.getStatus().equals(BrickStatus.DESTRUCTIBLE)) {
+                    brick.decreaseDurability(ballDamage);
+                    addPoints(ScoreAttribute.BRICK_DAMAGED.getValue());            //add the score of the brick hit
+                    if (checkDurability(brick)) {
+                        addPoints(ScoreAttribute.BRICK_BREAK.getValue());          //add the score of the broken brick
+                        this.state.getBoard().removeBrick(brick);
+                        if (brick.getStatus().equals(BrickStatus.DROP_POWERUP)) { 
+                            this.state.getBoard().addPowerUp(brick.dropPowerUp());
+                        }
                     }
                 }
                 SoundController.playMusic(PersonalSounds.SOUND_BRICK.getURL().getPath());    //throw the sound for hitting the brick
@@ -145,7 +147,7 @@ public class EventHandler {
         if (state.getLives() == 0) {
             state.setPhase(GamePhase.LOST);
         } else if (state.getBoard().getBricks().stream()
-                                                .filter(i -> i.getStatus().equals(GameObjStatus.DESTRUCTIBLE))
+                                                .filter(i -> i.getStatus().equals(BrickStatus.DESTRUCTIBLE))
                                                 .count() == 0) {
             state.setPhase(GamePhase.WIN);
         }
