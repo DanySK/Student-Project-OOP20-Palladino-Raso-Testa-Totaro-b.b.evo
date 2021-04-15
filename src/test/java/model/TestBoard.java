@@ -30,18 +30,14 @@ public class TestBoard {
 
     private static final String PATH_PADDLE = "Images/paddle/defaultPaddle.png";
     private static final String PATH_BALL = "Images/ball/defaultBall.png";
-<<<<<<< HEAD
+    private static final String PATH_POWERUP = "Images/dropPowerup/marioDropPowerUp.png";
     private static final int MIN_RANGE = 0;
     private static final int MAX_RANGE = 100;
     private static final int NUM_OBJ = 4;
-=======
-    private static final String PATH_POWERUP= "Images/dropPowerup/marioDropPowerUp.png";
->>>>>>> 2ed0153e3b348404a5ffe7faa7a2ff2eeb24fe7e
     private static final int STAND_POS_X = 50;
     private static final int STAND_POS_Y = 50;
     private static final int POS_POWERUP_INIT_X = 270;
     private static final int POS_POWERUP_INIT_Y = 510;
-    private static final double SPEED_PW_INIT = 0.4;
     private static final int PW_HEIGHT = 10;
     private static final int PW_WIDTH = 10;
     private static final int POS_FIFTY = 50;
@@ -82,12 +78,8 @@ public class TestBoard {
                                       .texturePath(PATH_PADDLE)
                                       .build();
 
-<<<<<<< HEAD
     private final PowerUp pwUp = new PowerUp(new Position(POS_POWERUP_INIT_X, POS_POWERUP_INIT_Y), 
-            null, SPEED_PW_INIT, PW_HEIGHT, PW_WIDTH, null, null, null, null, null);
-=======
-    private final PowerUp pwUp = new PowerUp(new Position(270, 510), 10, 10, PATH_POWERUP);
->>>>>>> 2ed0153e3b348404a5ffe7faa7a2ff2eeb24fe7e
+            PW_HEIGHT, PW_WIDTH, PATH_POWERUP);
 
 //    /**
 //     * check that by inserting a number of ball in the board
@@ -172,12 +164,7 @@ public class TestBoard {
      * @return new PowerUp object
      */
     private PowerUp powerUpCreation() {
-<<<<<<< HEAD
-        return new PowerUp(new Position(POS_POWERUP_INIT_X, POS_POWERUP_INIT_Y), null, 
-                SPEED_PW_INIT, PW_HEIGHT, PW_WIDTH, null, null, null, null, null);
-=======
-        return new PowerUp(new Position(270, 510), 10, 10, PATH_POWERUP);
->>>>>>> 2ed0153e3b348404a5ffe7faa7a2ff2eeb24fe7e
+        return new PowerUp(new Position(POS_POWERUP_INIT_X, POS_POWERUP_INIT_Y), PW_HEIGHT, PW_WIDTH, PATH_POWERUP);
     }
 
     /**
@@ -257,11 +244,7 @@ public class TestBoard {
         final GameBoard board = new GameBoardImpl(new Wall(100, 100), null);
         assertTrue(board.getSceneEntities().isEmpty());
         //set powerUp pos to the bottom edge and check for a collision
-<<<<<<< HEAD
-        final PowerUp powerUp = new PowerUp(new Position(POS_FIFTY, POS_NINETYFIVE), null, SPEED_PW_INIT, PW_HEIGHT, PW_WIDTH, null, null, null, null, null);
-=======
-        final PowerUp powerUp = new PowerUp(new Position(50, 95), 10, 10, PATH_POWERUP);
->>>>>>> 2ed0153e3b348404a5ffe7faa7a2ff2eeb24fe7e
+        final PowerUp powerUp = new PowerUp(new Position(POS_FIFTY, POS_NINETYFIVE), PW_HEIGHT, PW_WIDTH, PATH_POWERUP);
         assertEquals(Boundaries.LOWER, board.checkGameObjCollisionsWithWall(powerUp).get());
         //set paddle pos to in the middle of the world and check for no collision;
         powerUp.setPos(new Position(POS_FIVE, POS_FIFTY));

@@ -4,7 +4,6 @@ import controller.input.ComponentInputEmpty;
 import controller.input.ControllerInput;
 import model.physics.BallComponentPhysics;
 import model.utilities.DirVector;
-import model.utilities.BrickStatus;
 import model.utilities.Position;
 import view.graphics.AdapterGraphics;
 import view.graphics.BallComponentGraphics;
