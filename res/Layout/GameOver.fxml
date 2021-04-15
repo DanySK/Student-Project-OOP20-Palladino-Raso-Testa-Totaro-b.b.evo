@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane fx:id="mainPanel" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="paranoid.controller.fxmlcontroller.GameOverController">
+   <items>
+      <VBox alignment="TOP_CENTER" spacing="5.0" style="-fx-background-color: linear-gradient(to bottom right, #E438A1, #6749D8);">
+         <children>
+            <Label fx:id="lblGameOver" text="GAME OVER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="40.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnMenu" mnemonicParsing="false" onMouseClicked="#btnMenuOnClickHandler" style="-fx-background-color: linear-gradient(to bottom right, #FFAA7E, #FB7DE7); -fx-background-radius: 30;" text="MENU">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <VBox fx:id="boxName" alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Label text="NAME: " textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtName">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="btnSend" mnemonicParsing="false" onMouseClicked="#btnSendOnClickHandler" style="-fx-background-color: linear-gradient(to bottom right, #FFAA7E, #FB7DE7); -fx-background-radius: 30;" text="SEND">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Label fx:id="lblError" text="INSERT A VALID NAME!" textFill="#ee2727">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Label fx:id="lblScore" text="YOUR SCORE: " textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font></Label>
+            <Label fx:id="lblTop" text="TOP SCORE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="40.0" />
+               </font>
+            </Label>
+            <ScrollPane fx:id="scroller" fitToHeight="true" fitToWidth="true" style="-fx-background-color: linear-gradient(to bottom right, #E438A1, #6749D8);">
+               <content>
+                  <VBox fx:id="labelContainer" alignment="TOP_CENTER" style="-fx-background-color: linear-gradient(to bottom right, #E438A1, #6749D8);">
+                     <children>
+                        <GridPane fx:id="grid" alignment="TOP_CENTER" style="-fx-background-color: linear-gradient(to bottom right, #E438A1, #6749D8);" vgap="15.0">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="97.0" minWidth="19.0" prefWidth="37.0" />
+                              <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="177.0" minWidth="64.0" prefWidth="126.0" />
+                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="153.0" minWidth="10.0" prefWidth="113.0" />
+                           </columnConstraints>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <rowConstraints>
+                              <RowConstraints vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </GridPane>
+                     </children>
+                  </VBox>
+               </content>
+               <effect>
+                  <Lighting diffuseConstant="1.4" specularConstant="0.39" specularExponent="28.84" surfaceScale="0.92">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </ScrollPane>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="30.0" />
+         </padding>
+      </VBox>
+   </items>
+</SplitPane>
