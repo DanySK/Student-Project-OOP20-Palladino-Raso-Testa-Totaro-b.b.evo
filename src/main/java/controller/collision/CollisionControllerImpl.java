@@ -101,6 +101,11 @@ public class CollisionControllerImpl implements CollisionController {
         return Optional.ofNullable(new Pair<>(pwup, pwup.getHit().get(paddle)));
     }
 
+    /**
+     * 
+     * @param obj1
+     * @param obj2
+     */
     private void fillMap(final GameObject obj1, final GameObject obj2) {
         this.collision.put(Boundaries.SIDE_RIGHT, checkCollisions(objX(obj2), objX(obj1) + objWidth(obj1), Boundaries.SIDE_LEFT));
         this.collision.put(Boundaries.SIDE_LEFT, checkCollisions(objX(obj2) + objWidth(obj2), objX(obj1), Boundaries.SIDE_RIGHT));
