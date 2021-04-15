@@ -243,7 +243,6 @@ public class CharacterView implements Initializable, FXMLMenuController {
 
         this.btnBack.prefWidthProperty().bind(this.buttonBackContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
         this.btnNext.prefWidthProperty().bind(this.objectContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-        this.characterNameField.setPrefWidth(10);
 
         this.lblTitle.setWrapText(true);
 
