@@ -28,8 +28,9 @@ import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
 import view.FXMLMenuController;
+import view.GUILayout;
 
-public class MainMenuView implements Initializable, FXMLMenuController {
+public class MainMenuView implements Initializable, FXMLMenuController, GUILayout {
 
     @FXML
     private AnchorPane window;

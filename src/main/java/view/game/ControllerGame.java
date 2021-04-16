@@ -167,4 +167,5 @@ public class ControllerGame implements Initializable, GUILayout {
     public final Canvas getCanvas() {
         return this.canvas;
     }
+
 }
