@@ -21,8 +21,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -119,20 +117,14 @@ public class DifficultyView implements Initializable, FXMLMenuController {
 
         //Button StartGame Listener
         this.btnStartGame.setOnAction(event -> {
-//            //Don't permit to resize the next scene.
-//            final Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            oldStage.setResizable(false);
-//
-//            this.switchPage(PersonalViews.SCENE_GAME, GameUtilities.SCREEN_WIDTH, GameUtilities.SCREEN_HEIGHT, PersonalStyle.DEFAULT_STYLE);
-//
-//            //Save the current game settings
-//            this.controller.saveNewSettings();
-//
-//            //Play Button CLick Sound
-//            this.soundClick();
-//
-//            //Used to stop game music
-//            this.stopCurrentGameMusic();
+            //Save the current game settings
+            this.controller.saveNewSettings();
+
+            //Play Button CLick Sound
+            this.soundClick();
+
+            //Used to stop game music
+            this.stopCurrentGameMusic();
 
             final SettingLevelBuilder setBuilder = new SettingLevelBuilder();
             setBuilder.fromSettings(SettingLevelManager.loadOption());
