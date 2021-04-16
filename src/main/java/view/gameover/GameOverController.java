@@ -1,13 +1,8 @@
 package view.gameover;
 
-<<<<<<< HEAD
 import java.net.URL;
 import java.util.ResourceBundle;
-=======
 import view.GUILayout;
-
-public class GameOverController implements GUILayout {
->>>>>>> 8df0c2f7a095e3411b8ca1bb123832388d30ef38
 
 import controller.menu.SceneLoader;
 import controller.sound.SoundController;

@@ -1,3 +1,4 @@
+
 package controller.event;
 
 import java.util.LinkedList;
@@ -10,6 +11,8 @@ import model.entities.Ball;
 import model.entities.Brick;
 import model.entities.Paddle;
 import model.entities.PowerUp;
+import model.leaderboard.BasicLifeOperationStrategy;
+import model.leaderboard.BasicScoreOperationStrategy;
 import model.leaderboard.LifeOperationStrategy;
 import model.leaderboard.ScoreOperationStrategy;
 import model.utilities.Boundaries;
@@ -28,6 +31,8 @@ public class EventHandler {
 
     public EventHandler(final GameState state) {
         this.state = state;
+        this.lifeOperation = new BasicLifeOperationStrategy();
+        this.scoreOperation = new BasicScoreOperationStrategy();
     } 
 
     /**
