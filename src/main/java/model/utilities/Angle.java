@@ -10,7 +10,7 @@ public enum Angle {
     /**
      * Used to represent the middle-left portion of the paddle.
      */
-    MIDDLE_LEFT(130),
+    MIDDLE_LEFT(140),
     /**
      * Used to represent the middle-right portion of the paddle.
      */
@@ -36,6 +36,6 @@ public enum Angle {
      * @return DirVector
      */
     public DirVector getAngleVector() {
-        return new DirVector(Math.sin(Math.toRadians(angle)) * versor, Math.cos(Math.toRadians(angle)) * versor);
+        return new DirVector(Math.cos(Math.toRadians(angle)) * versor, Math.sin(Math.toRadians(angle)) * versor);
     }
 }

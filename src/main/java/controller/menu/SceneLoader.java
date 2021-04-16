@@ -32,7 +32,7 @@ public final class SceneLoader {
     public static void switchScene(final Stage stage, final URL path, final String title, 
                                     final double width, final double height, final String cssStylePath)  {
         try {
-            System.out.println(path);
+            System.out.println(path + "    SI TROVA A RIGA 34 IN SCENE LOADER");
             final Parent parent = FXMLLoader.load(path);
             final Scene newScene = new Scene(parent, width, height);
 
@@ -65,7 +65,7 @@ public final class SceneLoader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Parent : "+parent);
+        System.out.println("Parent : "+parent   + "    SI TROVA A RIGA 68 IN SCENE LOADER");
         return parent;
     }
 }
