@@ -1,4 +1,3 @@
-
 package model.entities;
 
 import java.util.HashMap;
@@ -9,7 +8,6 @@ import controller.input.PaddleComponentInput;
 import model.physics.PaddleComponentPhysics;
 import model.utilities.Boundaries;
 import model.utilities.DirVector;
-import model.utilities.BrickStatus;
 import model.utilities.Position;
 import view.graphics.AdapterGraphics;
 import view.graphics.PaddleComponentGraphics;

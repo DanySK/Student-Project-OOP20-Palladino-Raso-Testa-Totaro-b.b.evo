@@ -13,7 +13,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,6 +21,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -118,28 +119,28 @@ public class DifficultyView implements Initializable, FXMLMenuController {
 
         //Button StartGame Listener
         this.btnStartGame.setOnAction(event -> {
-            //Don't permit to resize the next scene.
-            final Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            oldStage.setResizable(false);
-
-            this.switchPage(PersonalViews.SCENE_GAME, GameUtilities.SCREEN_WIDTH, GameUtilities.SCREEN_HEIGHT, PersonalStyle.DEFAULT_STYLE);
-
-            //Save the current game settings
-            this.controller.saveNewSettings();
-
-            //Play Button CLick Sound
-            this.soundClick();
-
-            //Used to stop game music
-            this.stopCurrentGameMusic();
+//            //Don't permit to resize the next scene.
+//            final Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//            oldStage.setResizable(false);
+//
+//            this.switchPage(PersonalViews.SCENE_GAME, GameUtilities.SCREEN_WIDTH, GameUtilities.SCREEN_HEIGHT, PersonalStyle.DEFAULT_STYLE);
+//
+//            //Save the current game settings
+//            this.controller.saveNewSettings();
+//
+//            //Play Button CLick Sound
+//            this.soundClick();
+//
+//            //Used to stop game music
+//            this.stopCurrentGameMusic();
 
             final SettingLevelBuilder setBuilder = new SettingLevelBuilder();
             setBuilder.fromSettings(SettingLevelManager.loadOption());
             setBuilder.selectLevel(LevelSelection.LEVEL1.getLevel());
-            SettingLevelManager.saveOption(setBuilder.build());
-            //UserManager.saveUser(new User());
 
-            final Scene scene = btnStartGame.getScene();
+            final Scene scene = this.btnStartGame.getScene();
+            scene.getStylesheets().add(PersonalStyle.DEFAULT_STYLE.getStylePath());
+            System.err.println("1)" + scene.getWindow()); //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa
             final Thread thread = new Thread(new GameLoop(scene));
             thread.setDaemon(true);
             thread.start();

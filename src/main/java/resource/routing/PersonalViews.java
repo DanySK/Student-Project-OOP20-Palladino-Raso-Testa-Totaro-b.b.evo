@@ -1,7 +1,12 @@
 package resource.routing;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.SplitPane;
+import view.GUILayout;
 
 public enum PersonalViews {
 
@@ -62,10 +67,14 @@ public enum PersonalViews {
 
     private String path;
     private String titleScene;
+    private transient GUILayout guiLayout;
+    private transient SplitPane layout;
 
     PersonalViews(final String path, final String titleScene) {
         this.path = path;
         this.titleScene = titleScene;
+        this.guiLayout = null;
+        this.layout = null;
     }
 
     public String getTitleScene() {
@@ -78,5 +87,22 @@ public enum PersonalViews {
 
     public InputStream getResourceAsStream() {
         return ClassLoader.getSystemResourceAsStream(this.path);
+    }
+
+    public GUILayout loadScene() {
+
+        final FXMLLoader loader = new FXMLLoader(this.getURL());
+        try {
+            this.layout = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.guiLayout = loader.getController();
+        System.err.println("Loader 2) : " + loader.getController()); //AAAAAAAAAAAAAAAAA
+        return guiLayout;
+    }
+
+    public SplitPane getLayout() {
+        return this.layout;
     }
 }

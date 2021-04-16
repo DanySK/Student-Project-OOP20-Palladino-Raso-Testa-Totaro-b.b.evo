@@ -4,7 +4,6 @@ package model.entities;
 import controller.input.ControllerInput;
 import model.utilities.Position;
 import model.utilities.DirVector;
-import model.utilities.BrickStatus;
 import view.graphics.AdapterGraphics;
 
 public interface GameObject {

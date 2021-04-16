@@ -17,7 +17,7 @@ public class HitEvent implements Event {
 
     /**
      * 
-     * @return gameObject
+     * @return the gameObject in question
      */
     public Optional<GameObject> getGameObj() {
         return this.gameObj;
@@ -25,7 +25,7 @@ public class HitEvent implements Event {
 
     /**
      * 
-     * @return boundaries
+     * @return the wall on which the collision occurred returns
      */
     public Optional<Boundaries> getBounds() {
         return this.bounds;

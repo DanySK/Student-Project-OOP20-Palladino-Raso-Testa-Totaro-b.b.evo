@@ -5,35 +5,35 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public enum PowerUpDropTexture implements Serializable{
+public enum PowerUpDropTexture implements Serializable {
     /**
      * Default theme, drop powerup texture.
      */
-    POWERUP_DTEXTURE_DEFAULT("Images/PowerUpDropTexture/DefaultPowerUpTexture.png ", "Default"),
+    DROP_TEXTURE_DEFAULT("Images/dropPowerup/defaultDrop.png ", "Default"),
 
     /**
      * Arkanoid theme, drop powerup texture.
      */
-    POWERUP_DTEXTURE_ARKANOID("Images/PowerUpDropTexture/ArkanoidPowerUpTexture.png ", "Arkanoid"),
+    DROP_TEXTURE_ARKANOID("Images/dropPowerup/arkanoidDrop.png ", "Arkanoid"),
 
     /**
      * Galaga theme, drop powerup texture.
      */
-    POWERUP_DTEXTURE_GALAGA("Images/PowerUpDropTexture/GalagaPowerUpTexture.jpg ", "Galaga"),
+    DROP_TEXTURE_GALAGA("Images/dropPowerup/galagaDrop.png ", "Galaga"),
 
     /**
      * Pacman theme, drop powerup texture.
      */
-    POWERUP_DTEXTURE_PACMAN("Images/PowerUpDropTexture/BlackPowerUpTexture.png ", "Pacman"),
+    DROP_TEXTURE_PACMAN("Images/dropPowerup/pacmanDrop.png ", "Pacman"),
     /**
      * Crash Bandicoot theme, drop powerup texture.
      */
-    POWERUP_DTEXTURE_CRASH("Images/PowerUpDropTexture/CrashPowerUpTexture.png ", "Crash"),
+    DROP_TEXTURE_CRASH("Images/dropPowerup/crashDrop.png ", "Crash"),
 
     /**
      * Super Mario theme, drop powerup texture.
      */
-    POWERUP_DTEXTURE_SUPERMARIO("Images/PowerUpDropTexture/SuperMarioPowerUpTexture.png ", "SuperMario");
+    DROP_TEXTURE_MARIO("Images/dropPowerup/marioDrop.png ", "SuperMario");
 
     private String path;
     private String theme;

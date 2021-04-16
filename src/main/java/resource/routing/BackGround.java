@@ -2,6 +2,7 @@
 package resource.routing;
 
 import java.io.Serializable;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,32 +15,32 @@ public enum BackGround implements Serializable {
     /**
      * Default theme, background.
      */
-    BACKGROUND_DEFAULT("Images/background/DefaultBackground.png ", "Default"),
+    BACKGROUND_DEFAULT("Images/background/DefaultBackground.png", "Default"),
 
     /**
      * Arkanoid theme, background.
      */
-    BACKGROUND_ARKANOID("Images/background/ArkanoidBackground.png ", "Arkanoid"),
+    BACKGROUND_ARKANOID("Images/background/ArkanoidBackground.png", "Arkanoid"),
 
     /**
      * Galaga theme, background.
      */
-    BACKGROUND_GALAGA("Images/background/GalagaBackground.jpg ", "Galaga"),
+    BACKGROUND_GALAGA("Images/background/GalagaBackground.jpg", "Galaga"),
 
     /**
      * Pacman theme, background.
      */
-    BACKGROUND_PACMAN("Images/background/BlackBackground.png ", "Pacman"),
+    BACKGROUND_PACMAN("Images/background/BlackBackground.png", "Pacman"),
 
     /**
      * Crash Bandicoot theme, background.
      */
-    BACKGROUND_CRASH("Images/background/CrashBackground1.png ", "Crash"),
+    BACKGROUND_CRASH("Images/background/CrashBackground1.png", "Crash"),
 
     /**
      * Super Mario theme, background.
      */
-    BACKGROUND_SUPERMARIO("Images/background/SuperMarioBackground.png ", "SuperMario");
+    BACKGROUND_SUPERMARIO("Images/background/SuperMarioBackground.png", "SuperMario");
 
     private String path;
     private String theme;
@@ -54,6 +55,11 @@ public enum BackGround implements Serializable {
      */
     public String getPath() {
         return path;
+    }
+
+    public URL getUrl() {
+        System.out.println(ClassLoader.getSystemResource(this.path));
+        return ClassLoader.getSystemResource(this.path);
     }
 
     /**

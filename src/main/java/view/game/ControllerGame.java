@@ -9,27 +9,33 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import model.utilities.GameUtilities;
 import resource.routing.BackGround;
 import resource.routing.PersonalFonts;
+import view.GUILayout;
 import view.graphics.AdapterGraphics;
 import view.graphics.AdapterGraphicsImpl;
 import model.entities.GameObject;
 
-public class ControllerGame implements Initializable {
+public class ControllerGame implements Initializable, GUILayout {
 
     private GraphicsContext gc;
 
@@ -140,6 +146,7 @@ public class ControllerGame implements Initializable {
      * @param backGround use
      */
     public void setBackgroundImage(final BackGround backGround) {
+
         final BackgroundImage bg = new BackgroundImage(new Image(backGround.getPath(), 
                                                     GameUtilities.CANVAS_WIDTH,
                                                     GameUtilities.CANVAS_HEIGHT,
@@ -149,6 +156,7 @@ public class ControllerGame implements Initializable {
                                                     BackgroundRepeat.NO_REPEAT, 
                                                     BackgroundPosition.DEFAULT,
                                                     BackgroundSize.DEFAULT);
+        //this.panel.setBackground(new Background(new BackgroundFill(Color.web("#212121"), CornerRadii.EMPTY, Insets.EMPTY)));
         this.panel.setBackground(new Background(bg));
     }
 

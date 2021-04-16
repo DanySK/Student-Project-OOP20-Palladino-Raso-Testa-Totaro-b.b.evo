@@ -19,8 +19,8 @@ import model.utilities.Pair;
 public class CollisionControllerImpl implements CollisionController {
 
     private final Map<Boundaries, Boolean> collision = new HashMap<>();
-    private Boundaries side = null;
-    private boolean isCollision = false;
+    private Boundaries side;
+    private boolean isCollision;
 
     /**
      * {@inheritDoc}
@@ -48,8 +48,8 @@ public class CollisionControllerImpl implements CollisionController {
         this.isCollision = false;
         this.fillMap(brick, ball);
 
-        for(final Entry<Boundaries, Boolean> entry : this.collision.entrySet()) {
-            if(!entry.getValue() && !this.isCollision) {
+        for (final Entry<Boundaries, Boolean> entry : this.collision.entrySet()) {
+            if (!entry.getValue() && !this.isCollision) {
                 brick.getHit().put(ball, entry.getKey());
                 this.isCollision = true;
             }
@@ -97,7 +97,6 @@ public class CollisionControllerImpl implements CollisionController {
         if (this.isCollision) {
             return Optional.empty();
         }
-        System.out.println(pwup.getHit().get(paddle));
         return Optional.ofNullable(new Pair<>(pwup, pwup.getHit().get(paddle)));
     }
 
@@ -131,8 +130,14 @@ public class CollisionControllerImpl implements CollisionController {
 
     private Boolean checkCollisions(final double obj1, final double obj2, final Boundaries bounds) {
         switch (bounds) {
-        case UPPER, SIDE_LEFT: return obj1 < obj2;
-        case LOWER, SIDE_RIGHT: return obj1 > obj2;
+        case UPPER: 
+            return obj1 < obj2;
+        case SIDE_LEFT:
+            return obj1 < obj2;
+        case LOWER: 
+            return obj1 > obj2;
+        case SIDE_RIGHT: 
+            return obj1 > obj2;
         default: return false;
         }
     }

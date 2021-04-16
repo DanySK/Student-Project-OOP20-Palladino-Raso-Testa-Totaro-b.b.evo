@@ -12,9 +12,10 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.utilities.GameUtilities;
 import resource.routing.PersonalImages;
-import view.GUILayout;
 
 public final class SceneLoader {
+
+
 
     private SceneLoader() {
 
@@ -31,6 +32,7 @@ public final class SceneLoader {
     public static void switchScene(final Stage stage, final URL path, final String title, 
                                     final double width, final double height, final String cssStylePath)  {
         try {
+            System.out.println(path);
             final Parent parent = FXMLLoader.load(path);
             final Scene newScene = new Scene(parent, width, height);
 
@@ -54,12 +56,8 @@ public final class SceneLoader {
             e.printStackTrace();
         }
     }
-
-    public static GUILayout loadScene(final URL path) {
-        final FXMLLoader loader = new FXMLLoader(path);
-        return loader.getController();
-    }
-
+    
+    /*QUI NON VA*/
     public static Parent loadParent(final URL path) {
         Parent parent = null;
         try {
@@ -67,6 +65,7 @@ public final class SceneLoader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("Parent : "+parent);
         return parent;
     }
 }
