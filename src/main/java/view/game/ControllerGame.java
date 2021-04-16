@@ -9,17 +9,21 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import model.utilities.GameUtilities;
@@ -151,8 +155,8 @@ public class ControllerGame implements Initializable, GUILayout {
                                                     BackgroundRepeat.NO_REPEAT, 
                                                     BackgroundPosition.DEFAULT,
                                                     BackgroundSize.DEFAULT);
-        System.out.println(bg.getImage().getUrl());
-        this.panel.setBackground(new Background(bg));
+        System.out.println(this.panel.getChildren());
+        this.panel.setBackground(new Background(new BackgroundFill(Color.web("#212121"), CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
     /**

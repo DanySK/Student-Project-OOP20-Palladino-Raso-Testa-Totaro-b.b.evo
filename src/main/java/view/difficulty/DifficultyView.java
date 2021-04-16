@@ -118,20 +118,20 @@ public class DifficultyView implements Initializable, FXMLMenuController {
 
         //Button StartGame Listener
         this.btnStartGame.setOnAction(event -> {
-            //Don't permit to resize the next scene.
-            final Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            oldStage.setResizable(false);
-
-            this.switchPage(PersonalViews.SCENE_GAME, GameUtilities.SCREEN_WIDTH, GameUtilities.SCREEN_HEIGHT, PersonalStyle.DEFAULT_STYLE);
-
-            //Save the current game settings
-            this.controller.saveNewSettings();
-
-            //Play Button CLick Sound
-            this.soundClick();
-
-            //Used to stop game music
-            this.stopCurrentGameMusic();
+//            //Don't permit to resize the next scene.
+//            final Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//            oldStage.setResizable(false);
+//
+//            this.switchPage(PersonalViews.SCENE_GAME, GameUtilities.SCREEN_WIDTH, GameUtilities.SCREEN_HEIGHT, PersonalStyle.DEFAULT_STYLE);
+//
+//            //Save the current game settings
+//            this.controller.saveNewSettings();
+//
+//            //Play Button CLick Sound
+//            this.soundClick();
+//
+//            //Used to stop game music
+//            this.stopCurrentGameMusic();
 
             final SettingLevelBuilder setBuilder = new SettingLevelBuilder();
             setBuilder.fromSettings(SettingLevelManager.loadOption());
@@ -140,6 +140,7 @@ public class DifficultyView implements Initializable, FXMLMenuController {
             //UserManager.saveUser(new User());
 
             final Scene scene = this.btnStartGame.getScene();
+            scene.getStylesheets().add(PersonalStyle.DEFAULT_STYLE.getStylePath());
             final Thread thread = new Thread(new GameLoop(scene));
             thread.setDaemon(true);
             thread.start();
