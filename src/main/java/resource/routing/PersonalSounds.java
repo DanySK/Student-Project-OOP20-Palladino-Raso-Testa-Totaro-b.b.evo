@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public enum PersonalSounds implements Serializable{
+public enum PersonalSounds implements Serializable {
 
     /***
      * Sound generate by click button event.
@@ -38,11 +38,6 @@ public enum PersonalSounds implements Serializable{
      * Used for arkanoid level.
      * */
     ARKANOID_THEME("Sounds/music/arkanoid.wav", "ArkanoidTheme"),
-
-    /**
-     * Used for galaga level.
-     */
-    GALAGA_THEME("", "GalagaTheme"),
 
     /***
      * Used for pacman level.
@@ -117,7 +112,6 @@ public enum PersonalSounds implements Serializable{
     public static List<String> getSongLevelNames() {
         return Arrays.asList(PersonalSounds.MAIN_THEME.name, 
                                 PersonalSounds.ARKANOID_THEME.name,
-                                PersonalSounds.GALAGA_THEME.name,
                                 PersonalSounds.PACMAN_THEME.name,
                                 PersonalSounds.CRASH_THEME.name,
                                 PersonalSounds.MARIO_THEME.name);

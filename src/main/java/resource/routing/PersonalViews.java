@@ -66,7 +66,6 @@ public enum PersonalViews {
 
     private String path;
     private String titleScene;
-    private transient GUILayout guiLayout = null;
 
     PersonalViews(final String path, final String titleScene) {
         this.path = path;
@@ -86,6 +85,7 @@ public enum PersonalViews {
     }
 
     public GUILayout loadScene() {
+        GUILayout guiLayout;
         final FXMLLoader loader = new FXMLLoader(this.getURL());
         try {
             loader.load();
@@ -93,6 +93,7 @@ public enum PersonalViews {
             e.printStackTrace();
         }
         guiLayout = loader.getController();
+        System.err.println("Loader 2) : " + loader.getController()); //AAAAAAAAAAAAAAAAA
         return guiLayout;
     }
 }
