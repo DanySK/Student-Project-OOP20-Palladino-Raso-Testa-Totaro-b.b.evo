@@ -86,11 +86,6 @@ public class ControllerGame implements Initializable, GUILayout {
                 new KeyFrame(Duration.seconds(0.50), evt -> this.lblTitle.setVisible(true)));
                 timelineTitolo.setCycleCount(Animation.INDEFINITE);
                 timelineTitolo.play();
-        final Timeline timelineStart = new Timeline(
-                new KeyFrame(Duration.seconds(1.00), evt -> this.lblPlay.setVisible(false)),
-                new KeyFrame(Duration.seconds(0.50), evt -> this.lblPlay.setVisible(true)));
-                timelineStart.setCycleCount(Animation.INDEFINITE);
-                timelineStart.play();
     }
 
     /**
