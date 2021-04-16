@@ -15,8 +15,6 @@ import resource.routing.PersonalImages;
 
 public final class SceneLoader {
 
-
-
     private SceneLoader() {
 
     }
@@ -32,7 +30,6 @@ public final class SceneLoader {
     public static void switchScene(final Stage stage, final URL path, final String title, 
                                     final double width, final double height, final String cssStylePath)  {
         try {
-            System.out.println(path + "    SI TROVA A RIGA 34 IN SCENE LOADER");
             final Parent parent = FXMLLoader.load(path);
             final Scene newScene = new Scene(parent, width, height);
 
@@ -55,17 +52,5 @@ public final class SceneLoader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-    
-    /*QUI NON VA*/
-    public static Parent loadParent(final URL path) {
-        Parent parent = null;
-        try {
-            parent = FXMLLoader.load(path);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Parent : "+parent   + "    SI TROVA A RIGA 68 IN SCENE LOADER");
-        return parent;
     }
 }
