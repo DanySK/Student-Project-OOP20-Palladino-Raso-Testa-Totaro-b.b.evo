@@ -143,7 +143,8 @@ public class GameLoop implements Runnable {
         } else if (state.equals(GamePhase.LOST)) {
             //Ranking
             final LeaderboardController leaderboard = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
-            leaderboard.addPlayerInLeaderBoard(null);
+            leaderboard.addPlayerInLeaderBoard(gameState.getPlayer());
+            leaderboard.saveSortLeaderboard(new StandardScoreSortingStrategy());
  
             if (LevelSelection.isStandardLevel(gameState.getLevel().getLevelName())) {
                 SettingLevelManager.saveOption(levelLoader.fromSettings(SettingLevelManager.loadOption())
