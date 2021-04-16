@@ -6,7 +6,6 @@ import controller.input.InputEvent;
 import controller.input.InputEventImpl;
 import controller.leaderboard.LeaderboardController;
 import controller.leaderboard.LeaderboardControllerImpl;
-import controller.menu.SceneLoader;
 import controller.settings.SettingsController;
 import controller.settings.SettingsControllerImpl;
 import controller.sound.SoundController;
@@ -38,6 +37,8 @@ public class GameLoop implements Runnable {
         this.scene.getStylesheets().add(PersonalStyle.DEFAULT_STYLE.getStylePath()); //Apply css to scene
         final Stage currentStage = (Stage) this.scene.getWindow();
         currentStage.setResizable(false); // Don't permise resize
+        currentStage.setWidth(GameUtilities.SCREEN_WIDTH); //Set new Dimension
+        currentStage.setHeight(GameUtilities.SCREEN_HEIGHT); // Set new Dimension
         System.err.println("2)" + this.scene.getWindow()); //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa
         this.gameState = new GameStateImpl();
         this.board = gameState.getBoard();
