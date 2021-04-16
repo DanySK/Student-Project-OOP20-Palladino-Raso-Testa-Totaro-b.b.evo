@@ -26,8 +26,8 @@ public class EventHandler {
     private final Queue<Event> eventList = new LinkedList<>();
     private final GameState state;
     private int ballDamage = PowerUpUtilities.DEFAULT_BALL_DAMAGE;
-    private LifeOperationStrategy lifeOperation;
-    private ScoreOperationStrategy scoreOperation;
+    private final LifeOperationStrategy lifeOperation;
+    private final ScoreOperationStrategy scoreOperation;
 
     public EventHandler(final GameState state) {
         this.state = state;

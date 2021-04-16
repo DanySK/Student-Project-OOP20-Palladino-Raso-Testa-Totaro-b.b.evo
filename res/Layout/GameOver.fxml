@@ -50,7 +50,7 @@
             <HBox fx:id="coinContainer" alignment="TOP_CENTER" prefHeight="46.0" prefWidth="600.0" BorderPane.alignment="CENTER">
                <children>
                   <Label fx:id="lblCoins" prefHeight="46.0" prefWidth="390.0" text="Insert Coin : 0/2" />
-                  <Label prefHeight="46.0" prefWidth="117.0" text="HIGHSCORE:" />
+                  <Label fx:id="lblHighscore" prefHeight="46.0" prefWidth="117.0" text="HIGHSCORE:" />
                </children>
             </HBox>
          </bottom>

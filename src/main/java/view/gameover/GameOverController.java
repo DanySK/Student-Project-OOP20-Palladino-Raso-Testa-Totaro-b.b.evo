@@ -1,9 +1,8 @@
+
 package view.gameover;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import view.GUILayout;
-
 import controller.menu.SceneLoader;
 import controller.sound.SoundController;
 import javafx.animation.Animation;
@@ -29,8 +28,9 @@ import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
 import view.FXMLMenuController;
+import view.GUILayout;
 
-public class GameOverController implements Initializable, FXMLMenuController{
+public class GameOverController implements Initializable, FXMLMenuController, GUILayout{
 
     @FXML
     private AnchorPane window;
@@ -58,7 +58,7 @@ public class GameOverController implements Initializable, FXMLMenuController{
 
     @FXML
     private Label lblCoins;
-    
+
     @FXML
     private Label lblHighscore;
 
