@@ -141,7 +141,7 @@ public class ControllerGame implements Initializable, GUILayout {
      * @param backGround use
      */
     public void setBackgroundImage(final BackGround backGround) {
-        System.out.println(backGround.getPath());
+
         final BackgroundImage bg = new BackgroundImage(new Image(backGround.getPath(), 
                                                     GameUtilities.CANVAS_WIDTH,
                                                     GameUtilities.CANVAS_HEIGHT,
@@ -151,7 +151,6 @@ public class ControllerGame implements Initializable, GUILayout {
                                                     BackgroundRepeat.NO_REPEAT, 
                                                     BackgroundPosition.DEFAULT,
                                                     BackgroundSize.DEFAULT);
-        System.out.println(bg.getImage().getUrl());
         this.panel.setBackground(new Background(bg));
     }
 

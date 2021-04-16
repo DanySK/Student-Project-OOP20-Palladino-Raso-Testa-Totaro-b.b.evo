@@ -56,7 +56,8 @@ public final class SceneLoader {
             e.printStackTrace();
         }
     }
-
+    
+    /*QUI NON VA*/
     public static Parent loadParent(final URL path) {
         Parent parent = null;
         try {
@@ -64,7 +65,7 @@ public final class SceneLoader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(parent);
+        System.out.println("Parent : "+parent);
         return parent;
     }
 }

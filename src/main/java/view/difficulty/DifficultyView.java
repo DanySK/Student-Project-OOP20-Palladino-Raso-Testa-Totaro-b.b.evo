@@ -13,7 +13,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -118,11 +117,6 @@ public class DifficultyView implements Initializable, FXMLMenuController {
 
         //Button StartGame Listener
         this.btnStartGame.setOnAction(event -> {
-            //Don't permit to resize the next scene.
-            final Stage oldStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            oldStage.setResizable(false);
-
-            this.switchPage(PersonalViews.SCENE_GAME, GameUtilities.SCREEN_WIDTH, GameUtilities.SCREEN_HEIGHT, PersonalStyle.DEFAULT_STYLE);
 
             //Save the current game settings
             this.controller.saveNewSettings();
@@ -137,9 +131,9 @@ public class DifficultyView implements Initializable, FXMLMenuController {
             setBuilder.fromSettings(SettingLevelManager.loadOption());
             setBuilder.selectLevel(LevelSelection.LEVEL1.getLevel());
             SettingLevelManager.saveOption(setBuilder.build());
-            //UserManager.saveUser(new User());
 
             final Scene scene = this.btnStartGame.getScene();
+            System.err.println("1)" + scene.getWindow()); //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa
             final Thread thread = new Thread(new GameLoop(scene));
             thread.setDaemon(true);
             thread.start();
