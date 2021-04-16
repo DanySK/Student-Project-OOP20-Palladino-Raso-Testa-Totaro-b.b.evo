@@ -13,6 +13,7 @@ import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.entities.GameBoard;
+import model.leaderboard.StandardScoreSortingStrategy;
 import model.mapeditor.LevelSelection;
 import model.settings.SettingLevel.SettingLevelBuilder;
 import model.settings.SettingLevelManager;
@@ -20,6 +21,7 @@ import model.utilities.GameUtilities;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
 import view.game.ControllerGame;
+import view.gameover.GameOverController;
 
 
 public class GameLoop implements Runnable {
@@ -28,7 +30,7 @@ public class GameLoop implements Runnable {
     private final Scene scene;
     private final GameState gameState;
     private final GameBoard board;
-    private final ControllerGame controllerGame;
+    private ControllerGame controllerGame;
     private final ControllerInput inputController;
     private final SettingsController setting = new SettingsControllerImpl(GameUtilities.SETTINGS_PATH);
 
@@ -113,8 +115,11 @@ public class GameLoop implements Runnable {
             //final ControllerNextLevel nextLevelController = (ControllerNextLevel) SceneLoader.loadScene(PersonalViews.SCENE_NEXT_LEVEL.getURL());
             //nextLevelController.update(gameState.getLevel(), gameState.getPlayer());
         } else if (layout.equals(PersonalViews.SCENE_GAME_OVER)) {
-            //final ControllerGameOver controllerGameOver = (GameOverController) SceneLoader.loadScene(PersonalViews.SCENE_GAME_OVER.getURL());
-            //gameOverController.updateScore(gameState.getTopScores(), gameState.getUser(), gameState.getLevel());
+            this.controllerGame = (ControllerGame) PersonalViews.SCENE_GAME_OVER.loadScene();
+            final LeaderboardController leaderboard = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
+            final GameOverController gameOverController = new GameOverController();
+            final StandardScoreSortingStrategy ls = new StandardScoreSortingStrategy(); 
+            gameOverController.updateScore(this.gameState.getPlayerScore(), leaderboard.getPoudium(0, ls).toString());
         }
 
         Platform.runLater(new Runnable() {

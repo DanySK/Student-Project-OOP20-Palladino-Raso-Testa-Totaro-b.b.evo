@@ -45,7 +45,6 @@ public class Brick extends GameObjectImpl {
      */
     public static final class Builder {
         private Position pos;
-        private double speed;
         private int height;
         private int width;
         private int durability;
@@ -57,8 +56,12 @@ public class Brick extends GameObjectImpl {
          * @return brick builder
          */
         public Brick build() {
+<<<<<<< HEAD
             if (this.pos == null || this.height <= 0 || this.width <= 0
                     || this.texturePath == null || this.durability <= 0 || this.status == null) {
+=======
+            if (this.durability <= 0 || this.height <= 0 || this.width <= 0 || this.pos == null || this.texturePath == null) {
+>>>>>>> 234c748e53cc279949b7709ae49c348e84ccdd5e
                 throw new IllegalStateException();
             }
             return new Brick(this.pos, this.height, this.width, this.durability, this.status, this.texturePath);
@@ -78,15 +81,6 @@ public class Brick extends GameObjectImpl {
             return this;
         }
 
-        /**
-         * setter for the speed.
-         * @param speed
-         * @return brick builder
-         */
-        public Builder setSpeed(final double speed) {
-            this.speed = speed;
-            return this;
-        }
         /**
          * setter for the height. 
          * @param height
