@@ -49,7 +49,7 @@ public enum PersonalViews {
     /**
      * Path for load Creative mode.
      */
-    SCENE_CREATIVEMODE("Layout/CreativeMode3.fxml", "CREATIVEMODE"),
+    SCENE_CREATIVEMODE("Layout/CreativeMode.fxml", "CREATIVEMODE"),
 
     /**
      * Path for load Editor mode.
