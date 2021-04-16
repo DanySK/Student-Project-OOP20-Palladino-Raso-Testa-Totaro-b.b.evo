@@ -1,6 +1,8 @@
 package view.gameover;
 
-public class GameOverController {
+import view.GUILayout;
+
+public class GameOverController implements GUILayout {
 
     public GameOverController() {
 

@@ -15,11 +15,12 @@ import model.mapeditor.Level;
 import model.utilities.GameUtilities;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
+import view.GUILayout;
 
 /**
  * Controller of nextLevel.fxml.
  */
-public class ControllerNextLevel {
+public class ControllerNextLevel implements GUILayout{
 
     @FXML
     private SplitPane mainPanel;
