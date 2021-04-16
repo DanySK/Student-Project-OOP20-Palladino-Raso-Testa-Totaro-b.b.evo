@@ -32,7 +32,7 @@ public final class SceneLoader {
         try {
             final Parent parent = FXMLLoader.load(path);
             final Scene newScene = new Scene(parent, width, height);
-
+            newScene.setRoot(parent);
             //Apply Style
             parent.getStylesheets().add(cssStylePath);
 

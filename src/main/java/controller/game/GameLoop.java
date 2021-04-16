@@ -6,10 +6,12 @@ import controller.input.InputEvent;
 import controller.input.InputEventImpl;
 import controller.leaderboard.LeaderboardController;
 import controller.leaderboard.LeaderboardControllerImpl;
+import controller.menu.SceneLoader;
 import controller.settings.SettingsController;
 import controller.settings.SettingsControllerImpl;
 import controller.sound.SoundController;
 import javafx.application.Platform;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.entities.GameBoard;
@@ -22,14 +24,16 @@ import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
 import view.game.ControllerGame;
 import view.gameover.GameOverController;
+import view.menu.MainMenuView;
 
 
 public class GameLoop implements Runnable {
 
     private static final long PERIOD = 20;
-    private final Scene scene;
+    private Scene scene;
     private final GameState gameState;
     private final GameBoard board;
+    private Stage currentStage;
     private ControllerGame controllerGame;
     private final ControllerInput inputController;
     private final SettingsController setting = new SettingsControllerImpl(GameUtilities.SETTINGS_PATH);
@@ -121,8 +125,17 @@ public class GameLoop implements Runnable {
             public void run() {
                 if (layout.getURL().equals(PersonalViews.SCENE_GAME.getURL())) {
                     scene.setRoot(layout.getLayout());
+                    System.out.println("Root split : " + scene.getRoot());
+                    System.out.println("Scene split : " + scene);
                 } else {
-                    scene.setRoot(layout.getAncLayout());
+                    SceneLoader.switchScene((Stage) scene.getWindow(), PersonalViews.SCENE_MAIN_MENU.getURL(), 
+                                            PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
+                                            scene.getWidth(), 
+                                            scene.getHeight(), 
+                                            PersonalStyle.DEFAULT_STYLE.getStylePath());
+                    scene.setRoot(null);
+                    System.out.println("Root anchor : " + scene.getRoot());
+                    System.out.println("Scene anchor : " + scene);
                 }
             }
         });
