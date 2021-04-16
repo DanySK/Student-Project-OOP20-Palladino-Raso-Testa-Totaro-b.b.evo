@@ -5,12 +5,12 @@ public enum ObjectInit {
     /**
      * default states.
      */
-    PADDLE(new Position(250, 540), 78, 20),
+    PADDLE(new Position(290, 540), 78, 20),
 
     /**
      * default states.
      */
-    BALL(new Position(150, 540), 10, 10);
+    BALL(new Position(330, 530), 10, 10);
 
     private final Position pos;
     private final int initHeight;
