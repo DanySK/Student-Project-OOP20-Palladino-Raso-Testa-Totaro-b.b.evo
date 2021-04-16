@@ -14,7 +14,6 @@ import model.utilities.Pair;
 import model.utilities.Position;
 
 public class BallComponentPhysics implements ComponentPhysics {
-
     /**
      * {@inheritDoc}
      */
@@ -24,6 +23,12 @@ public class BallComponentPhysics implements ComponentPhysics {
         final Position posBall = ball.getPos();
         final DirVector dirVectBall = ball.getDirVector();
 
+//        System.out.println(ball.getSpeed());
+//        System.out.println(dirVectBall);
+//        System.out.println(timeElapsed);
+//        System.out.println(posBall);
+//        System.out.println(dirVectBall.mul(timeElapsed * ball.getSpeed()));
+//        System.out.println(ball.getPos().sum(dirVectBall.mul(timeElapsed * ball.getSpeed())));
         ball.setPos(ball.getPos().sum(dirVectBall.mul(timeElapsed * ball.getSpeed())));
 
         final Optional<Boundaries> wallCollisionInfo = board.checkGameObjCollisionsWithWall(ball);
@@ -56,10 +61,11 @@ public class BallComponentPhysics implements ComponentPhysics {
             if (collisionSide.equals(Boundaries.SIDE_LEFT) || collisionSide.equals(Boundaries.SIDE_RIGHT)) {
                 ball.setDirOnX();
             } else if (collisionSide.equals(Boundaries.UPPER)) {
+                //System.err.println(paddleCollisionInfo.getY().get().getAngleVector());
                 ball.setPos(posBall);
                 ball.setDirVector(paddleCollisionInfo.getY().get().getAngleVector());
                 ball.setDirOnY();
-                board.eventListener(new HitEvent(Optional.empty(), Optional.empty()));
+                board.eventListener(new HitEvent(Optional.of(board.getpaddle()), Optional.empty()));
             }
         }
     }

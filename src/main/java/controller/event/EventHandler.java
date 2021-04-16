@@ -144,6 +144,10 @@ public class EventHandler {
     }
 
     private void checkGameState() {
+        /*for (Brick b : state.getBoard().getBricks()) {
+            System.out.println(state.getBoard().getBricks());
+        }*/
+        //ystem.out.println(state.getBoard().getBricks().stream().forEach(i -> i.getStatus()));
         if (state.getLives() == 0) {
             state.setPhase(GamePhase.LOST);
         } else if (state.getBoard().getBricks().stream()

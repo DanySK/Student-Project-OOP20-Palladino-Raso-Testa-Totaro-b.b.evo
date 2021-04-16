@@ -13,8 +13,8 @@ public class BrickComponentGraphics implements ComponentGraphics, Serializable {
     private final transient Image brickImage;
 
     public BrickComponentGraphics(final String texturePath) {
-        System.out.println(texturePath);
-        this.brickImage = new Image(ClassLoader.getSystemResourceAsStream(BrickTexture.BRICK_TEXTURE_DEFAULT.getPath()));
+        //System.out.println(texturePath);
+        this.brickImage = new Image(ClassLoader.getSystemResourceAsStream(texturePath));
     }
 
     /**
@@ -22,6 +22,7 @@ public class BrickComponentGraphics implements ComponentGraphics, Serializable {
      */
     @Override
     public void update(final GameObject obj, final AdapterGraphics graphicsAdapt) {
+        System.out.println(this.brickImage);
         graphicsAdapt.drawBrick((Brick) obj, this.brickImage);
     }
 

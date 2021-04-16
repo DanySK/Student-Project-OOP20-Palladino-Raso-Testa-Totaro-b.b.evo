@@ -156,7 +156,6 @@ public class ControllerGame implements Initializable, GUILayout {
                                                     BackgroundRepeat.NO_REPEAT, 
                                                     BackgroundPosition.DEFAULT,
                                                     BackgroundSize.DEFAULT);
-        //this.panel.setBackground(new Background(new BackgroundFill(Color.web("#212121"), CornerRadii.EMPTY, Insets.EMPTY)));
         this.panel.setBackground(new Background(bg));
     }
 
