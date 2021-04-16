@@ -9,22 +9,17 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import model.utilities.GameUtilities;
@@ -91,11 +86,6 @@ public class ControllerGame implements Initializable, GUILayout {
                 new KeyFrame(Duration.seconds(0.50), evt -> this.lblTitle.setVisible(true)));
                 timelineTitolo.setCycleCount(Animation.INDEFINITE);
                 timelineTitolo.play();
-        final Timeline timelineStart = new Timeline(
-                new KeyFrame(Duration.seconds(1.00), evt -> this.lblPlay.setVisible(false)),
-                new KeyFrame(Duration.seconds(0.50), evt -> this.lblPlay.setVisible(true)));
-                timelineStart.setCycleCount(Animation.INDEFINITE);
-                timelineStart.play();
     }
 
     /**
@@ -156,7 +146,6 @@ public class ControllerGame implements Initializable, GUILayout {
                                                     BackgroundRepeat.NO_REPEAT, 
                                                     BackgroundPosition.DEFAULT,
                                                     BackgroundSize.DEFAULT);
-        //this.panel.setBackground(new Background(new BackgroundFill(Color.web("#212121"), CornerRadii.EMPTY, Insets.EMPTY)));
         this.panel.setBackground(new Background(bg));
     }
 

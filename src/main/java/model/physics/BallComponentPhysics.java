@@ -14,7 +14,6 @@ import model.utilities.Pair;
 import model.utilities.Position;
 
 public class BallComponentPhysics implements ComponentPhysics {
-
     /**
      * {@inheritDoc}
      */
@@ -23,7 +22,6 @@ public class BallComponentPhysics implements ComponentPhysics {
         final Ball ball = (Ball) gameObject;
         final Position posBall = ball.getPos();
         final DirVector dirVectBall = ball.getDirVector();
-
         ball.setPos(ball.getPos().sum(dirVectBall.mul(timeElapsed * ball.getSpeed())));
 
         final Optional<Boundaries> wallCollisionInfo = board.checkGameObjCollisionsWithWall(ball);
@@ -59,7 +57,7 @@ public class BallComponentPhysics implements ComponentPhysics {
                 ball.setPos(posBall);
                 ball.setDirVector(paddleCollisionInfo.getY().get().getAngleVector());
                 ball.setDirOnY();
-                board.eventListener(new HitEvent(Optional.empty(), Optional.empty()));
+                board.eventListener(new HitEvent(Optional.of(board.getpaddle()), Optional.empty()));
             }
         }
     }

@@ -61,6 +61,12 @@ public interface GameBoard extends GameBoardEventListeners {
 
     /**
      * 
+     * @return paddle
+     */
+    Paddle getpaddle();
+
+    /**
+     * 
      * @return all the bricks in the gameboard
      */
     Set<Brick> getBricks();

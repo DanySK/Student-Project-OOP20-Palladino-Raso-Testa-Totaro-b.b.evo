@@ -10,10 +10,12 @@ import resource.routing.BrickTexture;
 public class BrickComponentGraphics implements ComponentGraphics, Serializable {
 
     private static final long serialVersionUID = -2268513013055385771L;
-    private final transient Image brickImage;
+    private transient Image brickImage;
+    private String texture;
 
     public BrickComponentGraphics(final String texturePath) {
         System.out.println(texturePath);
+        this.texture = texturePath;
         this.brickImage = new Image(ClassLoader.getSystemResourceAsStream(BrickTexture.BRICK_TEXTURE_DEFAULT.getPath()));
     }
 
@@ -22,6 +24,7 @@ public class BrickComponentGraphics implements ComponentGraphics, Serializable {
      */
     @Override
     public void update(final GameObject obj, final AdapterGraphics graphicsAdapt) {
+        this.brickImage = new Image(ClassLoader.getSystemResourceAsStream(texture));
         graphicsAdapt.drawBrick((Brick) obj, this.brickImage);
     }
 

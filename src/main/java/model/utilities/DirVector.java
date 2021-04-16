@@ -69,7 +69,7 @@ public class DirVector implements Serializable {
      */
     @Override
     public String toString() {
-        return "V2d(" + x + "," + y + ")";
+        return "DirVector(" + x + "," + y + ")";
     }
 
     /**
