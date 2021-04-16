@@ -119,7 +119,8 @@ public class GameLoop implements Runnable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                scene.setRoot(SceneLoader.loadParent(layout.getURL())); //Genera ERRRORE SceneLoader.loadParent(layout.getURL()
+                //scene.setRoot(SceneLoader.loadParent(layout.getURL())); //Genera ERRRORE SceneLoader.loadParent(layout.getURL()
+                scene.setRoot(PersonalViews.SCENE_GAME.getLayout());
                 System.err.println("3)" + scene.getWindow());
                 System.err.println("GameController : " + controllerGame); ///AAAAAAAAAAAAAAAAAAAAAAAA
             }

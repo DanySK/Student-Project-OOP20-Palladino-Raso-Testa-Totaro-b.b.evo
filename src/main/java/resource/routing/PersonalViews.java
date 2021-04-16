@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.net.URL;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.SplitPane;
 import view.GUILayout;
 
 public enum PersonalViews {
@@ -66,10 +67,14 @@ public enum PersonalViews {
 
     private String path;
     private String titleScene;
+    private transient GUILayout guiLayout;
+    private transient SplitPane layout;
 
     PersonalViews(final String path, final String titleScene) {
         this.path = path;
         this.titleScene = titleScene;
+        this.guiLayout = null;
+        this.layout = null;
     }
 
     public String getTitleScene() {
@@ -85,15 +90,19 @@ public enum PersonalViews {
     }
 
     public GUILayout loadScene() {
-        GUILayout guiLayout;
+
         final FXMLLoader loader = new FXMLLoader(this.getURL());
         try {
-            loader.load();
+            this.layout = loader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        guiLayout = loader.getController();
+        this.guiLayout = loader.getController();
         System.err.println("Loader 2) : " + loader.getController()); //AAAAAAAAAAAAAAAAA
         return guiLayout;
+    }
+
+    public SplitPane getLayout() {
+        return this.layout;
     }
 }
