@@ -1,5 +1,5 @@
-
 package model.entities;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,12 +56,7 @@ public class Brick extends GameObjectImpl {
          * @return brick builder
          */
         public Brick build() {
-<<<<<<< HEAD
-            if (this.pos == null || this.height <= 0 || this.width <= 0
-                    || this.texturePath == null || this.durability <= 0 || this.status == null) {
-=======
-            if (this.durability <= 0 || this.height <= 0 || this.width <= 0 || this.pos == null || this.texturePath == null) {
->>>>>>> 234c748e53cc279949b7709ae49c348e84ccdd5e
+            if (this.durability <= 0 || this.height <= 0 || this.width <= 0 || this.pos == null || this.texturePath == null ) {
                 throw new IllegalStateException();
             }
             return new Brick(this.pos, this.height, this.width, this.durability, this.status, this.texturePath);

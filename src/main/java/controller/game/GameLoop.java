@@ -41,10 +41,8 @@ public class GameLoop implements Runnable {
         currentStage.setResizable(false); // Don't permise resize
         currentStage.setWidth(GameUtilities.SCREEN_WIDTH); //Set new Dimension
         currentStage.setHeight(GameUtilities.SCREEN_HEIGHT); // Set new Dimension
-        //System.err.println("2)" + this.scene.getWindow()); //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa
         this.gameState = new GameStateImpl();
         this.board = gameState.getBoard();
-        //System.out.println(SceneLoader.loadScene(ClassLoader.getSystemResource(PersonalViews.SCENE_GAME.getURL().getPath())));
         this.controllerGame = (ControllerGame) PersonalViews.SCENE_GAME.loadScene();
         this.controllerGame.setBackgroundImage(gameState.getLevel().getBackground());
         if (this.setting.isMusicEnable()) {
@@ -69,23 +67,19 @@ public class GameLoop implements Runnable {
             final int elapsed = (int) (current - lastTime);
             switch (gameState.getPhase()) {
             case START:
-                //System.out.println("dentro");
                 gameState.init();
                 break;
             case PAUSE:
                 this.controllerGame.setPlay(true);
-                //System.out.println("pausa");
                 render();
                 break;
             case RUNNING:
                 this.controllerGame.setPlay(false);
-                //System.out.println("running");
                 processInput();
                 updateGame(elapsed);
                 render();
                 break;
             default:
-                //System.out.println("Oh cazz");
                 break;
             }
             waitForNextFrame(current);
@@ -125,15 +119,11 @@ public class GameLoop implements Runnable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                //scene.setRoot(SceneLoader.loadParent(layout.getURL())); //Genera ERRRORE SceneLoader.loadParent(layout.getURL()
                 if (layout.getURL().equals(PersonalViews.SCENE_GAME.getURL())) {
                     scene.setRoot(layout.getLayout());
                 } else {
                     scene.setRoot(layout.getAncLayout());
                 }
-
-                //System.err.println("3)" + scene.getWindow());
-                //System.err.println("GameController : " + controllerGame); ///AAAAAAAAAAAAAAAAAAAAAAAA
             }
         });
 
