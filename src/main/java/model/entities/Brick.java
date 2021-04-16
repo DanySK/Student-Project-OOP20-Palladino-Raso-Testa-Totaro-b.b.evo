@@ -23,8 +23,8 @@ public class Brick extends GameObjectImpl {
     private final String texturePath;
     private BrickStatus status;
 
-    protected Brick(final Position pos, final double speed, final int height, final int width, final int durability, final BrickStatus status, final String texturePath) {
-        super(pos, new DirVector(0, 0), speed, height, width, new ComponentPhysicsEmpty(), new ComponentInputEmpty(), new BrickComponentGraphics(texturePath));
+    protected Brick(final Position pos, final int height, final int width, final int durability, final BrickStatus status, final String texturePath) {
+        super(pos, new DirVector(0, 0), 0, height, width, new ComponentPhysicsEmpty(), new ComponentInputEmpty(), new BrickComponentGraphics(texturePath));
         this.durability = durability;
         this.texturePath = texturePath;
         this.status = status;
@@ -45,7 +45,6 @@ public class Brick extends GameObjectImpl {
      */
     public static final class Builder {
         private Position pos;
-        private double speed;
         private int height;
         private int width;
         private int durability;
@@ -57,7 +56,10 @@ public class Brick extends GameObjectImpl {
          * @return brick builder
          */
         public Brick build() {
-            return new Brick(this.pos, this.speed, this.height, this.width, this.durability, this.status, this.texturePath);
+            if (this.durability <= 0 || this.height <= 0 || this.width <= 0 || this.pos == null || this.texturePath == null) {
+                throw new IllegalStateException();
+            }
+            return new Brick(this.pos, this.height, this.width, this.durability, this.status, this.texturePath);
         }
 
         public Builder setTexture(final String texturePath) {
@@ -74,15 +76,6 @@ public class Brick extends GameObjectImpl {
             return this;
         }
 
-        /**
-         * setter for the speed.
-         * @param speed
-         * @return brick builder
-         */
-        public Builder setSpeed(final double speed) {
-            this.speed = speed;
-            return this;
-        }
         /**
          * setter for the height. 
          * @param height
