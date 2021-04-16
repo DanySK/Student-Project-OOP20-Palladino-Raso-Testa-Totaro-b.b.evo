@@ -21,6 +21,7 @@ import model.utilities.BrickStatus;
 import model.utilities.Difficulty;
 import model.utilities.DirVector;
 import model.utilities.ObjectInit;
+import model.utilities.Pair;
 import model.utilities.Position;
 import view.graphics.BrickComponentGraphics;
 
@@ -56,5 +57,4 @@ public class TestBrick {
         assertEquals(STATUS, brick.getStatus());
         assertEquals(0, brick.getSpeed());
     }
-
 }

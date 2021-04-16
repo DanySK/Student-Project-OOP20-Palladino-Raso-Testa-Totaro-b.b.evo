@@ -81,7 +81,7 @@ public class GameOverController implements Initializable, FXMLMenuController, GU
      */
     @Override
     public void loadListener() {
-        this.btnMenu.setOnAction(this.switchPage(PersonalViews.SCENE_CHARACTER_MENU, PersonalStyle.DEFAULT_STYLE,
+        this.btnMenu.setOnAction(this.switchPage(PersonalViews.SCENE_MAIN_MENU, PersonalStyle.DEFAULT_STYLE,
                                                  this.getCurrentWidth(), this.getCurrentHeight(), true));
 
 
@@ -170,6 +170,8 @@ public class GameOverController implements Initializable, FXMLMenuController, GU
                 .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
         this.lblCoins
                 .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+        this.lblHighscore
+                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
     }
 
     /**
@@ -182,6 +184,7 @@ public class GameOverController implements Initializable, FXMLMenuController, GU
         this.btnMenu.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
         this.btnRanking.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
         this.lblTitle.setWrapText(true);
+        this.lblHighscore.setWrapText(true);
     }
 
     /**
