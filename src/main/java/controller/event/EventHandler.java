@@ -152,7 +152,7 @@ public class EventHandler {
         if (state.getLives() == 0) {
             state.setPhase(GamePhase.LOST);
         } else if (state.getBoard().getBricks().stream()
-                                                .filter(i -> i.getStatus().equals(BrickStatus.DESTRUCTIBLE))
+                                                .filter(i -> i.getStatus().equals(BrickStatus.DESTRUCTIBLE) || i.getStatus().equals(BrickStatus.DROP_POWERUP))
                                                 .count() == 0) {
             state.setPhase(GamePhase.WIN);
         }
