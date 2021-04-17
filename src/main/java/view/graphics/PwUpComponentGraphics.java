@@ -3,14 +3,17 @@ package view.graphics;
 import javafx.scene.image.Image;
 import model.entities.GameObject;
 import model.entities.PowerUp;
+import resource.routing.BrickTexture;
 import resource.routing.PersonalImages;
 
 public class PwUpComponentGraphics implements ComponentGraphics {
 
-    private final Image pwupImage;
+    private transient Image pwupImage;
+    private String texture;
 
-    public PwUpComponentGraphics(final String tPath) {
-        this.pwupImage = new Image(ClassLoader.getSystemResourceAsStream(tPath));
+    public PwUpComponentGraphics(final String texturePath) {
+        this.texture = texturePath;
+        this.pwupImage = new Image(ClassLoader.getSystemResourceAsStream(texturePath));
     }
 
     /**
@@ -18,6 +21,7 @@ public class PwUpComponentGraphics implements ComponentGraphics {
      */
     @Override
     public void update(final GameObject pwup, final AdapterGraphics graphicsAdapt) {
+        this.pwupImage = new Image(ClassLoader.getSystemResourceAsStream(texture));
         graphicsAdapt.drawPowerUp((PowerUp) pwup, this.pwupImage);
     }
 
