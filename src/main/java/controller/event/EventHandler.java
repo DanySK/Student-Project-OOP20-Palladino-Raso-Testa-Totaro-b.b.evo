@@ -156,9 +156,9 @@ public class EventHandler {
         return false;
     }
 
-    /*
-     * checks the game state
-     * and sets the gamephase according to player's results.
+    /**
+     * set the game phase in Win if there are no more bricks or 
+     * in Lost if the player has no more lives.
      */
     private void checkGameState() {
         if (state.getLives() == 0) {
