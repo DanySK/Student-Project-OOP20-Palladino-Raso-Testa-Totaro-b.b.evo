@@ -1,3 +1,4 @@
+
 package model.utilities;
 
 import java.util.Arrays;
@@ -7,28 +8,34 @@ import java.util.Random;
 
 public enum PowerUpType {
     /**
-     * Used to represent a {@link PowerUpType} that speeds the ball up.
+     * Used to represent a {@link PowerUpType} 
+     * that speeds the ball up.
      */
     SPEED_UP(PowerUpUtilities.POWERUP_ACTIVE_TIME, PowerUpUtilities.SPEED_MODIFIER, 0, 0), 
     /**
-     * Used to represent a {@link PowerUpType} that adds a life to the player's score.
+     * Used to represent a {@link PowerUpType} 
+     * that adds a life to the player's score.
      */
     LIFE_UP(0, 0, PowerUpUtilities.DEFAULT_LIFE_MODIFIER, 0),
     /**
-     * Used to represent a {@link PowerUpType} that increases the damage dealt by the ball.
+     * Used to represent a {@link PowerUpType} 
+     * that increases the damage dealt by the ball.
      */
     DAMAGE_UP(PowerUpUtilities.POWERUP_ACTIVE_TIME, 0,  0, PowerUpUtilities.DAMAGE_MODIFIER),
 
     /**
-     * Used to represent a {@link PowerUpType} that speeds the ball down.
+     * Used to represent a {@link PowerUpType} 
+     * that speeds the ball down.
      */
     SPEED_DOWN(PowerUpUtilities.POWERUP_ACTIVE_TIME, -PowerUpUtilities.SPEED_MODIFIER, 0, 0), 
     /**
-     * Used to represent a {@link PowerUpType} that reduces a life to the player's score.
+     * Used to represent a {@link PowerUpType} 
+     * that reduces a life to the player's score.
      */
     LIFE_DOWN(0, 0, -PowerUpUtilities.DEFAULT_LIFE_MODIFIER, 0),
     /**
-     * Used to represent a {@link PowerUpType} that decreases the damage dealt by the ball.
+     * Used to represent a {@link PowerUpType} 
+     * that decreases the damage dealt by the ball.
      */
     DAMAGE_DOWN(PowerUpUtilities.POWERUP_ACTIVE_TIME, 0, 0, -PowerUpUtilities.DAMAGE_MODIFIER); 
 
@@ -41,7 +48,8 @@ public enum PowerUpType {
     private static final Random RANDOM = new Random();
 
     /**
-     * Constructor for {@link PowerUpType.SPEED_UP} and {@link PowerUpType.SPEED_DOWN} types.
+     * Constructor for {@link PowerUpType.SPEED_UP} 
+     * and {@link PowerUpType.SPEED_DOWN} types.
      * @param speedModifier
      * @param activeTime
      */
@@ -53,25 +61,43 @@ public enum PowerUpType {
     }
 
     /**
-     * Used to generate a random value between all the {@link PowerUpType} available.
+     * Used to generate a random value between 
+     * all the {@link PowerUpType} available.
      * @return {@link PowerUpType}
      */
     public static PowerUpType randomPowerUpType()  {
           return VALUES.get(RANDOM.nextInt(SIZE));
     }
 
+    /**
+     * getter for the powerup active time.
+     * @return active time
+     */
     public float getActiveTime() {
         return activeTime;
     }
 
+    /**
+     * getter for the powerup speed modifier.
+     * @return speed modifier
+     */
     public float getSpeedModifier() {
         return speedModifier;
     }
 
+    /**
+     * getter for the powerup life modifier.
+     * @return life modifier
+     */
     public int getLifeModifier() {
         return lifeModifier;
     }
 
+    /**
+     * getter for the powerup damage modifier.
+     * @return damage modifier
+     * 
+     */
     public int getDamageModifier() {
         return damageModifier;
     }
