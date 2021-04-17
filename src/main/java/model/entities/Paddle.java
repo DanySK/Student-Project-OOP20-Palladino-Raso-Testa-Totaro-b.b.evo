@@ -51,7 +51,8 @@ public final class Paddle extends GameObjectImpl {
 
     /**
      * 
-     * @return a map containing the info of the ball in the game to facilitate the bounce with the paddle
+     * @return a map containing the info of the ball in the game to 
+     * facilitate the bounce with the paddle
      */
     public Map<GameObject, Boundaries> getHit() {
         return this.hit;
@@ -66,7 +67,7 @@ public final class Paddle extends GameObjectImpl {
     }
 
     /**
-     * automatically generated method.
+     * {@inheritDoc}
      */
     @Override
     public int hashCode() {
@@ -78,7 +79,7 @@ public final class Paddle extends GameObjectImpl {
     }
 
     /**
-     * automatically generated method.
+     * {@inheritDoc}
      */
     @Override
     public boolean equals(final Object obj) {
@@ -110,7 +111,7 @@ public final class Paddle extends GameObjectImpl {
     }
 
     /**
-     * automatically generated method.
+     * {@inheritDoc}
      */
     @Override
     public String toString() {
@@ -125,8 +126,8 @@ public final class Paddle extends GameObjectImpl {
         private String tPath;
 
         /**
-         * 
-         * @param width
+         * Set the new paddle width.
+         * @param width width to set
          * @return himself
          */
         public Builder width(final int width) {
@@ -135,8 +136,8 @@ public final class Paddle extends GameObjectImpl {
         }
 
         /**
-         * 
-         * @param height
+         * Set the new paddle height.
+         * @param height height to set
          * @return himself
          */
         public Builder height(final int height) {
@@ -145,8 +146,8 @@ public final class Paddle extends GameObjectImpl {
         }
 
         /**
-         * 
-         * @param pos
+         * Set the new paddle position.
+         * @param pos position to set
          * @return himself
          */
         public Builder position(final Position pos) {
@@ -155,8 +156,8 @@ public final class Paddle extends GameObjectImpl {
         }
 
         /**
-         * 
-         * @param tPath
+         * Set the new paddle texture path.
+         * @param tPath texture path to set
          * @return himself
          */
         public Builder texturePath(final String tPath) {
@@ -165,7 +166,7 @@ public final class Paddle extends GameObjectImpl {
         }
 
         /**
-         * builds the paddle if the characteristics are valid.
+         * Builds the paddle if the characteristics are valid.
          * @return the new Paddle object
          */
         public Paddle build() {
