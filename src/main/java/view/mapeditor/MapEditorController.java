@@ -41,6 +41,7 @@ public class MapEditorController implements GUIController {
     private GraphicsContext graphicsContext;
     private LevelBuilder levelBuilder;
     private String textureType;
+    private boolean statePowerup = true;
 
     @FXML
     private Pane pane;
@@ -61,25 +62,19 @@ public class MapEditorController implements GUIController {
     private ComboBox<String> paddleTexture;
 
     @FXML
-    private Label brickLbl;
+    private ComboBox<String> soundtrack;
 
     @FXML
-    private ComboBox<String> brickTexture;
+    private Label soundtrackLbl;
 
     @FXML
-    private Label powerupLbl;
-
-    @FXML
-    private ComboBox<String> powerupTexture;
-
-    @FXML
-    private CheckBox unbreakableCheck;
+    private ComboBox<String> backGround;
 
     @FXML
     private Label backGroundLlb;
 
     @FXML
-    private ComboBox<String> backGround;
+    private CheckBox unbreakableCheck;
 
     @FXML
     private Label durabilityLbl;
@@ -88,13 +83,13 @@ public class MapEditorController implements GUIController {
     private Slider durabilitySet;
 
     @FXML
-    private Label soundtrackLbl;
+    private ComboBox<String> brickTexture;
 
     @FXML
-    private ComboBox<String> soundtrack;
+    private Label brickLbl;
 
     @FXML
-    private Button menu;
+    private CheckBox powerupTexture;
 
     @FXML
     private Button build;
@@ -109,28 +104,11 @@ public class MapEditorController implements GUIController {
     private TextField levelName;
 
     @FXML
+    private Button menu;
+
+    @FXML
     private Canvas canvas;
 
-    private String getTypeTexture() {
-        /*if (!powerupTexture.getValue().isEmpty() && !brickTexture.getValue().isEmpty()) {
-            return brickTexture.getValue();
-        } else if (!powerupTexture.getValue().isEmpty() && brickTexture.getValue().isEmpty()) {
-            return powerupTexture.getValue();
-        } else if (powerupTexture.getValue().isEmpty() && !brickTexture.getValue().isEmpty()) {
-            return brickTexture.getValue();
-        } else {
-            return null;
-        }*/
-        return textureType;
-    }
-
-    private void setTypeTexture(final String textureType) {
-        if (textureType.equals(brickTexture.getValue())) {
-            this.textureType = brickTexture.getValue();
-        } else {
-            this.textureType = powerupTexture.getValue();
-        }
-    }
 
     /**
      * Initialize the level customization and set the mouse listeners on the canvas.
@@ -138,11 +116,10 @@ public class MapEditorController implements GUIController {
     @FXML
     public void initialize() {
 
-        final TextureController tc = new TextureController(ballTexture, paddleTexture, brickTexture, powerupTexture);
+        final TextureController tc = new TextureController(ballTexture, paddleTexture, brickTexture);
         tc.loadBallTexture();
         tc.loadPaddleTexture();
         tc.loadBrickTexture();
-        tc.loadPowerupTexture();
 
         this.soundtrack.getItems().addAll(PersonalSounds.getSongLevelNames());
         this.backGround.getItems().addAll(BackGround.getBackGroundNames());
@@ -151,21 +128,28 @@ public class MapEditorController implements GUIController {
         brickTexture.setOnAction(c -> {
             setTypeTexture(brickTexture.getValue());
         });
-        powerupTexture.setOnAction(c -> {
-            setTypeTexture(powerupTexture.getValue());
-        });
+
         this.setCanvas();
         this.canvas.setOnMouseClicked(e -> {
             if (e.getY() < (rowsY * (GameUtilities.BRICK_NUMBER_Y - NOT_BUILDABLE_ZONE))) {
-                Pair<GameObjectEmpty, Boolean> init = levelBuilder.brickSelected(e.getX(), e.getY(),
-                                                      getTypeTexture(),
-                                                      unbreakableCheck.isSelected() ? BrickStatus.NOT_DESTRUCTIBLE : BrickStatus.DESTRUCTIBLE,
-                                                      (int) durabilitySet.getValue());
+                final BrickStatus state;
+                if (unbreakableCheck.isSelected()) {
+                    state = BrickStatus.NOT_DESTRUCTIBLE;
+                } else if (powerupTexture.isSelected()) {
+                    state = BrickStatus.DROP_POWERUP;
+                } else {
+                    state = BrickStatus.DESTRUCTIBLE;
+                }
+
+                final Pair<GameObjectEmpty, Boolean> init = levelBuilder.brickSelected(e.getX(), e.getY(),
+                                                                                  getTypeTexture(),
+                                                                                  state,
+                                                                                  (int) durabilitySet.getValue());
                 if (init.getY()) {
                     if  (unbreakableCheck.isSelected()) {
                         graphicsContext.setFill(new ImagePattern(new Image(BrickTexture.getBrickTextureByName("Undestructible")), 0, 0, 1, 1, true));
                     } else {
-                        if (getTypeTexture().equals(powerupTexture.getValue())) {
+                        if (powerupTexture.isSelected()) {
                             graphicsContext.setFill(new ImagePattern(new Image(PowerUpTexture.getPowerUpTextureByName(brickTexture.getValue())), 0, 0, 1, 1, true));
                         } else {
                             graphicsContext.setFill(new ImagePattern(new Image(BrickTexture.getBrickTextureByName(brickTexture.getValue())), 0, 0, 1, 1, true));
@@ -179,6 +163,26 @@ public class MapEditorController implements GUIController {
                 }
             }
         });
+    }
+
+    /**
+     * @return ff
+     */
+    private String getTypeTexture() {
+        return textureType;
+    }
+
+    /**
+     * @param textureType
+     */
+    private void setTypeTexture(final String textureType) {
+        if (textureType.equals(brickTexture.getValue())) {
+            this.textureType = brickTexture.getValue();
+            statePowerup = false;
+        } else {
+            //this.textureType = powerupTexture.getValue();
+            statePowerup = true;
+        }
     }
 
     /**
@@ -211,6 +215,8 @@ public class MapEditorController implements GUIController {
         this.graphicsContext.setFill(Color.BLACK);
         this.graphicsContext.fillRect(0, rowsY * (GameUtilities.BRICK_NUMBER_Y - NOT_BUILDABLE_ZONE), canvas.getWidth() - wastePixel, canvas.getHeight());
     }
+
+
 
     /**
      * @param event when click the button menu the user return to the Main Menu

@@ -21,21 +21,18 @@ public class TextureController {
     private final ComboBox<String> ballTexture;
     private final ComboBox<String> paddleTexture;
     private final ComboBox<String> brickTexture;
-    private final ComboBox<String> powerupTexture;
 
 
     /**
      * @param ballTexture
      * @param paddleTexture
      * @param brickTexture
-     * @param powerupTexture
      */
-    public TextureController(final ComboBox<String> ballTexture, final ComboBox<String> paddleTexture, final ComboBox<String> brickTexture, final ComboBox<String> powerupTexture) {
+    public TextureController(final ComboBox<String> ballTexture, final ComboBox<String> paddleTexture, final ComboBox<String> brickTexture) {
         super();
         this.ballTexture = ballTexture;
         this.paddleTexture = paddleTexture;
         this.brickTexture = brickTexture;
-        this.powerupTexture = powerupTexture;
     }
 
 
@@ -154,41 +151,4 @@ public class TextureController {
         });
     }
 
-    /**
-     * Load the Powerup texture preview.
-     */
-    public void loadPowerupTexture() {
-        this.powerupTexture.getItems().addAll(PowerUpTexture.getPowerupTextureNames());
-        this.powerupTexture.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
-
-            @Override
-            public ListCell<String> call(final ListView<String> p) {
-                return new ListCell<String>() {
-
-                    @Override
-                    protected void updateItem(final String item, final boolean empty) {
-                        super.updateItem(item, empty);
-                        setText(item);
-                        if (item == null || empty) {
-                            setGraphic(null);
-                        } else {
-                            Image icon;
-                            try {
-                                final String iconPath = PowerUpTexture.getPowerUpTextureByName(item);
-                                icon = new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
-                            } catch (NullPointerException ex) {
-                                // in case the above image doesn't exist, use a default one
-                                final String iconPath = "Images/powerup/galagaPowerUp.png";
-                                icon = new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
-                            }
-                            final ImageView iconImageView = new ImageView(icon);
-                            iconImageView.setFitHeight(COMBOBOX_HEIGHT);
-                            iconImageView.setPreserveRatio(true);
-                            setGraphic(iconImageView);
-                        }
-                    }
-                };
-            }
-        });
-    }
 }
