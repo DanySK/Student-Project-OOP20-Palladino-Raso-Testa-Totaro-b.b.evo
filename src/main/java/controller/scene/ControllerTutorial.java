@@ -123,8 +123,8 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
             FXMLMenuController.switchScene((Stage) this.window.getScene().getWindow(), 
                                            PersonalViews.SCENE_MAIN_MENU, 
                                            PersonalStyle.DEFAULT_STYLE, 
-                                           this.window.getWidth(), 
-                                           this.window.getHeight(), 
+                                           this.window.getScene().getWindow().getWidth(),
+                                           this.window.getScene().getWindow().getHeight(),
                                            true);
         });
 

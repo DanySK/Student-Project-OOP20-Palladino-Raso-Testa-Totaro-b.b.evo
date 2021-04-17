@@ -41,7 +41,6 @@ public final class SceneLoader {
             fadeIn.setFromValue(0.0);
             fadeIn.setToValue(1.0);
             fadeIn.play();
-
             //Load Stage Property
             stage.getIcons().add(new Image(PersonalImages.GAME_ICON_IMG.getResourceAsStream()));
             stage.setScene(newScene);

@@ -107,7 +107,9 @@ public class ControllerSettings implements Initializable, FXMLMenuController {
                 this.controller.saveNewSettings();
                 FXMLMenuController.switchScene((Stage) this.window.getScene().getWindow(), 
                                                PersonalViews.SCENE_MAIN_MENU, PersonalStyle.DEFAULT_STYLE, 
-                                               this.window.getWidth(), this.window.getHeight(), true);
+                                               this.window.getScene().getWindow().getWidth(),
+                                               this.window.getScene().getWindow().getHeight(), 
+                                               true);
              });
 
             //CheckBox SoundFx Listener

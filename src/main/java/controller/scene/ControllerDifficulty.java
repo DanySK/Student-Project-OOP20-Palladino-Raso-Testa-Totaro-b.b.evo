@@ -110,9 +110,10 @@ public class ControllerDifficulty implements Initializable, FXMLMenuController {
         this.btnBack.setOnAction(event -> {
             FXMLMenuController.switchScene((Stage) this.window.getScene().getWindow(), 
                                            PersonalViews.SCENE_MAIN_MENU, PersonalStyle.DEFAULT_STYLE, 
-                                           this.window.getWidth(), this.window.getHeight(), true);
+                                           this.window.getScene().getWindow().getWidth(),
+                                           this.window.getScene().getWindow().getHeight(),
+                                           true);
             this.controller.saveNewSettings();
-            this.soundClick();
          });
 
         //Button StartGame Listener
@@ -132,7 +133,6 @@ public class ControllerDifficulty implements Initializable, FXMLMenuController {
 
             final Scene scene = this.btnStartGame.getScene();
             scene.getStylesheets().add(PersonalStyle.DEFAULT_STYLE.getStylePath());
-            System.err.println("1)" + scene.getWindow()); //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa
             final Thread thread = new Thread(new GameLoop(scene));
             thread.setDaemon(true);
             thread.start();

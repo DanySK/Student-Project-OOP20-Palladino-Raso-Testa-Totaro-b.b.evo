@@ -114,8 +114,9 @@ public class ControllerCharacter implements Initializable, FXMLMenuController, G
                 FXMLMenuController.switchScene((Stage) this.window.getScene().getWindow(), 
                         PersonalViews.SCENE_DIFFICULTY,
                         PersonalStyle.DEFAULT_STYLE, 
-                        this.window.getWidth(), 
-                        this.window.getHeight(), true);
+                        this.window.getScene().getWindow().getWidth(),
+                        this.window.getScene().getWindow().getHeight(),
+                        true);
             }
             this.soundClick();
         });
@@ -125,8 +126,9 @@ public class ControllerCharacter implements Initializable, FXMLMenuController, G
             FXMLMenuController.switchScene((Stage) this.window.getScene().getWindow(), 
                                             PersonalViews.SCENE_MAIN_MENU,
                                             PersonalStyle.DEFAULT_STYLE, 
-                                            this.window.getWidth(), 
-                                            this.window.getHeight(), true);
+                                            this.window.getScene().getWindow().getWidth(),
+                                            this.window.getScene().getWindow().getHeight(),
+                                            true);
          });
     }
 
@@ -218,8 +220,9 @@ public class ControllerCharacter implements Initializable, FXMLMenuController, G
             FXMLMenuController.switchScene((Stage) this.window.getScene().getWindow(), 
                                            PersonalViews.SCENE_DIFFICULTY,
                                            PersonalStyle.DEFAULT_STYLE, 
-                                           this.window.getWidth(), 
-                                           this.window.getHeight(), true);
+                                           this.window.getScene().getWindow().getWidth(),
+                                           this.window.getScene().getWindow().getHeight(),
+                                           true);
         } else {
             alert.close();
         }
