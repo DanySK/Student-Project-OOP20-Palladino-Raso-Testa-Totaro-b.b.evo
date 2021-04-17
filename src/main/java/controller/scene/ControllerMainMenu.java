@@ -7,8 +7,6 @@ import controller.sound.SoundController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -18,7 +16,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.Node;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.utilities.GameUtilities;
@@ -27,7 +24,6 @@ import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
 import view.GUILayout;
-import view.SceneLoader;
 
 public class ControllerMainMenu implements Initializable, FXMLMenuController, GUILayout {
 
@@ -88,73 +84,40 @@ public class ControllerMainMenu implements Initializable, FXMLMenuController, GU
      */
     @Override
     public void loadListener() {
-        this.btnPlay.setOnAction(this.switchPage(PersonalViews.SCENE_CHARACTER_MENU, PersonalStyle.DEFAULT_STYLE,
-                                                 this.getCurrentWidth(), this.getCurrentHeight(), true));
+        this.btnPlay.setOnAction(event -> FXMLMenuController.switchScene(this.getCurrentStage(),
+                                                                         PersonalViews.SCENE_CHARACTER_MENU, PersonalStyle.DEFAULT_STYLE, 
+                                                                         this.getCurrentWidth(), this.getCurrentHeight(), true));
 
-        this.btnSettings.setOnAction(this.switchPage(PersonalViews.SCENE_SETTINGS, PersonalStyle.DEFAULT_STYLE,
-                                                     this.getCurrentWidth(), this.getCurrentHeight(), true));
+        this.btnSettings.setOnAction(event -> FXMLMenuController.switchScene(this.getCurrentStage(),
+                                                                             PersonalViews.SCENE_SETTINGS, PersonalStyle.DEFAULT_STYLE,
+                                                                             this.getCurrentWidth(), this.getCurrentHeight(), true));
 
-        this.btnCreativeMode.setOnAction(this.switchPage(PersonalViews.SCENE_CREATIVEMODE, PersonalStyle.DEFAULT_STYLE, 
-                                                         GameUtilities.SCREEN_WIDTH / CREATIVE_MODE_DIVISOR, 
-                                                         GameUtilities.SCREEN_HEIGHT, false));
+        this.btnCreativeMode.setOnAction(event -> FXMLMenuController.switchScene(this.getCurrentStage(),
+                                                                                 PersonalViews.SCENE_CREATIVEMODE, PersonalStyle.DEFAULT_STYLE, 
+                                                                                 GameUtilities.SCREEN_WIDTH / CREATIVE_MODE_DIVISOR, 
+                                                                                 GameUtilities.SCREEN_HEIGHT, false));
 
-        this.btnTutorial.setOnAction(this.switchPage(PersonalViews.SCENE_TUTORIAL, PersonalStyle.DEFAULT_STYLE,
-                                                     this.getCurrentWidth(), this.getCurrentHeight(), true));
+        this.btnTutorial.setOnAction(event -> FXMLMenuController.switchScene(this.getCurrentStage(),
+                                                                             PersonalViews.SCENE_TUTORIAL, PersonalStyle.DEFAULT_STYLE,
+                                                                             this.getCurrentWidth(), this.getCurrentHeight(), true));
 
-        this.btnRanking.setOnAction(this.switchPage(PersonalViews.SCENE_RANKING, PersonalStyle.DEFAULT_STYLE,
-                                                    this.getCurrentWidth(), this.getCurrentHeight(), true));
-    }
-
-    /**
-     * This method allows to switch the current scene whit the next scene.
-     * @param scene - use to set the next scene.
-     * @param style - use to set the style for the next scene.
-     * @param width - use to set the width for next scene.
-     * @param height - use to set the height for next scene.
-     * @param resizable - use to understand if the next scene will be resizable or not.
-     * @return an ActionEvent that allow to change between the current scene and the next scene.
-     */
-    private EventHandler<ActionEvent> switchPage(final PersonalViews scene, final PersonalStyle style, 
-                                                 final double width, final double height, final boolean resizable) {
-
-        return new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(final ActionEvent event) {
-                final Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                //Switch Scene
-                SceneLoader.switchScene(currentStage, 
-                scene.getURL(), 
-                scene.getTitleScene(), 
-                width, 
-                height,
-                style.getStylePath());
-                currentStage.setResizable(resizable);
-                soundClick();
-
-            }
-
-        };
+        this.btnRanking.setOnAction(event -> FXMLMenuController.switchScene(this.getCurrentStage(),
+                                                                            PersonalViews.SCENE_RANKING, PersonalStyle.DEFAULT_STYLE,
+                                                                            this.getCurrentWidth(), this.getCurrentHeight(), true));
     }
 
     /**
      * Use to get the current scene width.
      */
     private double getCurrentWidth() {
-        return this.window.getWidth();
+        return this.getCurrentStage().getWidth();
     }
 
     /**
      * Use to get the current scene height.
      */
     private double getCurrentHeight() {
-        return this.window.getHeight();
-    }
-    /**
-     * Method that allow to play the button's sound.
-     */
-    private void soundClick() {
-        SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+        return this.getCurrentStage().getHeight();
     }
 
     /**
@@ -218,6 +181,15 @@ public class ControllerMainMenu implements Initializable, FXMLMenuController, GU
     private void loadMusic() {
         //Play Button CLick Sound
         SoundController.playMusic(PersonalSounds.MAIN_THEME.getURL().getPath());
+    }
+
+    /**
+     * 
+     * This method allow to get the current stage.
+     *
+     */
+    private Stage getCurrentStage() {
+        return (Stage) this.window.getScene().getWindow();
     }
 
 }
