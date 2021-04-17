@@ -4,6 +4,9 @@ package model.utilities;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Returns the side of the collision between two objects.
+ */
 public enum Boundaries {
     /**
      * Represents the upper bound.

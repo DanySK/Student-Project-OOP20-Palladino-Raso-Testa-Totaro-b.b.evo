@@ -14,6 +14,7 @@ import model.utilities.Pair;
 import model.utilities.Position;
 
 public class BallComponentPhysics implements ComponentPhysics {
+
     /**
      * {@inheritDoc}
      */

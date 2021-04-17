@@ -3,7 +3,7 @@ package model.utilities;
 import java.io.Serializable;
 
 /**
- * represents a vectors to represent a direction in the plane.
+ * Represents a vector for the direction in the plane.
  */
 public class DirVector implements Serializable {
 
@@ -17,21 +17,21 @@ public class DirVector implements Serializable {
     }
 
     /**
-     * @return the x (pojo)
+     * @return the x of the vector
      */
     public double getX() {
         return x;
     }
 
     /**
-     * @return the y (pojo)
+     * @return the y of the vector
      */
     public double getY() {
         return y;
     }
 
     /**
-     * @param v vector to sum to this
+     * @param v vector to sum 
      * @return sum vector
      */
     public DirVector sum(final DirVector v) {
@@ -40,7 +40,7 @@ public class DirVector implements Serializable {
 
     /**
      * 
-     * @return I apply the Pythagorean theorem
+     * @return the hypotenuse (vector) of the two catheti (x, y) using the Pythagorean theorem
      */
     public double module() {
         return (double) Math.sqrt(x * x + y * y);
@@ -57,11 +57,11 @@ public class DirVector implements Serializable {
 
     /**
      * 
-     * @param fact vector multiplier
+     * @param number used to multiply the vector
      * @return the resulting vector
      */
-    public DirVector mul(final double fact) {
-        return new DirVector(x * fact, y * fact);
+    public DirVector mul(final double number) {
+        return new DirVector(x * number, y * number);
     }
 
     /**
@@ -90,7 +90,6 @@ public class DirVector implements Serializable {
     /**
      * 
      * {@inheritDoc}
-     * two V2d are considered equal if their fields are equal
      */
     @Override
     public boolean equals(final Object obj) {

@@ -1,5 +1,10 @@
 package model.utilities;
 
+/**
+ * 
+ * Represents the initialization of the ball and paddle objects.
+ *
+ */
 public enum ObjectInit {
 
     /**
