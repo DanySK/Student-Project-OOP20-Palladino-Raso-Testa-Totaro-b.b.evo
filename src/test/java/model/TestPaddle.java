@@ -26,14 +26,14 @@ public class TestPaddle {
 
     private static final String PATH = "Images/paddle/defaultPaddle.png";
     private static final int WALL_DIM = 600;
-    private static final int POS_PADDLE_P1_X = 250;
+    private static final int POS_PADDLE_P1_X = 290;
     private static final int POS_PADDLE_P1_Y = 540;
     private static final int POS_PADDLE_P2_X = 600;
     private static final int POS_PADDLE_P2_Y = 580;
     private static final int POS_PADDLE_P3_Y = 580;
     private static final int POS_PADDLE_P3_X = -10;
     private static final int ZERO = 0;
-    private static final int NEWPOS_PADDLE_X = 258;
+    private static final int NEWPOS_PADDLE_X = 298;
     private static final int NEWPOS_PADDLE_Y = 540;
     private static final int PADDLE_WIDTH = 78;
     private static final int PADDLE_HEIGHT = 20;
