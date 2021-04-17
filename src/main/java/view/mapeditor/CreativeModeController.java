@@ -12,10 +12,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
-import javafx.scene.control.SplitPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.mapeditor.Level;
@@ -35,7 +34,7 @@ public class CreativeModeController implements GUIController {
     private AnchorPane panel;
 
     @FXML
-    private AnchorPane option;
+    private BorderPane borderPanel;
 
     @FXML
     private Button menuBtn;
@@ -53,28 +52,43 @@ public class CreativeModeController implements GUIController {
     private VBox levelContainer;
 
     @FXML
-    private AnchorPane paneLabel;
-
-    @FXML
     private Label levelSelected;
+
+
 
     /**
      * initializes the window by setting dimensions.
      */
     @FXML
     public void initialize() {
+        //Anchor Pane main setting
         this.panel.setMinWidth(GameUtilities.SCREEN_WIDTH);
         this.panel.setMaxWidth(GameUtilities.SCREEN_WIDTH);
         this.panel.setMinHeight(GameUtilities.SCREEN_HEIGHT);
         this.panel.setMaxHeight(GameUtilities.SCREEN_HEIGHT);
-        this.levelContainer.setMinWidth(GameUtilities.SCREEN_WIDTH / 2);
-        this.levelContainer.setMaxWidth(GameUtilities.SCREEN_WIDTH / 2);
-        this.levelContainer.setMinWidth(GameUtilities.SCREEN_WIDTH / 2);
-        this.levelContainer.setMaxWidth(GameUtilities.SCREEN_WIDTH / 2);
+
+        this.borderPanel.setMinWidth(GameUtilities.SCREEN_WIDTH);
+        this.borderPanel.setMaxWidth(GameUtilities.SCREEN_WIDTH);
+        this.borderPanel.setMinHeight(GameUtilities.SCREEN_HEIGHT);
+        this.borderPanel.setMaxHeight(GameUtilities.SCREEN_HEIGHT);
+        //ScrollPane setting
         this.scrollPane.setMinWidth(GameUtilities.SCREEN_WIDTH / 2);
         this.scrollPane.setMaxWidth(GameUtilities.SCREEN_WIDTH / 2);
+        this.scrollPane.setMinHeight(GameUtilities.SCREEN_HEIGHT);
+        this.scrollPane.setMaxHeight(GameUtilities.SCREEN_HEIGHT);
         this.scrollPane.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
         this.scrollPane.setVbarPolicy(ScrollBarPolicy.NEVER);
+        //Setting Vbox level container
+        this.levelContainer.setMinWidth(GameUtilities.SCREEN_WIDTH / 2);
+        this.levelContainer.setMaxWidth(GameUtilities.SCREEN_WIDTH / 2);
+        this.levelContainer.setMinHeight(GameUtilities.SCREEN_HEIGHT);
+        this.levelContainer.setMaxHeight(GameUtilities.SCREEN_HEIGHT);
+        //Label setting
+        this.levelSelected.setMinWidth(GameUtilities.SCREEN_WIDTH);
+        this.levelSelected.setMaxWidth(GameUtilities.SCREEN_WIDTH);
+        this.levelSelected.setMinHeight(GameUtilities.SCREEN_HEIGHT);
+        this.levelSelected.setMaxHeight(GameUtilities.SCREEN_HEIGHT);
+
         levelSelected.setOpacity(0);
         this.update();
     }
