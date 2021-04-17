@@ -92,6 +92,8 @@ public class LevelBuilder {
                     final String selectedTexture;
                     if (state.equals(BrickStatus.DROP_POWERUP)) {
                             selectedTexture = new Texture(texture).buildPowerUpTexturePath();
+                    } else if (state.equals(BrickStatus.NOT_DESTRUCTIBLE)) {
+                            selectedTexture = new Texture(texture).buildUnderBrickTexturePath();
                     } else {
                             selectedTexture = new Texture(texture).buildBrickTexturePath();
                     }

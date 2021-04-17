@@ -70,7 +70,7 @@ public class GameStateImpl implements GameState {
                                          .build());
         this.board.setBalls(Arrays.asList(new Ball.Builder()
                                              .position(ObjectInit.BALL.getStartPos())
-                                             .direction(Angle.MIDDLE_LEFT.getAngleVector().mul(-1))             ////////Angle.MIDDLE_LEFT.getAngleVector().mul(-1)
+                                             .direction(Angle.MIDDLE_LEFT.getAngleVector().mul(-1)) 
                                              .height(ObjectInit.BALL.getInitHeight())
                                              .width(ObjectInit.BALL.getInitWidth())
                                              .speed(setting.getDifficulty().getBallVelocity())
