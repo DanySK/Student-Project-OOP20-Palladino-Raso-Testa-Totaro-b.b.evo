@@ -1,3 +1,4 @@
+
 package controller.collision;
 
 import java.util.HashMap;
@@ -101,9 +102,9 @@ public class CollisionControllerImpl implements CollisionController {
     }
 
     /**
-     * 
-     * @param obj1
-     * @param obj2
+     * fills the map with the collision's side.
+     * @param obj1 first obj to be checked in the collision
+     * @param obj2 second obj to be checked in the collision
      */
     private void fillMap(final GameObject obj1, final GameObject obj2) {
         this.collision.put(Boundaries.SIDE_RIGHT, checkCollisions(objX(obj2), objX(obj1) + objWidth(obj1), Boundaries.SIDE_LEFT));
@@ -112,22 +113,49 @@ public class CollisionControllerImpl implements CollisionController {
         this.collision.put(Boundaries.LOWER, checkCollisions(objY(obj2), objY(obj1) + objHeight(obj1), Boundaries.UPPER));
     }
 
+    /**
+     * getter for {@link GameObject} height.
+     * @param obj gameobject
+     * @return gameobject's height
+     */
     private int objHeight(final GameObject obj) {
         return obj.getHeight();
     }
 
+    /**
+     * getter for {@link GameObject} width.
+     * @param obj
+     * @return gameobject's width
+     */
     private int objWidth(final GameObject obj) {
         return obj.getWidth();
     }
 
+    /**
+     * getter for {@link GameObject} X position.
+     * @param obj
+     * @return gameobject's X position
+     */
     private double objX(final GameObject obj) {
         return obj.getPos().getX();
     }
 
+    /**
+     * getter for {@link GameObject} Y position.
+     * @param obj 
+     * @return gameobject's Y position
+     */
     private double objY(final GameObject obj) {
         return obj.getPos().getY();
     }
 
+    /**
+     * checks collisions between two gameobjects.
+     * @param obj1 first obj to be checked in the collision
+     * @param obj2 second obj to be checked in the collision
+     * @param bounds
+     * @return true if the collision occurs
+     */
     private Boolean checkCollisions(final double obj1, final double obj2, final Boundaries bounds) {
         switch (bounds) {
         case UPPER: 

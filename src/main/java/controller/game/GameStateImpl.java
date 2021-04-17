@@ -32,6 +32,7 @@ public class GameStateImpl implements GameState {
         this.phase = GamePhase.START;
         this.setting = new SettingsControllerImpl(GameUtilities.SETTINGS_PATH); 
         final SettingLevel settingLevel =  SettingLevelManager.loadOption();
+        //aggiungi controllo per caricare il livello
         this.level = settingLevel.getSelectedLevel();
         this.player = new PlayerImpl(this.getPlayerAlias(), setting.getDifficulty().getInitialScore(), 
                                      setting.getDifficulty().getNumberOfLives(), 

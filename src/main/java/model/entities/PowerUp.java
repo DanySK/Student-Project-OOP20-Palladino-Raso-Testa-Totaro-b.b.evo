@@ -46,7 +46,8 @@ public class PowerUp extends GameObjectImpl {
     }
 
     /**
-     * 
+     * this method is used after powerup activation
+     * to waits some seconds.
      * @param ms amount of seconds to wait
      */
     public void waitSeconds(final float ms) {
@@ -122,7 +123,7 @@ public class PowerUp extends GameObjectImpl {
     }
 
     /**
-     * 
+     * getter for hit map.
      * @return map
      */
     public Map<GameObject, Boundaries> getHit() {

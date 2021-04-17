@@ -17,6 +17,7 @@ import model.leaderboard.LifeOperationStrategy;
 import model.leaderboard.ScoreOperationStrategy;
 import model.utilities.Boundaries;
 import model.utilities.BrickStatus;
+import model.utilities.PowerUpType;
 import model.utilities.ScoreAttribute;
 import resource.routing.PersonalSounds;
 import model.utilities.PowerUpUtilities;
@@ -44,7 +45,7 @@ public class EventHandler {
             final HitEvent hit = (HitEvent) event;
             if (hit.getGameObj().get() instanceof Brick) {
                 final Brick brick = (Brick) hit.getGameObj().get();
-                if (brick.getStatus().equals(BrickStatus.DESTRUCTIBLE)) {
+                if (brick.getStatus().equals(BrickStatus.DESTRUCTIBLE) || brick.getStatus().equals(BrickStatus.DROP_POWERUP)) {
                     brick.decreaseDurability(ballDamage);
                     addPoints(ScoreAttribute.BRICK_DAMAGED.getValue());            //add the score of the brick hit
                     if (checkDurability(brick)) {
@@ -85,6 +86,10 @@ public class EventHandler {
         this.eventList.clear();
     }
 
+    /**
+     * activates the {@link PowerUp}.
+     * @param pwup powerup that needs to be activated.
+     */
     private void activatePowerUp(final PowerUp pwup) {
         switch (pwup.getPowerUpType()) {
         case DAMAGE_DOWN:
@@ -126,7 +131,7 @@ public class EventHandler {
 
     /**
      * adds points to the player's score.
-     * @param value
+     * @param value value to be added to the player's score
      */
     private void addPoints(final int value) {
         this.state.getPlayer().scoreOperation(scoreOperation, value);
@@ -134,25 +139,34 @@ public class EventHandler {
 
 
     /**
-     * 
+     * adds a new event to the event list.
      * @param e event to add to list of event
      */
     public void addEvent(final Event e) {
         this.eventList.add(e);
     }
 
-    private Boolean checkDurability(final Brick obj) {
-        if (obj.getDurability() <= 0) {
+    /**
+     * checks {@link Brick} durability.
+     * @param brick brick to be checked
+     * @return true if the durability is <= 0, false otherwise.
+     */
+    private Boolean checkDurability(final Brick brick) {
+        if (brick.getDurability() <= 0) {
             return true;
         } 
         return false;
     }
 
+    /*
+     * checks the game state
+     * and sets the gamephase according to player's results.
+     */
     private void checkGameState() {
         if (state.getLives() == 0) {
             state.setPhase(GamePhase.LOST);
         } else if (state.getBoard().getBricks().stream()
-                                                .filter(i -> i.getStatus().equals(BrickStatus.DESTRUCTIBLE))
+                                                .filter(i -> i.getStatus().equals(BrickStatus.DESTRUCTIBLE) || i.getStatus().equals(BrickStatus.DROP_POWERUP))
                                                 .count() == 0) {
             state.setPhase(GamePhase.WIN);
         }

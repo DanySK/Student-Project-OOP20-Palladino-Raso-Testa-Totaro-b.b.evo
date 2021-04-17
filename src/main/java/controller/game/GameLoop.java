@@ -122,8 +122,6 @@ public class GameLoop implements Runnable {
             public void run() {
                 if (layout.getURL().equals(PersonalViews.SCENE_GAME.getURL())) {
                     scene.setRoot(layout.getLayout());
-                    System.out.println("Root split : " + scene.getRoot());
-                    System.out.println("Scene split : " + scene);
                 } else {
                     SceneLoader.switchScene((Stage) scene.getWindow(), PersonalViews.SCENE_MAIN_MENU.getURL(), 
                                             PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
@@ -131,8 +129,6 @@ public class GameLoop implements Runnable {
                                             scene.getHeight(), 
                                             PersonalStyle.DEFAULT_STYLE.getStylePath());
                     scene.setRoot(null);
-                    System.out.println("Root anchor : " + scene.getRoot());
-                    System.out.println("Scene anchor : " + scene);
                 }
             }
         });

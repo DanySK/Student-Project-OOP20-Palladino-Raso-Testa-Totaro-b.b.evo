@@ -1,6 +1,11 @@
 
 package model.utilities;
 
+import model.entities.PowerUp;
+
+/**
+ * Contains information for {@link PowerUp} settings and default values.
+ */
 public final class PowerUpUtilities {
 
     /**
@@ -9,37 +14,37 @@ public final class PowerUpUtilities {
     public static final int DEFAULT_BALL_DAMAGE = 1;
 
     /**
-     * damage modifier used by powerups to increase or decrease the damage dealt by the ball.
+     * damage modifier used by {@link PowerUp} to increase or decrease the damage dealt by the ball.
      */
     public static final int DAMAGE_MODIFIER = 1;
 
     /**
-     * default active time for each powerup activation (seconds).
+     * default active time for each {@link PowerUp} activation (seconds).
      */
     public static final float POWERUP_ACTIVE_TIME = 5;
 
     /**
-     * default life moodifier used by powerups to increase or decrease player's lives.
+     * default life moodifier used by {@link PowerUp} to increase or decrease player's lives.
      */
     public static final int DEFAULT_LIFE_MODIFIER = 1;
 
     /**
-     * speed modifier used by powerups to speed the ball up or down.
+     * speed modifier used by {@link PowerUp} to speed the ball up or down.
      */
     public static final int SPEED_MODIFIER = 1;
 
     /**
-     * speed for the powerup drop.
+     * speed for the {@link PowerUp} drop.
      */
     public static final double POWERUP_DROP_SPEED = 0.3;
 
     /**
-     * default drop direction for powerups.
+     * default drop direction for {@link PowerUp}.
      */
     public static final DirVector POWERUP_DROP_DIR = new DirVector(0, -1);
 
     private PowerUpUtilities() {
-        // TODO Auto-generated constructor stub
+
     }
 
 }

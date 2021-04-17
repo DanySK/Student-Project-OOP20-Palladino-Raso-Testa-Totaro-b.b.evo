@@ -1,8 +1,10 @@
+
 package controller.event;
 
 import java.util.Optional;
 
 import model.entities.GameObject;
+import model.entities.PowerUp;
 import model.utilities.Boundaries;
 
 public class HitEvent implements Event {
@@ -16,7 +18,7 @@ public class HitEvent implements Event {
     }
 
     /**
-     * 
+     * getter for hit {@link GameObject}.
      * @return the gameObject in question
      */
     public Optional<GameObject> getGameObj() {
@@ -24,7 +26,7 @@ public class HitEvent implements Event {
     }
 
     /**
-     * 
+     * getter for hit bounds.
      * @return the wall on which the collision occurred returns
      */
     public Optional<Boundaries> getBounds() {

@@ -11,12 +11,11 @@ public class BrickComponentGraphics implements ComponentGraphics, Serializable {
 
     private static final long serialVersionUID = -2268513013055385771L;
     private transient Image brickImage;
-    private String texture;
+    private final String texture;
 
     public BrickComponentGraphics(final String texturePath) {
-        System.out.println(texturePath);
         this.texture = texturePath;
-        this.brickImage = new Image(ClassLoader.getSystemResourceAsStream(BrickTexture.BRICK_TEXTURE_DEFAULT.getPath()));
+        this.brickImage = new Image(texturePath);
     }
 
     /**

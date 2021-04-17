@@ -8,7 +8,7 @@ public class Texture {
     private final String theme;
 
     /**
-     * 
+     * constructor for texture class.
      * @param theme
      */
     public Texture(final String theme) {
