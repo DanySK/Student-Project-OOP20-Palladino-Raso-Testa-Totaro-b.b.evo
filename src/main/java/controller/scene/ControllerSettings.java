@@ -27,7 +27,6 @@ import resource.routing.PersonalFonts;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
-import view.SceneLoader;
 
 public class ControllerSettings implements Initializable, FXMLMenuController {
 
@@ -104,10 +103,10 @@ public class ControllerSettings implements Initializable, FXMLMenuController {
 
             //Button back Listener
             this.btnBack.setOnAction(event -> {
-                this.switchToMenuPage();
                 this.controller.saveNewSettings();
-                //Play Sound
-                this.soundClick();
+                FXMLMenuController.switchScene((Stage) this.window.getScene().getWindow(), 
+                                               PersonalViews.SCENE_MAIN_MENU, PersonalStyle.DEFAULT_STYLE, 
+                                               this.window.getWidth(), this.window.getHeight(), true);
              });
 
             //CheckBox SoundFx Listener
@@ -130,18 +129,6 @@ public class ControllerSettings implements Initializable, FXMLMenuController {
                 this.controller.useUpAndDownCommand();
                 this.soundClick();
             });
-        }
-
-        /**
-         * Method that allow to switch current scene with the next scene.
-         */
-        private void switchToMenuPage() {
-            SceneLoader.switchScene((Stage) this.window.getScene().getWindow(), 
-                                    PersonalViews.SCENE_MAIN_MENU.getURL(), 
-                                    PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
-                                    this.window.getWidth(), 
-                                    this.window.getHeight(),
-                                    PersonalStyle.DEFAULT_STYLE.getStylePath());
         }
 
         /**
