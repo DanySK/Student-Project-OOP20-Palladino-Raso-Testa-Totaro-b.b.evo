@@ -1,4 +1,3 @@
-
 package controller.collision;
 
 import java.util.HashMap;

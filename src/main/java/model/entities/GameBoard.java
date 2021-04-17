@@ -25,19 +25,13 @@ public interface GameBoard extends GameBoardEventListeners {
 
     /**
      * 
-     * @param ball to add to the gameboard.
-     */
-    void addBall(Ball ball);
-    
-    /**
-     * 
-     * @param powerup to set to the gameboard
+     * @param pwup to set to the gameboard
      */
     void setPowerUps(Collection<PowerUp> pwup);
 
     /**
      * 
-     * @param powerup to add to the gameboard.
+     * @param pwup to add to the gameboard.
      */
     void addPowerUp(PowerUp pwup);
 
@@ -103,7 +97,7 @@ public interface GameBoard extends GameBoardEventListeners {
     void removePowerUp(PowerUp pwup);
 
     /**
-     * the world asks the collision manager to check 
+     * the GameBoard asks the collision controller to check 
      * if there have been collisions between wall and object.
      * @param obj the object to be checked
      * @return on what surface the object collides
@@ -111,7 +105,7 @@ public interface GameBoard extends GameBoardEventListeners {
     Optional<Boundaries> checkGameObjCollisionsWithWall(GameObject obj);
 
     /**
-     * the world asks the collision manager to check 
+     * the GameBoard asks the collision controller to check 
      * if there have been collisions between ball and bricks.
      * @param ball object that can collide
      * @return Pair of brick and border
@@ -119,7 +113,7 @@ public interface GameBoard extends GameBoardEventListeners {
     Optional<Pair<Brick, Boundaries>> checkBallCollisionsWithBrick(Ball ball);
 
     /**
-     * the world asks the collision manager to check 
+     * the GameBoard asks the collision controller to check 
      * if there have been collisions between ball and the paddle.
      * @param ball object that can collide
      * @return if a collision has occurred in the upper part of the player, 
@@ -128,7 +122,7 @@ public interface GameBoard extends GameBoardEventListeners {
     Pair<Optional<Boundaries>, Optional<Angle>> checkBallCollisionsWithPaddle(Ball ball);
 
     /**
-     * the world asks the collision manager to check 
+     * the GameBoard asks the collision controller to check 
      * if there have been collisions between powerUp and bricks.
      * @param pwUp object that can collide
      * @return Pair of pwUp and border
@@ -149,9 +143,9 @@ public interface GameBoard extends GameBoardEventListeners {
 
     /**
      * Update paddle input component.
-     * @param inputController controller that check the key pressed by user
+     * @param controllerInput controller that check the key pressed by user
      */
-    void movePaddle(ControllerInput inputController);
+    void movePaddle(ControllerInput controllerInput);
 
     /**
      * @return the eventHandler 

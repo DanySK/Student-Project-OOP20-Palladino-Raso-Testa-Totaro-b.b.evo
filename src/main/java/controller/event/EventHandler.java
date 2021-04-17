@@ -1,4 +1,3 @@
-
 package controller.event;
 
 import java.util.LinkedList;
@@ -17,7 +16,6 @@ import model.leaderboard.LifeOperationStrategy;
 import model.leaderboard.ScoreOperationStrategy;
 import model.utilities.Boundaries;
 import model.utilities.BrickStatus;
-import model.utilities.PowerUpType;
 import model.utilities.ScoreAttribute;
 import resource.routing.PersonalSounds;
 import model.utilities.PowerUpUtilities;
@@ -47,16 +45,16 @@ public class EventHandler {
                 final Brick brick = (Brick) hit.getGameObj().get();
                 if (brick.getStatus().equals(BrickStatus.DESTRUCTIBLE) || brick.getStatus().equals(BrickStatus.DROP_POWERUP)) {
                     brick.decreaseDurability(ballDamage);
-                    addPoints(ScoreAttribute.BRICK_DAMAGED.getValue());            //add the score of the brick hit
+                    addPoints(ScoreAttribute.BRICK_DAMAGED.getValue());                 //add the score of the brick hit
                     if (checkDurability(brick)) {
-                        addPoints(ScoreAttribute.BRICK_BREAK.getValue());          //add the score of the broken brick
-                        this.state.getBoard().removeBrick(brick);
+                        addPoints(ScoreAttribute.BRICK_BREAK.getValue());               //add the score of the broken brick
+                        this.state.getBoard().removeBrick(brick);                       //remove brick
                         if (brick.getStatus().equals(BrickStatus.DROP_POWERUP)) { 
-                            this.state.getBoard().addPowerUp(brick.dropPowerUp());
+                            this.state.getBoard().addPowerUp(brick.dropPowerUp());      //if that brick has a powerUp then it generates it
                         }
                     }
                 }
-                SoundController.playMusic(PersonalSounds.SOUND_BRICK.getURL().getPath());    //throw the sound for hitting the brick
+                SoundController.playSoundFx(PersonalSounds.SOUND_BRICK.getURL().getPath());    //throw the sound for hitting the brick
             } else if (hit.getGameObj().get() instanceof PowerUp) {
                 if (hit.getBounds().isPresent()) {
                     this.state.getBoard().removePowerUp((PowerUp) hit.getGameObj().get());
@@ -68,7 +66,7 @@ public class EventHandler {
 
             } else if (hit.getGameObj().get() instanceof Paddle) {
 
-                SoundController.playSound(PersonalSounds.SOUND_PADDLE.getURL().getPath());    //throw sound for hitting the paddle
+                SoundController.playSoundFx(PersonalSounds.SOUND_PADDLE.getURL().getPath());    //throw sound for hitting the paddle
 
             } else if (hit.getBounds().isPresent()) {
                 if (hit.getBounds().get().equals(Boundaries.LOWER)) {
@@ -79,7 +77,7 @@ public class EventHandler {
                         this.state.setPhase(GamePhase.START);
                     }
                 }
-                SoundController.playSound(PersonalSounds.SOUND_WALL.getURL().getPath());    //throw sound for hitting the wall
+                SoundController.playSoundFx(PersonalSounds.SOUND_WALL.getURL().getPath());    //throw sound for hitting the wall
             }
         });
         checkGameState();
@@ -158,9 +156,9 @@ public class EventHandler {
         return false;
     }
 
-    /*
-     * checks the game state
-     * and sets the gamephase according to player's results.
+    /**
+     * set the game phase in Win if there are no more bricks or 
+     * in Lost if the player has no more lives.
      */
     private void checkGameState() {
         if (state.getLives() == 0) {

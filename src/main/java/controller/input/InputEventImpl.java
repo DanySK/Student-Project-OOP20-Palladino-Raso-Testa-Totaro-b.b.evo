@@ -52,7 +52,7 @@ public class InputEventImpl implements InputEvent {
     }
 
     /**
-     * Change player status based on the key pressed.
+     * Change player status based on the key released.
      */
     private void stoppedPressing() {
         this.canvas.setOnKeyReleased(e -> {
