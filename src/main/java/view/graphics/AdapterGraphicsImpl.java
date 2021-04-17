@@ -2,6 +2,8 @@ package view.graphics;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import model.entities.Ball;
 import model.entities.Brick;
 import model.entities.Paddle;
@@ -47,8 +49,14 @@ public class AdapterGraphicsImpl implements AdapterGraphics {
         final double screenPosX = getXInPixel(brick.getPos().getX());
         final double screenPosY = getYInPixel(brick.getPos().getY());
         final double screenWidth = getWidthInPixel(brick.getWidth());
-        final double screenHeight = getHeightInPixel(brick.getHeight());
-        this.graphics.drawImage(imageBrick, screenPosX, screenPosY, screenWidth, screenHeight);
+        final double screenHeight = getHeightInPixel(brick.getHeight()); //Aggiungendo qui un / 1.5 si ottiene un immagine decisamente migliorate ma bisogna sistemare in un altro punto
+        //this.graphics.drawImage(imageBrick, screenPosX, screenPosY, screenWidth, screenHeight);
+        //setfill riempe il buco con un image pattern, che carica l'immagine resizata
+        this.graphics.setFill(new ImagePattern(imageBrick, 0, 0, 1, 1, true));
+        //adatta l'imagine alla griglia ed il problema sono le screenWidth/Height che sizano male l'image)
+        this.graphics.fillRect(screenPosX, screenPosY, screenWidth, screenHeight);
+        this.graphics.setStroke(Color.BLACK);
+        this.graphics.strokeRect(screenPosX, screenPosY, screenWidth, screenHeight);
     }
 
     /**
