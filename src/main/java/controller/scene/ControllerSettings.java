@@ -75,6 +75,7 @@ public class ControllerSettings implements Initializable, FXMLMenuController {
             this.loadListener();
             this.updateViewComponent(this.controller.isSoundFxEnable(), this.controller.isMusicEnable(), 
                                      this.controller.isLeftAndRightEnable(), this.controller.isUpAndDownEnable());
+
         }
 
         /**
