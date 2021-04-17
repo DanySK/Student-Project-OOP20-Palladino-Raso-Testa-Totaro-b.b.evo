@@ -27,6 +27,12 @@ public enum Angle {
         this.angle = angle;
     }
 
+    /**
+     * Used to return the direction list.
+     * @return List<Angle>
+     * @param dir 
+     * 
+     */
     public static List<Angle> directionList(final Angle dir) {
         return Arrays.asList(Angle.values());
     }
