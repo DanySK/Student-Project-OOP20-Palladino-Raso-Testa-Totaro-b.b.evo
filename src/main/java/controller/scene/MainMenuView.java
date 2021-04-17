@@ -1,4 +1,4 @@
-package view.menu;
+package controller.scene;
 
 import java.net.URL;
 import java.util.ResourceBundle;

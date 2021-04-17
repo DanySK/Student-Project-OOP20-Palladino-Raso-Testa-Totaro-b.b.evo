@@ -55,3 +55,7 @@ dependencies {
     testCompile "org.testfx:testfx-junit5:4.0.16-alpha"
     
 }
+
+task myJavadocs(type: Javadoc) {
+  source = sourceSets.main
+}

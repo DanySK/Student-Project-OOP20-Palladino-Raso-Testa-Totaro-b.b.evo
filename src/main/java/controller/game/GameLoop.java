@@ -11,7 +11,6 @@ import controller.settings.SettingsController;
 import controller.settings.SettingsControllerImpl;
 import controller.sound.SoundController;
 import javafx.application.Platform;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.entities.GameBoard;
@@ -24,16 +23,14 @@ import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
 import view.game.ControllerGame;
 import view.gameover.GameOverController;
-import view.menu.MainMenuView;
 
 
 public class GameLoop implements Runnable {
 
     private static final long PERIOD = 20;
-    private Scene scene;
+    private final Scene scene;
     private final GameState gameState;
     private final GameBoard board;
-    private Stage currentStage;
     private ControllerGame controllerGame;
     private final ControllerInput inputController;
     private final SettingsController setting = new SettingsControllerImpl(GameUtilities.SETTINGS_PATH);
