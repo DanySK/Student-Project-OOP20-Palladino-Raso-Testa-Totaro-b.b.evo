@@ -50,7 +50,7 @@ public class EventHandler {
                         addPoints(ScoreAttribute.BRICK_BREAK.getValue());               //add the score of the broken brick
                         this.state.getBoard().removeBrick(brick);                       //remove brick
                         if (brick.getStatus().equals(BrickStatus.DROP_POWERUP)) { 
-                            this.state.getBoard().addPowerUp(brick.dropPowerUp());      //if that brick has a powerUp then it generates it
+                            this.state.getBoard().setPowerUp(brick.dropPowerUp());      //if that brick has a powerUp then it generates it
                         }
                     }
                 }

@@ -64,7 +64,12 @@ public enum PersonalViews {
     /**
      * Path for load Game over banner.
      */
-    SCENE_GAME_OVER("Layout/ ", "GAMEOVER");
+    SCENE_GAME_OVER("Layout/ ", "GAMEOVER"), 
+
+    /**
+     * Path for load Final Scene before ranking.
+     */
+    SCENE_GAME_FINAL("Layout/ ", "FINISH");
 
     private String path;
     private String titleScene;
@@ -75,7 +80,7 @@ public enum PersonalViews {
     PersonalViews(final String path, final String titleScene) {
         this.path = path;
         this.titleScene = titleScene;
-        
+
         final FXMLLoader loader = new FXMLLoader(this.getURL());
         try {
             if (this.titleScene.equals("GAME")) {
@@ -83,12 +88,12 @@ public enum PersonalViews {
             } else if (this.titleScene.equals("BrickBreacker-EVO")) {
                 this.anchLayout = loader.load();
             }
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
         this.guiLayout = loader.getController();
-        
+
     }
 
     public String getTitleScene() {

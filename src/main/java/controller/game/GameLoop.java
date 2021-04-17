@@ -22,6 +22,8 @@ import model.utilities.GameUtilities;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
 import view.SceneLoader;
+import controller.scene.ControllerGame;
+import view.game.ControllerNextLevel;
 import view.gameover.GameOverController;
 
 
@@ -87,40 +89,55 @@ public class GameLoop implements Runnable {
             lastTime = current;
         }
         SoundController.stopMusic();
+
         if (gameState.getPhase().equals(GamePhase.WIN)
                 && LevelSelection.isStandardLevel(gameState.getLevel().getLevelName()) 
                 && LevelSelection.getSelectionFromLevel(gameState.getLevel()).hasNext()) {
                 saveState(GamePhase.WIN);
-            changeView(PersonalViews.SCENE_NEXT_LEVEL);
-        } else if (gameState.getPhase().equals(GamePhase.MENU)) {
+            changeView(PersonalViews.SCENE_NEXT_LEVEL); //sali al prossimo livello
+        } else if (gameState.getPhase().equals(GamePhase.WIN) && gameState.getLevel().getLevelName().equals(LevelSelection.LEVEL6.getName())) {
+            saveState(GamePhase.LOST);
+            changeView(PersonalViews.SCENE_GAME_FINAL); //completato il gioco
+        } else if (gameState.getPhase().equals(GamePhase.MENU)) { //nel caso premi esc
             changeView(PersonalViews.SCENE_MAIN_MENU);
         } else { 
-            saveState(GamePhase.LOST);
-            changeView(PersonalViews.SCENE_GAME_OVER);
+            //controllo creative mode nel caso vinci o perdi
+            if (GameStateImpl.isCreativeMode() && gameState.getPhase().equals(GamePhase.WIN)) {
+                saveState(GamePhase.LOST);
+                changeView(PersonalViews.SCENE_GAME_FINAL);
+            } else { //perdi in tutti i casi
+                saveState(GamePhase.LOST);
+                changeView(PersonalViews.SCENE_GAME_OVER);
+            }
         }
     }
 
 
     /**
-     * Alessandro, probabilmente mi serve una funzione loader per caricare tutti gli fxml. Funzionera? .
+     * 
      * @param layout
      */
     private void changeView(final PersonalViews layout) {
         if (layout.equals(PersonalViews.SCENE_NEXT_LEVEL)) {
-            //final ControllerNextLevel nextLevelController = (ControllerNextLevel) SceneLoader.loadScene(PersonalViews.SCENE_NEXT_LEVEL.getURL());
-            //nextLevelController.update(gameState.getLevel(), gameState.getPlayer());
+            final ControllerNextLevel nextLevelController = (ControllerNextLevel) PersonalViews.SCENE_NEXT_LEVEL.loadScene();
+            nextLevelController.update(gameState.getLevel(), gameState.getPlayer());
         } else if (layout.equals(PersonalViews.SCENE_GAME_OVER)) {
             this.controllerGame = (ControllerGame) PersonalViews.SCENE_GAME_OVER.loadScene();
             final LeaderboardController leaderboard = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
             final GameOverController gameOverController = new GameOverController();
             final StandardScoreSortingStrategy ls = new StandardScoreSortingStrategy(); 
             gameOverController.updateScore(this.gameState.getPlayerScore(), leaderboard.getPoudium(0, ls).toString());
+        } else if (layout.equals(PersonalViews.SCENE_GAME_FINAL)) {
+            System.out.println("Vinto!");
+            //DA IMPLEMENTARE GRAFICA PER DIRE CHE HAI VINTO E FINITO IL GIOCO
         }
 
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                if (layout.getURL().equals(PersonalViews.SCENE_GAME.getURL())) {
+                //rimosso il confronto di url, ma solo del personal view, tanto dovrebbero coincidere no ?
+                //come prima spotbug dava errore, cosi no invece
+                if (layout.equals(PersonalViews.SCENE_GAME)) {
                     scene.setRoot(layout.getLayout());
                 } else {
                     SceneLoader.switchScene((Stage) scene.getWindow(), PersonalViews.SCENE_MAIN_MENU.getURL(), 

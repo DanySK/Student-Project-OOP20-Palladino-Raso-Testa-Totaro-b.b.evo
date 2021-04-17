@@ -65,6 +65,14 @@ public class GameBoardImpl implements GameBoard {
     /**
      * {@inheritDoc}
      */
+    public void setPowerUp(final PowerUp pwup) {
+        this.pwup.clear();
+        this.pwup.add(pwup);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addPowerUp(final PowerUp pwup) {
         this.addPowerUp(pwup);

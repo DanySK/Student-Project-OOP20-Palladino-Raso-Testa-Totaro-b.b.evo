@@ -102,12 +102,12 @@ public class BrickBreakerEvo extends Application {
         }
         if (!new File(BrickBreakerEvo.SETTINGS_FOLDER + "settings.json").exists()
             && new File(BrickBreakerEvo.SETTINGS_FOLDER).mkdirs()
-            && new File(BrickBreakerEvo.SETTINGS_FOLDER + "settings.json").createNewFile()) {
+            && new File(BrickBreakerEvo.SETTINGS_FOLDER + "settings.json").createNewFile()
+            && new File(BrickBreakerEvo.SETTINGS_FOLDER + "loadLevel").createNewFile()) {
                 System.out.println("Settings Folder e json successfully created");
                 IOSettings.printInJsonFormat(SETTINGS_FOLDER + "settings.json", 
                                              new GameSettingsBuilderImpl().defaultSettings().build());
-                new File(BrickBreakerEvo.SETTINGS_FOLDER + "loadLevel").createNewFile();
-                    SettingLevelManager.init();
+                SettingLevelManager.init();
         }
 
         if (new File(BrickBreakerEvo.MAPS_FOLDER).mkdirs()) {

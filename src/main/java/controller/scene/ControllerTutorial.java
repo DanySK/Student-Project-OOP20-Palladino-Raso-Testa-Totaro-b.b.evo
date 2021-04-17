@@ -26,10 +26,8 @@ import javafx.util.Duration;
 import model.utilities.GameUtilities;
 import resource.routing.PersonalFonts;
 import resource.routing.PersonalImages;
-import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
-import view.SceneLoader;
 
 
 public class ControllerTutorial implements Initializable, FXMLMenuController {
@@ -118,27 +116,18 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
     public void loadListener() {
         // ButtonBack Listener
         this.buttonBack.setOnAction(event -> {
-            //Play Button CLick Sound
-            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
 
             //Stop video
             player.stop();
 
-            this.switchToMenuPage();
+            FXMLMenuController.switchScene((Stage) this.window.getScene().getWindow(), 
+                                           PersonalViews.SCENE_MAIN_MENU, 
+                                           PersonalStyle.DEFAULT_STYLE, 
+                                           this.window.getScene().getWindow().getWidth(),
+                                           this.window.getScene().getWindow().getHeight(),
+                                           true);
         });
 
-    }
-
-    /**
-     * Method that allow to switch current scene with the next scene.
-     */
-    private void switchToMenuPage() {
-        SceneLoader.switchScene((Stage) this.window.getScene().getWindow(), 
-                                PersonalViews.SCENE_MAIN_MENU.getURL(), 
-                                PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
-                                this.window.getWidth(), 
-                                this.window.getHeight(),
-                                PersonalStyle.DEFAULT_STYLE.getStylePath());
     }
 
     /**

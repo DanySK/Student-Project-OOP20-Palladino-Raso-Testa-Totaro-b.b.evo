@@ -34,7 +34,6 @@ import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
 import view.GUILayout;
-import view.SceneLoader;
 
 public class ControllerCharacter implements Initializable, FXMLMenuController, GUILayout {
 
@@ -68,13 +67,14 @@ public class ControllerCharacter implements Initializable, FXMLMenuController, G
     private static final String CLEAN_TEXT = "";
     private static final String DEFAULT_ALERT_TITLE = "Overwrite player";
     private static final String DEFAULT_ALERT_CONTENT = "The name is already used, do you want overwrite it?";
-    private final LeaderboardController controller = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
+    private LeaderboardController controller;
 
     /**
      *  Initialize all javaFx view components.
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
+        this.controller = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
         this.resizable();
         this.loadFont();
         this.loadListener();
@@ -111,15 +111,24 @@ public class ControllerCharacter implements Initializable, FXMLMenuController, G
                 this.showAlertDialog();
             } else {
                 this.saveTemporaryPlayer(this.getValidateAlias());
-                this.switchPage(PersonalViews.SCENE_DIFFICULTY, PersonalStyle.DEFAULT_STYLE);
+                FXMLMenuController.switchScene((Stage) this.window.getScene().getWindow(), 
+                        PersonalViews.SCENE_DIFFICULTY,
+                        PersonalStyle.DEFAULT_STYLE, 
+                        this.window.getScene().getWindow().getWidth(),
+                        this.window.getScene().getWindow().getHeight(),
+                        true);
             }
             this.soundClick();
         });
 
         //Button back Listener
         this.btnBack.setOnAction(event -> {
-            this.switchPage(PersonalViews.SCENE_MAIN_MENU, PersonalStyle.DEFAULT_STYLE);
-            this.soundClick();
+            FXMLMenuController.switchScene((Stage) this.window.getScene().getWindow(), 
+                                            PersonalViews.SCENE_MAIN_MENU,
+                                            PersonalStyle.DEFAULT_STYLE, 
+                                            this.window.getScene().getWindow().getWidth(),
+                                            this.window.getScene().getWindow().getHeight(),
+                                            true);
          });
     }
 
@@ -180,21 +189,6 @@ public class ControllerCharacter implements Initializable, FXMLMenuController, G
     }
 
     /**
-     * This method allows to switch the current scene whit the next or previous scene.
-     * @param scene - use to set the next or previous scene.
-     * @param style - use to set the style for the next or previous scene.
-     */
-    private void switchPage(final PersonalViews scene, final PersonalStyle style) {
-        //Switch Scene
-        SceneLoader.switchScene((Stage) this.window.getScene().getWindow(), 
-                                 scene.getURL(), 
-                                 scene.getTitleScene(), 
-                                 window.getWidth(), 
-                                 window.getHeight(),
-                                 style.getStylePath());
-    }
-
-    /**
      * Method that allow to play the button's sound.
      */
     private void soundClick() {
@@ -223,8 +217,12 @@ public class ControllerCharacter implements Initializable, FXMLMenuController, G
         final Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == yesButton) {
             this.saveTemporaryPlayer(this.getValidateAlias());
-            this.switchPage(PersonalViews.SCENE_DIFFICULTY, PersonalStyle.DEFAULT_STYLE);
-            this.soundClick();
+            FXMLMenuController.switchScene((Stage) this.window.getScene().getWindow(), 
+                                           PersonalViews.SCENE_DIFFICULTY,
+                                           PersonalStyle.DEFAULT_STYLE, 
+                                           this.window.getScene().getWindow().getWidth(),
+                                           this.window.getScene().getWindow().getHeight(),
+                                           true);
         } else {
             alert.close();
         }

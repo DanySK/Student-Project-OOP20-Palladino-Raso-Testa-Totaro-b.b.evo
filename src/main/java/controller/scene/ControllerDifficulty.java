@@ -32,7 +32,6 @@ import resource.routing.PersonalFonts;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
-import view.SceneLoader;
 
 public class ControllerDifficulty implements Initializable, FXMLMenuController {
 
@@ -109,9 +108,12 @@ public class ControllerDifficulty implements Initializable, FXMLMenuController {
     public void loadListener() {
         //Button back Listener
         this.btnBack.setOnAction(event -> {
-            this.switchPage(PersonalViews.SCENE_MAIN_MENU, this.window.getWidth(), this.window.getHeight(), PersonalStyle.DEFAULT_STYLE);
+            FXMLMenuController.switchScene((Stage) this.window.getScene().getWindow(), 
+                                           PersonalViews.SCENE_MAIN_MENU, PersonalStyle.DEFAULT_STYLE, 
+                                           this.window.getScene().getWindow().getWidth(),
+                                           this.window.getScene().getWindow().getHeight(),
+                                           true);
             this.controller.saveNewSettings();
-            this.soundClick();
          });
 
         //Button StartGame Listener
@@ -131,7 +133,6 @@ public class ControllerDifficulty implements Initializable, FXMLMenuController {
 
             final Scene scene = this.btnStartGame.getScene();
             scene.getStylesheets().add(PersonalStyle.DEFAULT_STYLE.getStylePath());
-            System.err.println("1)" + scene.getWindow()); //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa
             final Thread thread = new Thread(new GameLoop(scene));
             thread.setDaemon(true);
             thread.start();
@@ -163,22 +164,6 @@ public class ControllerDifficulty implements Initializable, FXMLMenuController {
         SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
     }
 
-    /**
-     * This method allows to switch the current scene whit the next or previous scene.
-     * @param scene - use to set the next or previous scene.
-     * @param width - use to set the width for next scene.
-     * @param height - use to set the height for next scene.
-     * @param style - use to set the style for the next or previous scene.
-     */
-    private void switchPage(final PersonalViews scene, final double width, final double height, final PersonalStyle style) {
-        //Switch Scene
-        SceneLoader.switchScene((Stage) this.window.getScene().getWindow(), 
-                                 scene.getURL(), 
-                                 scene.getTitleScene(), 
-                                 width, 
-                                 height,
-                                 style.getStylePath());
-    }
     /**
      * 
      * {@inheritDoc}
