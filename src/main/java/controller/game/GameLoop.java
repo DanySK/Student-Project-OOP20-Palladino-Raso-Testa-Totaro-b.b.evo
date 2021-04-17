@@ -6,6 +6,7 @@ import controller.input.InputEvent;
 import controller.input.InputEventImpl;
 import controller.leaderboard.LeaderboardController;
 import controller.leaderboard.LeaderboardControllerImpl;
+import controller.menu.SceneLoader;
 import controller.settings.SettingsController;
 import controller.settings.SettingsControllerImpl;
 import controller.sound.SoundController;
@@ -122,7 +123,12 @@ public class GameLoop implements Runnable {
                 if (layout.getURL().equals(PersonalViews.SCENE_GAME.getURL())) {
                     scene.setRoot(layout.getLayout());
                 } else {
-                    scene.setRoot(layout.getAncLayout());
+                    SceneLoader.switchScene((Stage) scene.getWindow(), PersonalViews.SCENE_MAIN_MENU.getURL(), 
+                                            PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
+                                            scene.getWidth(), 
+                                            scene.getHeight(), 
+                                            PersonalStyle.DEFAULT_STYLE.getStylePath());
+                    scene.setRoot(null);
                 }
             }
         });

@@ -132,6 +132,7 @@ public class MainMenuView implements Initializable, FXMLMenuController, GUILayou
                 style.getStylePath());
                 currentStage.setResizable(resizable);
                 soundClick();
+
             }
 
         };

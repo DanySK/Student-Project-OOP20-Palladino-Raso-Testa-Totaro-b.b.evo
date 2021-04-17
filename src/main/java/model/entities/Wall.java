@@ -14,7 +14,7 @@ public class Wall {
     }
 
     /**
-     * 
+     * getter for the wall width.
      * @return width of the wall
      */
     public double getWidth() {
@@ -22,7 +22,7 @@ public class Wall {
     }
 
     /**
-     * 
+     * getter for the wall height.
      * @return height of the wall
      */
     public double getHeight() {
@@ -31,14 +31,14 @@ public class Wall {
 
 
     /**
-     * 
+     * getter for upper left corner of the game board.
      * @return position of the upper left corner
      */
     public Position getUpperLeftCorner() {
         return new Position(0, 0);
     }
     /**
-     * 
+     * getter for bottom right corner of the game board.
      * @return position of the bottom right corner
      */
     public Position getRightBottomCorner() {

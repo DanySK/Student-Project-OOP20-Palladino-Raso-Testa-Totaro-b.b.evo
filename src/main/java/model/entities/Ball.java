@@ -67,6 +67,9 @@ public final class Ball extends GameObjectImpl {
         return texturePath;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -75,6 +78,9 @@ public final class Ball extends GameObjectImpl {
         return result;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(final Object obj) {
         if (this == obj) {
