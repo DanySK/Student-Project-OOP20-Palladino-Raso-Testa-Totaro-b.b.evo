@@ -1,6 +1,5 @@
 package view.mapeditor;
 
-import controller.menu.SceneLoader;
 import controller.texture.TextureController;
 import controller.utilities.CheckAlertController;
 import controller.utilities.GUIController;
@@ -33,6 +32,7 @@ import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
 import resource.routing.PowerUpTexture;
+import view.SceneLoader;
 
 public class MapEditorController implements GUIController {
 

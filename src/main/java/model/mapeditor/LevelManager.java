@@ -16,7 +16,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import controller.BrickBreakerEvo;
+import launcher.BrickBreakerEvo;
 
 /**
  * Manage the level, (save, load).

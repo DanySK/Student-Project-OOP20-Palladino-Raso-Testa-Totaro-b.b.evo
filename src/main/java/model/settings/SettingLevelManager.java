@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import controller.BrickBreakerEvo;
+import launcher.BrickBreakerEvo;
 import model.settings.SettingLevel.SettingLevelBuilder;
 
 public final class SettingLevelManager {

@@ -1,4 +1,4 @@
-package view;
+package controller.scene;
 
 public interface FXMLMenuController {
 

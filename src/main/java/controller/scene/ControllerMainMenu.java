@@ -3,7 +3,6 @@ package controller.scene;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import controller.menu.SceneLoader;
 import controller.sound.SoundController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -27,10 +26,10 @@ import resource.routing.PersonalFonts;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
-import view.FXMLMenuController;
 import view.GUILayout;
+import view.SceneLoader;
 
-public class MainMenuView implements Initializable, FXMLMenuController, GUILayout {
+public class ControllerMainMenu implements Initializable, FXMLMenuController, GUILayout {
 
     @FXML
     private AnchorPane window;

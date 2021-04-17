@@ -1,7 +1,6 @@
 package view.game;
 
 import controller.game.GameLoop;
-import controller.menu.SceneLoader;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -16,6 +15,7 @@ import model.utilities.GameUtilities;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
 import view.GUILayout;
+import view.SceneLoader;
 
 /**
  * Controller of nextLevel.fxml.

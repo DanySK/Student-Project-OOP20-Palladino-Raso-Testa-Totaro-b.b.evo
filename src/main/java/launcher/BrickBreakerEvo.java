@@ -1,9 +1,8 @@
-package controller;
+package launcher;
 
 import java.io.File;
 import java.io.IOException;
 
-import controller.menu.SceneLoader;
 import controller.utilities.IOSettings;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -12,6 +11,7 @@ import model.settings.SettingLevelManager;
 import model.utilities.GameUtilities;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
+import view.SceneLoader;
 
 /**
  * BRICK-BREAKER-EVO MAIN.

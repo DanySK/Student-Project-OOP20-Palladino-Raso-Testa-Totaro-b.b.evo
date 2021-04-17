@@ -1,11 +1,10 @@
-package view.tutorial;
+package controller.scene;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import controller.menu.SceneLoader;
 import controller.sound.SoundController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -30,10 +29,10 @@ import resource.routing.PersonalImages;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
-import view.FXMLMenuController;
+import view.SceneLoader;
 
 
-public class TutorialView implements Initializable, FXMLMenuController {
+public class ControllerTutorial implements Initializable, FXMLMenuController {
 
     @FXML
     private AnchorPane window;

@@ -1,7 +1,6 @@
 package view.mapeditor;
 
 import controller.game.GameLoop;
-import controller.menu.SceneLoader;
 import controller.utilities.CheckAlertController;
 import controller.utilities.GUIController;
 import javafx.event.ActionEvent;
@@ -26,6 +25,7 @@ import model.settings.SettingLevelManager;
 import model.utilities.GameUtilities;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
+import view.SceneLoader;
 
 public class CreativeModeController implements GUIController {
 

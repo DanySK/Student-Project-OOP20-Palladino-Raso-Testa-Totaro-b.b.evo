@@ -1,9 +1,8 @@
-package view.settings;
+package controller.scene;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import controller.menu.SceneLoader;
 import controller.settings.SettingsController;
 import controller.settings.SettingsControllerImpl;
 import controller.sound.SoundController;
@@ -28,9 +27,9 @@ import resource.routing.PersonalFonts;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
-import view.FXMLMenuController;
+import view.SceneLoader;
 
-public class SettingsView implements Initializable, FXMLMenuController {
+public class ControllerSettings implements Initializable, FXMLMenuController {
 
         @FXML
         private AnchorPane window;

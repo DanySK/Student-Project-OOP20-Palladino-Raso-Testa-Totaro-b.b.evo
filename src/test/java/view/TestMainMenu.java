@@ -11,7 +11,7 @@ import org.testfx.matcher.base.NodeMatchers;
 import org.testfx.matcher.control.LabeledMatchers;
 import org.testfx.matcher.control.TextInputControlMatchers;
 
-import controller.BrickBreakerEvo;
+import launcher.BrickBreakerEvo;
 
 
 /**
@@ -118,9 +118,9 @@ class TestMainMenu extends ApplicationTest {
             clickOn(ID_BUTTON_PLAY);
             sleep(1000);
             clickOn("#characterNameField");
-            write("Alex");
+            write("GUEST");
             sleep(1000);
-            FxAssert.verifyThat("#characterNameField", TextInputControlMatchers.hasText("Alex"));
+            FxAssert.verifyThat("#characterNameField", TextInputControlMatchers.hasText("GUEST"));
         });
     }
 

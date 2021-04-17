@@ -3,7 +3,8 @@ package view.gameover;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import controller.menu.SceneLoader;
+
+import controller.scene.FXMLMenuController;
 import controller.sound.SoundController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -27,8 +28,8 @@ import resource.routing.PersonalFonts;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
-import view.FXMLMenuController;
 import view.GUILayout;
+import view.SceneLoader;
 
 public class GameOverController implements Initializable, FXMLMenuController, GUILayout{
 
