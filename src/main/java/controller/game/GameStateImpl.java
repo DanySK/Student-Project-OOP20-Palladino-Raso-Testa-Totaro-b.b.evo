@@ -21,6 +21,11 @@ import model.utilities.Angle;
 
 public class GameStateImpl implements GameState {
 
+    /**
+     * Setting false for load standard level, true for creative mode.
+     */
+    private static boolean creativeMode;
+
     private GamePhase phase;
     private int multiplier;
     private final GameBoard board;
@@ -28,12 +33,16 @@ public class GameStateImpl implements GameState {
     private final PlayerImpl player;
     private final SettingsControllerImpl setting;
 
+
     public GameStateImpl() {
         this.phase = GamePhase.START;
         this.setting = new SettingsControllerImpl(GameUtilities.SETTINGS_PATH); 
         final SettingLevel settingLevel =  SettingLevelManager.loadOption();
-        //aggiungi controllo per caricare il livello
-        this.level = settingLevel.getSelectedLevel();
+        if (isCreativeMode()) {
+            this.level = settingLevel.getSelectedLevel();
+        } else {
+            this.level = new SettingLevel.SettingLevelBuilder().build().getSelectedLevel();
+        }
         this.player = new PlayerImpl(this.getPlayerAlias(), setting.getDifficulty().getInitialScore(), 
                                      setting.getDifficulty().getNumberOfLives(), 
                                      setting.getDifficulty().getMaxNumberOfLife());
@@ -169,6 +178,14 @@ public class GameStateImpl implements GameState {
     @Override
     public boolean isEffectActive() {
         return setting.isSoundFxEnable();
+    }
+
+    public static boolean isCreativeMode() {
+        return creativeMode;
+    }
+
+    public static void setCreativeMode(final boolean cREATIVEMODE) {
+        creativeMode = cREATIVEMODE;
     }
 
 }

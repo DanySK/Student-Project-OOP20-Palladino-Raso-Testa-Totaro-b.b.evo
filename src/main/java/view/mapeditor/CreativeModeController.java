@@ -1,6 +1,8 @@
 package view.mapeditor;
 
 import controller.game.GameLoop;
+import controller.game.GameStateImpl;
+import controller.scene.FXMLMenuController;
 import controller.utilities.CheckAlertController;
 import controller.utilities.GUIController;
 import javafx.event.ActionEvent;
@@ -157,15 +159,21 @@ public class CreativeModeController implements GUIController {
     @FXML
     void playLevel(final MouseEvent event) {
         if (!levelSelected.getText().isBlank()) {
+            GameStateImpl.setCreativeMode(true);
+
             //UserManager.saveUser(new User());
-            final Scene scene = playBtn.getScene();
+            //final Scene scene = playBtn.getScene();
             final SettingLevelBuilder levelBuilder = new SettingLevelBuilder();
-            //levelBuilder.fromSettings(SettingLevelManager.loadOption());
+            levelBuilder.fromSettings(SettingLevelManager.loadOption());
             levelBuilder.selectLevel(currentLevel);
             SettingLevelManager.saveOption(levelBuilder.build());
-            final Thread engine = new Thread(new GameLoop(scene));
-            engine.setDaemon(true);
-            engine.start();
+
+            this.playBtn.setOnAction(this.switchPage(PersonalViews.SCENE_CHARACTER_MENU, PersonalStyle.DEFAULT_STYLE, 
+                    GameUtilities.SCREEN_WIDTH, GameUtilities.SCREEN_HEIGHT, true));
+
+            //inal Thread engine = new Thread(new GameLoop(scene));
+            //.setDaemon(true);
+            //engine.start();
         } else {
             CheckAlertController.checkLevelSelected();
         }

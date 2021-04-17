@@ -20,7 +20,7 @@ import view.SceneLoader;
 /**
  * Controller of nextLevel.fxml.
  */
-public class ControllerNextLevel implements GUILayout{
+public class ControllerNextLevel implements GUILayout {
 
     @FXML
     private SplitPane mainPanel;
