@@ -27,6 +27,10 @@ import view.GUILayout;
 
 public class ControllerMainMenu implements Initializable, FXMLMenuController, GUILayout {
 
+    private static final double CREATIVE_MODE_WIDTH = 800;
+
+    private static final double CREATIVE_MODE_HEIGHT = 500;
+
     @FXML
     private AnchorPane window;
 
@@ -63,8 +67,6 @@ public class ControllerMainMenu implements Initializable, FXMLMenuController, GU
     @FXML
     private Button btnRanking;
 
-    private static final double CREATIVE_MODE_DIVISOR = 1.5;
-
     /**
      * Initialize all view components.
      */
@@ -94,8 +96,8 @@ public class ControllerMainMenu implements Initializable, FXMLMenuController, GU
 
         this.btnCreativeMode.setOnAction(event -> FXMLMenuController.switchScene(this.getCurrentStage(),
                                                                                  PersonalViews.SCENE_CREATIVEMODE, PersonalStyle.DEFAULT_STYLE, 
-                                                                                 GameUtilities.SCREEN_WIDTH / CREATIVE_MODE_DIVISOR, 
-                                                                                 GameUtilities.SCREEN_HEIGHT, false));
+                                                                                 CREATIVE_MODE_WIDTH, 
+                                                                                 CREATIVE_MODE_HEIGHT, false));
 
         this.btnTutorial.setOnAction(event -> FXMLMenuController.switchScene(this.getCurrentStage(),
                                                                              PersonalViews.SCENE_TUTORIAL, PersonalStyle.DEFAULT_STYLE,
