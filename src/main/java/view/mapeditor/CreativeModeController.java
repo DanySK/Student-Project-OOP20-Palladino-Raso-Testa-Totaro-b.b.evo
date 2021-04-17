@@ -1,6 +1,5 @@
 package view.mapeditor;
 
-import controller.game.GameLoop;
 import controller.game.GameStateImpl;
 import controller.scene.FXMLMenuController;
 import controller.utilities.CheckAlertController;
@@ -8,15 +7,10 @@ import controller.utilities.GUIController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ScrollPane.ScrollBarPolicy;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.mapeditor.Level;
@@ -28,6 +22,10 @@ import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
 
 public class CreativeModeController implements GUIController {
+
+    private static final double EDITOR_MODE_WIDTH = 800;
+
+    private static final double EDITOR_MODE_HEIGHT = 500;
 
     private Level currentLevel;
 
@@ -92,20 +90,20 @@ public class CreativeModeController implements GUIController {
      * 
      */
     @FXML
-    void loadListener() {
+    private void loadListener() {
         //MenuButton return to menu
         this.menuBtn.setOnAction(event -> FXMLMenuController.switchScene((Stage) this.panel.getScene().getWindow(), PersonalViews.SCENE_MAIN_MENU, PersonalStyle.DEFAULT_STYLE, 
                 GameUtilities.SCREEN_WIDTH, GameUtilities.SCREEN_HEIGHT, false));
         //BuilderButton go to LevelBuilder
         this.builderBtn.setOnAction(event -> FXMLMenuController.switchScene((Stage) this.panel.getScene().getWindow(), PersonalViews.SCENE_EDITOR_MODE, PersonalStyle.DEFAULT_STYLE, 
-                GameUtilities.SCREEN_WIDTH, GameUtilities.SCREEN_HEIGHT, false));
+                EDITOR_MODE_WIDTH, EDITOR_MODE_HEIGHT, true));
     }
 
     /**
      * loads the currently selected level and starts the gameloop cycle.
      */
     @FXML
-    void playLevel() {
+    private void playLevel() {
         if (!levelSelected.getText().isBlank()) {
             GameStateImpl.setCreativeMode(true);
             final SettingLevelBuilder levelBuilder = new SettingLevelBuilder();
