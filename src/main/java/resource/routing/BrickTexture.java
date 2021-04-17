@@ -36,7 +36,7 @@ public enum BrickTexture implements Serializable{
     /**
      * Super Mario theme, brick texture.
      */
-    BRICK_TEXTURE_SUPERMARIO("Images/brick/marioBrick.png", "Super Mario"),
+    BRICK_TEXTURE_SUPERMARIO("Images/brick/marioBrick.png", "SuperMario"),
 
     /**
      * Undestructible brick.
