@@ -1,4 +1,3 @@
-
 package model.entities;
 
 import controller.input.ControllerInput;
@@ -9,12 +8,12 @@ import view.graphics.AdapterGraphics;
 public interface GameObject {
 
     /**
-     * @param height to set
+     * @param height height to set
      */
     void setHeight(int height);
 
     /**
-     * @param width to set
+     * @param width width to set
      */
     void setWidth(int width);
 
@@ -34,22 +33,22 @@ public interface GameObject {
     Position getPos();
 
     /**
-     * @param pos to set
+     * @param pos position to set
      */
     void setPos(Position pos);
 
     /**
-     * @return the direction of velocity
+     * @return the direction vector
      */
     DirVector getDirVector();
 
     /**
-     * @param dirVel to set
+     * @param dirVel direction to set
      */
     void setDirVector(DirVector dirVel);
 
     /**
-     * @param speed to set
+     * @param speed speed to set
      */
     void setSpeed(double speed);
 
@@ -60,18 +59,18 @@ public interface GameObject {
 
     /**
      * @param timeElapsed from game loop
-     * @param board model
+     * @param board the board of the game
      */
     void updatePhysics(int timeElapsed, GameBoardImpl board);
 
     /**
-     * @param controller of this gameObject
+     * @param controller controller of input of this gameObject
      */
     void updateInput(ControllerInput controller);
 
     /**
      * 
-     * @param adapterGraphics to adapt the object to the screen
+     * @param adapterGraphics adapter used to fit the object to the screen
      */
     void updateGraphics(AdapterGraphics adapterGraphics);
 

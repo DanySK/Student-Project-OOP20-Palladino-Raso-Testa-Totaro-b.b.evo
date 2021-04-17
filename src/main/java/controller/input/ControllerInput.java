@@ -1,17 +1,17 @@
 package controller.input;
 
 /**
- * Interface that check if user use input device.
+ * Interface that helps to check if a user is using input devices.
  */
 public interface ControllerInput {
 
     /**
-     * @return true if user try to move left.
+     * @return true or false if the user is trying to move left or not.
      */
     boolean canMoveLef();
 
     /**
-     * @return true if user try to move right.
+     * @return true or false if the user is trying to move right or not.
      */
     boolean canMoveRight();
 

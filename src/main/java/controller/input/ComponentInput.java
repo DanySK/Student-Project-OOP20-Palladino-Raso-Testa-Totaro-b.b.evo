@@ -2,6 +2,9 @@ package controller.input;
 
 import model.entities.GameObject;
 
+/**
+ * Interface that updates the gameObject based on user input.
+ */
 public interface ComponentInput {
 
     /**

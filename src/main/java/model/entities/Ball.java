@@ -118,7 +118,8 @@ public final class Ball extends GameObjectImpl {
         private DirVector dir;
 
         /**
-         * @param dir
+         * Set the new ball direction.
+         * @param dir direction to set
          * @return return himself
          */
         public Builder direction(final DirVector dir) {
@@ -127,8 +128,8 @@ public final class Ball extends GameObjectImpl {
         }
 
         /**
-         * 
-         * @param speed
+         * Set the new ball speed.
+         * @param speed speed to set
          * @return return himself
          */
         public Builder speed(final double speed) {
@@ -137,8 +138,8 @@ public final class Ball extends GameObjectImpl {
         }
 
         /**
-         * 
-         * @param height
+         * Set the new ball height.
+         * @param height height to set
          * @return return himself
          */
         public Builder height(final int height) {
@@ -147,8 +148,8 @@ public final class Ball extends GameObjectImpl {
         }
 
         /**
-         * 
-         * @param tPath
+         * Set the new ball texture path.
+         * @param tPath texture path to set
          * @return return himself
          */
         public Builder path(final String tPath) {
@@ -157,8 +158,8 @@ public final class Ball extends GameObjectImpl {
         }
 
         /**
-         * 
-         * @param width
+         * Set the new ball width.
+         * @param width width to set
          * @return himself
          */
         public Builder width(final int width) {
@@ -167,8 +168,8 @@ public final class Ball extends GameObjectImpl {
         }
 
         /**
-         * 
-         * @param pos
+         * Set the new ball position.
+         * @param pos position to set
          * @return return himself
          */
         public Builder position(final Position pos) {
