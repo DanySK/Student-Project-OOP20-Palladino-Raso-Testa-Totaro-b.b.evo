@@ -1,3 +1,4 @@
+
 package model.entities;
 
 import java.util.HashMap;
@@ -135,7 +136,7 @@ public class Brick extends GameObjectImpl {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void updatePhysics(final int timeElapsed, final GameBoardImpl world) {
@@ -143,7 +144,7 @@ public class Brick extends GameObjectImpl {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void updateInput(final ControllerInput controller) {
@@ -151,7 +152,7 @@ public class Brick extends GameObjectImpl {
         }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void updateGraphics(final AdapterGraphics graphicsAdapter) { 
@@ -159,7 +160,7 @@ public class Brick extends GameObjectImpl {
     }
 
     /**
-     * 
+     * getter for hit map.
      * @return map
      */
     public Map<GameObject, Boundaries> getHit() {
