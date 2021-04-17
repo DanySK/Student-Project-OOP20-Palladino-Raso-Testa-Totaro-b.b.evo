@@ -23,6 +23,13 @@ public class Texture {
     }
 
     /**
+     * @return Path of Undestructible BrickTexture
+     */
+    public String buildUnderBrickTexturePath() {
+        return BrickTexture.BRICK_TEXTURE_UNDESTRUCTIBLE.getPath();
+    }
+
+    /**
      * @return Path of PowerUpTexture
      */
     public String buildPowerUpTexturePath() {
