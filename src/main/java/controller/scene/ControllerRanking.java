@@ -8,7 +8,6 @@ import java.util.Optional;
 
 import controller.leaderboard.LeaderboardController;
 import controller.leaderboard.LeaderboardControllerImpl;
-import controller.sound.SoundController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -35,10 +34,8 @@ import javafx.util.Callback;
 import javafx.util.Duration;
 import model.utilities.GameUtilities;
 import resource.routing.PersonalFonts;
-import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
-import view.SceneLoader;
 
 public class ControllerRanking implements Initializable, FXMLMenuController {
 
@@ -151,8 +148,12 @@ public class ControllerRanking implements Initializable, FXMLMenuController {
     public void loadListener() {
         //Button back Listener
         this.buttonBack.setOnAction(event -> {
-            this.switchPage(PersonalViews.SCENE_MAIN_MENU, PersonalStyle.DEFAULT_STYLE);
-            this.soundClick();
+            FXMLMenuController.switchScene((Stage) this.window.getScene().getWindow(), 
+                    PersonalViews.SCENE_MAIN_MENU,
+                    PersonalStyle.DEFAULT_STYLE, 
+                    this.window.getScene().getWindow().getWidth(),
+                    this.window.getScene().getWindow().getHeight(),
+                    true);
          });
 
         /* Button delete leaderboard */
@@ -198,27 +199,6 @@ public class ControllerRanking implements Initializable, FXMLMenuController {
     }
 
     /**
-     * This method allows to switch the current scene whit the next or previous scene.
-     * @param scene - use to set the next or previous scene.
-     * @param style - use to set the style for the next or previous scene.
-     */
-    private void switchPage(final PersonalViews view, final PersonalStyle style) {
-        SceneLoader.switchScene((Stage) this.window.getScene().getWindow(), 
-                                view.getURL(), 
-                                view.getTitleScene(), 
-                                this.window.getWidth(), 
-                                this.window.getHeight(),
-                                style.getStylePath());
-    }
-
-    /**
-     * Method that allow to play the button's sound.
-     */
-    private void soundClick() {
-        SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
-    }
-
-    /**
      * Method that show dialog when the alias already exist in leaderboard.
      */
     private void showAlertDialog() {
@@ -239,8 +219,12 @@ public class ControllerRanking implements Initializable, FXMLMenuController {
         if (result.get() == yesButton) {
             this.controller.clearLeaderboard();
             //Refresh all view
-            this.switchPage(PersonalViews.SCENE_RANKING, PersonalStyle.DEFAULT_STYLE);
-            this.soundClick();
+            FXMLMenuController.switchScene((Stage) this.window.getScene().getWindow(), 
+                                           PersonalViews.SCENE_RANKING,
+                                           PersonalStyle.DEFAULT_STYLE, 
+                                           this.window.getWidth(), 
+                                           this.window.getHeight(), 
+                                           true);
         } else {
             alert.close();
         }
