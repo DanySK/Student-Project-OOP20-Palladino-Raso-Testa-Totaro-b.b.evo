@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import org.apache.commons.math3.util.MathArrays;
-
 import controller.game.GamePhase;
 import controller.game.GameState;
 import controller.sound.SoundController;
@@ -19,6 +17,8 @@ import model.leaderboard.LifeOperationStrategy;
 import model.leaderboard.ScoreOperationStrategy;
 import model.utilities.Boundaries;
 import model.utilities.BrickStatus;
+import model.utilities.PowerUpTimer;
+import model.utilities.PowerUpType;
 import model.utilities.ScoreAttribute;
 import resource.routing.PersonalSounds;
 import model.utilities.PowerUpUtilities;
@@ -63,8 +63,8 @@ public class EventHandler {
                     this.state.getBoard().removePowerUp((PowerUp) hit.getGameObj().get());
                 } else {
                     final PowerUp pwup = (PowerUp) hit.getGameObj().get();
-                    activatePowerUp(pwup);
                     this.state.getBoard().removePowerUp(pwup);
+                    activatePowerUp(pwup);
                 }
 
             } else if (hit.getGameObj().get() instanceof Paddle) {
@@ -89,46 +89,50 @@ public class EventHandler {
 
     /**
      * activates the {@link PowerUp}.
-     * @param pwup powerup that needs to be activated.
+     * @param pwup {@link PowerUp} that needs to be activated.
      */
     private void activatePowerUp(final PowerUp pwup) {
-        switch (pwup.getPowerUpType()) {
-        case DAMAGE_DOWN:
+        System.out.println("powerup attivato: " + pwup.getPowerUpType().name());
+        if (pwup.getPowerUpType().equals(PowerUpType.DAMAGE_DOWN)) {
             addPoints(ScoreAttribute.NEGATIVE_POWERUP.getValue());
             this.ballDamage = PowerUpUtilities.DEFAULT_BALL_DAMAGE + pwup.getDamageModifier();
-            pwup.waitSeconds(pwup.getActiveTime());
+            waitSeconds(pwup.getActiveTime(), pwup);
             this.ballDamage = PowerUpUtilities.DEFAULT_BALL_DAMAGE;
-            break;
-        case DAMAGE_UP:
+        } else if (pwup.getPowerUpType().equals(PowerUpType.DAMAGE_UP)) {
             addPoints(ScoreAttribute.POSITIVE_POWERUP.getValue());
             this.ballDamage = PowerUpUtilities.DEFAULT_BALL_DAMAGE + pwup.getDamageModifier();
-            pwup.waitSeconds(pwup.getActiveTime());
+            waitSeconds(pwup.getActiveTime(), pwup);
             this.ballDamage = PowerUpUtilities.DEFAULT_BALL_DAMAGE;
-            break;
-        case LIFE_DOWN:
+        } else if (pwup.getPowerUpType().equals(PowerUpType.LIFE_DOWN)) {
             addPoints(ScoreAttribute.NEGATIVE_POWERUP.getValue());
             state.getPlayer().lifeOperation(lifeOperation, pwup.getLifeModifier());
-            break;
-        case LIFE_UP:
+        } else if (pwup.getPowerUpType().equals(PowerUpType.LIFE_UP)) {
             addPoints(ScoreAttribute.POSITIVE_POWERUP.getValue());
             state.getPlayer().lifeOperation(lifeOperation, pwup.getLifeModifier());
-            break;
-        case SPEED_UP:
+        } else if (pwup.getPowerUpType().equals(PowerUpType.SPEED_DOWN)) {
             addPoints(ScoreAttribute.POSITIVE_POWERUP.getValue());
             this.state.getBoard().getBalls().forEach(e -> e.setSpeed(e.getSpeed() + pwup.getSpeedModifier()));
-            pwup.waitSeconds(pwup.getActiveTime());
+            waitSeconds(pwup.getActiveTime(), pwup);
             this.state.getBoard().getBalls().forEach(e -> e.setSpeed(e.getSpeed() - pwup.getSpeedModifier()));
-            break;
-        case SPEED_DOWN:
+        } else if (pwup.getPowerUpType().equals(PowerUpType.SPEED_UP)) {
             addPoints(ScoreAttribute.NEGATIVE_POWERUP.getValue());
             this.state.getBoard().getBalls().forEach(e -> e.setSpeed(e.getSpeed() + pwup.getSpeedModifier()));
-            pwup.waitSeconds(pwup.getActiveTime());
+            waitSeconds(pwup.getActiveTime(), pwup);
             this.state.getBoard().getBalls().forEach(e -> e.setSpeed(e.getSpeed() - pwup.getSpeedModifier()));
-            break;
-        default:
-            break;
         }
     }
+
+    /**
+     * this method is used after powerup activation
+     * to waits some seconds.
+     * @param seconds amount of seconds to wait
+     * @param pwup powerup that needs to wait 
+     */
+    public void waitSeconds(final long seconds, final PowerUp pwup) {
+        System.out.println("aspetto " + pwup.getPowerUpType().getActiveTime() + " secondi");
+        new PowerUpTimer(seconds, pwup);
+    }
+
 
     /**
      * adds points to the player's score.
