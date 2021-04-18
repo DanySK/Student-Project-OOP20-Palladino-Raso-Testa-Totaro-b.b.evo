@@ -1,29 +1,14 @@
+
 package model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.Arrays;
-import java.util.Optional;
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import model.entities.Ball;
 import model.entities.Brick;
 import model.entities.GameBoard;
-import model.entities.GameBoardImpl;
-import model.entities.PowerUp;
-import model.entities.Wall;
-import model.utilities.Angle;
-import model.utilities.Boundaries;
+
 import model.utilities.BrickStatus;
-import model.utilities.Difficulty;
-import model.utilities.DirVector;
-import model.utilities.ObjectInit;
-import model.utilities.Pair;
 import model.utilities.Position;
-import view.graphics.BrickComponentGraphics;
+
 
 public class TestBrick {
     private static final Position BRICK_POS = new Position(50, 50);
