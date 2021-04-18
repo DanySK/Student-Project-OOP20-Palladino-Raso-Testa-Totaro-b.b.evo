@@ -1,3 +1,4 @@
+
 package controller.scene;
 
 import java.io.File;
@@ -13,13 +14,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -28,6 +29,7 @@ import resource.routing.PersonalFonts;
 import resource.routing.PersonalImages;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
+import resource.routing.TutorialImages;
 
 
 public class ControllerTutorial implements Initializable, FXMLMenuController {
@@ -48,15 +50,22 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
     private VBox videoTutorialContainer;
 
     @FXML
-    private MediaView videoTutorial;
+    private ImageView videoTutorial;
 
     @FXML
-    private HBox containerBackButton;
+    private VBox buttonsContainer;
 
     @FXML
     private Button buttonBack;
 
-    private MediaPlayer player;
+    @FXML
+    private Button btnMenuTutorial;
+
+    @FXML
+    private Button btnHowToPlay;
+
+    @FXML
+    private Button btnSettingsTutorial;
 
      /**
      *  Method that initialize all component of scene.
@@ -64,7 +73,7 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         try {
-            this.loadVideo();
+            this.loadMedia();
             this.loadFont();
             this.loadListener();
             this.resizable();
@@ -75,25 +84,14 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
 
     /**
      * 
-     * Method used to load video into Mediaplayer.
+     * Method used to load media into ImageView.
      *
      */
-    private void loadVideo() throws MalformedURLException {
-
-        //Stop the menu music
-        SoundController.stopMusic();
-
-        //Load the video
-        final URL videoUrl = new URL(new File(PersonalImages.TUTORIAL_VIDEO.getURL().getFile()).toURI().toString());
-        final Media media = new Media(videoUrl.toExternalForm());
-
-        //Set video into player
-        this.player = new MediaPlayer(media);
-        this.player.setAutoPlay(true);
-        this.player.seek(Duration.INDEFINITE);
-
-        // Add player at MediaView
-        this.videoTutorial.setMediaPlayer(player);
+    private void loadMedia() throws MalformedURLException {
+        //Load the animated image
+        final URL videoUrl = new URL(new File(TutorialImages.TUTORIAL_DEFAULT.getURL().getFile()).toURI().toString());
+        final Image image = new Image(videoUrl.toExternalForm());
+        this.videoTutorial.setImage(image);
     }
 
     /**
@@ -105,6 +103,9 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
     public void loadFont() {
         this.lblTitle.setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
         this.buttonBack.setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+        this.btnHowToPlay.setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+        this.btnMenuTutorial.setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+        this.btnMenuTutorial.setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
     }
 
     /**
@@ -117,9 +118,6 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
         // ButtonBack Listener
         this.buttonBack.setOnAction(event -> {
 
-            //Stop video
-            player.stop();
-
             FXMLMenuController.switchScene((Stage) this.window.getScene().getWindow(), 
                                            PersonalViews.SCENE_MAIN_MENU, 
                                            PersonalStyle.DEFAULT_STYLE, 
@@ -128,6 +126,24 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
                                            true);
         });
 
+     // button HowToPlay Listener
+        this.btnHowToPlay.setOnAction(event -> {
+            this.lblTitle.setText("HOW TO PLAY");
+            final Image i = new Image(new File(TutorialImages.TUTORIAL_HOW_TO_PLAY.getURL().getFile()).toURI().toString());
+            this.videoTutorial.setImage(i);
+        });
+     // button MenuTutorial Listener
+        this.btnMenuTutorial.setOnAction(event -> {
+            this.lblTitle.setText("MENU TUTORIAL");
+            final Image i = new Image(new File(TutorialImages.TUTORIAL_MAIN_MENU.getURL().getFile()).toURI().toString());
+            this.videoTutorial.setImage(i);
+        });
+     // button SettingsTutorial Listener
+        this.btnSettingsTutorial.setOnAction(event -> {
+            this.lblTitle.setText("SETTINGS TUTORIAL");
+            final Image i = new Image(new File(TutorialImages.TUTORIAL_SETTINGS.getURL().getFile()).toURI().toString());
+            this.videoTutorial.setImage(i);
+        });
     }
 
     /**
@@ -159,9 +175,17 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
         this.videoTutorial.fitHeightProperty().bind(this.panel.heightProperty().divide(GameUtilities.CENTER_DIVIDER));
         this.videoTutorial.fitWidthProperty().bind(this.panel.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
 
-        this.buttonBack.prefWidthProperty().bind(this.containerBackButton.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-        this.buttonBack.prefHeightProperty().bind(this.containerBackButton.heightProperty().divide(GameUtilities.CENTER_DIVIDER));
+        this.buttonBack.prefWidthProperty().bind(this.panel.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+        this.buttonBack.prefHeightProperty().bind(this.panel.heightProperty().divide(GameUtilities.CENTER_DIVIDER));
 
+        this.btnMenuTutorial.prefWidthProperty().bind(this.panel.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+        this.btnMenuTutorial.prefHeightProperty().bind(this.panel.heightProperty().divide(GameUtilities.CENTER_DIVIDER));
+
+        this.btnHowToPlay.prefWidthProperty().bind(this.panel.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+        this.btnHowToPlay.prefHeightProperty().bind(this.panel.heightProperty().divide(GameUtilities.CENTER_DIVIDER));
+
+        this.btnSettingsTutorial.prefWidthProperty().bind(this.panel.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+        this.btnSettingsTutorial.prefHeightProperty().bind(this.panel.heightProperty().divide(GameUtilities.CENTER_DIVIDER));
     }
 
 }
