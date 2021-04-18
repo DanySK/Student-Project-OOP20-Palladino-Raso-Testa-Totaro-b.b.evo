@@ -31,6 +31,12 @@ public interface GameBoard extends GameBoardEventListeners {
 
     /**
      * 
+     * clears the powerup set.
+     */
+    void clearPowerUps();
+
+    /**
+     * 
      * @param bricks added in the gameboard
      */
     void setBricks(Collection<Brick> bricks);

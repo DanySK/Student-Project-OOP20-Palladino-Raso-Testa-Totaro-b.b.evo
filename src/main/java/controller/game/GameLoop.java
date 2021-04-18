@@ -74,6 +74,7 @@ public class GameLoop implements Runnable {
                 break;
             case PAUSE:
                 this.controllerGame.setPlay(true);
+                this.board.clearPowerUps();
                 render();
                 break;
             case RUNNING:

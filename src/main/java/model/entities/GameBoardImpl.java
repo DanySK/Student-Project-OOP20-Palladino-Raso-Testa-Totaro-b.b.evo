@@ -242,5 +242,13 @@ public class GameBoardImpl implements GameBoard {
         return this.eventHandler;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void clearPowerUps() {
+        this.pwup.clear();
+    }
+
 
 }
