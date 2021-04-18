@@ -26,7 +26,7 @@ public class PowerUp extends GameObjectImpl {
     private final float speedModifier;
     private final int lifeModifier;
     private final int damageModifier;
-
+    private Boolean isActive;
     private String texturePath;
 
     private final Map<GameObject, Boundaries> hit = new HashMap<>();
@@ -40,6 +40,24 @@ public class PowerUp extends GameObjectImpl {
         this.lifeModifier = PowerUpType.valueOf(this.pwtype.toString()).getLifeModifier();
         this.speedModifier = PowerUpType.valueOf(this.pwtype.toString()).getSpeedModifier();
         this.texturePath = texturePath;
+        this.isActive = false;
+    }
+
+    /**
+     * getter for isActive boolean value.
+     * @return true if the powerup has been activated,
+     * false otherwise
+     */
+    public Boolean getIsActive() {
+        return this.isActive;
+    }
+
+    /**
+     * setter for isActive boolean.
+     * @param value the value to set
+     */
+    public void setIsActive(final Boolean value) {
+        this.isActive = value;
     }
 
     /**

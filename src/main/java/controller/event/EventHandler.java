@@ -92,12 +92,12 @@ public class EventHandler {
      * @param pwup {@link PowerUp} that needs to be activated.
      */
     private void activatePowerUp(final PowerUp pwup) {
+        pwup.setIsActive(true);
         System.out.println("powerup attivato: " + pwup.getPowerUpType().name());
         if (pwup.getPowerUpType().equals(PowerUpType.DAMAGE_DOWN)) {
             addPoints(ScoreAttribute.NEGATIVE_POWERUP.getValue());
             this.ballDamage = PowerUpUtilities.DEFAULT_BALL_DAMAGE + pwup.getDamageModifier();
             waitSeconds(pwup.getActiveTime(), pwup);
-            this.ballDamage = PowerUpUtilities.DEFAULT_BALL_DAMAGE;
         } else if (pwup.getPowerUpType().equals(PowerUpType.DAMAGE_UP)) {
             addPoints(ScoreAttribute.POSITIVE_POWERUP.getValue());
             this.ballDamage = PowerUpUtilities.DEFAULT_BALL_DAMAGE + pwup.getDamageModifier();
@@ -118,6 +118,23 @@ public class EventHandler {
             addPoints(ScoreAttribute.NEGATIVE_POWERUP.getValue());
             this.state.getBoard().getBalls().forEach(e -> e.setSpeed(e.getSpeed() + pwup.getSpeedModifier()));
             waitSeconds(pwup.getActiveTime(), pwup);
+            this.state.getBoard().getBalls().forEach(e -> e.setSpeed(e.getSpeed() - pwup.getSpeedModifier()));
+        } 
+        if (!pwup.getIsActive()) {
+            deactivatePowerUp(pwup);
+        }
+    }
+
+    /**
+     * deactivates the powerup.
+     * @param pwup to be deactivated
+     */
+    public void deactivatePowerUp(final PowerUp pwup) {
+        if (pwup.getPowerUpType().equals(PowerUpType.DAMAGE_DOWN) 
+                ||  pwup.getPowerUpType().equals(PowerUpType.DAMAGE_UP)) {
+            this.ballDamage = PowerUpUtilities.DEFAULT_BALL_DAMAGE;
+        } else if (pwup.getPowerUpType().equals(PowerUpType.SPEED_DOWN) 
+                ||  pwup.getPowerUpType().equals(PowerUpType.SPEED_UP)) {
             this.state.getBoard().getBalls().forEach(e -> e.setSpeed(e.getSpeed() - pwup.getSpeedModifier()));
         }
     }
