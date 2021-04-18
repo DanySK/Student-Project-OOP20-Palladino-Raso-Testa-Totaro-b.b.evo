@@ -2,7 +2,6 @@ package view.graphics;
 
 import model.entities.GameObject;
 import model.entities.Paddle;
-import resource.routing.PersonalImages;
 import javafx.scene.image.Image;
 
 public class PaddleComponentGraphics implements ComponentGraphics {

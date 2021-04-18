@@ -42,6 +42,12 @@ public final class PowerUpUtilities {
     public static final double POWERUP_DROP_SPEED = 0.2;
 
     /**
+     * default string for the inactive {@link PowerUp} .
+     */
+    public static final String DEFAULT_PWUP_STRING = "--";
+
+
+    /**
      * default drop direction for {@link PowerUp}.
      */
     public static final DirVector POWERUP_DROP_DIR = new DirVector(0, 1);
