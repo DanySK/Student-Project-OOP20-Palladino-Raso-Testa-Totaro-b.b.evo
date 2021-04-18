@@ -24,14 +24,14 @@ import model.mapeditor.LevelBuilder;
 import model.mapeditor.LevelManager;
 import model.mapeditor.LevelSelection;
 import model.utilities.BrickStatus;
-import model.utilities.GameUtilities;
+import model.utilities.ScreenUtilities;
 import model.utilities.Pair;
 import resource.routing.BackGround;
 import resource.routing.BrickTexture;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
-import resource.routing.PersonalViews;
 import resource.routing.PowerUpTexture;
+import view.PersonalViews;
 import view.SceneLoader;
 
 public class ControllerMapEditor implements GUIController {
@@ -126,7 +126,7 @@ public class ControllerMapEditor implements GUIController {
 
         this.setCanvas();
         this.canvas.setOnMouseClicked(e -> {
-            if (e.getY() < (rowsY * (GameUtilities.BRICK_NUMBER_Y - NOT_BUILDABLE_ZONE))) {
+            if (e.getY() < (rowsY * (ScreenUtilities.BRICK_NUMBER_Y - NOT_BUILDABLE_ZONE))) {
                 final BrickStatus state;
                 if (unbreakableCheck.isSelected()) {
                     state = BrickStatus.NOT_DESTRUCTIBLE;
@@ -168,27 +168,27 @@ public class ControllerMapEditor implements GUIController {
      * Draw a grid on canvas.
      */
     private void setCanvas() {
-        this.canvas.setWidth(GameUtilities.CANVAS_WIDTH);
-        this.canvas.setHeight(GameUtilities.CANVAS_HEIGHT);
+        this.canvas.setWidth(ScreenUtilities.CANVAS_WIDTH);
+        this.canvas.setHeight(ScreenUtilities.CANVAS_HEIGHT);
         this.graphicsContext = canvas.getGraphicsContext2D();
         this.graphicsContext.setStroke(Color.BLACK);
         this.graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        final int colsX = (int) (this.canvas.getWidth() / GameUtilities.BRICK_NUMBER_X);
-        this.rowsY = (int) (this.canvas.getHeight() / GameUtilities.BRICK_NUMBER_Y);
-        final double wastePixel = GameUtilities.CANVAS_WIDTH % GameUtilities.BRICK_NUMBER_X;
+        final int colsX = (int) (this.canvas.getWidth() / ScreenUtilities.BRICK_NUMBER_X);
+        this.rowsY = (int) (this.canvas.getHeight() / ScreenUtilities.BRICK_NUMBER_Y);
+        final double wastePixel = ScreenUtilities.CANVAS_WIDTH % ScreenUtilities.BRICK_NUMBER_X;
         int currentYpos = 0;
-        for (int i = 0; i < GameUtilities.BRICK_NUMBER_Y; i++) {
+        for (int i = 0; i < ScreenUtilities.BRICK_NUMBER_Y; i++) {
             graphicsContext.strokeLine(0, currentYpos, canvas.getWidth() - wastePixel, currentYpos);
             currentYpos += rowsY;
         }
         int currentXpos = 0;
-        for (int i = 0; i < GameUtilities.BRICK_NUMBER_X; i++) {
+        for (int i = 0; i < ScreenUtilities.BRICK_NUMBER_X; i++) {
             graphicsContext.strokeLine(currentXpos, 0, currentXpos, canvas.getHeight());
             currentXpos += colsX;
         }
         this.graphicsContext.strokeLine(currentXpos, 0, currentXpos, canvas.getHeight());
         this.graphicsContext.setFill(Color.BLACK);
-        this.graphicsContext.fillRect(0, rowsY * (GameUtilities.BRICK_NUMBER_Y - NOT_BUILDABLE_ZONE), canvas.getWidth() - wastePixel, canvas.getHeight());
+        this.graphicsContext.fillRect(0, rowsY * (ScreenUtilities.BRICK_NUMBER_Y - NOT_BUILDABLE_ZONE), canvas.getWidth() - wastePixel, canvas.getHeight());
     }
 
 

@@ -4,7 +4,7 @@ import controller.sound.SoundController;
 import javafx.stage.Stage;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
-import resource.routing.PersonalViews;
+import view.PersonalViews;
 import view.SceneLoader;
 
 public interface FXMLMenuController {

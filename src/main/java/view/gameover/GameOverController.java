@@ -23,12 +23,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.utilities.GameUtilities;
+import model.utilities.ScreenUtilities;
 import resource.routing.PersonalFonts;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
-import resource.routing.PersonalViews;
 import view.GUILayout;
+import view.PersonalViews;
 import view.SceneLoader;
 
 public class GameOverController implements Initializable, FXMLMenuController, GUILayout {
@@ -164,15 +164,15 @@ public class GameOverController implements Initializable, FXMLMenuController, GU
     @Override
     public void loadFont() {
         this.lblTitle
-                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
+                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnMenu
-                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnRanking
-                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_NORMAL_LABEL_SIZE));
         this.lblCoins
-                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
         this.lblHighscore
-                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
     }
 
     /**
@@ -182,8 +182,8 @@ public class GameOverController implements Initializable, FXMLMenuController, GU
      */
     @Override
     public void resizable() {
-        this.btnMenu.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-        this.btnRanking.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+        this.btnMenu.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
+        this.btnRanking.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
         this.lblTitle.setWrapText(true);
         this.lblHighscore.setWrapText(true);
     }

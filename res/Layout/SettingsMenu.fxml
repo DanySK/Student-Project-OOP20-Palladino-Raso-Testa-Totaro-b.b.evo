@@ -33,7 +33,7 @@
                      <padding>
                         <Insets left="10.0" />
                      </padding></RadioButton>
-                  <RadioButton fx:id="rbUseUpDown" mnemonicParsing="false" prefHeight="90.0" prefWidth="557.0" styleClass="menuButton" text="Use Up &amp; Down" toggleGroup="$ControlSettings">
+                  <RadioButton fx:id="rbUseUpDown" disable="true" mnemonicParsing="false" prefHeight="90.0" prefWidth="557.0" styleClass="menuButton" text="Use Up &amp; Down" toggleGroup="$ControlSettings">
                      <padding>
                         <Insets left="10.0" />
                      </padding></RadioButton>

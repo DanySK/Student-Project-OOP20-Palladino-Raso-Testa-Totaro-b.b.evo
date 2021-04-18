@@ -33,9 +33,10 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import model.utilities.GameUtilities;
+import model.utilities.ScreenUtilities;
 import resource.routing.PersonalFonts;
 import resource.routing.PersonalStyle;
-import resource.routing.PersonalViews;
+import view.PersonalViews;
 
 public class ControllerRanking implements Initializable, FXMLMenuController {
 
@@ -85,7 +86,7 @@ public class ControllerRanking implements Initializable, FXMLMenuController {
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         this.controller = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
-        this.fontColumn = Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE);
+        this.fontColumn = Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE);
         this.initializeTableView();
         this.loadFont();
         this.loadAnimation();
@@ -132,11 +133,11 @@ public class ControllerRanking implements Initializable, FXMLMenuController {
     @Override
     public void loadFont() {
         this.lblTitle
-        .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
+        .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_NORMAL_LABEL_SIZE));
         this.buttonBack
-        .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+        .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
         this.buttonDelete
-        .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+        .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
     }
 
     /**
@@ -242,8 +243,8 @@ public class ControllerRanking implements Initializable, FXMLMenuController {
         this.panel.prefHeightProperty().bind(this.window.heightProperty());
         this.panel.prefWidthProperty().bind(this.window.widthProperty());
         this.lblTitle.setWrapText(true);
-        this.buttonBack.prefWidthProperty().bind(this.containerBackButton.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-        this.buttonDelete.prefWidthProperty().bind(this.containerBackButton.widthProperty().divide(GameUtilities.CENTER_DIVIDER * MULTIPLIER));
+        this.buttonBack.prefWidthProperty().bind(this.containerBackButton.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
+        this.buttonDelete.prefWidthProperty().bind(this.containerBackButton.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER * MULTIPLIER));
         this.displayRanking.prefHeightProperty().bind(this.rankingContainer.heightProperty());
         this.displayRanking.prefWidthProperty().bind(this.rankingContainer.widthProperty());
     }

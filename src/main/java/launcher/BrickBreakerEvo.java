@@ -8,9 +8,9 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import model.settings.GameSettingsBuilderImpl;
 import model.settings.SettingLevelManager;
-import model.utilities.GameUtilities;
+import model.utilities.ScreenUtilities;
 import resource.routing.PersonalStyle;
-import resource.routing.PersonalViews;
+import view.PersonalViews;
 import view.SceneLoader;
 
 /**
@@ -69,12 +69,12 @@ public class BrickBreakerEvo extends Application {
         SceneLoader.switchScene(primaryStage, 
                 PersonalViews.SCENE_MAIN_MENU.getURL(), 
                 PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
-                GameUtilities.SCREEN_WIDTH, 
-                GameUtilities.SCREEN_HEIGHT,
+                ScreenUtilities.SCREEN_WIDTH, 
+                ScreenUtilities.SCREEN_HEIGHT,
                 PersonalStyle.DEFAULT_STYLE.getStylePath());
 
-        primaryStage.setMinWidth(GameUtilities.MIN_RESIZE_WIDTH);
-        primaryStage.setMinHeight(GameUtilities.MIN_RESIZE_HEIGHT);
+        primaryStage.setMinWidth(ScreenUtilities.MIN_RESIZE_WIDTH);
+        primaryStage.setMinHeight(ScreenUtilities.MIN_RESIZE_HEIGHT);
 
     }
 

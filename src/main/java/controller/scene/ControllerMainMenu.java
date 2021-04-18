@@ -18,12 +18,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.utilities.GameUtilities;
+import model.utilities.ScreenUtilities;
 import resource.routing.PersonalFonts;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
-import resource.routing.PersonalViews;
 import view.GUILayout;
+import view.PersonalViews;
 
 public class ControllerMainMenu implements Initializable, FXMLMenuController, GUILayout {
 
@@ -145,19 +145,19 @@ public class ControllerMainMenu implements Initializable, FXMLMenuController, GU
     @Override
     public void loadFont() {
         this.lblTitle
-                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
+                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnPlay
-                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnSettings
-                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnCreativeMode
-                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnTutorial
-                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnRanking
-                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_NORMAL_LABEL_SIZE));
         this.lblCoins
-                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
     }
 
     /**
@@ -167,11 +167,11 @@ public class ControllerMainMenu implements Initializable, FXMLMenuController, GU
      */
     @Override
     public void resizable() {
-        this.btnPlay.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-        this.btnSettings.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-        this.btnCreativeMode.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-        this.btnTutorial.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-        this.btnRanking.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+        this.btnPlay.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
+        this.btnSettings.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
+        this.btnCreativeMode.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
+        this.btnTutorial.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
+        this.btnRanking.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
         this.lblTitle.setWrapText(true);
     }
 

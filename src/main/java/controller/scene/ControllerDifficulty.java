@@ -28,10 +28,11 @@ import model.settings.SettingLevel.SettingLevelBuilder;
 import model.settings.SettingLevelManager;
 import model.utilities.Difficulty;
 import model.utilities.GameUtilities;
+import model.utilities.ScreenUtilities;
 import resource.routing.PersonalFonts;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
-import resource.routing.PersonalViews;
+import view.PersonalViews;
 
 public class ControllerDifficulty implements Initializable, FXMLMenuController {
 
@@ -172,15 +173,15 @@ public class ControllerDifficulty implements Initializable, FXMLMenuController {
     @Override
     public void loadFont() {
         this.lblTitle
-            .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
+            .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnStartGame
-            .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+            .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
         this.ckHardDifficulty
-            .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+            .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
         this.ckNormalDifficulty
-            .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+            .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
         this.btnBack
-            .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+            .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
     }
 
     /**
@@ -194,10 +195,10 @@ public class ControllerDifficulty implements Initializable, FXMLMenuController {
         this.panel.prefHeightProperty().bind(this.window.heightProperty());
         this.panel.prefWidthProperty().bind(this.window.widthProperty());
 
-        this.btnBack.prefWidthProperty().bind(this.btnBackContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-        this.btnStartGame.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-        this.ckNormalDifficulty.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-        this.ckHardDifficulty.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+        this.btnBack.prefWidthProperty().bind(this.btnBackContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
+        this.btnStartGame.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
+        this.ckNormalDifficulty.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
+        this.ckHardDifficulty.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
 
         this.lblTitle.setWrapText(false);
     }

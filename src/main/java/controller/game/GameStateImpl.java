@@ -12,13 +12,12 @@ import model.entities.Wall;
 import model.leaderboard.Player;
 import model.leaderboard.PlayerImpl;
 import model.mapeditor.Level;
-import model.mapeditor.LevelSelection;
 import model.settings.SettingLevel;
 import model.settings.SettingLevelManager;
-import model.settings.SettingLevel.SettingLevelBuilder;
 import model.utilities.ObjectInit;
 import model.utilities.Difficulty;
 import model.utilities.GameUtilities;
+import model.utilities.ScreenUtilities;
 import model.utilities.Angle;
 
 public class GameStateImpl implements GameState {
@@ -55,7 +54,7 @@ public class GameStateImpl implements GameState {
         this.player = new PlayerImpl(this.getPlayerAlias(), setting.getDifficulty().getInitialScore(), 
                                      setting.getDifficulty().getNumberOfLives(), //qua bisogna vedere perche senno resetta ogni livello
                                      setting.getDifficulty().getMaxNumberOfLife());
-        this.board = new GameBoardImpl(new Wall(GameUtilities.WORLD_WIDTH, GameUtilities.WORLD_HEIGHT), this);
+        this.board = new GameBoardImpl(new Wall(ScreenUtilities.WORLD_WIDTH, ScreenUtilities.WORLD_HEIGHT), this);
         this.board.setBricks(level.getBricks());
     }
 
