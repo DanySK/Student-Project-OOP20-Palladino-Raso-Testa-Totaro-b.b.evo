@@ -40,8 +40,6 @@ public class MapEditorController implements GUIController {
     private int rowsY;
     private GraphicsContext graphicsContext;
     private LevelBuilder levelBuilder;
-    private String textureType;
-    private boolean statePowerup = true;
 
     @FXML
     private Pane pane;
@@ -125,9 +123,6 @@ public class MapEditorController implements GUIController {
         this.backGround.getItems().addAll(BackGround.getBackGroundNames());
         this.levelBuilder = new LevelBuilder();
 
-        brickTexture.setOnAction(c -> {
-            setTypeTexture(brickTexture.getValue());
-        });
 
         this.setCanvas();
         this.canvas.setOnMouseClicked(e -> {
@@ -142,7 +137,7 @@ public class MapEditorController implements GUIController {
                 }
 
                 final Pair<GameObjectEmpty, Boolean> init = levelBuilder.brickSelected(e.getX(), e.getY(),
-                                                                                  getTypeTexture(),
+                                                                                  brickTexture.getValue(),
                                                                                   state,
                                                                                   (int) durabilitySet.getValue());
                 if (init.getY()) {
@@ -163,26 +158,6 @@ public class MapEditorController implements GUIController {
                 }
             }
         });
-    }
-
-    /**
-     * @return ff
-     */
-    private String getTypeTexture() {
-        return textureType;
-    }
-
-    /**
-     * @param textureType
-     */
-    private void setTypeTexture(final String textureType) {
-        if (textureType.equals(brickTexture.getValue())) {
-            this.textureType = brickTexture.getValue();
-            statePowerup = false;
-        } else {
-            //this.textureType = powerupTexture.getValue();
-            statePowerup = true;
-        }
     }
 
     /**
