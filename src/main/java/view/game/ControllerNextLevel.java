@@ -15,6 +15,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.leaderboard.Player;
 import model.mapeditor.Level;
+import model.mapeditor.LevelSelection;
+import model.settings.SettingLevelManager;
+import model.settings.SettingLevel.SettingLevelBuilder;
 import model.utilities.GameUtilities;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
@@ -73,6 +76,10 @@ public class ControllerNextLevel implements Initializable, GUILayout {
      */
     @FXML
     public void goToNextLevel() {
+
+        ///final SettingLevelBuilder setBuilder = new SettingLevelBuilder();
+        //setBuilder.fromSettings(SettingLevelManager.loadOption());
+
         final Scene scene = btnNext.getScene();
         final Thread engine = new Thread(new GameLoop(scene));
         engine.setDaemon(true);
