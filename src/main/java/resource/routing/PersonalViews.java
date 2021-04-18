@@ -64,7 +64,7 @@ public enum PersonalViews {
     /**
      * Path for load Game over banner.
      */
-    SCENE_GAME_OVER("Layout/ ", "GAMEOVER"), 
+    SCENE_GAME_OVER("Layout/GameOver.fxml", "GAMEOVER"), 
 
     /**
      * Path for load Final Scene before ranking.
@@ -83,9 +83,9 @@ public enum PersonalViews {
 
         final FXMLLoader loader = new FXMLLoader(this.getURL());
         try {
-            if (this.titleScene.equals("GAME")) {
+            if (this.titleScene.equals("GAME") || this.titleScene.equals("NEXT_LEVEL")) {
                 this.layout = loader.load();
-            } else if (this.titleScene.equals("BrickBreacker-EVO")) {
+            } else if (this.titleScene.equals("BrickBreacker-EVO") || this.titleScene.equals("GAMEOVER")) {
                 this.anchLayout = loader.load();
             }
 

@@ -93,4 +93,16 @@ public enum BrickTexture implements Serializable{
                                                  .getPath();
     }
 
+    /**
+     * @param path of textureBrick
+     * @return name of theme
+     */
+    public static String getThemeNameByPath(final String path) {
+        return Arrays.asList(BrickTexture.values()).stream()
+                .filter(i -> i.getPath().equals(path))
+                .findFirst()
+                .get()
+                .getTheme();
+    }
+
 }

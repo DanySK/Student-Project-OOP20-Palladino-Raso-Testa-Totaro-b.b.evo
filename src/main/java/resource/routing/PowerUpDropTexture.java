@@ -9,31 +9,31 @@ public enum PowerUpDropTexture implements Serializable {
     /**
      * Default theme, drop powerup texture.
      */
-    DROP_TEXTURE_DEFAULT("Images/dropPowerup/defaultDrop.png ", "Default"),
+    DROP_TEXTURE_DEFAULT("Images/dropPowerup/defaultDrop.png", "Default"),
 
     /**
      * Arkanoid theme, drop powerup texture.
      */
-    DROP_TEXTURE_ARKANOID("Images/dropPowerup/arkanoidDrop.png ", "Arkanoid"),
+    DROP_TEXTURE_ARKANOID("Images/dropPowerup/arkanoidDrop.png", "Arkanoid"),
 
     /**
      * Galaga theme, drop powerup texture.
      */
-    DROP_TEXTURE_GALAGA("Images/dropPowerup/galagaDrop.png ", "Galaga"),
+    DROP_TEXTURE_GALAGA("Images/dropPowerup/galagaDrop.png", "Galaga"),
 
     /**
      * Pacman theme, drop powerup texture.
      */
-    DROP_TEXTURE_PACMAN("Images/dropPowerup/pacmanDrop.png ", "Pacman"),
+    DROP_TEXTURE_PACMAN("Images/dropPowerup/pacmanDrop.png", "Pacman"),
     /**
      * Crash Bandicoot theme, drop powerup texture.
      */
-    DROP_TEXTURE_CRASH("Images/dropPowerup/crashDrop.png ", "Crash"),
+    DROP_TEXTURE_CRASH("Images/dropPowerup/crashDrop.png", "Crash"),
 
     /**
      * Super Mario theme, drop powerup texture.
      */
-    DROP_TEXTURE_MARIO("Images/dropPowerup/marioDrop.png ", "SuperMario");
+    DROP_TEXTURE_MARIO("Images/dropPowerup/marioDrop.png", "SuperMario");
 
     private String path;
     private String theme;

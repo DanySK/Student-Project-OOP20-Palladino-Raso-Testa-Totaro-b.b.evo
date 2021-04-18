@@ -1,7 +1,11 @@
 package view.game;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import controller.game.GameLoop;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -20,7 +24,7 @@ import view.SceneLoader;
 /**
  * Controller of nextLevel.fxml.
  */
-public class ControllerNextLevel implements GUILayout {
+public class ControllerNextLevel implements Initializable, GUILayout {
 
     @FXML
     private SplitPane mainPanel;
@@ -43,8 +47,8 @@ public class ControllerNextLevel implements GUILayout {
     /**
      * Initialize the window with default settings adapted to the monitor resolution.
      */
-    @FXML
-    public void initialize() {
+    @Override
+    public void initialize(final URL location, final ResourceBundle resources) {
         this.mainPanel.setMinWidth(GameUtilities.SCREEN_WIDTH);
         this.mainPanel.setMaxWidth(GameUtilities.SCREEN_WIDTH);
         this.mainPanel.setMinHeight(GameUtilities.SCREEN_HEIGHT);

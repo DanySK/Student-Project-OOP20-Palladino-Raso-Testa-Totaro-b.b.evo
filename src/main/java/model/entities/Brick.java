@@ -7,6 +7,7 @@ import java.util.Map;
 import controller.input.ComponentInputEmpty;
 import controller.input.ControllerInput;
 import model.utilities.Position;
+import resource.routing.PowerUpDropTexture;
 import model.utilities.BrickStatus;
 import model.physics.ComponentPhysicsEmpty;
 import model.physics.PwUpComponentPhysics;
@@ -36,7 +37,9 @@ public class Brick extends GameObjectImpl {
      * @return a new PowerUp
      */
     public PowerUp dropPowerUp() {
-        return new PowerUp(this.getPos(), this.getHeight(), this.getWidth(), this.texturePath);
+        //controllo dal brick per prendere il tema
+        //PowerUpDropTexture. metodo col nome del tema
+        return new PowerUp(this.getPos(), this.getHeight(), this.getWidth(), PowerUpDropTexture.DROP_TEXTURE_GALAGA.getPath());
     }
 
 

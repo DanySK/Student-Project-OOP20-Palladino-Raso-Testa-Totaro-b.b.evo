@@ -1,7 +1,10 @@
 package controller.event;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
+
+import org.apache.commons.math3.util.MathArrays;
 
 import controller.game.GamePhase;
 import controller.game.GameState;
@@ -50,7 +53,7 @@ public class EventHandler {
                         addPoints(ScoreAttribute.BRICK_BREAK.getValue());               //add the score of the broken brick
                         this.state.getBoard().removeBrick(brick);                       //remove brick
                         if (brick.getStatus().equals(BrickStatus.DROP_POWERUP)) { 
-                            this.state.getBoard().setPowerUp(brick.dropPowerUp());      //if that brick has a powerUp then it generates it
+                            this.state.getBoard().setPowerUps(Arrays.asList(brick.dropPowerUp()));      //if that brick has a powerUp then it generates it
                         }
                     }
                 }
