@@ -3,8 +3,6 @@ package model.entities;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import controller.input.ComponentInputEmpty;
 import controller.input.ControllerInput;
@@ -26,10 +24,12 @@ public class PowerUp extends GameObjectImpl {
     private final float speedModifier;
     private final int lifeModifier;
     private final int damageModifier;
-    private Boolean isActive;
+
     private String texturePath;
 
     private final Map<GameObject, Boundaries> hit = new HashMap<>();
+
+    public Boolean isActive;
 
     public PowerUp(final Position pos, final int height, final int width, final String texturePath) {
         super(pos, PowerUpUtilities.POWERUP_DROP_DIR, PowerUpUtilities.POWERUP_DROP_SPEED, height, width,  new PwUpComponentPhysics(),
@@ -41,23 +41,6 @@ public class PowerUp extends GameObjectImpl {
         this.speedModifier = PowerUpType.valueOf(this.pwtype.toString()).getSpeedModifier();
         this.texturePath = texturePath;
         this.isActive = false;
-    }
-
-    /**
-     * getter for isActive boolean value.
-     * @return true if the powerup has been activated,
-     * false otherwise
-     */
-    public Boolean getIsActive() {
-        return this.isActive;
-    }
-
-    /**
-     * setter for isActive boolean.
-     * @param value the value to set
-     */
-    public void setIsActive(final Boolean value) {
-        this.isActive = value;
     }
 
     /**
