@@ -4,11 +4,7 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
-<<<<<<< HEAD
 import controller.scene.FXMLMenuController;
-=======
-
->>>>>>> d9e910d462d3a7690c9b90f24d5a71526756ffa7
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -26,13 +22,9 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.utilities.ScreenUtilities;
 import resource.routing.PersonalFonts;
+import resource.routing.PersonalImages;
 import resource.routing.PersonalStyle;
-<<<<<<< HEAD
-import resource.routing.PersonalViews;
-=======
 import view.PersonalViews;
-import resource.routing.TutorialImages;
->>>>>>> d9e910d462d3a7690c9b90f24d5a71526756ffa7
 
 
 public class ControllerTutorial implements Initializable, FXMLMenuController {
@@ -107,7 +99,7 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
         this.buttonBack.setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
         this.btnHowToPlay.setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
         this.btnMenuTutorial.setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
-        this.btnMenuTutorial.setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
+        this.btnSettingsTutorial.setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
     }
 
     /**
@@ -169,20 +161,17 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
      */
     @Override
     public void resizable() {
-<<<<<<< HEAD
-=======
-        /*
-        this.panel.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        this.panel.prefHeightProperty().bind(this.window.heightProperty());
-        this.panel.prefWidthProperty().bind(this.window.widthProperty());
-
-        this.videoTutorial.fitHeightProperty().bind(this.panel.heightProperty().divide(ScreenUtilities.CENTER_DIVIDER));
-        this.videoTutorial.fitWidthProperty().bind(this.panel.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
-
-        this.buttonBack.prefWidthProperty().bind(this.containerBackButton.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
-        this.buttonBack.prefHeightProperty().bind(this.containerBackButton.heightProperty().divide(ScreenUtilities.CENTER_DIVIDER));
-    */
->>>>>>> d9e910d462d3a7690c9b90f24d5a71526756ffa7
+        this.buttonsContainer.prefWidthProperty().bind(this.window.widthProperty());
+        this.btnHowToPlay.prefWidthProperty().bind(this.buttonsContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
+        this.btnMenuTutorial.prefWidthProperty().bind(this.buttonsContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
+        this.btnSettingsTutorial.prefWidthProperty().bind(this.buttonsContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
+        this.buttonBack.prefWidthProperty().bind(this.buttonsContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
+        
+        this.videoTutorialContainer.prefWidthProperty().bind(this.window.widthProperty());
+        
+        this.videoTutorial.fitWidthProperty().bind(this.videoTutorialContainer.widthProperty().divide(1.2));
+        this.videoTutorial.fitHeightProperty().bind(this.videoTutorialContainer.heightProperty().divide(1.2));
+        
     }
 
 }

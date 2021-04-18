@@ -37,22 +37,22 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="btnMenuTutorial" mnemonicParsing="false" prefHeight="25.0" prefWidth="448.0" text="MENU TUTORIAL">
+                  <Button fx:id="btnMenuTutorial" mnemonicParsing="false" prefHeight="25.0" prefWidth="350.0" text="MENU TUTORIAL">
                      <VBox.margin>
                         <Insets bottom="20.0" left="100.0" right="100.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="btnHowToPlay" mnemonicParsing="false" prefHeight="25.0" prefWidth="453.0" text="HOW TO PLAY">
+                  <Button fx:id="btnHowToPlay" mnemonicParsing="false" prefHeight="25.0" prefWidth="350.0" text="HOW TO PLAY">
                      <VBox.margin>
                         <Insets bottom="20.0" left="100.0" right="100.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="btnSettingsTutorial" mnemonicParsing="false" prefHeight="25.0" prefWidth="453.0" text="SETTINGS TUTORIAL">
+                  <Button fx:id="btnSettingsTutorial" mnemonicParsing="false" prefHeight="25.0" prefWidth="350.0" text="SETTINGS TUTORIAL">
                      <VBox.margin>
                         <Insets bottom="20.0" left="100.0" right="100.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="buttonBack" mnemonicParsing="false" prefHeight="25.0" prefWidth="408.0" text="BACK TO MENU">
+                  <Button fx:id="buttonBack" mnemonicParsing="false" prefHeight="25.0" prefWidth="350.0" text="BACK TO MENU">
                      <VBox.margin>
                         <Insets left="100.0" right="100.0" />
                      </VBox.margin>
