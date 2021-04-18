@@ -3,20 +3,17 @@ package model.entities;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import controller.input.ComponentInput;
 import controller.input.ComponentInputEmpty;
 import controller.input.ControllerInput;
-import model.physics.ComponentPhysics;
 import model.physics.PwUpComponentPhysics;
 import model.utilities.Boundaries;
-import model.utilities.DirVector;
-import model.utilities.BrickStatus;
 import model.utilities.Position;
 import model.utilities.PowerUpType;
 import model.utilities.PowerUpUtilities;
 import view.graphics.AdapterGraphics;
-import view.graphics.ComponentGraphics;
 import view.graphics.PwUpComponentGraphics;
 
 public class PowerUp extends GameObjectImpl {
@@ -25,7 +22,7 @@ public class PowerUp extends GameObjectImpl {
 
     private final PowerUpType pwtype;
 
-    private final float activeTime;
+    private final long activeTime;
     private final float speedModifier;
     private final int lifeModifier;
     private final int damageModifier;
@@ -38,7 +35,7 @@ public class PowerUp extends GameObjectImpl {
         super(pos, PowerUpUtilities.POWERUP_DROP_DIR, PowerUpUtilities.POWERUP_DROP_SPEED, height, width,  new PwUpComponentPhysics(),
                 new ComponentInputEmpty(), new PwUpComponentGraphics(texturePath));
         this.pwtype = PowerUpType.randomPowerUpType();
-        this.activeTime = PowerUpType.valueOf(this.pwtype.toString()).getActiveTime();
+        this.activeTime = (long) PowerUpType.valueOf(this.pwtype.toString()).getActiveTime();
         this.damageModifier = PowerUpType.valueOf(this.pwtype.toString()).getDamageModifier();
         this.lifeModifier = PowerUpType.valueOf(this.pwtype.toString()).getLifeModifier();
         this.speedModifier = PowerUpType.valueOf(this.pwtype.toString()).getSpeedModifier();
@@ -46,21 +43,8 @@ public class PowerUp extends GameObjectImpl {
     }
 
     /**
-     * this method is used after powerup activation
-     * to waits some seconds.
-     * @param ms amount of seconds to wait
-     */
-    public void waitSeconds(final float ms) {
-        try {
-            Thread.sleep((long) ms * 1000);
-        } catch  (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
-
-    /**
      * getter for {@link PowerUpType} attribute.
-     * @return which powerup will be created
+     * @return which {@link PowerUpType} will be created
      */
     public PowerUpType getPowerUpType() {
         return this.pwtype;
@@ -94,7 +78,7 @@ public class PowerUp extends GameObjectImpl {
      * getter for the active time.
      * @return active time in seconds
      */
-    public float getActiveTime() {
+    public long getActiveTime() {
         return activeTime;
     }
 

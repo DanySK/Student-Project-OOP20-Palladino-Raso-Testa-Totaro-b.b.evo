@@ -22,7 +22,6 @@ import model.utilities.GameUtilities;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
 import view.SceneLoader;
-import controller.scene.ControllerGame;
 import view.game.ControllerNextLevel;
 import view.gameover.GameOverController;
 
@@ -122,9 +121,8 @@ public class GameLoop implements Runnable {
             final ControllerNextLevel nextLevelController = (ControllerNextLevel) PersonalViews.SCENE_NEXT_LEVEL.loadScene();
             nextLevelController.update(gameState.getLevel(), gameState.getPlayer());
         } else if (layout.equals(PersonalViews.SCENE_GAME_OVER)) {
-            this.controllerGame = (ControllerGame) PersonalViews.SCENE_GAME_OVER.loadScene();
+            final GameOverController gameOverController = (GameOverController) layout.loadScene();
             final LeaderboardController leaderboard = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
-            final GameOverController gameOverController = new GameOverController();
             final StandardScoreSortingStrategy ls = new StandardScoreSortingStrategy(); 
             gameOverController.updateScore(this.gameState.getPlayerScore(), leaderboard.getPoudium(0, ls).toString());
         } else if (layout.equals(PersonalViews.SCENE_GAME_FINAL)) {
