@@ -1,8 +1,6 @@
 
 package model.utilities;
 
-import model.entities.PowerUp;
-
 /**
  * Contains information for {@link PowerUp} settings and default values.
  */
@@ -12,6 +10,11 @@ public final class PowerUpUtilities {
      * default damage dealt by the ball.
      */
     public static final int DEFAULT_BALL_DAMAGE = 1;
+
+    /**
+     * ball damage (modified  by powerups).
+     */
+    public static final int BALL_DAMAGE = 1;
 
     /**
      * damage modifier used by {@link PowerUp} to increase or decrease the damage dealt by the ball.

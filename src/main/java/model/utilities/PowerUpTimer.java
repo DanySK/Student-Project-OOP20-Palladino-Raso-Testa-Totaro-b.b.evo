@@ -3,6 +3,7 @@ package model.utilities;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import controller.event.PowerUpController;
 import model.entities.PowerUp;
 
 /**
@@ -12,18 +13,18 @@ import model.entities.PowerUp;
 public class PowerUpTimer {
 
     private final Timer timer;
-    private final PowerUp pwup;
+    private final PowerUpController pwupController;
 
-    public PowerUpTimer(final long seconds, final PowerUp pwup) {
+    public PowerUpTimer(final long seconds, final PowerUpController pwupController) {
             timer = new Timer();
             timer.schedule(new RemindTask(), seconds * 1000);
-            this.pwup = pwup;
+            this.pwupController = pwupController;
         }
 
     class RemindTask extends TimerTask {
         @Override
         public void run() {
-            pwup.setIsActive(false);
+            pwupController.setIsActive(false);
             System.out.println("powerup disattivato");
             timer.cancel(); //Terminate the timer thread
         }
