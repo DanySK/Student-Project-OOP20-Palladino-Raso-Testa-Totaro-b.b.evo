@@ -40,7 +40,7 @@ public class Texture {
      * @return Path of PowerUpDropTexture
      */
     public String buildPowerUpDropTexturePath() {
-        return PowerUpDropTexture.getPowerUpDropTextureByName(theme);
+        return PowerUpDropTexture.getPowerUpDropTextureByName(theme).getPath();
     }
 
 }
