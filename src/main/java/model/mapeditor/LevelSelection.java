@@ -35,7 +35,7 @@ public enum LevelSelection implements Iterator<LevelSelection> {
     /**
      * Level 5 location and the input to fit the iterator interface.
      */
-    LEVEL5("standardLevel/crash", "crashBandicoot", 4, false),
+    LEVEL5("standardLevel/crash", "crash", 4, false),
 
     /**
      * Level 6 location and the input to fit the iterator interface.

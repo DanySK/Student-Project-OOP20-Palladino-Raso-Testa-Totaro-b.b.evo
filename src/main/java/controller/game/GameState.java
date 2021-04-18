@@ -76,4 +76,5 @@ public interface GameState {
      * @return if the effects is active
      */
     boolean isEffectActive();
+
 }

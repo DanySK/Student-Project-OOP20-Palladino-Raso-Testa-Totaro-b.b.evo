@@ -118,7 +118,8 @@ public class GameLoop implements Runnable {
      */
     private void changeView(final PersonalViews layout) {
         if (layout.equals(PersonalViews.SCENE_NEXT_LEVEL)) {
-            final ControllerNextLevel nextLevelController = (ControllerNextLevel) PersonalViews.SCENE_NEXT_LEVEL.loadScene();
+            //da vedere perche carica male ed esce null
+            final ControllerNextLevel nextLevelController = (ControllerNextLevel) layout.loadScene();
             nextLevelController.update(gameState.getLevel(), gameState.getPlayer());
         } else if (layout.equals(PersonalViews.SCENE_GAME_OVER)) {
             final GameOverController gameOverController = (GameOverController) layout.loadScene();
@@ -135,9 +136,9 @@ public class GameLoop implements Runnable {
             public void run() {
                 //rimosso il confronto di url, ma solo del personal view, tanto dovrebbero coincidere no ?
                 //come prima spotbug dava errore, cosi no invece
-                if (layout.equals(PersonalViews.SCENE_GAME)) {
+                if (layout.equals(PersonalViews.SCENE_GAME) || layout.equals(PersonalViews.SCENE_NEXT_LEVEL)) {
                     scene.setRoot(layout.getLayout());
-                } else {
+                } else { // a cosa serve l'else?
                     SceneLoader.switchScene((Stage) scene.getWindow(), PersonalViews.SCENE_MAIN_MENU.getURL(), 
                                             PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
                                             scene.getWidth(), 
@@ -157,10 +158,10 @@ public class GameLoop implements Runnable {
     private void saveState(final GamePhase state) {
         final SettingLevelBuilder levelLoader = new SettingLevelBuilder();
         if (state.equals(GamePhase.WIN)) {
-            SettingLevelManager.saveOption(levelLoader.fromSettings(SettingLevelManager.loadOption())
-                    .selectLevel(LevelSelection.getSelectionFromLevel(gameState.getLevel()).next().getLevel())
+            System.out.println(gameState.getLevel() + "163 loop");
+            SettingLevelManager.saveOption(levelLoader.selectLevel(LevelSelection.getSelectionFromLevel(gameState.getLevel()).next().getLevel())
                     .build());
-
+            System.out.println(gameState.getLevel() + "166 loop");
         } else if (state.equals(GamePhase.LOST)) {
             //Ranking
             final LeaderboardController leaderboard = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
