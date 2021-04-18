@@ -7,7 +7,7 @@ import model.entities.PowerUp;
 
 /**
  * Simple timer class that uses java.util.Timer to schedule a timer task 
- * to execute once seconds have passed.
+ * to execute once an arbitrary amount of seconds have passed.
  */
 public class PowerUpTimer {
 
@@ -21,6 +21,7 @@ public class PowerUpTimer {
         }
 
     class RemindTask extends TimerTask {
+        @Override
         public void run() {
             pwup.setIsActive(false);
             System.out.println("powerup disattivato");
