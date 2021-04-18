@@ -1,4 +1,5 @@
 package model;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -25,12 +26,14 @@ import model.utilities.ObjectInit;
 import model.utilities.Pair;
 import model.utilities.Position;
 import resource.routing.BrickTexture;
+import resource.routing.PowerUpDropTexture;
+import resource.routing.PowerUpTexture;
 
 public class TestBoard {
 
     private static final String PATH_PADDLE = "Images/paddle/defaultPaddle.png";
     private static final String PATH_BALL = "Images/ball/defaultBall.png";
-    private static final String PATH_POWERUP = "Images/dropPowerup/marioDropPowerUp.png";
+    private static final String PATH_POWERUP = "Images/powerup/defaultPowerUp.png";
     private static final int MIN_RANGE = 0;
     private static final int MAX_RANGE = 100;
     private static final int NUM_OBJ = 4;
@@ -78,8 +81,9 @@ public class TestBoard {
                                       .texturePath(PATH_PADDLE)
                                       .build();
 
-    private final PowerUp pwUp = new PowerUp(new Position(POS_POWERUP_INIT_X, POS_POWERUP_INIT_Y), 
-            PW_HEIGHT, PW_WIDTH, PATH_POWERUP);
+    private final String brickTexturePath = PowerUpTexture.getThemeNameByPath(PATH_POWERUP).getTheme();
+    private final PowerUp pwUp = new PowerUp(new Position(POS_POWERUP_INIT_X, POS_POWERUP_INIT_Y), PW_HEIGHT, PW_WIDTH, 
+            PowerUpDropTexture.getPowerUpDropTextureByName(brickTexturePath).getPath());
 
 //    /**
 //     * check that by inserting a number of ball in the board
