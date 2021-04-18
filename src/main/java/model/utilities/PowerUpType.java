@@ -40,7 +40,7 @@ public enum PowerUpType {
     DAMAGE_DOWN(PowerUpUtilities.POWERUP_ACTIVE_TIME, 0, 0, -PowerUpUtilities.DAMAGE_MODIFIER); 
 
     private float activeTime;
-    private float speedModifier;
+    private double speedModifier;
     private int lifeModifier;
     private int damageModifier;
     private static final List<PowerUpType> VALUES = Collections.unmodifiableList(Arrays.asList(values()));
@@ -53,7 +53,7 @@ public enum PowerUpType {
      * @param speedModifier
      * @param activeTime
      */
-    PowerUpType(final float activeTime, final float speedModifier, final int lifeModifier, final int damageModifier) {
+    PowerUpType(final float activeTime, final double speedModifier, final int lifeModifier, final int damageModifier) {
         this.speedModifier = speedModifier;
         this.activeTime = activeTime;
         this.lifeModifier = lifeModifier;
@@ -81,7 +81,7 @@ public enum PowerUpType {
      * getter for the powerup speed modifier.
      * @return speed modifier
      */
-    public float getSpeedModifier() {
+    public double getSpeedModifier() {
         return speedModifier;
     }
 

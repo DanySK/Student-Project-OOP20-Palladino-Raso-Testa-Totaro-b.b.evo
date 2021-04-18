@@ -21,7 +21,7 @@ public class PowerUp extends GameObjectImpl {
     private final PowerUpType pwtype;
 
     private final long activeTime;
-    private final float speedModifier;
+    private final double speedModifier;
     private final int lifeModifier;
     private final int damageModifier;
 
@@ -71,7 +71,7 @@ public class PowerUp extends GameObjectImpl {
      * getter for the speed modifier.
      * @return the speed modifier
      */
-    public float getSpeedModifier() {
+    public double getSpeedModifier() {
         return speedModifier;
     }
 

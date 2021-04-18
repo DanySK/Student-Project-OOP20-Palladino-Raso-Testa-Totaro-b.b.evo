@@ -1,11 +1,14 @@
-
 package controller.scene;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
+<<<<<<< HEAD
+import controller.scene.FXMLMenuController;
+=======
 
+>>>>>>> d9e910d462d3a7690c9b90f24d5a71526756ffa7
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -24,8 +27,12 @@ import javafx.util.Duration;
 import model.utilities.ScreenUtilities;
 import resource.routing.PersonalFonts;
 import resource.routing.PersonalStyle;
+<<<<<<< HEAD
+import resource.routing.PersonalViews;
+=======
 import view.PersonalViews;
 import resource.routing.TutorialImages;
+>>>>>>> d9e910d462d3a7690c9b90f24d5a71526756ffa7
 
 
 public class ControllerTutorial implements Initializable, FXMLMenuController {
@@ -82,7 +89,7 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
      */
     private void loadMedia() throws MalformedURLException {
         //Load the animated image
-        final URL videoUrl = new URL(new File(TutorialImages.TUTORIAL_DEFAULT.getURL().getFile()).toURI().toString());
+        final URL videoUrl = new URL(new File(PersonalImages.TUTORIAL_DEFAULT.getURL().getFile()).toURI().toString());
         final Image image = new Image(videoUrl.toExternalForm());
         this.videoTutorial.setImage(image);
     }
@@ -124,19 +131,19 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
      // button HowToPlay Listener
         this.btnHowToPlay.setOnAction(event -> {
             this.lblTitle.setText("HOW TO PLAY");
-            final Image i = new Image(new File(TutorialImages.TUTORIAL_HOW_TO_PLAY.getURL().getFile()).toURI().toString());
+            final Image i = new Image(new File(PersonalImages.TUTORIAL_HOW_TO_PLAY.getURL().getFile()).toURI().toString());
             this.videoTutorial.setImage(i);
         });
      // button MenuTutorial Listener
         this.btnMenuTutorial.setOnAction(event -> {
             this.lblTitle.setText("MENU TUTORIAL");
-            final Image i = new Image(new File(TutorialImages.TUTORIAL_MAIN_MENU.getURL().getFile()).toURI().toString());
+            final Image i = new Image(new File(PersonalImages.TUTORIAL_MAIN_MENU.getURL().getFile()).toURI().toString());
             this.videoTutorial.setImage(i);
         });
      // button SettingsTutorial Listener
         this.btnSettingsTutorial.setOnAction(event -> {
             this.lblTitle.setText("SETTINGS TUTORIAL");
-            final Image i = new Image(new File(TutorialImages.TUTORIAL_SETTINGS.getURL().getFile()).toURI().toString());
+            final Image i = new Image(new File(PersonalImages.TUTORIAL_SETTINGS.getURL().getFile()).toURI().toString());
             this.videoTutorial.setImage(i);
         });
     }
@@ -162,6 +169,8 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
      */
     @Override
     public void resizable() {
+<<<<<<< HEAD
+=======
         /*
         this.panel.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
         this.panel.prefHeightProperty().bind(this.window.heightProperty());
@@ -173,6 +182,7 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
         this.buttonBack.prefWidthProperty().bind(this.containerBackButton.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
         this.buttonBack.prefHeightProperty().bind(this.containerBackButton.heightProperty().divide(ScreenUtilities.CENTER_DIVIDER));
     */
+>>>>>>> d9e910d462d3a7690c9b90f24d5a71526756ffa7
     }
 
 }

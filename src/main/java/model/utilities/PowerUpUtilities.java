@@ -34,7 +34,7 @@ public final class PowerUpUtilities {
     /**
      * speed modifier used by {@link PowerUp} to speed the ball up or down.
      */
-    public static final int SPEED_MODIFIER = 1;
+    public static final double SPEED_MODIFIER = 0.1;
 
     /**
      * speed for the {@link PowerUp} drop.
