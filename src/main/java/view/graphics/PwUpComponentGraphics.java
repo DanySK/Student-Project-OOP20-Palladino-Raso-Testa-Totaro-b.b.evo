@@ -3,13 +3,11 @@ package view.graphics;
 import javafx.scene.image.Image;
 import model.entities.GameObject;
 import model.entities.PowerUp;
-import resource.routing.BrickTexture;
-import resource.routing.PersonalImages;
 
 public class PwUpComponentGraphics implements ComponentGraphics {
 
     private transient Image pwupImage;
-    private String texture;
+    private final String texture;
 
     public PwUpComponentGraphics(final String texturePath) {
         this.texture = texturePath;
