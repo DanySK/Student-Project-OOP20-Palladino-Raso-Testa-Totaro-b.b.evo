@@ -77,8 +77,8 @@ public class ControllerCreativeMode implements GUIController {
                     levelSelected.setText("Level name : " + lvl.getLevelName() + "\n"
                                           + "Background : " + lvl.getBackground().getTheme() + "\n"
                                           + "Music : " + lvl.getMusic().getName() + "\n"
-                                          + "PaddleTexture : " + lvl.getPaddleTexture() + "\n"
-                                          + "BallTexture : " + lvl.getBallTexture());
+                                          + "PaddleTexture : " + lvl.getPaddleTexture().getTheme() + "\n"
+                                          + "BallTexture : " + lvl.getBallTexture().getTheme());
                 }
             });
             this.levelContainer.getChildren().add(b);

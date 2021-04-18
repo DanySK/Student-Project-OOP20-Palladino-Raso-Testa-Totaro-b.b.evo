@@ -59,8 +59,9 @@ public class ControllerGame implements Initializable, GUILayout {
     private VBox dashBoard;
 
     /**
-     * At FinalGame.fxml load it initialize the width and height of the canvas and set his 
-     * graphic context for draw entity.
+     * When Game.fxml is loaded, it initializes the width and height of the canvas, 
+     * sets its graphic context for the drawing of the various entities, 
+     * sets the animations and fonts.
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -75,11 +76,17 @@ public class ControllerGame implements Initializable, GUILayout {
         this.loadAnimation();
     }
 
+    /**
+     * This method allows to set the fonts for the view components.
+     */
     private void loadFont() {
         this.lblTitle
         .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
     }
 
+    /**
+     * This method allows to set the animations for the view components.
+     */
     private void loadAnimation() {
         final Timeline timelineTitolo = new Timeline(
                 new KeyFrame(Duration.seconds(1.00), evt -> this.lblTitle.setVisible(false)),
@@ -89,8 +96,8 @@ public class ControllerGame implements Initializable, GUILayout {
     }
 
     /**
-     * 
-     * @param play
+     * This method sets the visibility of the label.
+     * @param play boolean value that sets the visibility of the label
      */
     public void setPlay(final boolean play) {
         this.lblPlay.setVisible(play);
@@ -108,7 +115,7 @@ public class ControllerGame implements Initializable, GUILayout {
     }
 
     /**
-     * calls the graphic component of the game entities by updating them, 
+     * Calls the graphic component of the game entities by updating them, 
      * which will be drawn on the canvas.
      * @param gameEntities to draw
      */
@@ -121,8 +128,7 @@ public class ControllerGame implements Initializable, GUILayout {
     }
 
     /**
-     * draw information about your current score and lives.
-     * @param highScore
+     * Draw information about your current score and lives.
      * @param score
      * @param lives
      */
@@ -132,8 +138,8 @@ public class ControllerGame implements Initializable, GUILayout {
     }
 
     /**
-     * set the background image of the canvas.
-     * @param backGround use
+     * Set the background image of the canvas.
+     * @param backGround input image to set as background
      */
     public void setBackgroundImage(final BackGround backGround) {
 
@@ -150,7 +156,7 @@ public class ControllerGame implements Initializable, GUILayout {
     }
 
     /**
-     * 
+     * Getter of the canvas.
      * @return canvas
      */
     public final Canvas getCanvas() {

@@ -38,9 +38,6 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
     private AnchorPane window;
 
     @FXML
-    private BorderPane panel;
-
-    @FXML
     private HBox titleContainer;
 
     @FXML
@@ -167,25 +164,7 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
      */
     @Override
     public void resizable() {
-
-        this.panel.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        this.panel.prefHeightProperty().bind(this.window.heightProperty());
-        this.panel.prefWidthProperty().bind(this.window.widthProperty());
-
-        this.videoTutorial.fitHeightProperty().bind(this.panel.heightProperty().divide(GameUtilities.CENTER_DIVIDER));
-        this.videoTutorial.fitWidthProperty().bind(this.panel.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-
-        this.buttonBack.prefWidthProperty().bind(this.panel.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-        this.buttonBack.prefHeightProperty().bind(this.panel.heightProperty().divide(GameUtilities.CENTER_DIVIDER));
-
-        this.btnMenuTutorial.prefWidthProperty().bind(this.panel.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-        this.btnMenuTutorial.prefHeightProperty().bind(this.panel.heightProperty().divide(GameUtilities.CENTER_DIVIDER));
-
-        this.btnHowToPlay.prefWidthProperty().bind(this.panel.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-        this.btnHowToPlay.prefHeightProperty().bind(this.panel.heightProperty().divide(GameUtilities.CENTER_DIVIDER));
-
-        this.btnSettingsTutorial.prefWidthProperty().bind(this.panel.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-        this.btnSettingsTutorial.prefHeightProperty().bind(this.panel.heightProperty().divide(GameUtilities.CENTER_DIVIDER));
+        
     }
 
 }
