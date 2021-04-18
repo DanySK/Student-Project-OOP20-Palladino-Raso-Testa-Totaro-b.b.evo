@@ -23,13 +23,13 @@ public interface LeaderboardController {
     /**
      *  Return a Map representing the Couple Alias - Score sorted by score that contains
      *  only n-index elements.
-     *  @param index
+     *  @param index - used to set podium range (ex. first second third) or (ex. first second third fourth).
      *  @param ls - use to understand the sort strategy
      *  @return a Map representing the Couple Alias - Score sorted by score that contains only n-index elements.
      *
      *
      */
-    Map<String, Integer> getPoudium(int index, LeaderboardSortingStrategy ls);
+    Map<String, Integer> getPodium(int index, LeaderboardSortingStrategy ls);
 
     /**
      *  Method that allows to print on file a sorted leaderboard.

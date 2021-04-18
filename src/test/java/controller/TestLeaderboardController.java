@@ -80,7 +80,7 @@ class TestLeaderboardController {
                                  .stream()
                                  .filter(x -> x.getValue() >= SCORE_2)
                                  .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)), 
-                         this.controller.getPoudium(PODIUM, this.ls));
+                         this.controller.getPodium(PODIUM, this.ls));
         });
     }
 

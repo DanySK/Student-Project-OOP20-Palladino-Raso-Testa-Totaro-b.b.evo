@@ -80,10 +80,10 @@ public class ControllerSettings implements Initializable, FXMLMenuController {
 
         /**
          * Method used to update view component.
-         * @param isSoundsFxEnable
-         * @param isMusicEnable
-         * @param isLeftAndRightEnable
-         * @param isUpAndDownEnable
+         * @param isSoundsFxEnable - used to enable or disable SoundFx radio button.
+         * @param isMusicEnable - used to enable or disable Music radio button.
+         * @param isLeftAndRightEnable - used to enable or disable Left and right check box.
+         * @param isUpAndDownEnable - used to enable or disable Up and Down check box.
          */
         public void updateViewComponent(final boolean isSoundsFxEnable, final boolean isMusicEnable, final boolean isLeftAndRightEnable,
                                         final boolean isUpAndDownEnable) {
