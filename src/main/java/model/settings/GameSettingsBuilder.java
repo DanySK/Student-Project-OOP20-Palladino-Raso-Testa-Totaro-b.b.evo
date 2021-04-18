@@ -6,34 +6,34 @@ public interface GameSettingsBuilder {
 
     /**
      * Used to set the soundFx.
-     * @param isEnableSoundFX
+     * @param isEnableSoundFX - use to set the sound fx parameter.
      * @return the soundFx property.
      */
     GameSettingsBuilder enableSoundFx(boolean isEnableSoundFX);
 
     /**
      * Used to set the Music.
-     * @param isEnableMusic
+     * @param isEnableMusic - use to set the music parameter.
      * @return the Music property.
      */
     GameSettingsBuilder enableMusic(boolean isEnableMusic);
 
     /**
      * Used to set the left and right game movement.
-     * @param useLeftAndRight
+     * @param useLeftAndRight - use to set the left and right parameter.
      * @return the left and right game movement property.
      */
     GameSettingsBuilder leftAndRight(boolean useLeftAndRight);
     /**
      * Used to set the up and down game movement.
-     * @param useUpAndDown
+     * @param useUpAndDown - use to set the up and down parameter.
      * @return the up and down game movement property.
      */
     GameSettingsBuilder upAndDown(boolean useUpAndDown);
 
     /**
      * Used to set the difficulty of the game.
-     * @param difficulty
+     * @param difficulty - use to set the difficulty parameter.
      * @return the difficulty property.
      */
     GameSettingsBuilder difficulty(Difficulty difficulty);

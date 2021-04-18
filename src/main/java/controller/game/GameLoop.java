@@ -124,7 +124,7 @@ public class GameLoop implements Runnable {
             final GameOverController gameOverController = (GameOverController) layout.loadScene();
             final LeaderboardController leaderboard = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
             final StandardScoreSortingStrategy ls = new StandardScoreSortingStrategy(); 
-            gameOverController.updateScore(this.gameState.getPlayerScore(), leaderboard.getPoudium(0, ls).toString());
+            gameOverController.updateScore(this.gameState.getPlayerScore(), leaderboard.getPodium(0, ls).toString());
         } else if (layout.equals(PersonalViews.SCENE_GAME_FINAL)) {
             System.out.println("Vinto!");
             //DA IMPLEMENTARE GRAFICA PER DIRE CHE HAI VINTO E FINITO IL GIOCO

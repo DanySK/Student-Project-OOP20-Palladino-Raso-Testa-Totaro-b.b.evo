@@ -8,8 +8,8 @@ public class StandardScoreSortingStrategy implements LeaderboardSortingStrategy 
 
     /**
      * Method that allows to sort by score, the ranking.
-     * @param map
-     * @return a sort Map by score
+     * @param map - map that must be ordered.
+     * @return a sort Map by score.
      */
     @Override
     public Map<String, Integer> sortMap(final Map<String, Integer> map) {
