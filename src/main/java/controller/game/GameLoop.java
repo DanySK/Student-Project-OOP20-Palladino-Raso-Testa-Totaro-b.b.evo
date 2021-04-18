@@ -21,8 +21,9 @@ import model.mapeditor.LevelSelection;
 import model.settings.SettingLevel.SettingLevelBuilder;
 import model.settings.SettingLevelManager;
 import model.utilities.GameUtilities;
+import model.utilities.ScreenUtilities;
 import resource.routing.PersonalStyle;
-import resource.routing.PersonalViews;
+import view.PersonalViews;
 import view.SceneLoader;
 
 
@@ -32,7 +33,7 @@ public class GameLoop implements Runnable {
     private final Scene scene;
     private final GameState gameState;
     private final GameBoard board;
-    private ControllerGame controllerGame;
+    private final ControllerGame controllerGame;
     private final ControllerInput inputController;
     private final SettingsController setting = new SettingsControllerImpl(GameUtilities.SETTINGS_PATH);
 
@@ -41,8 +42,8 @@ public class GameLoop implements Runnable {
         this.scene.getStylesheets().add(PersonalStyle.DEFAULT_STYLE.getStylePath()); //Apply css to scene
         final Stage currentStage = (Stage) this.scene.getWindow();
         currentStage.setResizable(false); // Don't permise resize
-        currentStage.setWidth(GameUtilities.SCREEN_WIDTH); //Set new Dimension
-        currentStage.setHeight(GameUtilities.SCREEN_HEIGHT); // Set new Dimension
+        currentStage.setWidth(ScreenUtilities.SCREEN_WIDTH); //Set new Dimension
+        currentStage.setHeight(ScreenUtilities.SCREEN_HEIGHT); // Set new Dimension
         this.gameState = new GameStateImpl();
         this.board = gameState.getBoard();
         this.controllerGame = (ControllerGame) PersonalViews.SCENE_GAME.loadScene();

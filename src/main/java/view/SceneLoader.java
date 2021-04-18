@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.utilities.GameUtilities;
+import model.utilities.ScreenUtilities;
 import resource.routing.PersonalImages;
 
 public final class SceneLoader {
@@ -37,7 +37,7 @@ public final class SceneLoader {
             parent.getStylesheets().add(cssStylePath);
 
             //Animation
-            final FadeTransition fadeIn = new FadeTransition(Duration.millis(GameUtilities.ANIMATION_DURATION), newScene.getRoot());
+            final FadeTransition fadeIn = new FadeTransition(Duration.millis(ScreenUtilities.ANIMATION_DURATION), newScene.getRoot());
             fadeIn.setFromValue(0.0);
             fadeIn.setToValue(1.0);
             fadeIn.play();

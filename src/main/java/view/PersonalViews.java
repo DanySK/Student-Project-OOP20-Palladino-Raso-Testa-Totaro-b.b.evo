@@ -1,4 +1,4 @@
-package resource.routing;
+package view;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,7 +7,6 @@ import java.net.URL;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
-import view.GUILayout;
 
 public enum PersonalViews {
 

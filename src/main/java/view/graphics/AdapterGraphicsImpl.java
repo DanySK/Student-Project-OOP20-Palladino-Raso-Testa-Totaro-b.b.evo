@@ -8,7 +8,7 @@ import model.entities.Ball;
 import model.entities.Brick;
 import model.entities.Paddle;
 import model.entities.PowerUp;
-import model.utilities.GameUtilities;
+import model.utilities.ScreenUtilities;
 
 public class AdapterGraphicsImpl implements AdapterGraphics {
 
@@ -72,19 +72,19 @@ public class AdapterGraphicsImpl implements AdapterGraphics {
     }
 
     private double getXInPixel(final double posX) {
-        return posX * GameUtilities.REAL_X;
+        return posX * ScreenUtilities.REAL_X;
     }
 
     private double getYInPixel(final double posY) {
-        return posY * GameUtilities.REAL_Y;
+        return posY * ScreenUtilities.REAL_Y;
     }
 
     private double getWidthInPixel(final double posWidth) {
-        return posWidth * GameUtilities.REAL_X;
+        return posWidth * ScreenUtilities.REAL_X;
     }
 
     private double getHeightInPixel(final double posHeight) {
-        return posHeight * GameUtilities.REAL_Y;
+        return posHeight * ScreenUtilities.REAL_Y;
     }
 
 }

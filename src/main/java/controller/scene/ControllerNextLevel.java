@@ -18,10 +18,10 @@ import model.mapeditor.Level;
 import model.mapeditor.LevelSelection;
 import model.settings.SettingLevelManager;
 import model.settings.SettingLevel.SettingLevelBuilder;
-import model.utilities.GameUtilities;
+import model.utilities.ScreenUtilities;
 import resource.routing.PersonalStyle;
-import resource.routing.PersonalViews;
 import view.GUILayout;
+import view.PersonalViews;
 import view.SceneLoader;
 
 /**
@@ -52,10 +52,10 @@ public class ControllerNextLevel implements Initializable, GUILayout {
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        this.mainPanel.setMinWidth(GameUtilities.SCREEN_WIDTH);
-        this.mainPanel.setMaxWidth(GameUtilities.SCREEN_WIDTH);
-        this.mainPanel.setMinHeight(GameUtilities.SCREEN_HEIGHT);
-        this.mainPanel.setMaxHeight(GameUtilities.SCREEN_HEIGHT);
+        this.mainPanel.setMinWidth(ScreenUtilities.SCREEN_WIDTH);
+        this.mainPanel.setMaxWidth(ScreenUtilities.SCREEN_WIDTH);
+        this.mainPanel.setMinHeight(ScreenUtilities.SCREEN_HEIGHT);
+        this.mainPanel.setMaxHeight(ScreenUtilities.SCREEN_HEIGHT);
     }
 
     /**

@@ -15,7 +15,7 @@ public class BrickComponentGraphics implements ComponentGraphics, Serializable {
 
     public BrickComponentGraphics(final String texturePath) {
         this.texture = texturePath;
-        this.brickImage = new Image(texturePath);
+        this.brickImage = new Image(ClassLoader.getSystemResourceAsStream(texturePath));
     }
 
     /**

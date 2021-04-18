@@ -23,10 +23,11 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.utilities.GameUtilities;
+import model.utilities.ScreenUtilities;
 import resource.routing.PersonalFonts;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
-import resource.routing.PersonalViews;
+import view.PersonalViews;
 
 public class ControllerSettings implements Initializable, FXMLMenuController {
 
@@ -149,17 +150,17 @@ public class ControllerSettings implements Initializable, FXMLMenuController {
         @Override
         public void loadFont() {
             this.lblTitle
-                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
+                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_NORMAL_LABEL_SIZE));
             this.ckSoundFX
-                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
             this.ckSound
-                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
             this.rbUseLeftRight
-                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
             this.rbUseUpDown
-                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
             this.btnBack
-                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+                .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
         }
 
         /**
@@ -187,12 +188,12 @@ public class ControllerSettings implements Initializable, FXMLMenuController {
             this.panel.prefHeightProperty().bind(this.window.heightProperty());
             this.panel.prefWidthProperty().bind(this.window.widthProperty());
 
-            this.ckSoundFX.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-            this.ckSound.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-            this.rbUseLeftRight.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-            this.rbUseUpDown.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+            this.ckSoundFX.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
+            this.ckSound.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
+            this.rbUseLeftRight.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
+            this.rbUseUpDown.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
 
-            this.btnBack.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+            this.btnBack.prefWidthProperty().bind(this.radioButtonContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
 
             this.lblTitle.setWrapText(true);
         }

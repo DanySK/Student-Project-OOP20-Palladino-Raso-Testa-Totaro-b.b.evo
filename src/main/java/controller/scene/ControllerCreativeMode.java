@@ -16,9 +16,9 @@ import model.mapeditor.Level;
 import model.mapeditor.LevelManager;
 import model.settings.SettingLevel.SettingLevelBuilder;
 import model.settings.SettingLevelManager;
-import model.utilities.GameUtilities;
+import model.utilities.ScreenUtilities;
 import resource.routing.PersonalStyle;
-import resource.routing.PersonalViews;
+import view.PersonalViews;
 
 public class ControllerCreativeMode implements GUIController {
 
@@ -92,7 +92,7 @@ public class ControllerCreativeMode implements GUIController {
     private void loadListener() {
         //MenuButton return to menu
         this.menuBtn.setOnAction(event -> FXMLMenuController.switchScene((Stage) this.panel.getScene().getWindow(), PersonalViews.SCENE_MAIN_MENU, PersonalStyle.DEFAULT_STYLE, 
-                GameUtilities.SCREEN_WIDTH, GameUtilities.SCREEN_HEIGHT, false));
+                ScreenUtilities.SCREEN_WIDTH, ScreenUtilities.SCREEN_HEIGHT, false));
         //BuilderButton go to LevelBuilder
         this.builderBtn.setOnAction(event -> FXMLMenuController.switchScene((Stage) this.panel.getScene().getWindow(), PersonalViews.SCENE_EDITOR_MODE, PersonalStyle.DEFAULT_STYLE, 
                 EDITOR_MODE_WIDTH, EDITOR_MODE_HEIGHT, true));
@@ -111,7 +111,7 @@ public class ControllerCreativeMode implements GUIController {
             SettingLevelManager.saveOption(levelBuilder.build());
 
             this.playBtn.setOnAction(event -> FXMLMenuController.switchScene((Stage) this.panel.getScene().getWindow(), PersonalViews.SCENE_CHARACTER_MENU, PersonalStyle.DEFAULT_STYLE, 
-                    GameUtilities.SCREEN_WIDTH, GameUtilities.SCREEN_HEIGHT, false));
+                    ScreenUtilities.SCREEN_WIDTH, ScreenUtilities.SCREEN_HEIGHT, false));
 
         } else {
             CheckAlertController.checkLevelSelected();

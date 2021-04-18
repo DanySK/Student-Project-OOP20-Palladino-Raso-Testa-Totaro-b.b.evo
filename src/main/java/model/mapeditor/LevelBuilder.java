@@ -11,7 +11,7 @@ import model.entities.Brick.Builder;
 import model.entities.GameObject;
 import model.entities.GameObjectEmpty;
 import model.utilities.BrickStatus;
-import model.utilities.GameUtilities;
+import model.utilities.ScreenUtilities;
 import model.utilities.Pair;
 import model.utilities.Position;
 import model.utilities.Texture;
@@ -27,10 +27,10 @@ public class LevelBuilder {
     //build the map between bricks in the show and in the grid and coordinates
     private final Map<Pair<Integer, Integer>, Pair<GameObjectEmpty, Optional<Brick>>> gameGrid = new HashMap<>();
 
-    private final int builderBrickDimY = (int) (GameUtilities.CANVAS_HEIGHT / GameUtilities.BRICK_NUMBER_Y);
-    private final int builderBrickDimX = (int) (GameUtilities.CANVAS_WIDTH / GameUtilities.BRICK_NUMBER_X);
-    private final int gameBrickDimY = (int) (GameUtilities.WORLD_HEIGHT / GameUtilities.BRICK_NUMBER_Y);
-    private final int gameBrickDimX = (int) (GameUtilities.WORLD_WIDTH / GameUtilities.BRICK_NUMBER_X);
+    private final int builderBrickDimY = (int) (ScreenUtilities.CANVAS_HEIGHT / ScreenUtilities.BRICK_NUMBER_Y);
+    private final int builderBrickDimX = (int) (ScreenUtilities.CANVAS_WIDTH / ScreenUtilities.BRICK_NUMBER_X);
+    private final int gameBrickDimY = (int) (ScreenUtilities.WORLD_HEIGHT / ScreenUtilities.BRICK_NUMBER_Y);
+    private final int gameBrickDimX = (int) (ScreenUtilities.WORLD_WIDTH / ScreenUtilities.BRICK_NUMBER_X);
 
     private String levelName;
     private BackGround background;
@@ -40,9 +40,9 @@ public class LevelBuilder {
 
     public LevelBuilder() {
         int currentXpos = 0;
-        for (int i = 0; i < GameUtilities.BRICK_NUMBER_X; i++) {
+        for (int i = 0; i < ScreenUtilities.BRICK_NUMBER_X; i++) {
             int currentYpos = 0;
-            for (int j = 0; j < GameUtilities.BRICK_NUMBER_Y; j++) {
+            for (int j = 0; j < ScreenUtilities.BRICK_NUMBER_Y; j++) {
                 final Pair<Integer, Integer> coordinates = new Pair<>(i, j);
                 final GameObjectEmpty objectEmpty = new GameObjectEmpty(new Position(currentXpos, currentYpos), builderBrickDimY, builderBrickDimX);
                 this.builderGrid.put(objectEmpty, coordinates);
@@ -51,9 +51,9 @@ public class LevelBuilder {
             currentXpos += builderBrickDimX;
         }
         currentXpos = 0;
-        for (int i = 0; i < GameUtilities.BRICK_NUMBER_X; i++) {
+        for (int i = 0; i < ScreenUtilities.BRICK_NUMBER_X; i++) {
             int currentYpos = 0;
-            for (int j = 0; j < GameUtilities.BRICK_NUMBER_Y; j++) {
+            for (int j = 0; j < ScreenUtilities.BRICK_NUMBER_Y; j++) {
                 final Pair<Integer, Integer> coordinates = new Pair<>(i, j);
                 final GameObjectEmpty objectEmpty = new GameObjectEmpty(new Position(currentXpos, currentYpos), builderBrickDimY, builderBrickDimX);
                 this.gameGrid.put(coordinates, new Pair<>(objectEmpty, Optional.empty()));

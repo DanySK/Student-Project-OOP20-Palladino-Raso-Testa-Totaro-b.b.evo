@@ -22,7 +22,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
-import model.utilities.GameUtilities;
+import model.utilities.ScreenUtilities;
 import resource.routing.BackGround;
 import resource.routing.PersonalFonts;
 import view.GUILayout;
@@ -65,12 +65,12 @@ public class ControllerGame implements Initializable, GUILayout {
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        this.canvas.setWidth(GameUtilities.CANVAS_WIDTH);
-        this.canvas.setHeight(GameUtilities.CANVAS_HEIGHT);
-        this.panel.setMinWidth(GameUtilities.CANVAS_WIDTH);
-        this.panel.setMaxWidth(GameUtilities.CANVAS_WIDTH);
-        this.panel.setMinHeight(GameUtilities.CANVAS_HEIGHT);
-        this.panel.setMaxHeight(GameUtilities.CANVAS_HEIGHT);
+        this.canvas.setWidth(ScreenUtilities.CANVAS_WIDTH);
+        this.canvas.setHeight(ScreenUtilities.CANVAS_HEIGHT);
+        this.panel.setMinWidth(ScreenUtilities.CANVAS_WIDTH);
+        this.panel.setMaxWidth(ScreenUtilities.CANVAS_WIDTH);
+        this.panel.setMinHeight(ScreenUtilities.CANVAS_HEIGHT);
+        this.panel.setMaxHeight(ScreenUtilities.CANVAS_HEIGHT);
         this.gc = canvas.getGraphicsContext2D();
         this.loadFont();
         this.loadAnimation();
@@ -81,7 +81,7 @@ public class ControllerGame implements Initializable, GUILayout {
      */
     private void loadFont() {
         this.lblTitle
-        .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
+        .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_NORMAL_LABEL_SIZE));
     }
 
     /**
@@ -120,7 +120,7 @@ public class ControllerGame implements Initializable, GUILayout {
      * @param gameEntities to draw
      */
     private void drawWorld(final Set<GameObject> gameEntities) {
-        gc.clearRect(0, 0, GameUtilities.CANVAS_WIDTH, GameUtilities.CANVAS_HEIGHT);
+        gc.clearRect(0, 0, ScreenUtilities.CANVAS_WIDTH, ScreenUtilities.CANVAS_HEIGHT);
         final AdapterGraphics ga = new AdapterGraphicsImpl(gc);
         gameEntities.stream().forEach(e -> {
             e.updateGraphics(ga);
@@ -144,8 +144,8 @@ public class ControllerGame implements Initializable, GUILayout {
     public void setBackgroundImage(final BackGround backGround) {
 
         final BackgroundImage bg = new BackgroundImage(new Image(backGround.getPath(), 
-                                                    GameUtilities.CANVAS_WIDTH,
-                                                    GameUtilities.CANVAS_HEIGHT,
+                                                    ScreenUtilities.CANVAS_WIDTH,
+                                                    ScreenUtilities.CANVAS_HEIGHT,
                                                     false,
                                                     true),
                                                     BackgroundRepeat.REPEAT, 

@@ -29,11 +29,12 @@ import javafx.util.Duration;
 import model.leaderboard.PlayerBuilderImpl;
 import model.leaderboard.StandardScoreSortingStrategy;
 import model.utilities.GameUtilities;
+import model.utilities.ScreenUtilities;
 import resource.routing.PersonalFonts;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
-import resource.routing.PersonalViews;
 import view.GUILayout;
+import view.PersonalViews;
 
 public class ControllerCharacter implements Initializable, FXMLMenuController, GUILayout {
 
@@ -179,13 +180,13 @@ public class ControllerCharacter implements Initializable, FXMLMenuController, G
     @Override
     public void loadFont() {
         this.lblTitle
-            .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_NORMAL_LABEL_SIZE));
+            .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnBack
-            .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+            .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
         this.btnNext
-            .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+            .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
         this.characterNameField
-            .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), GameUtilities.FONT_SUB_LABEL_SIZE));
+            .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
     }
 
     /**
@@ -239,8 +240,8 @@ public class ControllerCharacter implements Initializable, FXMLMenuController, G
         this.panel.prefHeightProperty().bind(this.window.heightProperty());
         this.panel.prefWidthProperty().bind(this.window.widthProperty());
 
-        this.btnBack.prefWidthProperty().bind(this.buttonBackContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
-        this.btnNext.prefWidthProperty().bind(this.objectContainer.widthProperty().divide(GameUtilities.CENTER_DIVIDER));
+        this.btnBack.prefWidthProperty().bind(this.buttonBackContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
+        this.btnNext.prefWidthProperty().bind(this.objectContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
 
         this.lblTitle.setWrapText(true);
 
