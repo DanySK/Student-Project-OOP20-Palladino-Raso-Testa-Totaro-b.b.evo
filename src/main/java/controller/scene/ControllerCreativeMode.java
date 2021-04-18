@@ -1,7 +1,6 @@
-package view.mapeditor;
+package controller.scene;
 
 import controller.game.GameStateImpl;
-import controller.scene.FXMLMenuController;
 import controller.utilities.CheckAlertController;
 import controller.utilities.GUIController;
 import javafx.event.ActionEvent;
@@ -21,7 +20,7 @@ import model.utilities.GameUtilities;
 import resource.routing.PersonalStyle;
 import resource.routing.PersonalViews;
 
-public class CreativeModeController implements GUIController {
+public class ControllerCreativeMode implements GUIController {
 
     private static final double EDITOR_MODE_WIDTH = 800;
 

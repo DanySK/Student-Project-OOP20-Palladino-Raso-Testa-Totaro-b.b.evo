@@ -1,4 +1,4 @@
-package view.game;
+package controller.scene;
 
 import java.net.URL;
 import java.util.ResourceBundle;

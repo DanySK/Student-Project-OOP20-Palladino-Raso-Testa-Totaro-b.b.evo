@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane fx:id="mainPanel" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.game.ControllerNextLevel">
+<SplitPane fx:id="mainPanel" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.scene.ControllerNextLevel">
    <items>
       <VBox alignment="TOP_CENTER" spacing="10.0" style="-fx-background-image: url(&quot;/Images/mainMenuImg/background.png&quot;);">
          <children>

@@ -1,4 +1,4 @@
-package view.mapeditor;
+package controller.scene;
 
 import controller.texture.TextureController;
 import controller.utilities.CheckAlertController;
@@ -34,7 +34,7 @@ import resource.routing.PersonalViews;
 import resource.routing.PowerUpTexture;
 import view.SceneLoader;
 
-public class MapEditorController implements GUIController {
+public class ControllerMapEditor implements GUIController {
 
     private static final int NOT_BUILDABLE_ZONE = 4; // Number of rows where the player can't put brick
     private int rowsY;
