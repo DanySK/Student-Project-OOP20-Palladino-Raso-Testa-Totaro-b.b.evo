@@ -171,19 +171,21 @@ public class GameBoardImpl implements GameBoard {
      */
     @Override
     public Pair<Optional<Boundaries>, Optional<Angle>> checkBallCollisionsWithPaddle(final Ball ball) {
-        final Paddle paddle = this.paddle.stream().findFirst().get();
-        final Optional<Boundaries> result = this.collision.checkBallCollisionsWithPaddle(ball, paddle);
-        if (result.isPresent() && result.get().equals(Boundaries.UPPER)) {
-            final double centerBall = ball.getPos().getX() + (ball.getWidth() / 2);
-            final double zonePlayer = paddle.getWidth() / Angle.values().length;
-            for (int i = 0; i < Angle.values().length; i++) {
-                if (centerBall > paddle.getPos().getX() + (i * zonePlayer) 
-                        && centerBall < paddle.getPos().getX() + ((i + 1) * zonePlayer)) {
-                    return new Pair<>(Optional.of(Boundaries.UPPER), Optional.of(Angle.values()[i]));
+        Optional<Boundaries> result;
+        for (final var paddle : this.paddle) {
+            result = this.collision.checkBallCollisionsWithPaddle(ball, paddle);
+            if (result.isPresent() && result.get().equals(Boundaries.UPPER)) {
+                final double centerBall = ball.getPos().getX() + (ball.getWidth() / 2);
+                final double zonePlayer = paddle.getWidth() / Angle.values().length;
+                for (int i = 0; i < Angle.values().length; i++) {
+                    if (centerBall > paddle.getPos().getX() + (i * zonePlayer) 
+                            && centerBall < paddle.getPos().getX() + ((i + 1) * zonePlayer)) {
+                        return new Pair<>(Optional.of(Boundaries.UPPER), Optional.of(Angle.values()[i]));
+                    }
                 }
+            } else if (result.isPresent() && (result.get().equals(Boundaries.SIDE_LEFT) || result.get().equals(Boundaries.SIDE_RIGHT))) {
+                return new Pair<>(result, Optional.empty());
             }
-        } else if (result.isPresent() && (result.get().equals(Boundaries.SIDE_LEFT) || result.get().equals(Boundaries.SIDE_RIGHT))) {
-            return new Pair<>(result, Optional.empty());
         }
         return new Pair<>(Optional.empty(), Optional.empty());
     }
@@ -193,11 +195,13 @@ public class GameBoardImpl implements GameBoard {
      */
     @Override
     public Optional<Pair<PowerUp, Boundaries>> checkPowerUpCollisionsWithPaddle(final PowerUp pwUp) {
-        final Paddle paddle = this.paddle.stream().findFirst().get();
-        final Optional<Pair<PowerUp, Boundaries>> result = this.collision.checkPwUpCollisionWithPaddle(pwUp, paddle);
-        if (!result.isEmpty()) {
-            return result;
+        Optional<Pair<PowerUp, Boundaries>> result = Optional.empty();
+        for (final var paddle : this.paddle) {
+            result = this.collision.checkPwUpCollisionWithPaddle(pwUp, paddle);
+            if (!result.isEmpty()) {
+                return result;
             }
+        }
         return result;
     }
 

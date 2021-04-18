@@ -1,10 +1,8 @@
-
 package controller.event;
 
 import java.util.Optional;
 
 import model.entities.GameObject;
-import model.entities.PowerUp;
 import model.utilities.Boundaries;
 
 public class HitEvent implements Event {
