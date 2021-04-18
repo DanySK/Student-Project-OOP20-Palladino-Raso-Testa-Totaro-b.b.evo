@@ -211,7 +211,7 @@ public class GameLoop implements Runnable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                controllerGame.render(board.getSceneEntities(), gameState.getPlayerScore(), gameState.getLives());
+                controllerGame.render(board.getSceneEntities(), gameState.getPlayerScore(), gameState.getLives(), board.getTypePwUp());
             }
         });
     }

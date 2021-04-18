@@ -23,6 +23,11 @@
                   <Font size="25.0" />
                </font>
             </Label>
+            <Label fx:id="lblPowerUp" text="LAST ACTIVE POWERUP:" textFill="WHITE">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
             <Label fx:id="lblLives" text="LIVES:" textFill="WHITE">
                <font>
                   <Font size="25.0" />

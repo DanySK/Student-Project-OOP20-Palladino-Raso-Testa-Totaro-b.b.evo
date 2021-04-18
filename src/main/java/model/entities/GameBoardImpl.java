@@ -15,6 +15,7 @@ import controller.input.ControllerInput;
 import model.utilities.Angle;
 import model.utilities.Boundaries;
 import model.utilities.Pair;
+import model.utilities.PowerUpUtilities;
 
 public class GameBoardImpl implements GameBoard {
 
@@ -25,6 +26,7 @@ public class GameBoardImpl implements GameBoard {
     private final Wall wall;
     private final EventHandler eventHandler;
     private final CollisionController collision;
+    private String pwUpType;
 
     public GameBoardImpl(final Wall wall, final GameState state) {
         this.balls = new HashSet<>();
@@ -34,6 +36,7 @@ public class GameBoardImpl implements GameBoard {
         this.wall = wall;
         this.eventHandler = new EventHandler(state);
         this.collision = new CollisionControllerImpl();
+        this.pwUpType = PowerUpUtilities.DEFAULT_PWUP_STRING;
     }
 
     /**
@@ -85,6 +88,20 @@ public class GameBoardImpl implements GameBoard {
     @Override
     public Set<Ball> getBalls() {
         return Collections.unmodifiableSet(this.balls);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public String getTypePwUp() {
+        return this.pwUpType;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setTypePwUp(final String type) {
+        this.pwUpType = type;
     }
 
     /**

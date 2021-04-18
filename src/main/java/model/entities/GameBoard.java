@@ -55,6 +55,18 @@ public interface GameBoard extends GameBoardEventListeners {
 
     /**
      * 
+     * @return type of powerUp
+     */
+    String getTypePwUp();
+
+    /**
+     * 
+     * @param type type of powerUp
+     */
+    void setTypePwUp(String type);
+
+    /**
+     * 
      * @return all the bricks in the gameboard
      */
     Set<Brick> getBricks();

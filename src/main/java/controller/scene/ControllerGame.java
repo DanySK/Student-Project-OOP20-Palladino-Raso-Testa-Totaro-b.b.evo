@@ -41,6 +41,9 @@ public class ControllerGame implements Initializable, GUILayout {
     private Label lblTitle;
 
     @FXML
+    private Label lblPowerUp;
+
+    @FXML
     private Label lblScore;
 
     @FXML
@@ -107,10 +110,11 @@ public class ControllerGame implements Initializable, GUILayout {
      * Draw all entities of the game adapted to the current resolution.
      * @param gameEntities Collection of each game entity taken from the game loop.
      * @param score The score of the player.
-     * @param lives The remained life ot the player.
+     * @param lives The remaining life ot the player.
+     * @param powerUpType The type of the powerUp.
      */
-    public void render(final Set<GameObject> gameEntities, final int score, final int lives) {
-        drawScoreAndLives(score, lives);
+    public void render(final Set<GameObject> gameEntities, final int score, final int lives, final String powerUpType) {
+        drawScoreLivesandPwUp(score, lives, powerUpType);
         drawWorld(gameEntities);
     }
 
@@ -129,12 +133,14 @@ public class ControllerGame implements Initializable, GUILayout {
 
     /**
      * Draw information about your current score and lives.
-     * @param score
-     * @param lives
+     * @param score The score of the player.
+     * @param lives The remaining life ot the player.
+     *  @param lives The type of the powerUp.
      */
-    private void drawScoreAndLives(final Integer score, final Integer lives) {
+    private void drawScoreLivesandPwUp(final Integer score, final Integer lives, final String powerUpType) {
         this.lblScore.setText("SCORE: " + score.toString());
         this.lblLives.setText("LIVES: " + lives.toString());
+        this.lblPowerUp.setText("LAST ACTIVE POWERUP: " + powerUpType);
     }
 
     /**
