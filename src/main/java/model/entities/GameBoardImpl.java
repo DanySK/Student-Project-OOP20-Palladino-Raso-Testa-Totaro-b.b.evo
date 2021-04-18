@@ -58,7 +58,6 @@ public class GameBoardImpl implements GameBoard {
      */
     @Override
     public void setPowerUps(final Collection<PowerUp> pwup) {
-        this.pwup.clear();
         this.pwup.addAll(pwup);
     }
 
