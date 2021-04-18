@@ -214,7 +214,8 @@ public class ControllerMapEditor implements GUIController {
      */
     @FXML
     public void buildLvl() {
-        if (levelName.getText().isBlank() || soundtrack.getValue() == null || backGround.getValue() == null) {
+        if (levelName.getText().isBlank() || soundtrack.getValue() == null || backGround.getValue() == null
+                                          || ballTexture.getValue() == null || paddleTexture.getValue() == null) {
             CheckAlertController.checkAllField();
         } else if (LevelSelection.isStandardLevel(levelName.getText())) {
             CheckAlertController.checkLevelName();
