@@ -30,17 +30,6 @@ public interface GameBoard extends GameBoardEventListeners {
     void setPowerUps(Collection<PowerUp> pwup);
 
     /**
-     * @param pwup
-     */
-    void setPowerUp(PowerUp pwup);
-
-    /**
-     * 
-     * @param pwup to add to the gameboard.
-     */
-    void addPowerUp(PowerUp pwup);
-
-    /**
      * 
      * @param bricks added in the gameboard
      */
