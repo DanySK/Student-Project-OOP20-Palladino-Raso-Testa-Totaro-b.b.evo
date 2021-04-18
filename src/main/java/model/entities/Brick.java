@@ -8,14 +8,13 @@ import controller.input.ComponentInputEmpty;
 import controller.input.ControllerInput;
 import model.utilities.Position;
 import resource.routing.PowerUpDropTexture;
+import resource.routing.PowerUpTexture;
 import model.utilities.BrickStatus;
 import model.physics.ComponentPhysicsEmpty;
-import model.physics.PwUpComponentPhysics;
 import model.utilities.Boundaries;
 import model.utilities.DirVector;
 import view.graphics.AdapterGraphics;
 import view.graphics.BrickComponentGraphics;
-import view.graphics.PwUpComponentGraphics;
 
 public class Brick extends GameObjectImpl {
 
@@ -37,9 +36,9 @@ public class Brick extends GameObjectImpl {
      * @return a new PowerUp
      */
     public PowerUp dropPowerUp() {
-        //controllo dal brick per prendere il tema
-        //PowerUpDropTexture. metodo col nome del tema
-        return new PowerUp(this.getPos(), this.getHeight(), this.getWidth(), PowerUpDropTexture.DROP_TEXTURE_GALAGA.getPath());
+        final String brickTexturePath = PowerUpTexture.getThemeNameByPath(this.texturePath).getTheme();
+        return new PowerUp(this.getPos(), this.getHeight(), this.getWidth(), 
+                PowerUpDropTexture.getPowerUpDropTextureByName(brickTexturePath).getPath());
     }
 
 
@@ -60,13 +59,13 @@ public class Brick extends GameObjectImpl {
          * @return brick builder
          */
         public Brick build() {
-            if (this.durability <= 0 || this.height <= 0 || this.width <= 0 || this.pos == null || this.texturePath == null ) {
+            if (this.durability <= 0 || this.height <= 0 || this.width <= 0 || this.pos == null || this.texturePath == null) {
                 throw new IllegalStateException();
             }
             return new Brick(this.pos, this.height, this.width, this.durability, this.status, this.texturePath);
         }
 
-        public Builder setTexture(final String texturePath) {
+        public Builder texture(final String texturePath) {
             this.texturePath = texturePath;
             return this;
         }
@@ -75,7 +74,7 @@ public class Brick extends GameObjectImpl {
          * @param pos
          * @return brick builder
          */
-        public Builder setPos(final Position pos) {
+        public Builder pos(final Position pos) {
             this.pos = pos;
             return this;
         }
@@ -85,7 +84,7 @@ public class Brick extends GameObjectImpl {
          * @param height
          * @return brick builder
          */
-        public Builder setHeight(final int height) {
+        public Builder height(final int height) {
             this.height = height;
             return this;
         }
@@ -94,12 +93,12 @@ public class Brick extends GameObjectImpl {
          * @param width
          * @return brick builder
          */
-        public Builder setWidth(final int width) {
+        public Builder width(final int width) {
             this.width = width;
             return this;
         }
 
-        public Builder setDurability(final int durability) {
+        public Builder durability(final int durability) {
             this.durability = durability;
             return this;
         }
@@ -108,7 +107,7 @@ public class Brick extends GameObjectImpl {
          * @param status
          * @return brick builder
          */
-        public Builder setStatus(final BrickStatus status) {
+        public Builder status(final BrickStatus status) {
             this.status = status;
             return this;
         }

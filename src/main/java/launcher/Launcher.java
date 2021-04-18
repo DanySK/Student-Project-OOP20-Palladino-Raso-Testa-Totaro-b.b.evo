@@ -17,8 +17,8 @@ public final class Launcher {
 
     /**
      * Method used to launch application.
-     * @param args
-     * @throws IOException 
+     * @param args - args to pass for the main program.
+     * @throws IOException - common input output exception.
      */
     public static void main(final String[] args) throws IOException {
         BrickBreakerEvo.main(args);

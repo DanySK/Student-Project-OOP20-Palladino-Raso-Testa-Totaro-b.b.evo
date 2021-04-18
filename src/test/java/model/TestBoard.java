@@ -57,12 +57,12 @@ public class TestBoard {
     private final List<PowerUp> listPwUp = new ArrayList<>();
 
     private final GameBoard board = new GameBoardImpl(new Wall(200, 200), null);
-    private final Brick brick = new Brick.Builder().setPos(new Position(STAND_POS_X, STAND_POS_Y))
-                                             .setHeight(10)
-                                             .setWidth(10)
-                                             .setTexture(BrickTexture.BRICK_TEXTURE_DEFAULT.getPath())
-                                             .setStatus(BrickStatus.NOT_DESTRUCTIBLE)
-                                             .setDurability(1)
+    private final Brick brick = new Brick.Builder().pos(new Position(STAND_POS_X, STAND_POS_Y))
+                                             .height(10)
+                                             .width(10)
+                                             .texture(BrickTexture.BRICK_TEXTURE_DEFAULT.getPath())
+                                             .status(BrickStatus.NOT_DESTRUCTIBLE)
+                                             .durability(1)
                                              .build();
     private final Ball ball = new Ball.Builder().position(new Position(STAND_POS_X, STAND_POS_Y))
                                           .direction(Angle.MIDDLE_LEFT.getAngleVector().mul(-1))

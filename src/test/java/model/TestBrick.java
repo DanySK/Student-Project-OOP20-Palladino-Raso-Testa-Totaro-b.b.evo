@@ -43,12 +43,12 @@ public class TestBrick {
     @Test
     public void brickCreation() {
         final Brick brick = new Brick.Builder()
-                .setDurability(BRICK_DURABILITY)
-                .setHeight(BRICK_HEIGHT)
-                .setWidth(BRICK_WIDTH)
-                .setPos(BRICK_POS)
-                .setStatus(STATUS)
-                .setTexture(PATH)
+                .durability(BRICK_DURABILITY)
+                .height(BRICK_HEIGHT)
+                .width(BRICK_WIDTH)
+                .pos(BRICK_POS)
+                .status(STATUS)
+                .texture(PATH)
                 .build();
         assertEquals(BRICK_DURABILITY, brick.getDurability());
         assertEquals(BRICK_HEIGHT, brick.getHeight());

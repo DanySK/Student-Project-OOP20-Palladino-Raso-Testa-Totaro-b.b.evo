@@ -80,8 +80,8 @@ public class BrickBreakerEvo extends Application {
 
     /**
      * initializes the game.
-     * @param args unused
-     * @throws IOException 
+     * @param args unused.
+     * @throws IOException - common input/output exception.
      */
     public static void main(final String[] args) throws IOException {
         initialization();

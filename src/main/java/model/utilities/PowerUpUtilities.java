@@ -21,7 +21,7 @@ public final class PowerUpUtilities {
     /**
      * default active time for each {@link PowerUp} activation (seconds).
      */
-    public static final float POWERUP_ACTIVE_TIME = 5;
+    public static final long POWERUP_ACTIVE_TIME = 5;
 
     /**
      * default life moodifier used by {@link PowerUp} to increase or decrease player's lives.
@@ -36,12 +36,12 @@ public final class PowerUpUtilities {
     /**
      * speed for the {@link PowerUp} drop.
      */
-    public static final double POWERUP_DROP_SPEED = 0.3;
+    public static final double POWERUP_DROP_SPEED = 0.2;
 
     /**
      * default drop direction for {@link PowerUp}.
      */
-    public static final DirVector POWERUP_DROP_DIR = new DirVector(0, -1);
+    public static final DirVector POWERUP_DROP_DIR = new DirVector(0, 1);
 
     private PowerUpUtilities() {
 

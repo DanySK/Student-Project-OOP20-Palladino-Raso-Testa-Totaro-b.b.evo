@@ -81,4 +81,16 @@ public enum PowerUpTexture implements Serializable{
                                                  .get()
                                                  .getPath();
     }
+
+    /**
+     * @param path of textureBrick
+     * @return name of theme
+     */
+    public static PowerUpTexture getThemeNameByPath(final String path) {
+        return Arrays.asList(PowerUpTexture.values()).stream()
+                .filter(i -> i.getPath().equals(path))
+                .findFirst()
+                .get();
+    }
+
 }

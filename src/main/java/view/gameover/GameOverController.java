@@ -31,7 +31,7 @@ import resource.routing.PersonalViews;
 import view.GUILayout;
 import view.SceneLoader;
 
-public class GameOverController implements Initializable, FXMLMenuController, GUILayout{
+public class GameOverController implements Initializable, FXMLMenuController, GUILayout {
 
     @FXML
     private AnchorPane window;

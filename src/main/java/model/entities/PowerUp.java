@@ -3,20 +3,17 @@ package model.entities;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import controller.input.ComponentInput;
 import controller.input.ComponentInputEmpty;
 import controller.input.ControllerInput;
-import model.physics.ComponentPhysics;
 import model.physics.PwUpComponentPhysics;
 import model.utilities.Boundaries;
-import model.utilities.DirVector;
-import model.utilities.BrickStatus;
 import model.utilities.Position;
 import model.utilities.PowerUpType;
 import model.utilities.PowerUpUtilities;
 import view.graphics.AdapterGraphics;
-import view.graphics.ComponentGraphics;
 import view.graphics.PwUpComponentGraphics;
 
 public class PowerUp extends GameObjectImpl {
@@ -25,11 +22,11 @@ public class PowerUp extends GameObjectImpl {
 
     private final PowerUpType pwtype;
 
-    private final float activeTime;
+    private final long activeTime;
     private final float speedModifier;
     private final int lifeModifier;
     private final int damageModifier;
-
+    private Boolean isActive;
     private String texturePath;
 
     private final Map<GameObject, Boundaries> hit = new HashMap<>();
@@ -38,29 +35,34 @@ public class PowerUp extends GameObjectImpl {
         super(pos, PowerUpUtilities.POWERUP_DROP_DIR, PowerUpUtilities.POWERUP_DROP_SPEED, height, width,  new PwUpComponentPhysics(),
                 new ComponentInputEmpty(), new PwUpComponentGraphics(texturePath));
         this.pwtype = PowerUpType.randomPowerUpType();
-        this.activeTime = PowerUpType.valueOf(this.pwtype.toString()).getActiveTime();
+        this.activeTime = (long) PowerUpType.valueOf(this.pwtype.toString()).getActiveTime();
         this.damageModifier = PowerUpType.valueOf(this.pwtype.toString()).getDamageModifier();
         this.lifeModifier = PowerUpType.valueOf(this.pwtype.toString()).getLifeModifier();
         this.speedModifier = PowerUpType.valueOf(this.pwtype.toString()).getSpeedModifier();
         this.texturePath = texturePath;
+        this.isActive = false;
     }
 
     /**
-     * this method is used after powerup activation
-     * to waits some seconds.
-     * @param ms amount of seconds to wait
+     * getter for isActive boolean value.
+     * @return true if the powerup has been activated,
+     * false otherwise
      */
-    public void waitSeconds(final float ms) {
-        try {
-            Thread.sleep((long) ms * 1000);
-        } catch  (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
+    public Boolean getIsActive() {
+        return this.isActive;
+    }
+
+    /**
+     * setter for isActive boolean.
+     * @param value the value to set
+     */
+    public void setIsActive(final Boolean value) {
+        this.isActive = value;
     }
 
     /**
      * getter for {@link PowerUpType} attribute.
-     * @return which powerup will be created
+     * @return which {@link PowerUpType} will be created
      */
     public PowerUpType getPowerUpType() {
         return this.pwtype;
@@ -94,7 +96,7 @@ public class PowerUp extends GameObjectImpl {
      * getter for the active time.
      * @return active time in seconds
      */
-    public float getActiveTime() {
+    public long getActiveTime() {
         return activeTime;
     }
 

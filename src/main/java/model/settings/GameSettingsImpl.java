@@ -15,12 +15,12 @@ public class GameSettingsImpl implements Settings {
 
     /**
      * 
-     * Create a new GameSettings whit specific parameter.
-     * @param isEnableSoundFx
-     * @param isEnableMusic
-     * @param useLeftAndRight
-     * @param useUpAndDown
-     * @param difficulty
+     * Create a new Game's Settings whit specifics parameters.
+     * @param isEnableSoundFx - used to understand if the game's sound fx is enabled.
+     * @param isEnableMusic - used to understand if the game's music is enabled.
+     * @param useLeftAndRight - used to understand if the player want to play with left and right buttons.
+     * @param useUpAndDown - used to understand if the player want to play with up and down buttons.
+     * @param difficulty - used to understand the game's difficulty.
      */
     public GameSettingsImpl(final boolean isEnableSoundFx, final boolean isEnableMusic, final boolean useLeftAndRight,
                             final boolean useUpAndDown, final Difficulty difficulty) {

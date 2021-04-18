@@ -57,7 +57,7 @@ public class LeaderboardControllerImpl implements LeaderboardController {
      *
      */
     @Override
-    public Map<String, Integer> getPoudium(final int index, final LeaderboardSortingStrategy ls) {
+    public Map<String, Integer> getPodium(final int index, final LeaderboardSortingStrategy ls) {
         this.leaderboard.sortByScore(ls);
         return this.leaderboard.getLeaderBoard()
                                .entrySet()
