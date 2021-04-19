@@ -1,10 +1,6 @@
 package controller.scene;
 
-import controller.texture.TextureController;
-import controller.utilities.CheckAlertController;
-import controller.utilities.GUIController;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -15,7 +11,6 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -25,17 +20,19 @@ import model.mapeditor.LevelBuilder;
 import model.mapeditor.LevelManager;
 import model.mapeditor.LevelSelection;
 import model.utilities.BrickStatus;
+import model.utilities.CheckCustomAlert;
 import model.utilities.ScreenUtilities;
+import model.utilities.TextureComboBox;
 import model.utilities.Pair;
 import resource.routing.BackGround;
 import resource.routing.BrickTexture;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PowerUpTexture;
+import view.GUILayout;
 import view.PersonalViews;
-import view.SceneLoader;
 
-public class ControllerMapEditor implements GUIController {
+public class ControllerMapEditor implements GUILayout {
 
     private static final int NOT_BUILDABLE_ZONE = 4; // Number of rows where the player can't put brick
     private int rowsY;
@@ -113,12 +110,14 @@ public class ControllerMapEditor implements GUIController {
 
 
     /**
+     * 
      * Initialize the level customization and set the mouse listeners on the canvas.
      */
     @FXML
     public void initialize() {
 
-        final TextureController tc = new TextureController(ballTexture, paddleTexture, brickTexture);
+        //Load texture preview on comboBox
+        final TextureComboBox tc = new TextureComboBox(ballTexture, paddleTexture, brickTexture);
         tc.loadBallTexture();
         tc.loadPaddleTexture();
         tc.loadBrickTexture();
@@ -127,7 +126,7 @@ public class ControllerMapEditor implements GUIController {
         this.backGround.getItems().addAll(BackGround.getBackGroundNames());
         this.levelBuilder = new LevelBuilder();
 
-
+        //Create brick on grid
         this.setCanvas();
         this.canvas.setOnMouseClicked(e -> {
             if (e.getY() < (rowsY * (ScreenUtilities.BRICK_NUMBER_Y - NOT_BUILDABLE_ZONE))) {
@@ -162,9 +161,11 @@ public class ControllerMapEditor implements GUIController {
                 }
             }
         });
+        this.backToMenu();
     }
 
     /**
+     * 
      * Draw a grid on canvas.
      */
     private void setCanvas() {
@@ -191,13 +192,12 @@ public class ControllerMapEditor implements GUIController {
         this.graphicsContext.fillRect(0, rowsY * (ScreenUtilities.BRICK_NUMBER_Y - NOT_BUILDABLE_ZONE), canvas.getWidth() - wastePixel, canvas.getHeight());
     }
 
-
-
     /**
-     * Click the button menu the user return to the Main Menu.
+     * 
+     * Click the button menu to return to Main Menu.
      */
     @FXML
-    void backToMenu() {
+    private void backToMenu() {
       //MenuButton return to menu
         this.menu.setOnAction(event -> FXMLMenuController.switchScene((Stage) this.panel.getScene().getWindow(), PersonalViews.SCENE_CREATIVEMODE, PersonalStyle.DEFAULT_STYLE, 
                 ControllerMainMenu.CREATIVE_MODE_WIDTH, ControllerMainMenu.CREATIVE_MODE_HEIGHT, false));
@@ -205,15 +205,15 @@ public class ControllerMapEditor implements GUIController {
 
     /**
      * Check if the forms have been filled correctly.
-     * Call the level builder to create a level with elem.
+     * Call the level builder to create a level with elements presents.
      */
     @FXML
     public void buildLvl() {
         if (levelName.getText().isBlank() || soundtrack.getValue() == null || backGround.getValue() == null
                                           || ballTexture.getValue() == null || paddleTexture.getValue() == null) {
-            CheckAlertController.checkAllField();
+            CheckCustomAlert.checkAllField();
         } else if (LevelSelection.isStandardLevel(levelName.getText())) {
-            CheckAlertController.checkLevelName();
+            CheckCustomAlert.checkLevelName();
         } else {
             this.levelBuilder.setLevelName(levelName.getText());
             this.levelBuilder.setMusic(soundtrack.getValue());
@@ -221,11 +221,12 @@ public class ControllerMapEditor implements GUIController {
             this.levelBuilder.setBall(ballTexture.getValue());
             this.levelBuilder.setPaddle(paddleTexture.getValue());
             LevelManager.saveLevel(this.levelBuilder.build());
-            CheckAlertController.checkLevelCreate();
+            CheckCustomAlert.checkLevelCreate();
         }
     }
 
     /**
+     * 
      * Clear all the elements on the grid.
      */
     @FXML

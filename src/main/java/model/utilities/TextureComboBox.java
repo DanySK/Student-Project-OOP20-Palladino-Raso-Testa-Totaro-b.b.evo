@@ -1,4 +1,4 @@
-package controller.texture;
+package model.utilities;
 
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
@@ -11,7 +11,7 @@ import resource.routing.BrickTexture;
 import resource.routing.PaddleTexture;
 import resource.routing.PowerUpTexture;
 
-public class TextureController {
+public class TextureComboBox {
 
     /*
      * Puo essere migliorato riducendo i metodi, da sistemare i warning e le immagini di default.
@@ -28,7 +28,7 @@ public class TextureController {
      * @param paddleTexture
      * @param brickTexture
      */
-    public TextureController(final ComboBox<String> ballTexture, final ComboBox<String> paddleTexture, final ComboBox<String> brickTexture) {
+    public TextureComboBox(final ComboBox<String> ballTexture, final ComboBox<String> paddleTexture, final ComboBox<String> brickTexture) {
         super();
         this.ballTexture = ballTexture;
         this.paddleTexture = paddleTexture;

@@ -1,4 +1,4 @@
-package controller.utilities;
+package model.utilities;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -8,11 +8,11 @@ import javafx.scene.control.Alert.AlertType;
  * DA GUARDRE SE TENERLA QUI O SPOSTARLA
  *
  */
-public final class CheckAlertController {
+public final class CheckCustomAlert {
 
     private static Alert alert;
 
-    private CheckAlertController() {
+    private CheckCustomAlert() {
 
     }
 
