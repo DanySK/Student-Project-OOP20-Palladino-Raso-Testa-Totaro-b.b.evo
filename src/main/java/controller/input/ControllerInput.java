@@ -8,7 +8,7 @@ public interface ControllerInput {
     /**
      * @return true or false if the user is trying to move left or not.
      */
-    boolean canMoveLef();
+    boolean canMoveLeft();
 
     /**
      * @return true or false if the user is trying to move right or not.

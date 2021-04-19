@@ -9,7 +9,7 @@ public class ControllerInputImpl implements ControllerInput {
      * {@inheritDoc}
      */
     @Override
-    public boolean canMoveLef() {
+    public boolean canMoveLeft() {
         return this.moveLeft;
     }
 
