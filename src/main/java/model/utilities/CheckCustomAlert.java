@@ -4,9 +4,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 /**
- * Used to check if the fields and the name level.
- * DA GUARDRE SE TENERLA QUI O SPOSTARLA
- *
+ * 
+ * Used to check if the fields and the name level are empty.
  */
 public final class CheckCustomAlert {
 

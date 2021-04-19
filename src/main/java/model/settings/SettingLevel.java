@@ -6,11 +6,18 @@ import model.mapeditor.Level;
 import model.mapeditor.LevelSelection;
 
 
+/**
+ * Prepare the level to be saved or load in future.
+ *
+ */
 public final class SettingLevel implements Serializable {
 
     private static final long serialVersionUID = -2472026492104740049L;
     private final Level selectedLevel;
 
+    /**
+     * @param selectedLevel that you want to put on setting to process
+     */
     private SettingLevel(final Level selectedLevel) {
         this.selectedLevel = selectedLevel;
     }
@@ -31,7 +38,7 @@ public final class SettingLevel implements Serializable {
         }
 
         /**
-         * set the settings by copying the parameters from other settings.
+         * Set the settings by copying the parameters from other settings.
          * @param settings to copy
          * @return returns himself following the pattern builder
          */
@@ -40,6 +47,10 @@ public final class SettingLevel implements Serializable {
             return this;
         }
 
+        /**
+         * @param selectedLevel that you want store into SettingLevel
+         * @return the level selected wrapped into SettingLevelBuilder
+         */
         public SettingLevelBuilder selectLevel(final Level selectedLevel) {
             this.selectedLevel = selectedLevel;
             return this;

@@ -1,16 +1,16 @@
 package controller.input;
 
 import controller.game.GameStatus;
-import controller.game.GameController;
+import controller.game.GameState;
 import javafx.scene.canvas.Canvas;
 
 public class InputEventImpl implements InputEvent {
 
-    private final GameController state;
+    private final GameState state;
     private final ControllerInput controller;
     private final Canvas canvas;
 
-    public InputEventImpl(final Canvas canvas, final ControllerInput controller, final GameController state) {
+    public InputEventImpl(final Canvas canvas, final ControllerInput controller, final GameState state) {
         this.state = state;
         this.canvas = canvas;
         this.controller = controller;

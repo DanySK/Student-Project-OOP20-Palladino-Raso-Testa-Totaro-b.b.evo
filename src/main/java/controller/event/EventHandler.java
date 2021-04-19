@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import controller.game.GameStatus;
-import controller.game.GameController;
+import controller.game.GameState;
 import controller.sound.SoundController;
 import model.entities.Ball;
 import model.entities.Brick;
@@ -24,12 +24,12 @@ import model.utilities.PowerUpUtilities;
 public class EventHandler {
 
     private final Queue<Event> eventList = new LinkedList<>();
-    private final GameController state;
+    private final GameState state;
     private final LifeOperationStrategy lifeOperation;
     private final ScoreOperationStrategy scoreOperation;
     private final int ballDamage;
 
-    public EventHandler(final GameController state) {
+    public EventHandler(final GameState state) {
         this.state = state;
         this.lifeOperation = new BasicLifeOperationStrategy();
         this.scoreOperation = new BasicScoreOperationStrategy();

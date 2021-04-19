@@ -74,12 +74,11 @@ public enum PowerUpTexture implements Serializable{
      * @param theme to map
      * @return String path of PowerUpTexture
      */
-    public static String getPowerUpTextureByName(final String theme) {
+    public static PowerUpTexture getPowerUpTextureByName(final String theme) {
         return Arrays.asList(PowerUpTexture.values()).stream()
                                                  .filter(i -> i.getTheme().equals(theme))
                                                  .findFirst()
-                                                 .get()
-                                                 .getPath();
+                                                 .get();
     }
 
     /**

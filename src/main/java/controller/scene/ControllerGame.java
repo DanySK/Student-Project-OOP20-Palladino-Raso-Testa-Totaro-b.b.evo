@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import controller.utilities.GUILayout;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -25,7 +26,6 @@ import javafx.util.Duration;
 import model.utilities.ScreenUtilities;
 import resource.routing.BackGround;
 import resource.routing.PersonalFonts;
-import view.GUILayout;
 import view.graphics.AdapterGraphics;
 import view.graphics.AdapterGraphicsImpl;
 import model.entities.GameObject;

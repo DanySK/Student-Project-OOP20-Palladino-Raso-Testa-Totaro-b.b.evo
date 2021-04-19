@@ -9,7 +9,7 @@ import model.utilities.Difficulty;
  * Part of pattern gameloop implements all the methods for the objects in the game.
  *
  */
-public interface GameController {
+public interface GameState {
 
     /**
      * 
@@ -40,12 +40,6 @@ public interface GameController {
      * @return the level where the game is taking place
      */
     Level getLevel();
-
-    /**
-     * 
-     * Set brick value score in base of difficulty selected.
-     */
-    void baseMultiplier();
 
     /**
      * 

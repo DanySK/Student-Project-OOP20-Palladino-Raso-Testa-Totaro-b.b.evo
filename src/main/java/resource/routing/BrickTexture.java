@@ -85,11 +85,10 @@ public enum BrickTexture implements Serializable{
      * @param theme to map
      * @return String path of BrickTextureName
      */
-    public static String getBrickTextureByName(final String theme) {
+    public static BrickTexture getBrickTextureByName(final String theme) {
         return Arrays.asList(BrickTexture.values()).stream()
                                                  .filter(i -> i.getTheme().equals(theme))
                                                  .findFirst()
-                                                 .get()
-                                                 .getPath();
+                                                 .get();
     }
 }

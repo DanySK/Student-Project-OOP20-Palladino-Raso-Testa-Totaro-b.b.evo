@@ -12,11 +12,19 @@ import java.io.ObjectOutputStream;
 import launcher.BrickBreakerEvo;
 import model.settings.SettingLevel.SettingLevelBuilder;
 
+/**
+ * Manage the setting of the level (save, load, init levelOption).
+ *
+ */
 public final class SettingLevelManager {
 
     private SettingLevelManager() {
     }
 
+    /**
+     * 
+     * Load the default setting of level(load first level).
+     */
     public static void init() {
         final SettingLevelBuilder initialSetting = new SettingLevelBuilder();
 
@@ -30,7 +38,7 @@ public final class SettingLevelManager {
         }
     }
     /**
-     * save the current settings in the default game folder.
+     * Save the current settings in the default game folder.
      * @param settings to save
      */
     public static void saveOption(final SettingLevel settings) {
@@ -45,7 +53,7 @@ public final class SettingLevelManager {
     }
 
     /**
-     * load the saves that are in the default game folder.
+     * Load the saves that are in the default game folder.
      * @return current selected settings
      */
     public static SettingLevel loadOption() {

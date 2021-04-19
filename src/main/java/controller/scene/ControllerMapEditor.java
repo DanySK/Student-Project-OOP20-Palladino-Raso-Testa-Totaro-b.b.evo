@@ -1,5 +1,6 @@
 package controller.scene;
 
+import controller.utilities.GUILayout;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -29,9 +30,12 @@ import resource.routing.BrickTexture;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import resource.routing.PowerUpTexture;
-import view.GUILayout;
 import view.PersonalViews;
 
+/**
+ *  Manage the Editor scene, where you can go back to menu, create your custom level and clean all the grid.
+ *
+ */
 public class ControllerMapEditor implements GUILayout {
 
     private static final int NOT_BUILDABLE_ZONE = 4; // Number of rows where the player can't put brick
@@ -145,12 +149,12 @@ public class ControllerMapEditor implements GUILayout {
                                                                                   (int) durabilitySet.getValue());
                 if (init.getY()) {
                     if  (unbreakableCheck.isSelected()) {
-                        graphicsContext.setFill(new ImagePattern(new Image(BrickTexture.getBrickTextureByName("Undestructible")), 0, 0, 1, 1, true));
+                        graphicsContext.setFill(new ImagePattern(new Image(BrickTexture.getBrickTextureByName("Undestructible").getPath()), 0, 0, 1, 1, true));
                     } else {
                         if (powerupTexture.isSelected()) {
-                            graphicsContext.setFill(new ImagePattern(new Image(PowerUpTexture.getPowerUpTextureByName(brickTexture.getValue())), 0, 0, 1, 1, true));
+                            graphicsContext.setFill(new ImagePattern(new Image(PowerUpTexture.getPowerUpTextureByName(brickTexture.getValue()).getPath()), 0, 0, 1, 1, true));
                         } else {
-                            graphicsContext.setFill(new ImagePattern(new Image(BrickTexture.getBrickTextureByName(brickTexture.getValue())), 0, 0, 1, 1, true));
+                            graphicsContext.setFill(new ImagePattern(new Image(BrickTexture.getBrickTextureByName(brickTexture.getValue()).getPath()), 0, 0, 1, 1, true));
                         }
                     }
                     graphicsContext.fillRect(init.getX().getPos().getX(), init.getX().getPos().getY(), init.getX().getWidth(), init.getX().getHeight());

@@ -1,6 +1,7 @@
 package controller.scene;
 
-import controller.game.GameControllerImpl;
+import controller.game.GameStateImpl;
+import controller.utilities.GUILayout;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,7 +18,6 @@ import model.settings.SettingLevelManager;
 import model.utilities.CheckCustomAlert;
 import model.utilities.ScreenUtilities;
 import resource.routing.PersonalStyle;
-import view.GUILayout;
 import view.PersonalViews;
 
 /**
@@ -117,7 +117,7 @@ public class ControllerCreativeMode implements GUILayout {
     @FXML
     private void playLevel() {
         if (!levelSelected.getText().isBlank()) {
-            GameControllerImpl.setCreativeMode(true);
+            GameStateImpl.setCreativeMode(true);
             final SettingLevelBuilder levelBuilder = new SettingLevelBuilder();
             levelBuilder.fromSettings(SettingLevelManager.loadOption());
             levelBuilder.selectLevel(currentLevel);

@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import model.entities.Brick;
 import model.entities.Brick.Builder;
 import model.entities.GameObject;
@@ -14,12 +13,17 @@ import model.utilities.BrickStatus;
 import model.utilities.ScreenUtilities;
 import model.utilities.Pair;
 import model.utilities.Position;
-import model.utilities.Texture;
 import resource.routing.BackGround;
 import resource.routing.BallTexture;
+import resource.routing.BrickTexture;
 import resource.routing.PaddleTexture;
 import resource.routing.PersonalSounds;
+import resource.routing.PowerUpTexture;
 
+/**
+ * Model the level by select resource, put it on a grid and build all.
+ *
+ */
 public class LevelBuilder {
 
     //build the map between bricks in the board and coordinates
@@ -91,11 +95,11 @@ public class LevelBuilder {
                 } else {
                     final String selectedTexture;
                     if (state.equals(BrickStatus.DROP_POWERUP)) {
-                            selectedTexture = new Texture(texture).buildPowerUpTexturePath();
+                            selectedTexture = PowerUpTexture.getPowerUpTextureByName(texture).getPath();
                     } else if (state.equals(BrickStatus.NOT_DESTRUCTIBLE)) {
-                            selectedTexture = new Texture(texture).buildUnderBrickTexturePath();
+                            selectedTexture = BrickTexture.BRICK_TEXTURE_UNDESTRUCTIBLE.getPath();
                     } else {
-                            selectedTexture = new Texture(texture).buildBrickTexturePath();
+                            selectedTexture = BrickTexture.getBrickTextureByName(texture).getPath();
                     }
                     final Builder brickBuilder = new Builder();
                     final GameObject gameObjectEmpty = this.gameGrid.get(brickSelected).getX();
@@ -115,6 +119,7 @@ public class LevelBuilder {
     }
 
     /**
+     * 
      * @return level built
      */
     public Level build() {
@@ -127,6 +132,7 @@ public class LevelBuilder {
     }
 
     /**
+     * 
      * @param levelName
      */
     public void setLevelName(final String levelName) {
@@ -134,6 +140,7 @@ public class LevelBuilder {
     }
 
     /**
+     * 
      * @param backGround to set
      */
     public void setBackGround(final String backGround) {
@@ -141,6 +148,7 @@ public class LevelBuilder {
     }
 
     /**
+     * 
      * @param music to set
      */
     public void setMusic(final String music) {
@@ -148,20 +156,22 @@ public class LevelBuilder {
     }
 
     /**
-     * @param ball
+     * 
+     * @param ball texture to set
      */
     public void setBall(final String ball) {
         this.ball = BallTexture.getBallTextureByName(ball);
     }
 
     /**
-     * @param paddle
+     * @param paddle texture to set
      */
     public void setPaddle(final String paddle) {
         this.paddle = PaddleTexture.getPaddleTextureByName(paddle);
     }
 
     /**
+     * 
      * Delete all elements. 
      */
     public void deleteAll() {
@@ -169,5 +179,4 @@ public class LevelBuilder {
             this.gameGrid.replace(elem, new Pair<>(this.gameGrid.get(elem).getX(), Optional.empty()));
         }
     }
-
 }

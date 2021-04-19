@@ -12,6 +12,7 @@ import model.entities.Wall;
 import model.leaderboard.Player;
 import model.leaderboard.PlayerImpl;
 import model.mapeditor.Level;
+import model.mapeditor.LevelSelection;
 import model.settings.SettingLevel;
 import model.settings.SettingLevelManager;
 import model.utilities.ObjectInit;
@@ -20,7 +21,7 @@ import model.utilities.GameUtilities;
 import model.utilities.ScreenUtilities;
 import model.utilities.Angle;
 
-public class GameControllerImpl implements GameController {
+public class GameStateImpl implements GameState {
 
     /**
      * Setting false for load standard level, true for creative mode.
@@ -40,7 +41,7 @@ public class GameControllerImpl implements GameController {
     private final PlayerImpl player;
     private final SettingsControllerImpl setting;
 
-    public GameControllerImpl() {
+    public GameStateImpl() {
         this.phase = GameStatus.START;
         this.setting = new SettingsControllerImpl(GameUtilities.SETTINGS_PATH); 
         final SettingLevel settingLevel =  SettingLevelManager.loadOption();
@@ -53,6 +54,7 @@ public class GameControllerImpl implements GameController {
         this.player = new PlayerImpl(this.getPlayerAlias(), setting.getDifficulty().getInitialScore(), 
                                      setting.getDifficulty().getNumberOfLives(),
                                      setting.getDifficulty().getMaxNumberOfLife());
+
         this.board = new GameBoardImpl(new Wall(ScreenUtilities.WORLD_WIDTH, ScreenUtilities.WORLD_HEIGHT), this);
         this.board.setBricks(level.getBricks());
     }
@@ -63,7 +65,6 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public void init() {
-        this.baseMultiplier();
         final Paddle.Builder paddleBuilder = new Paddle.Builder();
         this.board.setPaddle(paddleBuilder.position(ObjectInit.PADDLE.getStartPos())
                                         .width(ObjectInit.PADDLE.getInitWidth())
@@ -117,14 +118,7 @@ public class GameControllerImpl implements GameController {
         return this.level;
     }
 
-    /**
-     * 
-     * {@inheritDoc}
-     */
-    @Override
-    public void baseMultiplier() {
-        this.setting.getDifficulty().getMultiplyScoreValue();
-    }
+
 
     /**
      *

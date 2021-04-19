@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import controller.game.GameLoop;
+import controller.utilities.GUILayout;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -15,7 +16,6 @@ import model.leaderboard.Player;
 import model.mapeditor.Level;
 import model.utilities.ScreenUtilities;
 import resource.routing.PersonalStyle;
-import view.GUILayout;
 import view.PersonalViews;
 
 /**

@@ -26,7 +26,6 @@ import resource.routing.PersonalStyle;
 import view.PersonalViews;
 import view.SceneLoader;
 
-
 /**
  * Class that represent the gameloop pattern.
  * Load, update and render the scene.
@@ -40,7 +39,7 @@ public class GameLoop implements Runnable {
     private static final long PERIOD = 20;
 
     private final Scene scene;
-    private final GameController gameState;
+    private final GameState gameState;
     private final GameBoard board;
     private final ControllerGame controllerGame;
     private final ControllerInput inputController;
@@ -53,7 +52,7 @@ public class GameLoop implements Runnable {
         currentStage.setResizable(false); // Don't permise resize
         currentStage.setWidth(ScreenUtilities.SCREEN_WIDTH); // Set new Dimension
         currentStage.setHeight(ScreenUtilities.SCREEN_HEIGHT); // Set new Dimension
-        this.gameState = new GameControllerImpl();
+        this.gameState = new GameStateImpl();
         this.board = gameState.getBoard();
         this.controllerGame = (ControllerGame) PersonalViews.SCENE_GAME.loadScene(); 
         this.controllerGame.setBackgroundImage(gameState.getLevel().getBackground());
@@ -113,7 +112,7 @@ public class GameLoop implements Runnable {
             changeView(PersonalViews.SCENE_MAIN_MENU);
         } else { 
             //Check for creative mode
-            if (GameControllerImpl.isCreativeMode() && gameState.getPhase().equals(GameStatus.WIN)) {
+            if (GameStateImpl.isCreativeMode() && gameState.getPhase().equals(GameStatus.WIN)) {
                 saveState(GameStatus.LOST);
                 changeView(PersonalViews.SCENE_GAME_FINAL);
             } else { 
@@ -122,7 +121,6 @@ public class GameLoop implements Runnable {
             }
         }
     }
-
 
     /**
      * Change the current view with the layout passed.
@@ -147,11 +145,9 @@ public class GameLoop implements Runnable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                //rimosso il confronto di url, ma solo del personal view, tanto dovrebbero coincidere no ?
-                //come prima spotbug dava errore, cosi no invece
                 if (layout.equals(PersonalViews.SCENE_GAME) || layout.equals(PersonalViews.SCENE_NEXT_LEVEL)) {
                     scene.setRoot(layout.getLayout());
-                } else { // a cosa serve l'else?
+                } else { 
                     SceneLoader.switchScene((Stage) scene.getWindow(), PersonalViews.SCENE_MAIN_MENU.getURL(), 
                                             PersonalViews.SCENE_MAIN_MENU.getTitleScene(), 
                                             scene.getWidth(), 
@@ -214,7 +210,6 @@ public class GameLoop implements Runnable {
         board.getEventHanlder().manageEvent();
         board.updateState(elapsed);
     }
-
 
     /**
      * Execute the keyboard command.

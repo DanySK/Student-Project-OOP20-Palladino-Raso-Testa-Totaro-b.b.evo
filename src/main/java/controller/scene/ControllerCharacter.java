@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import controller.leaderboard.LeaderboardController;
 import controller.leaderboard.LeaderboardControllerImpl;
 import controller.sound.SoundController;
+import controller.utilities.GUILayout;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -33,7 +34,6 @@ import model.utilities.ScreenUtilities;
 import resource.routing.PersonalFonts;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
-import view.GUILayout;
 import view.PersonalViews;
 
 public class ControllerCharacter implements Initializable, FXMLMenuController, GUILayout {

@@ -11,7 +11,7 @@ import resource.routing.BrickTexture;
 import resource.routing.PaddleTexture;
 
 /**
- * This class manage the ComboBox on @ControllerMapEditor.
+ * This class manage the ComboBox on {@link ControllerMapEditor}.
  * Simple load the texture on it as preview.
  */
 public class TextureComboBox {
@@ -34,8 +34,6 @@ public class TextureComboBox {
         this.paddleTexture = paddleTexture;
         this.brickTexture = brickTexture;
     }
-
-
 
     /**
      * Load the Ball texture preview.
@@ -137,7 +135,7 @@ public class TextureComboBox {
                         } else {
                             Image icon;
                             try {
-                                final String iconPath = BrickTexture.getBrickTextureByName(item);
+                                final String iconPath = BrickTexture.getBrickTextureByName(item).getPath();
                                 icon = new Image(Thread.currentThread().getContextClassLoader().getResourceAsStream(iconPath));
                             } catch (NullPointerException ex) {
                                 // in case the above image doesn't exist, use a default one

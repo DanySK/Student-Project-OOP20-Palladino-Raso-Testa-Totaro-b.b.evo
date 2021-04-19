@@ -76,6 +76,4 @@ public final class LevelManager {
         }
         return level;
     }
-
 }
-

@@ -9,8 +9,8 @@ import resource.routing.BallTexture;
 import resource.routing.PaddleTexture;
 import resource.routing.PersonalSounds;
 
-/*
- * Provides to create a simple level
+/**
+ * Provides to create a simple level.
  *
  */
 public class Level implements Serializable {
@@ -25,12 +25,12 @@ public class Level implements Serializable {
 
     /**
      * Set all required variables. 
-     * @param bricks
-     * @param levelName
-     * @param music
-     * @param background
-     * @param ball
-     * @param paddle
+     * @param bricks set of brick to put on board
+     * @param levelName name of the level
+     * @param music that will play when game start
+     * @param background set on board
+     * @param ball texture set on board
+     * @param paddle texture set on board
      */
     public Level(final Set<Brick> bricks, final String levelName, final PersonalSounds music, final BackGround background,
                                                                   final BallTexture ball, final PaddleTexture paddle) {
@@ -122,5 +122,4 @@ public class Level implements Serializable {
         }
         return true;
     }
-
 }

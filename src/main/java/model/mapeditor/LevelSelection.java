@@ -55,6 +55,7 @@ public enum LevelSelection implements Iterator<LevelSelection> {
     }
 
     /**
+     * 
      * @return path of level
      */
     public String getPath() {
@@ -62,6 +63,7 @@ public enum LevelSelection implements Iterator<LevelSelection> {
     }
 
     /**
+     * 
      * @return name of level
      */
     public String getName() {
@@ -69,6 +71,7 @@ public enum LevelSelection implements Iterator<LevelSelection> {
     }
 
     /**
+     * 
      * @return index of level
      */
     public int getIndex() {
@@ -76,6 +79,7 @@ public enum LevelSelection implements Iterator<LevelSelection> {
     }
 
     /**
+     * 
      * @return true if it's the last, false otherwise
      */
     public boolean isLast() {
@@ -139,5 +143,4 @@ public enum LevelSelection implements Iterator<LevelSelection> {
                                                      .findFirst()
                                                      .get();
     }
-
 }
