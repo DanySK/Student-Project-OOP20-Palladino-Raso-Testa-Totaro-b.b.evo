@@ -13,6 +13,7 @@ Start application. \
 Enjoy !
 
 ## License
+Distributed under the GPL-3.0 License.
 
 ## Contact
 * Alessandro Palladino
