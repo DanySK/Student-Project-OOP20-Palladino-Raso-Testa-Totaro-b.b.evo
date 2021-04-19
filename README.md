@@ -7,10 +7,10 @@ Il progetto ha come scopo quello di implementare la logica del famosissimo gioco
 [Java](https://www.oracle.com/it/java/)
 
 ## Running
-To run successfully in any way the game you must have a Java version >= 11.
-Download and run the brickbreaker-evolution.jar file, with `java -jar 'brickbreaker-evolution.jar'` from the installation directory from a terminal.
-Start application.
-Engoy !
+To run successfully in any way the game you must have a Java version >= 11. \
+Download and run the brickbreaker-evolution.jar file, with `java -jar 'brickbreaker-evolution.jar'` from the installation directory from a terminal. \
+Start application. \
+Enjoy !
 
 ## License
 
