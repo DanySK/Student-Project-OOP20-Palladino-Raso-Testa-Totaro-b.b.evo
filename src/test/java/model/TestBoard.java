@@ -99,7 +99,7 @@ public class TestBoard {
         this.listBall.addAll(IntStream.range(MIN_RANGE, MAX_RANGE)
                                 .mapToObj(i -> ballCreation())
                                 .collect(Collectors.toList()));
-        board.setBalls(this.listBall);
+        board.getBalls();
         assertEquals(MAX_RANGE, board.getSceneEntities().size());
     }
 
