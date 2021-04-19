@@ -1,16 +1,16 @@
 package controller.input;
 
-import controller.game.GamePhase;
-import controller.game.GameState;
+import controller.game.GameStatus;
+import controller.game.GameController;
 import javafx.scene.canvas.Canvas;
 
 public class InputEventImpl implements InputEvent {
 
-    private final GameState state;
+    private final GameController state;
     private final ControllerInput controller;
     private final Canvas canvas;
 
-    public InputEventImpl(final Canvas canvas, final ControllerInput controller, final GameState state) {
+    public InputEventImpl(final Canvas canvas, final ControllerInput controller, final GameController state) {
         this.state = state;
         this.canvas = canvas;
         this.controller = controller;
@@ -38,11 +38,11 @@ public class InputEventImpl implements InputEvent {
                 this.controller.setMoveRight(true);
                 break;
             case ESCAPE:
-                this.state.setPhase(GamePhase.MENU);
+                this.state.setPhase(GameStatus.MENU);
                 break;
             case SPACE:
-                if (this.state.getPhase().equals(GamePhase.PAUSE)) {
-                    this.state.setPhase(GamePhase.RUNNING);
+                if (this.state.getPhase().equals(GameStatus.PAUSE)) {
+                    this.state.setPhase(GameStatus.RUNNING);
                 }
                 break;
             default:

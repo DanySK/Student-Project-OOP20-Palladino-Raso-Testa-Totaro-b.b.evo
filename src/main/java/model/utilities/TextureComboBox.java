@@ -1,4 +1,4 @@
-package controller.texture;
+package model.utilities;
 
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
@@ -9,13 +9,13 @@ import javafx.util.Callback;
 import resource.routing.BallTexture;
 import resource.routing.BrickTexture;
 import resource.routing.PaddleTexture;
-import resource.routing.PowerUpTexture;
 
-public class TextureController {
+/**
+ * This class manage the ComboBox on @ControllerMapEditor.
+ * Simple load the texture on it as preview.
+ */
+public class TextureComboBox {
 
-    /*
-     * Puo essere migliorato riducendo i metodi, da sistemare i warning e le immagini di default.
-     */
     private static final int COMBOBOX_HEIGHT = 30;
 
     private final ComboBox<String> ballTexture;
@@ -24,11 +24,11 @@ public class TextureController {
 
 
     /**
-     * @param ballTexture
-     * @param paddleTexture
-     * @param brickTexture
+     * @param ballTexture get ballTexture Combobox
+     * @param paddleTexture get paddleTexture ComboBox
+     * @param brickTexture get brickTexture ComboBox
      */
-    public TextureController(final ComboBox<String> ballTexture, final ComboBox<String> paddleTexture, final ComboBox<String> brickTexture) {
+    public TextureComboBox(final ComboBox<String> ballTexture, final ComboBox<String> paddleTexture, final ComboBox<String> brickTexture) {
         super();
         this.ballTexture = ballTexture;
         this.paddleTexture = paddleTexture;
@@ -49,6 +49,8 @@ public class TextureController {
                 return new ListCell<String>() {
 
                     @Override
+                    //Use suppressWarnings because if try catch generate NullPointerException the icon assume another path
+                    @SuppressWarnings({ "PMD.AvoidCatchingGenericException", "PMD.AvoidCatchingNPE" })
                     protected void updateItem(final String item, final boolean empty) {
                         super.updateItem(item, empty);
                         setText(item);
@@ -58,11 +60,11 @@ public class TextureController {
                             Image icon;
                             try {
                                 final String iconPath = BallTexture.getBallTextureByName(item).getPath();
-                                icon = new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+                                icon = new Image(Thread.currentThread().getContextClassLoader().getResourceAsStream(iconPath));
                             } catch (NullPointerException ex) {
                                 // in case the above image doesn't exist, use a default one
                                 final String iconPath = "Images/ball/defaultBall.png";
-                                icon = new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+                                icon = new Image(Thread.currentThread().getContextClassLoader().getResourceAsStream(iconPath));
                             }
                             final ImageView iconImageView = new ImageView(icon);
                             iconImageView.setFitHeight(COMBOBOX_HEIGHT);
@@ -87,6 +89,7 @@ public class TextureController {
                 return new ListCell<String>() {
 
                     @Override
+                    @SuppressWarnings({ "PMD.AvoidCatchingGenericException", "PMD.AvoidCatchingNPE" })
                     protected void updateItem(final String item, final boolean empty) {
                         super.updateItem(item, empty);
                         setText(item);
@@ -96,11 +99,11 @@ public class TextureController {
                             Image icon;
                             try {
                                 final String iconPath = PaddleTexture.getPaddleTextureByName(item).getPath();
-                                icon = new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+                                icon = new Image(Thread.currentThread().getContextClassLoader().getResourceAsStream(iconPath));
                             } catch (NullPointerException ex) {
                                 // in case the above image doesn't exist, use a default one
-                                final String iconPath = "Images/ball/defaultBall.png";
-                                icon = new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+                                final String iconPath = "Images/paddle/defaultPaddle.png";
+                                icon = new Image(Thread.currentThread().getContextClassLoader().getResourceAsStream(iconPath));
                             }
                             final ImageView iconImageView = new ImageView(icon);
                             iconImageView.setFitHeight(COMBOBOX_HEIGHT);
@@ -125,6 +128,7 @@ public class TextureController {
                 return new ListCell<String>() {
 
                     @Override
+                    @SuppressWarnings({ "PMD.AvoidCatchingGenericException", "PMD.AvoidCatchingNPE" })
                     protected void updateItem(final String item, final boolean empty) {
                         super.updateItem(item, empty);
                         setText(item);
@@ -134,11 +138,11 @@ public class TextureController {
                             Image icon;
                             try {
                                 final String iconPath = BrickTexture.getBrickTextureByName(item);
-                                icon = new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+                                icon = new Image(Thread.currentThread().getContextClassLoader().getResourceAsStream(iconPath));
                             } catch (NullPointerException ex) {
                                 // in case the above image doesn't exist, use a default one
-                                final String iconPath = "Images/brick/SuperMarioBrickTexture.png";
-                                icon = new Image(getClass().getClassLoader().getResourceAsStream(iconPath));
+                                final String iconPath = "Images/brick/defaultBrick.png";
+                                icon = new Image(Thread.currentThread().getContextClassLoader().getResourceAsStream(iconPath));
                             }
                             final ImageView iconImageView = new ImageView(icon);
                             iconImageView.setFitHeight(COMBOBOX_HEIGHT);
@@ -150,5 +154,4 @@ public class TextureController {
             }
         });
     }
-
 }

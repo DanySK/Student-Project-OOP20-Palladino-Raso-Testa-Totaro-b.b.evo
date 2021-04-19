@@ -1,6 +1,6 @@
 package controller.event;
 
-import controller.game.GameState;
+import controller.game.GameController;
 import model.entities.PowerUp;
 import model.leaderboard.BasicLifeOperationStrategy;
 import model.leaderboard.BasicScoreOperationStrategy;
@@ -15,11 +15,11 @@ public class PowerUpController {
     private int ballDamage;
     private final PowerUp pwup;
     private Boolean isActive;
-    private final GameState state;
+    private final GameController state;
     private final LifeOperationStrategy lifeOperation;
     private final ScoreOperationStrategy scoreOperation;
 
-    public PowerUpController(final PowerUp pwup, final GameState state) {
+    public PowerUpController(final PowerUp pwup, final GameController state) {
         this.pwup = pwup;
         this.isActive = false;
         this.state = state;

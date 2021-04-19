@@ -1,8 +1,6 @@
 package controller.scene;
 
-import controller.game.GameStateImpl;
-import controller.utilities.CheckAlertController;
-import controller.utilities.GUIController;
+import controller.game.GameControllerImpl;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,15 +14,27 @@ import model.mapeditor.Level;
 import model.mapeditor.LevelManager;
 import model.settings.SettingLevel.SettingLevelBuilder;
 import model.settings.SettingLevelManager;
+import model.utilities.CheckCustomAlert;
 import model.utilities.ScreenUtilities;
 import resource.routing.PersonalStyle;
+import view.GUILayout;
 import view.PersonalViews;
 
-public class ControllerCreativeMode implements GUIController {
+/**
+ * Manage the CreativeMode scene.
+ * Used to create custom level and play it.
+ */
+public class ControllerCreativeMode implements GUILayout {
 
-    private static final double EDITOR_MODE_WIDTH = 800;
+    /**
+     * Dimension of Editor mode width.
+     */
+    private static final double EDITOR_MODE_WIDTH = 1200;
 
-    private static final double EDITOR_MODE_HEIGHT = 500;
+    /**
+     * Dimension of Editor mode height.
+     */
+    private static final double EDITOR_MODE_HEIGHT = 950;
 
     private Level currentLevel;
 
@@ -49,8 +59,10 @@ public class ControllerCreativeMode implements GUIController {
     @FXML
     private Label levelSelected;
 
+
     /**
-     * initializes the window by setting dimensions.
+     * 
+     * Initialize the scene loading the button and method update to refresh the view.
      */
     @FXML
     public void initialize() {
@@ -59,10 +71,8 @@ public class ControllerCreativeMode implements GUIController {
     }
 
     /**
-     * implementation of pattern observer.
-     * reads the new generated levels and creates a button as a reference
-     * by copying the style from an existing one
-     * {@inheritDoc}
+     * Use to update the view of custom level.
+     * Reads the new generated levels.
      */
     public void update() {
         this.levelContainer.getChildren().clear();
@@ -83,28 +93,31 @@ public class ControllerCreativeMode implements GUIController {
             });
             this.levelContainer.getChildren().add(b);
         }
+
     }
 
     /**
      * 
+     * Load the button listener.
      */
     @FXML
     private void loadListener() {
         //MenuButton return to menu
         this.menuBtn.setOnAction(event -> FXMLMenuController.switchScene((Stage) this.panel.getScene().getWindow(), PersonalViews.SCENE_MAIN_MENU, PersonalStyle.DEFAULT_STYLE, 
-                ScreenUtilities.SCREEN_WIDTH, ScreenUtilities.SCREEN_HEIGHT, false));
+                ScreenUtilities.SCREEN_WIDTH, ScreenUtilities.SCREEN_HEIGHT, true));
         //BuilderButton go to LevelBuilder
         this.builderBtn.setOnAction(event -> FXMLMenuController.switchScene((Stage) this.panel.getScene().getWindow(), PersonalViews.SCENE_EDITOR_MODE, PersonalStyle.DEFAULT_STYLE, 
                 EDITOR_MODE_WIDTH, EDITOR_MODE_HEIGHT, true));
     }
 
     /**
-     * loads the currently selected level and starts the gameloop cycle.
+     * 
+     * Loads the currently selected level and starts the gameloop cycle.
      */
     @FXML
     private void playLevel() {
         if (!levelSelected.getText().isBlank()) {
-            GameStateImpl.setCreativeMode(true);
+            GameControllerImpl.setCreativeMode(true);
             final SettingLevelBuilder levelBuilder = new SettingLevelBuilder();
             levelBuilder.fromSettings(SettingLevelManager.loadOption());
             levelBuilder.selectLevel(currentLevel);
@@ -114,12 +127,12 @@ public class ControllerCreativeMode implements GUIController {
                     ScreenUtilities.SCREEN_WIDTH, ScreenUtilities.SCREEN_HEIGHT, false));
 
         } else {
-            CheckAlertController.checkLevelSelected();
+            CheckCustomAlert.checkLevelSelected();
         }
     }
 
     /**
-     * copy the style of a button to another button.
+     * Copy the style of a button to another button.
      * @param subject the button that takes the new style
      * @param reference the button that gives the new style
      */

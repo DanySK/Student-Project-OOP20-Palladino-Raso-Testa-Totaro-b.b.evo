@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.7456" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.scene.ControllerMapEditor">
+<SplitPane fx:id="panel" dividerPositions="0.7456" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.scene.ControllerMapEditor">
   <items>
       <Pane prefHeight="700.0" prefWidth="400.0" style="-fx-background-image: url(&quot;/Images/mainMenuImg/background.png&quot;);">
          <children>
@@ -21,27 +21,27 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="soundtrackLbl" layoutX="12.0" layoutY="57.0" prefHeight="29.0" prefWidth="166.0" text="SELECT THE SOUNDTRACK">
+            <Label fx:id="soundtrackLbl" layoutX="20.0" layoutY="59.0" prefHeight="29.0" prefWidth="166.0" text="SELECT THE SOUNDTRACK">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <ComboBox fx:id="soundtrack" layoutX="10.0" layoutY="98.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to bottom right, #FFFFFF, #FB7DFF);">
+            <ComboBox fx:id="soundtrack" layoutX="28.0" layoutY="98.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to bottom right, #FFFFFF, #FB7DFF);">
                <effect>
                   <DropShadow height="20.0" radius="9.5" width="20.0" />
                </effect>
             </ComboBox>
-            <Label fx:id="backGroundLlb" layoutX="205.0" layoutY="57.0" prefHeight="30.0" prefWidth="170.0" text="SELECT THE BACKGROUND">
+            <Label fx:id="backGroundLlb" layoutX="205.0" layoutY="58.0" prefHeight="30.0" prefWidth="170.0" text="SELECT THE BACKGROUND">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <ComboBox fx:id="backGround" layoutX="206.0" layoutY="98.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to bottom right, #FFFFFF, #FB7DFF);">
+            <ComboBox fx:id="backGround" layoutX="222.0" layoutY="98.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to bottom right, #FFFFFF, #FB7DFF);">
                <effect>
                   <DropShadow height="20.0" radius="9.5" width="20.0" />
                </effect>
             </ComboBox>
-            <Label fx:id="ballLbl" layoutX="60.0" layoutY="150.0" text="BALL">
+            <Label fx:id="ballLbl" layoutX="86.0" layoutY="150.0" text="BALL">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -51,7 +51,7 @@
                   <DropShadow />
                </effect>
             </ComboBox>
-            <Label fx:id="paddleLbl" layoutX="248.0" layoutY="150.0" text="PADDLE">
+            <Label fx:id="paddleLbl" layoutX="263.0" layoutY="150.0" text="PADDLE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -61,12 +61,12 @@
                   <DropShadow />
                </effect>
             </ComboBox>
-            <Label fx:id="brickLbl" layoutX="149.0" layoutY="241.0" text="BRICK  SETUP">
+            <Label fx:id="brickLbl" layoutX="150.0" layoutY="264.0" text="BRICK  SETUP">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="brickTexture" layoutX="37.0" layoutY="307.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to bottom right, #FFFFFF, #FB7DFF);">
+            <ComboBox fx:id="brickTexture" layoutX="28.0" layoutY="308.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to bottom right, #FFFFFF, #FB7DFF);">
                <effect>
                   <DropShadow />
                </effect>
@@ -86,7 +86,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Slider fx:id="durabilitySet" blockIncrement="5.0" layoutX="29.0" layoutY="387.0" max="20.0" min="1.0" prefHeight="40.0" prefWidth="166.0" showTickLabels="true" showTickMarks="true" style="-fx-background-color: linear-gradient(to bottom right, #FFFFFF, #FB7DFF); -fx-background-radius: 10;" />
+            <Slider fx:id="durabilitySet" blockIncrement="5.0" layoutX="20.0" layoutY="387.0" max="20.0" min="1.0" prefHeight="40.0" prefWidth="166.0" showTickLabels="true" showTickMarks="true" style="-fx-background-color: linear-gradient(to bottom right, #FFFFFF, #FB7DFF); -fx-background-radius: 10;" />
             <Label fx:id="levelNameLbl" layoutX="155.0" layoutY="512.0" prefHeight="27.0" prefWidth="81.0" text="LEVEL NAME">
                <font>
                   <Font name="System Bold" size="13.0" />

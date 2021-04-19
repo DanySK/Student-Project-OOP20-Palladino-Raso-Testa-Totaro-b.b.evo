@@ -6,12 +6,12 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import controller.collision.CollisionController;
-import controller.collision.CollisionControllerImpl;
 import controller.event.Event;
 import controller.event.EventHandler;
-import controller.game.GameState;
+import controller.game.GameController;
 import controller.input.ControllerInput;
+import model.collision.CollisionController;
+import model.collision.CollisionControllerImpl;
 import model.utilities.Angle;
 import model.utilities.Boundaries;
 import model.utilities.Pair;
@@ -28,7 +28,7 @@ public class GameBoardImpl implements GameBoard {
     private final CollisionController collision;
     private String pwUpType;
 
-    public GameBoardImpl(final Wall wall, final GameState state) {
+    public GameBoardImpl(final Wall wall, final GameController state) {
         this.balls = new HashSet<>();
         this.bricks = new HashSet<>();
         this.paddle = new HashSet<>();
@@ -40,14 +40,7 @@ public class GameBoardImpl implements GameBoard {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void eventListener(final Event e) {
-        this.eventHandler.addEvent(e);
-    }
-
-    /**
+     * 
      * {@inheritDoc}
      */
     @Override
@@ -57,23 +50,25 @@ public class GameBoardImpl implements GameBoard {
     }
 
     /**
+     * 
      * {@inheritDoc}
      */
     @Override
-    public void setPowerUps(final Collection<PowerUp> pwup) {
-        this.pwup.addAll(pwup);
+    public Set<Ball> getBalls() {
+        return Collections.unmodifiableSet(this.balls);
     }
 
     /**
+     * 
      * {@inheritDoc}
      */
     @Override
-    public void setBricks(final Collection<Brick> bricks) {
-        this.bricks.clear();
-        this.bricks.addAll(bricks);
+    public void removeBall(final Ball ball) {
+        this.balls.remove(ball);
     }
 
     /**
+     * 
      * {@inheritDoc}
      */
     @Override
@@ -83,44 +78,7 @@ public class GameBoardImpl implements GameBoard {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Set<Ball> getBalls() {
-        return Collections.unmodifiableSet(this.balls);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String getTypePwUp() {
-        return this.pwUpType;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void setTypePwUp(final String type) {
-        this.pwUpType = type;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Set<Brick> getBricks() {
-        return this.bricks;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Set<PowerUp> getPowerUp() {
-        return this.pwup;
-    }
-
-    /**
+     * 
      * {@inheritDoc}
      */
     @Override
@@ -129,22 +87,26 @@ public class GameBoardImpl implements GameBoard {
     }
 
     /**
+     * 
      * {@inheritDoc}
      */
     @Override
-    public Wall getWall() {
-        return this.wall;
+    public void setBricks(final Collection<Brick> bricks) {
+        this.bricks.clear();
+        this.bricks.addAll(bricks);
     }
 
     /**
+     * 
      * {@inheritDoc}
      */
     @Override
-    public void removeBall(final Ball ball) {
-        this.balls.remove(ball);
+    public Set<Brick> getBricks() {
+        return this.bricks;
     }
 
     /**
+     * 
      * {@inheritDoc}
      */
     @Override
@@ -153,6 +115,25 @@ public class GameBoardImpl implements GameBoard {
     }
 
     /**
+     * 
+     * {@inheritDoc}
+     */
+    @Override
+    public void setPowerUps(final Collection<PowerUp> pwup) {
+        this.pwup.addAll(pwup);
+    }
+
+    /**
+     * 
+     * {@inheritDoc}
+     */
+    @Override
+    public Set<PowerUp> getPowerUps() {
+        return this.pwup;
+    }
+
+    /**
+     * 
      * {@inheritDoc}
      */
     @Override
@@ -161,6 +142,41 @@ public class GameBoardImpl implements GameBoard {
     }
 
     /**
+     * 
+     * {@inheritDoc}
+     */
+    public void setTypePowerUp(final String type) {
+        this.pwUpType = type;
+    }
+
+    /**
+     * 
+     * {@inheritDoc}
+     */
+    public String getTypePowerUp() {
+        return this.pwUpType;
+    }
+
+    /**
+     * 
+     * {@inheritDoc}
+     */
+    @Override
+    public void clearPowerUps() {
+        this.pwup.clear();
+    }
+
+    /**
+     * 
+     * {@inheritDoc}
+     */
+    @Override
+    public Wall getWall() {
+        return this.wall;
+    }
+
+    /**
+     * 
      * {@inheritDoc}
      */
     @Override
@@ -169,6 +185,7 @@ public class GameBoardImpl implements GameBoard {
     }
 
     /**
+     * 
      * {@inheritDoc}
      */
     @Override
@@ -184,6 +201,7 @@ public class GameBoardImpl implements GameBoard {
     }
 
     /**
+     * 
      * {@inheritDoc}
      */
     @Override
@@ -208,6 +226,7 @@ public class GameBoardImpl implements GameBoard {
     }
 
     /**
+     * 
      * {@inheritDoc}
      */
     @Override
@@ -223,6 +242,7 @@ public class GameBoardImpl implements GameBoard {
     }
 
     /**
+     * 
      * {@inheritDoc}
      */
     @Override
@@ -236,6 +256,7 @@ public class GameBoardImpl implements GameBoard {
     }
 
     /**
+     * 
      * {@inheritDoc}
      */
     @Override
@@ -244,6 +265,7 @@ public class GameBoardImpl implements GameBoard {
     }
 
     /**
+     * 
      * {@inheritDoc}
      */
     @Override
@@ -252,6 +274,7 @@ public class GameBoardImpl implements GameBoard {
     }
 
     /**
+     * 
      * {@inheritDoc}
      */
     @Override
@@ -260,12 +283,10 @@ public class GameBoardImpl implements GameBoard {
     }
 
     /**
+     * 
      * {@inheritDoc}
      */
-    @Override
-    public void clearPowerUps() {
-        this.pwup.clear();
+    public void eventListener(final Event e) {
+        this.eventHandler.addEvent(e);
     }
-
-
 }

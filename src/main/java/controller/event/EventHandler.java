@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import controller.game.GamePhase;
-import controller.game.GameState;
+import controller.game.GameStatus;
+import controller.game.GameController;
 import controller.sound.SoundController;
 import model.entities.Ball;
 import model.entities.Brick;
@@ -24,12 +24,12 @@ import model.utilities.PowerUpUtilities;
 public class EventHandler {
 
     private final Queue<Event> eventList = new LinkedList<>();
-    private final GameState state;
+    private final GameController state;
     private final LifeOperationStrategy lifeOperation;
     private final ScoreOperationStrategy scoreOperation;
     private final int ballDamage;
 
-    public EventHandler(final GameState state) {
+    public EventHandler(final GameController state) {
         this.state = state;
         this.lifeOperation = new BasicLifeOperationStrategy();
         this.scoreOperation = new BasicScoreOperationStrategy();
@@ -64,7 +64,7 @@ public class EventHandler {
                     final PowerUp pwup = (PowerUp) hit.getGameObj().get();
                     this.state.getBoard().removePowerUp(pwup);
                     final PowerUpController pwupController = new PowerUpController(pwup, this.state);
-                    this.state.getBoard().setTypePwUp(pwup.getPowerUpType().toString());
+                    this.state.getBoard().setTypePowerUp(pwup.getPowerUpType().toString());
                     pwupController.activatePowerUp(pwup);
                 }
 
@@ -78,7 +78,7 @@ public class EventHandler {
                     if (this.state.getBoard().getBalls().isEmpty()) {
                         this.state.getPlayer().lifeOperation(lifeOperation, -1);
                         addPoints(ScoreAttribute.LOST_LIFE.getValue());
-                        this.state.setPhase(GamePhase.START);
+                        this.state.setPhase(GameStatus.START);
                     }
                 }
                 SoundController.playSoundFx(PersonalSounds.SOUND_WALL.getURL().getPath());    //throw sound for hitting the wall
@@ -125,11 +125,11 @@ public class EventHandler {
      */
     private void checkGameState() {
         if (state.getLives() == 0) {
-            state.setPhase(GamePhase.LOST);
+            state.setPhase(GameStatus.LOST);
         } else if (state.getBoard().getBricks().stream()
                                                 .filter(i -> i.getStatus().equals(BrickStatus.DESTRUCTIBLE) || i.getStatus().equals(BrickStatus.DROP_POWERUP))
                                                 .count() == 0) {
-            state.setPhase(GamePhase.WIN);
+            state.setPhase(GameStatus.WIN);
         }
     }
 }
