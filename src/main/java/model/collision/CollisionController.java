@@ -1,4 +1,4 @@
-package controller.collision;
+package model.collision;
 
 import java.util.Optional;
 

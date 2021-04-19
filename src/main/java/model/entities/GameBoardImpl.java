@@ -6,12 +6,12 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import controller.collision.CollisionController;
-import controller.collision.CollisionControllerImpl;
 import controller.event.Event;
 import controller.event.EventHandler;
 import controller.game.GameState;
 import controller.input.ControllerInput;
+import model.collision.CollisionController;
+import model.collision.CollisionControllerImpl;
 import model.utilities.Angle;
 import model.utilities.Boundaries;
 import model.utilities.Pair;
