@@ -25,7 +25,9 @@ import model.utilities.BrickStatus;
 import model.utilities.ObjectInit;
 import model.utilities.Pair;
 import model.utilities.Position;
+import resource.routing.BallTexture;
 import resource.routing.BrickTexture;
+import resource.routing.PaddleTexture;
 import resource.routing.PowerUpDropTexture;
 import resource.routing.PowerUpTexture;
 
@@ -85,70 +87,66 @@ public class TestBoard {
     private final PowerUp pwUp = new PowerUp(new Position(POS_POWERUP_INIT_X, POS_POWERUP_INIT_Y), PW_HEIGHT, PW_WIDTH, 
             PowerUpDropTexture.getPowerUpDropTextureByName(brickTexturePath).getPath());
 
-//    /**
-//     * check that by inserting a number of ball in the board
-//     * they have been inserted correctly.
-//     */
-//    @Test
-//    public void insertBallTest() {
-//        final GameBoard board = new GameBoardImpl(new Wall(WALL_COST, WALL_COST), null);
-//        final Ball.Builder ballBuilder = new Ball.Builder();
-//        ballBuilder.position(new Position(STAND_POS_X, STAND_POS_Y))
-//                 .direction(Angle.MIDDLE_LEFT.getAngleVector().mul(-1))
-//                 .height(ObjectInit.BALL.getInitHeight())
-//                 .width(ObjectInit.BALL.getInitWidth())
-//                 .speed(Difficulty.HARD.getBallVelocity())
-//                 .path(BallTexture.BALL_DEFAULT.getPath())
-//                 .build();
-//        assertTrue(board.getSceneEntities().isEmpty());
-//        board.setBalls(IntStream.range(0, 100)
-//                                .mapToObj(i -> ballBuilder.build())
-//                                .collect(Collectors.toList()));
-//        assertEquals(100, board.getSceneEntities().size());
-//    }
-//
-//    /**
-//     * check that by inserting a number of brick in the world 
-//     * they have been inserted correctly.
-//     */
-//    @Test
-//    public void insertBrickTest() {
-//        final Brick.Builder brickBuilder = new Brick.Builder();
-//        brickBuilder.setPos(new Position(10, 10))
-//                    .setHeight(10)
-//                    .setWidth(10)
-//                    .setTexture(BrickTexture.BRICK_TEXTURE_DEFAULT.getPath())
-//                    .setStatus(GameObjStatus.NOT_DESTRUCTIBLE)
-//                    .setDurability(1)
-//                    .build();
-//        final GameBoard board = new GameBoardImpl(new Wall(WALL_COST, WALL_COST), null);
-//        assertTrue(board.getSceneEntities().isEmpty());
-//        board.setBricks(IntStream.range(0, 100)
-//                                 .mapToObj(i -> brickBuilder.build())
-//                                 .collect(Collectors.toList()));
-//        assertEquals(100, board.getSceneEntities().size());
-//    }
-//
-//    /**
-//     * check that by inserting a number of player in the world 
-//     * they have been inserted correctly.
-//     */
-//    @Test
-//    public void insertPaddleTest() {
-//        final Paddle.Builder paddle = new Paddle.Builder();
-//        paddle.position(ObjectInit.PADDLE.getStartPos())
-//            .height(ObjectInit.PADDLE.getInitHeight())
-//            .width(ObjectInit.PADDLE.getInitWidth())
-//            .texturePath(PaddleTexture.PADDLE_DEFAULT.getPath())
-//            .build();
-//        final GameBoard board = new GameBoardImpl(new Wall(WALL_COST, WALL_COST), null);
-//        assertTrue(board.getSceneEntities().isEmpty());
-//        board.setPaddle(paddle.build());
-//        assertEquals(100, board.getSceneEntities().size());
-//    }
+    /**
+     * Check insert number of ball on board.
+     */
+    @Test
+    public void insertBallTest() {
+        final GameBoard board = new GameBoardImpl(new Wall(WALL_COST, WALL_COST), null);
+        final Ball.Builder ballBuilder = new Ball.Builder();
+        ballBuilder.position(new Position(STAND_POS_X, STAND_POS_Y))
+                 .direction(Angle.MIDDLE_LEFT.getAngleVector().mul(-1))
+                 .height(ObjectInit.BALL.getInitHeight())
+                 .width(ObjectInit.BALL.getInitWidth())
+                 .speed(Difficulty.HARD.getBallVelocity())
+                 .path(BallTexture.BALL_DEFAULT.getPath())
+                 .build();
+        assertTrue(board.getSceneEntities().isEmpty());
+        board.setBalls(IntStream.range(0, 100)
+                                .mapToObj(i -> ballBuilder.build())
+                                .collect(Collectors.toList()));
+        assertEquals(100, board.getSceneEntities().size());
+    }
 
     /**
-     * check that by inserting a number of powerUp in the world 
+     * Check insert number of brick on board.
+     */
+    @Test
+    public void insertBrickTest() {
+        final Brick.Builder brickBuilder = new Brick.Builder();
+        brickBuilder.pos(new Position(10, 10))
+                    .height(10)
+                    .width(10)
+                    .texture(BrickTexture.BRICK_TEXTURE_DEFAULT.getPath())
+                    .status(BrickStatus.NOT_DESTRUCTIBLE)
+                    .durability(1)
+                    .build();
+        final GameBoard board = new GameBoardImpl(new Wall(WALL_COST, WALL_COST), null);
+        assertTrue(board.getSceneEntities().isEmpty());
+        board.setBricks(IntStream.range(0, 100)
+                                 .mapToObj(i -> brickBuilder.build())
+                                 .collect(Collectors.toList()));
+        assertEquals(100, board.getSceneEntities().size());
+    }
+
+    /**
+     * Check insert of paddle on board.
+     */
+    @Test
+    public void insertPaddleTest() {
+        final Paddle.Builder paddle = new Paddle.Builder();
+        paddle.position(ObjectInit.PADDLE.getStartPos())
+            .height(ObjectInit.PADDLE.getInitHeight())
+            .width(ObjectInit.PADDLE.getInitWidth())
+            .texturePath(PaddleTexture.PADDLE_DEFAULT.getPath())
+            .build();
+        final GameBoard board = new GameBoardImpl(new Wall(WALL_COST, WALL_COST), null);
+        assertTrue(board.getSceneEntities().isEmpty());
+        board.setPaddle(paddle.build());
+        assertEquals(100, board.getSceneEntities().size());
+    }
+    /**
+     * check that by inserting a number of powerUp in the board 
      * they have been inserted correctly.
      */
     @Test
@@ -278,7 +276,7 @@ public class TestBoard {
     }
 
     /**
-     * Check that according to the collision zone with the player 
+     * Check that according to the collision zone with the paddle
      * the ball has a direction. The more the collision zone will be to the right,
      * the more acute the angle will be.
     */
