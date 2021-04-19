@@ -3,13 +3,18 @@ package model.utilities;
 import resource.routing.BrickTexture;
 import resource.routing.PowerUpDropTexture;
 import resource.routing.PowerUpTexture;
+
+/**
+ * Build the path of texture elements.
+ *
+ */
 public class Texture {
 
     private final String theme;
 
     /**
-     * constructor for texture class.
-     * @param theme
+     * Constructor for texture class.
+     * @param theme name of current theme
      */
     public Texture(final String theme) {
         this.theme = theme;

@@ -89,7 +89,7 @@ public class TestPowerUp {
         final DirVector dir = new DirVector(0, -1);
         pwup.setDirVector(dir);
         board.setPowerUps(Arrays.asList(pwup));
-        assertEquals(POWERUP_POS, board.getPowerUp().stream().findFirst().get().getPos());
+        assertEquals(POWERUP_POS, board.getPowerUps().stream().findFirst().get().getPos());
         board.updateState(TIME_ELAPSED);
         //assertEquals(NEWPOS, board.getPowerUp().stream().findFirst().get().getPos());
 

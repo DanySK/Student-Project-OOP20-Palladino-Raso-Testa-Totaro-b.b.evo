@@ -64,7 +64,7 @@ public class EventHandler {
                     final PowerUp pwup = (PowerUp) hit.getGameObj().get();
                     this.state.getBoard().removePowerUp(pwup);
                     final PowerUpController pwupController = new PowerUpController(pwup, this.state);
-                    this.state.getBoard().setTypePwUp(pwup.getPowerUpType().toString());
+                    this.state.getBoard().setTypePowerUp(pwup.getPowerUpType().toString());
                     pwupController.activatePowerUp(pwup);
                 }
 

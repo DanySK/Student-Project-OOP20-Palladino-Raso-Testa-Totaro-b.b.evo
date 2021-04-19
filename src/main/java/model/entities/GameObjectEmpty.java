@@ -1,4 +1,3 @@
-
 package model.entities;
 
 import controller.input.ComponentInputEmpty;
@@ -24,6 +23,7 @@ public class GameObjectEmpty extends GameObjectImpl {
     }
 
     /**
+     * 
      * This method is only to maintain a reference in space, simple it's an empty object.
      */
     @Override
@@ -32,6 +32,7 @@ public class GameObjectEmpty extends GameObjectImpl {
     }
 
     /**
+     * 
      * This method is only to maintain a reference in space, simple it's an empty object.
      */
     @Override
@@ -40,11 +41,11 @@ public class GameObjectEmpty extends GameObjectImpl {
     }
 
     /**
+     * 
      * This method is only to maintain a reference in space, simple it's an empty object.
      */
     @Override
     public void updateGraphics(final AdapterGraphics adapterGraphics) {
         this.getComponentGraphics().update(this, adapterGraphics);
     }
-
 }

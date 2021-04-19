@@ -340,21 +340,21 @@ public class TestBoard {
         pwUp.setPos(new Position(POS_FIFTYFIVE, POS_THIRTY));
         board.setPaddle(this.paddle);
         board.setPowerUps(Arrays.asList(this.pwUp));
-        Optional<Pair<PowerUp, Boundaries>> collisionResult = board.checkPowerUpCollisionsWithPaddle(board.getPowerUp().stream().findFirst().get());
+        Optional<Pair<PowerUp, Boundaries>> collisionResult = board.checkPowerUpCollisionsWithPaddle(board.getPowerUps().stream().findFirst().get());
         //fill the map of the last presence areas of the player
         assertTrue(collisionResult.isEmpty());
-        board.getPowerUp().stream().findFirst().get().setPos(new Position(POS_FIFTYFIVE, POS_FOURTYFIVE));
-        collisionResult = board.checkPowerUpCollisionsWithPaddle(board.getPowerUp().stream().findFirst().get());
+        board.getPowerUps().stream().findFirst().get().setPos(new Position(POS_FIFTYFIVE, POS_FOURTYFIVE));
+        collisionResult = board.checkPowerUpCollisionsWithPaddle(board.getPowerUps().stream().findFirst().get());
         //touching the top of the player will also present the direction that the ball will take after the collision
         assertTrue(collisionResult.isPresent());
         assertEquals(Boundaries.UPPER, collisionResult.get().getY());
         //if the ball bounces on the player's side 
         //the direction is changed as if it had bounced on a normal vertical wall
-        board.getPowerUp().stream().findFirst().get().setPos(new Position(POS_THIRTY, POS_FIFTYFIVE));
-        collisionResult = board.checkPowerUpCollisionsWithPaddle(board.getPowerUp().stream().findFirst().get());
+        board.getPowerUps().stream().findFirst().get().setPos(new Position(POS_THIRTY, POS_FIFTYFIVE));
+        collisionResult = board.checkPowerUpCollisionsWithPaddle(board.getPowerUps().stream().findFirst().get());
         assertTrue(collisionResult.isEmpty());
-        board.getPowerUp().stream().findFirst().get().setPos(new Position(POS_FOURTYFIVE, POS_FIFTYFIVE));
-        collisionResult = board.checkPowerUpCollisionsWithPaddle(board.getPowerUp().stream().findFirst().get());
+        board.getPowerUps().stream().findFirst().get().setPos(new Position(POS_FOURTYFIVE, POS_FIFTYFIVE));
+        collisionResult = board.checkPowerUpCollisionsWithPaddle(board.getPowerUps().stream().findFirst().get());
         assertEquals(Boundaries.SIDE_LEFT, collisionResult.get().getY());
     }
 }
