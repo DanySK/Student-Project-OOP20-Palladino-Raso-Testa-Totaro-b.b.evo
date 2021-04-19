@@ -98,10 +98,10 @@ public class ControllerCreativeMode implements GUIController {
     private void loadListener() {
         //MenuButton return to menu
         this.menuBtn.setOnAction(event -> FXMLMenuController.switchScene((Stage) this.panel.getScene().getWindow(), PersonalViews.SCENE_MAIN_MENU, PersonalStyle.DEFAULT_STYLE, 
-                ScreenUtilities.SCREEN_WIDTH, ScreenUtilities.SCREEN_HEIGHT, false));
+                ScreenUtilities.SCREEN_WIDTH, ScreenUtilities.SCREEN_HEIGHT, true));
         //BuilderButton go to LevelBuilder
         this.builderBtn.setOnAction(event -> FXMLMenuController.switchScene((Stage) this.panel.getScene().getWindow(), PersonalViews.SCENE_EDITOR_MODE, PersonalStyle.DEFAULT_STYLE, 
-                EDITOR_MODE_WIDTH, EDITOR_MODE_HEIGHT, false));
+                EDITOR_MODE_WIDTH, EDITOR_MODE_HEIGHT, true));
     }
 
     /**

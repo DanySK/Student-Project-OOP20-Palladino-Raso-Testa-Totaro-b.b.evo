@@ -165,10 +165,6 @@ public class ControllerMapEditor implements GUIController {
     }
 
     /**
-     * @return 
-     */
-
-    /**
      * Draw a grid on canvas.
      */
     private void setCanvas() {

@@ -25,22 +25,22 @@ public enum BackGround implements Serializable {
     /**
      * Galaga theme, background.
      */
-    BACKGROUND_GALAGA("Images/background/GalagaBackground.jpg", "Galaga"),
+    BACKGROUND_GALAGA("Images/background/GalagaBackground.png", "Galaga"),
 
     /**
      * Pacman theme, background.
      */
-    BACKGROUND_PACMAN("Images/background/BlackBackground.png", "Pacman"),
+    BACKGROUND_PACMAN("Images/background/PacmanBackground.png", "Pacman"),
 
     /**
      * Crash Bandicoot theme, background.
      */
-    BACKGROUND_CRASH("Images/background/CrashBackground1.png", "Crash"),
+    BACKGROUND_CRASH("Images/background/CrashBackground.jpg", "Crash"),
 
     /**
      * Super Mario theme, background.
      */
-    BACKGROUND_SUPERMARIO("Images/background/SuperMarioBackground.png", "SuperMario");
+    BACKGROUND_SUPERMARIO("Images/background/MarioBackground.jpg", "SuperMario");
 
     private String path;
     private String theme;
