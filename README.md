@@ -1,7 +1,24 @@
 # BrickBreaker-Evolution
+BrickBreaker-Evolution is a Java clone of the historical game [Breakout](https://it.wikipedia.org/wiki/Breakout_(videogioco)#Versioni) with various levels inspired by other retro video games (e.g. Super Mario, Crash Bandicoot, Arkanoid).
+
 Il progetto ha come scopo quello di implementare la logica del famosissimo gioco anni 80 “Brick Breaker” in chiave moderna attraverso l’implementazione di livelli ispirati ad altri videogiochi retrò (es SuperMario, Arkanoid, Crash).
 
-# CIAO
+## Built with
+[Java](https://www.oracle.com/it/java/)
+
+## Running
+To run successfully in any way the game you must have a Java version >= 11.
+Download and run the brickbreaker-evolution.jar file, with `java -jar 'brickbreaker-evolution.jar'` from the installation directory from a terminal.
+Start application.
+Engoy !
+
+## License
+
+## Contact
+* Alessandro Palladino
+* Alex Testa
+* Francesco Raso
+* Giacomo Totaro
 
 # Funzionalità minimali ritenute obbligatorie
 <ul>
