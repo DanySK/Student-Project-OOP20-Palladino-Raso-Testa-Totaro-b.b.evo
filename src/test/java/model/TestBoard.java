@@ -60,7 +60,6 @@ public class TestBoard {
     private static final int POS_HUNDREDTWENTY = 120;
     private static final int WALL_COST = 600;
     private final List<PowerUp> listPwUp = new ArrayList<>();
-    private final List<Ball> listBall = new ArrayList<>();
 
     private final GameBoard board = new GameBoardImpl(new Wall(200, 200), null);
     private final Brick brick = new Brick.Builder().pos(new Position(STAND_POS_X, STAND_POS_Y))
@@ -89,33 +88,24 @@ public class TestBoard {
             PowerUpDropTexture.getPowerUpDropTextureByName(brickTexturePath).getPath());
 
     /**
-     * Check insert number of ball on board.
-     */
+     * Check insert number of ball on board is always 1.
+     */ 
     @Test
     public void insertBallTest() {
         final GameBoard board = new GameBoardImpl(new Wall(WALL_COST, WALL_COST), null);
-        ballCreation();
-        assertTrue(board.getSceneEntities().isEmpty());
-        this.listBall.addAll(IntStream.range(MIN_RANGE, MAX_RANGE)
-                                .mapToObj(i -> ballCreation())
-                                .collect(Collectors.toList()));
-        board.getBalls();
-        assertEquals(MAX_RANGE, board.getSceneEntities().size());
-    }
-
-    /**
-     * Method that creates a ball.
-     * @return new PowerUp object
-     */
-    private Ball ballCreation() {
         final Ball.Builder ballBuilder = new Ball.Builder();
         ballBuilder.position(new Position(STAND_POS_X, STAND_POS_Y))
                  .direction(Angle.MIDDLE_LEFT.getAngleVector().mul(-1))
                  .height(ObjectInit.BALL.getInitHeight())
                  .width(ObjectInit.BALL.getInitWidth())
                  .speed(Difficulty.HARD.getBallVelocity())
-                 .path(BallTexture.BALL_DEFAULT.getPath());
-        return ballBuilder.build();
+                 .path(BallTexture.BALL_DEFAULT.getPath())
+                 .build();
+        assertTrue(board.getSceneEntities().isEmpty());
+        board.setBalls(IntStream.range(MIN_RANGE, MAX_RANGE)
+                .mapToObj(i -> ballBuilder.build())
+                .collect(Collectors.toList()));
+        assertEquals(1, board.getSceneEntities().size());
     }
 
     /**
