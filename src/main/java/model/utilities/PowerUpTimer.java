@@ -24,8 +24,7 @@ public class PowerUpTimer {
     class RemindTask extends TimerTask {
         @Override
         public void run() {
-            pwupController.setIsActive(false);
-            System.out.println("powerup disattivato");
+            pwupController.deactivatePowerUp(pwupController.getPwup());
             timer.cancel(); //Terminate the timer thread
         }
     }

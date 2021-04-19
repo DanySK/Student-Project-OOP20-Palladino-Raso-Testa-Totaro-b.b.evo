@@ -59,9 +59,6 @@ public class PowerUpController {
             this.state.getBoard().getBalls().forEach(e -> e.setSpeed(e.getSpeed() + pwup.getSpeedModifier()));
             waitSeconds(pwup.getActiveTime(), pwup);
         } 
-        if (!this.getIsActive()) {
-            deactivatePowerUp(pwup);
-        }
     }
 
     /**
@@ -86,6 +83,7 @@ public class PowerUpController {
                 ||  pwup.getPowerUpType().equals(PowerUpType.SPEED_UP)) {
             this.state.getBoard().getBalls().forEach(e -> e.setSpeed(e.getSpeed() - pwup.getSpeedModifier()));
         }
+        System.out.println("powerup disattivato");
     }
 
     /**

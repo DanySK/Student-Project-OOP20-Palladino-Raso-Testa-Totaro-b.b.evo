@@ -8,6 +8,7 @@ import controller.scene.FXMLMenuController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.value.ObservableNumberValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -29,8 +30,14 @@ import view.PersonalViews;
 
 public class ControllerTutorial implements Initializable, FXMLMenuController {
 
+
+    private static final double DIVIDER = 1.25;
+
     @FXML
     private AnchorPane window;
+
+    @FXML
+    private VBox panel;
 
     @FXML
     private HBox titleContainer;
@@ -42,16 +49,19 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
     private VBox videoTutorialContainer;
 
     @FXML
-    private ImageView videoTutorial;
+    private ImageView imgView;
 
     @FXML
-    private VBox buttonsContainer;
+    private Label lblTutorial;
 
     @FXML
-    private Button buttonBack;
+    private HBox buttonsContainer;
 
     @FXML
     private Button btnMenuTutorial;
+
+    @FXML
+    private Button buttonBack;
 
     @FXML
     private Button btnHowToPlay;
@@ -83,7 +93,7 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
         //Load the animated image
         final URL videoUrl = new URL(new File(PersonalImages.TUTORIAL_DEFAULT.getURL().getFile()).toURI().toString());
         final Image image = new Image(videoUrl.toExternalForm());
-        this.videoTutorial.setImage(image);
+        this.imgView.setImage(image);
     }
 
     /**
@@ -124,19 +134,19 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
         this.btnHowToPlay.setOnAction(event -> {
             this.lblTitle.setText("HOW TO PLAY");
             final Image i = new Image(new File(PersonalImages.TUTORIAL_HOW_TO_PLAY.getURL().getFile()).toURI().toString());
-            this.videoTutorial.setImage(i);
+            this.imgView.setImage(i);
         });
      // button MenuTutorial Listener
         this.btnMenuTutorial.setOnAction(event -> {
             this.lblTitle.setText("MENU TUTORIAL");
             final Image i = new Image(new File(PersonalImages.TUTORIAL_MAIN_MENU.getURL().getFile()).toURI().toString());
-            this.videoTutorial.setImage(i);
+            this.imgView.setImage(i);
         });
      // button SettingsTutorial Listener
         this.btnSettingsTutorial.setOnAction(event -> {
             this.lblTitle.setText("SETTINGS TUTORIAL");
             final Image i = new Image(new File(PersonalImages.TUTORIAL_SETTINGS.getURL().getFile()).toURI().toString());
-            this.videoTutorial.setImage(i);
+            this.imgView.setImage(i);
         });
     }
 
@@ -155,23 +165,24 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
     }
 
     /**
-     * 
+     *
      * {@inheritDoc}
      *
      */
     @Override
     public void resizable() {
-        this.buttonsContainer.prefWidthProperty().bind(this.window.widthProperty());
+        this.panel.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        this.panel.prefHeightProperty().bind(this.window.heightProperty());
+        this.panel.prefWidthProperty().bind(this.window.widthProperty());
+
+        this.videoTutorialContainer.prefWidthProperty().bind(this.panel.widthProperty());
+        this.imgView.fitWidthProperty().bind(this.videoTutorialContainer.widthProperty());
+        this.imgView.fitHeightProperty().bind(this.videoTutorialContainer.heightProperty().divide(DIVIDER));
+
         this.btnHowToPlay.prefWidthProperty().bind(this.buttonsContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
         this.btnMenuTutorial.prefWidthProperty().bind(this.buttonsContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
         this.btnSettingsTutorial.prefWidthProperty().bind(this.buttonsContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
         this.buttonBack.prefWidthProperty().bind(this.buttonsContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
-        
-        this.videoTutorialContainer.prefWidthProperty().bind(this.window.widthProperty());
-        
-        this.videoTutorial.fitWidthProperty().bind(this.videoTutorialContainer.widthProperty().divide(1.2));
-        this.videoTutorial.fitHeightProperty().bind(this.videoTutorialContainer.heightProperty().divide(1.2));
-        
+        this.lblTitle.setWrapText(true);
     }
-
 }
