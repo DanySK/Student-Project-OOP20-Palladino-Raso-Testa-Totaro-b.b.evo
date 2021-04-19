@@ -8,7 +8,7 @@ import java.util.Set;
 
 import controller.event.Event;
 import controller.event.EventHandler;
-import controller.game.GameState;
+import controller.game.GameController;
 import controller.input.ControllerInput;
 import model.collision.CollisionController;
 import model.collision.CollisionControllerImpl;
@@ -28,7 +28,7 @@ public class GameBoardImpl implements GameBoard {
     private final CollisionController collision;
     private String pwUpType;
 
-    public GameBoardImpl(final Wall wall, final GameState state) {
+    public GameBoardImpl(final Wall wall, final GameController state) {
         this.balls = new HashSet<>();
         this.bricks = new HashSet<>();
         this.paddle = new HashSet<>();

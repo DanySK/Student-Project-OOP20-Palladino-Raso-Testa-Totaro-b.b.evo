@@ -27,11 +27,20 @@ import view.PersonalViews;
 import view.SceneLoader;
 
 
+/**
+ * Class that represent the gameloop pattern.
+ * Load, update and render the scene.
+ */
 public class GameLoop implements Runnable {
 
+    /**
+     * Use to calculate the fps.
+     * 20 ms = 50 fps
+     */
     private static final long PERIOD = 20;
+
     private final Scene scene;
-    private final GameState gameState;
+    private final GameController gameState;
     private final GameBoard board;
     private final ControllerGame controllerGame;
     private final ControllerInput inputController;
@@ -42,11 +51,11 @@ public class GameLoop implements Runnable {
         this.scene.getStylesheets().add(PersonalStyle.DEFAULT_STYLE.getStylePath()); //Apply css to scene
         final Stage currentStage = (Stage) this.scene.getWindow();
         currentStage.setResizable(false); // Don't permise resize
-        currentStage.setWidth(ScreenUtilities.SCREEN_WIDTH); //Set new Dimension
+        currentStage.setWidth(ScreenUtilities.SCREEN_WIDTH); // Set new Dimension
         currentStage.setHeight(ScreenUtilities.SCREEN_HEIGHT); // Set new Dimension
-        this.gameState = new GameStateImpl();
+        this.gameState = new GameControllerImpl();
         this.board = gameState.getBoard();
-        this.controllerGame = (ControllerGame) PersonalViews.SCENE_GAME.loadScene();
+        this.controllerGame = (ControllerGame) PersonalViews.SCENE_GAME.loadScene(); 
         this.controllerGame.setBackgroundImage(gameState.getLevel().getBackground());
         if (this.setting.isMusicEnable()) {
             SoundController.playMusic(gameState.getLevel().getMusic().getURL().getPath());
@@ -58,14 +67,14 @@ public class GameLoop implements Runnable {
     }
 
     /**
-     * Apply the three game loop steps based on the game phase.
+     * Apply the game loop steps based on current game phase.
      */
     @Override
     public void run() {
         long lastTime = System.currentTimeMillis();
-        while (!gameState.getPhase().equals(GamePhase.WIN) 
-            && !gameState.getPhase().equals(GamePhase.LOST)
-            && !gameState.getPhase().equals(GamePhase.MENU)) {
+        while (!gameState.getPhase().equals(GameStatus.WIN) 
+            && !gameState.getPhase().equals(GameStatus.LOST)
+            && !gameState.getPhase().equals(GameStatus.MENU)) {
             final long current = System.currentTimeMillis();
             final int elapsed = (int) (current - lastTime);
             switch (gameState.getPhase()) {
@@ -91,23 +100,24 @@ public class GameLoop implements Runnable {
         }
         SoundController.stopMusic();
 
-        if (gameState.getPhase().equals(GamePhase.WIN)
+        //Check current gameState to set next loop
+        if (gameState.getPhase().equals(GameStatus.WIN)
                 && LevelSelection.isStandardLevel(gameState.getLevel().getLevelName()) 
                 && LevelSelection.getSelectionFromLevel(gameState.getLevel()).hasNext()) {
-                saveState(GamePhase.WIN);
-            changeView(PersonalViews.SCENE_NEXT_LEVEL); //sali al prossimo livello
-        } else if (gameState.getPhase().equals(GamePhase.WIN) && gameState.getLevel().getLevelName().equals(LevelSelection.LEVEL6.getName())) {
-            saveState(GamePhase.LOST);
-            changeView(PersonalViews.SCENE_GAME_FINAL); //completato il gioco
-        } else if (gameState.getPhase().equals(GamePhase.MENU)) { //nel caso premi esc
+                saveState(GameStatus.WIN);
+            changeView(PersonalViews.SCENE_NEXT_LEVEL);
+        } else if (gameState.getPhase().equals(GameStatus.WIN) && gameState.getLevel().getLevelName().equals(LevelSelection.LEVEL6.getName())) {
+            saveState(GameStatus.LOST);
+            changeView(PersonalViews.SCENE_GAME_FINAL);
+        } else if (gameState.getPhase().equals(GameStatus.MENU)) {
             changeView(PersonalViews.SCENE_MAIN_MENU);
         } else { 
-            //controllo creative mode nel caso vinci o perdi
-            if (GameStateImpl.isCreativeMode() && gameState.getPhase().equals(GamePhase.WIN)) {
-                saveState(GamePhase.LOST);
+            //Check for creative mode
+            if (GameControllerImpl.isCreativeMode() && gameState.getPhase().equals(GameStatus.WIN)) {
+                saveState(GameStatus.LOST);
                 changeView(PersonalViews.SCENE_GAME_FINAL);
-            } else { //perdi in tutti i casi
-                saveState(GamePhase.LOST);
+            } else { 
+                saveState(GameStatus.LOST);
                 changeView(PersonalViews.SCENE_GAME_OVER);
             }
         }
@@ -115,23 +125,24 @@ public class GameLoop implements Runnable {
 
 
     /**
-     * 
-     * @param layout
+     * Change the current view with the layout passed.
+     * @param layout enum of next scene
      */
     private void changeView(final PersonalViews layout) {
         if (layout.equals(PersonalViews.SCENE_NEXT_LEVEL)) {
-            //da vedere perche carica male ed esce null
             final ControllerNextLevel nextLevelController = (ControllerNextLevel) layout.loadScene();
             nextLevelController.update(gameState.getLevel(), gameState.getPlayer());
-        } else if (layout.equals(PersonalViews.SCENE_GAME_OVER)) {
-            final GameOverController gameOverController = (GameOverController) layout.loadScene();
+        } else if (layout.equals(PersonalViews.SCENE_GAME_OVER) || layout.equals(PersonalViews.SCENE_GAME_FINAL)) {
             final LeaderboardController leaderboard = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
             final StandardScoreSortingStrategy ls = new StandardScoreSortingStrategy(); 
-            gameOverController.updateScore(this.gameState.getPlayerScore(), leaderboard.getPodium(0, ls).toString());
-        } else if (layout.equals(PersonalViews.SCENE_GAME_FINAL)) {
-            System.out.println("Vinto!");
-            //DA IMPLEMENTARE GRAFICA PER DIRE CHE HAI VINTO E FINITO IL GIOCO
-        }
+
+            if (layout.equals(PersonalViews.SCENE_GAME_FINAL)) {
+                // same of gameOver but with final scene.
+            } else {
+                final GameOverController gameOverController = (GameOverController) layout.loadScene();
+                gameOverController.updateScore(this.gameState.getPlayerScore(), leaderboard.getPodium(0, ls).toString());
+            }
+        } 
 
         Platform.runLater(new Runnable() {
             @Override
@@ -150,26 +161,27 @@ public class GameLoop implements Runnable {
                 }
             }
         });
-
     }
 
     /**
-     * stores the game progression as a checkpoint.
+     * Save the state of the game.
      * @param phase to set 
      */
-    private void saveState(final GamePhase state) {
+    private void saveState(final GameStatus state) {
         final SettingLevelBuilder levelLoader = new SettingLevelBuilder();
-        if (state.equals(GamePhase.WIN)) {
-            System.out.println(gameState.getLevel() + "163 loop");
-            SettingLevelManager.saveOption(levelLoader.selectLevel(LevelSelection.getSelectionFromLevel(gameState.getLevel()).next().getLevel())
-                    .build());
-            System.out.println(gameState.getLevel() + "166 loop");
-        } else if (state.equals(GamePhase.LOST)) {
-            //Ranking
+        if (state.equals(GameStatus.WIN)) {
+            //Load next level
+            SettingLevelManager.saveOption(levelLoader.selectLevel(LevelSelection.getSelectionFromLevel(gameState.getLevel())
+                                                        .next()
+                                                        .getLevel())
+                                                        .build());
+        } else if (state.equals(GameStatus.LOST)) {
+            // Save Ranking
             final LeaderboardController leaderboard = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
             leaderboard.addPlayerInLeaderBoard(gameState.getPlayer());
             leaderboard.saveSortLeaderboard(new StandardScoreSortingStrategy());
- 
+
+            //If lost load the first level, needed if you play multiple time without close the app.
             if (LevelSelection.isStandardLevel(gameState.getLevel().getLevelName())) {
                 SettingLevelManager.saveOption(levelLoader.fromSettings(SettingLevelManager.loadOption())
                     .selectLevel(LevelSelection.LEVEL1.getLevel())
@@ -178,6 +190,11 @@ public class GameLoop implements Runnable {
         }
     }
 
+    /**
+     * Take a little pause to synch with the frame rate.
+     * 
+     * @param current the execution time before the computational time
+     */
     private void waitForNextFrame(final long current) {
         final long timeElapsed = System.currentTimeMillis() - current;
         if (timeElapsed < PERIOD) {
@@ -190,6 +207,7 @@ public class GameLoop implements Runnable {
     }
 
     /**
+     * Update board.
      * @param elapsed
      */
     private void updateGame(final int elapsed) {
@@ -199,14 +217,14 @@ public class GameLoop implements Runnable {
 
 
     /**
-     * 
+     * Execute the keyboard command.
      */
     private void processInput() {
-            board.movePaddle(inputController);
+        board.movePaddle(inputController);
     }
 
     /**
-     * 
+     * Draw the board elements on the screen.
      */
     private void render() {
         Platform.runLater(new Runnable() {

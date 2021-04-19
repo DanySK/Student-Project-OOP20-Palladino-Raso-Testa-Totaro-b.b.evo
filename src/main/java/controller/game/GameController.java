@@ -5,29 +5,29 @@ import model.leaderboard.Player;
 import model.mapeditor.Level;
 import model.utilities.Difficulty;
 
-public interface GameState {
+/**
+ * Part of pattern gameloop implements all the methods for the objects in the game.
+ *
+ */
+public interface GameController {
 
     /**
-     * Set initial game state.
+     * 
+     * Set initial value of entities.
      */
     void init();
 
     /**
      * 
-     * @return score values
+     * @return the current game phase
      */
-    int getPlayerScore();
-
-    /**
-     * Set brick value score in base of difficulty selected.
-     */
-    void baseMultiplier();
+    GameStatus getPhase();
 
     /**
      * 
-     * @return current number of lives
+     * @param phase set the game phase
      */
-    int getLives();
+    void setPhase(GameStatus phase);
 
     /**
      * 
@@ -37,15 +37,15 @@ public interface GameState {
 
     /**
      * 
-     * @return the current game phase
+     * @return the level where the game is taking place
      */
-    GamePhase getPhase();
+    Level getLevel();
 
     /**
      * 
-     * @param phase set the game phase
+     * Set brick value score in base of difficulty selected.
      */
-    void setPhase(GamePhase phase);
+    void baseMultiplier();
 
     /**
      * 
@@ -55,9 +55,15 @@ public interface GameState {
 
     /**
      * 
-     * @return the level where the game is taking place
+     * @return score values
      */
-    Level getLevel();
+    int getPlayerScore();
+
+    /**
+     * 
+     * @return current number of lives
+     */
+    int getLives();
 
     /**
      * 
@@ -76,5 +82,4 @@ public interface GameState {
      * @return if the effects is active
      */
     boolean isEffectActive();
-
 }

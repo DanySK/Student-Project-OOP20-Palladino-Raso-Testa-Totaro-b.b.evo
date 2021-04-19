@@ -20,10 +20,11 @@ import model.utilities.GameUtilities;
 import model.utilities.ScreenUtilities;
 import model.utilities.Angle;
 
-public class GameStateImpl implements GameState {
+public class GameControllerImpl implements GameController {
 
     /**
      * Setting false for load standard level, true for creative mode.
+     * Static because is called in other without instantiate any gameController
      */
     private static boolean creativeMode;
 
@@ -33,16 +34,14 @@ public class GameStateImpl implements GameState {
      */
     private static boolean standardModeStart;
 
-    private GamePhase phase;
-
-    private int multiplier;
+    private GameStatus phase;
     private final GameBoard board;
     private final Level level;
     private final PlayerImpl player;
     private final SettingsControllerImpl setting;
 
-    public GameStateImpl() {
-        this.phase = GamePhase.START;
+    public GameControllerImpl() {
+        this.phase = GameStatus.START;
         this.setting = new SettingsControllerImpl(GameUtilities.SETTINGS_PATH); 
         final SettingLevel settingLevel =  SettingLevelManager.loadOption();
         if (isCreativeMode() || isStandardModeStart()) {
@@ -52,15 +51,94 @@ public class GameStateImpl implements GameState {
             setStandardModeStart(true);
         }
         this.player = new PlayerImpl(this.getPlayerAlias(), setting.getDifficulty().getInitialScore(), 
-                                     setting.getDifficulty().getNumberOfLives(), //qua bisogna vedere perche senno resetta ogni livello
+                                     setting.getDifficulty().getNumberOfLives(),
                                      setting.getDifficulty().getMaxNumberOfLife());
         this.board = new GameBoardImpl(new Wall(ScreenUtilities.WORLD_WIDTH, ScreenUtilities.WORLD_HEIGHT), this);
         this.board.setBricks(level.getBricks());
     }
 
     /**
+     * 
+     * {@inheritDoc}
+     */
+    @Override
+    public void init() {
+        this.baseMultiplier();
+        final Paddle.Builder paddleBuilder = new Paddle.Builder();
+        this.board.setPaddle(paddleBuilder.position(ObjectInit.PADDLE.getStartPos())
+                                        .width(ObjectInit.PADDLE.getInitWidth())
+                                        .height(ObjectInit.PADDLE.getInitHeight())
+                                        .texturePath(level.getPaddleTexture().getPath())
+                                        .build());
+        this.board.setBalls(Arrays.asList(new Ball.Builder()
+                                            .position(ObjectInit.BALL.getStartPos())
+                                            .direction(Angle.MIDDLE_LEFT.getAngleVector().mul(-1)) 
+                                            .height(ObjectInit.BALL.getInitHeight())
+                                            .width(ObjectInit.BALL.getInitWidth())
+                                            .speed(setting.getDifficulty().getBallVelocity())
+                                            .path(level.getBallTexture().getPath())
+                                            .build()));
+        this.phase = GameStatus.PAUSE;
+    }
+
+    /**
+     * 
+     * {@inheritDoc}
+     */
+    @Override 
+    public GameStatus getPhase() {
+        return this.phase;
+    }
+
+    /**
+     * 
+     * {@inheritDoc}
+     */
+    @Override
+    public void setPhase(final GameStatus phase) {
+        this.phase = phase;
+    }
+
+    /**
+     * 
+     * {@inheritDoc}
+     */
+    @Override
+    public GameBoard getBoard() {
+        return board;
+   }
+
+    /**
+     * 
+     * {@inheritDoc}
+     */
+    @Override
+    public Level getLevel() {
+        return this.level;
+    }
+
+    /**
+     * 
+     * {@inheritDoc}
+     */
+    @Override
+    public void baseMultiplier() {
+        this.setting.getDifficulty().getMultiplyScoreValue();
+    }
+
+    /**
+     *
+     * {@inheritDoc}
+     */
+    @Override
+    public Player getPlayer() {
+        return this.player;
+    }
+
+    /**
      * This method allow to get the alias for the partial player.
      * Saved in ranking whit alias zero.
+     * @return alias of current player
      */
     private String getPlayerAlias() {
         final LeaderboardController leaderboard = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
@@ -74,41 +152,12 @@ public class GameStateImpl implements GameState {
     }
 
     /**
-     *
-     */
-    @Override
-    public void init() {
-        this.baseMultiplier();
-        final Paddle.Builder paddleBuilder = new Paddle.Builder();
-        this.board.setPaddle(paddleBuilder.position(ObjectInit.PADDLE.getStartPos())
-                                         .width(ObjectInit.PADDLE.getInitWidth())
-                                         .height(ObjectInit.PADDLE.getInitHeight())
-                                         .texturePath(level.getPaddleTexture().getPath())
-                                         .build());
-        this.board.setBalls(Arrays.asList(new Ball.Builder()
-                                             .position(ObjectInit.BALL.getStartPos())
-                                             .direction(Angle.MIDDLE_LEFT.getAngleVector().mul(-1)) 
-                                             .height(ObjectInit.BALL.getInitHeight())
-                                             .width(ObjectInit.BALL.getInitWidth())
-                                             .speed(setting.getDifficulty().getBallVelocity())
-                                             .path(level.getBallTexture().getPath())
-                                             .build()));
-        this.phase = GamePhase.PAUSE;
-    }
-
-    /**
+     * 
      * {@inheritDoc}
      */
     @Override
     public int getPlayerScore() {
         return player.getScore(); 
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void baseMultiplier() {
-        this.multiplier = this.setting.getDifficulty().getMultiplyScoreValue();
     }
 
     /**
@@ -118,47 +167,6 @@ public class GameStateImpl implements GameState {
     @Override
     public int getLives() {
         return player.getLife();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public GameBoard getBoard() {
-        return board;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override 
-    public GamePhase getPhase() {
-        return this.phase;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setPhase(final GamePhase phase) {
-        this.phase = phase;
-    }
-
-    /**
-     *
-     * {@inheritDoc}
-     */
-    @Override
-    public Player getPlayer() {
-        return this.player;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Level getLevel() {
-        return this.level;
     }
 
     /**
@@ -176,7 +184,7 @@ public class GameStateImpl implements GameState {
      */
     @Override
     public boolean isMusicActive() {
-        return setting.isMusicEnable();
+       return setting.isMusicEnable();
     }
 
     /**
@@ -189,31 +197,34 @@ public class GameStateImpl implements GameState {
     }
 
     /**
-     * @return
+     * 
+     * @return true if creativeMode is enable, false otherwise
      */
     public static boolean isCreativeMode() {
         return creativeMode;
     }
 
     /**
-     * @param setMode
+     * 
+     * @param setMode true when creativeMode start, false as default to play standard level
      */
     public static void setCreativeMode(final boolean setMode) {
         creativeMode = setMode;
     }
 
     /**
-     * @return
+     * 
+     * @return true if the user are playing the standardMode, false if is playing first level or level custom
      */
     private static boolean isStandardModeStart() {
         return standardModeStart;
     }
 
     /**
-     * @param start
+     * 
+     * @param start set true after first level to enable the loading for second level, false as default
      */
     private static void setStandardModeStart(final boolean start) {
         standardModeStart = start;
     }
-
 }

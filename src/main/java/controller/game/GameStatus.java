@@ -2,9 +2,8 @@ package controller.game;
 
 /**
  * Represent all the possible state during the game.
- *
  */
-public enum GamePhase {
+public enum GameStatus {
 
     /**
      * Initial phase of entity creation.
@@ -17,7 +16,7 @@ public enum GamePhase {
     RUNNING,
 
     /**
-     * When you want to take a break all the object on the map will be freeze.
+     * Use to freeze the game for the start.
      */
     PAUSE,
 
@@ -27,12 +26,12 @@ public enum GamePhase {
     WIN,
 
     /**
-     * When your lifes are ends the game is finish and you can enter your alias to see your ranking.
+     * When your life are ends the game is finish and you can enter your alias to see your ranking.
      */
     LOST,
 
     /**
-     * Pre-game where you can navigate to see more info like settings and ranking.
+     * Pre-game where you can navigate to see more info like settings, ranking and go to creative mode.
      */
     MENU;
 }
