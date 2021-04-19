@@ -5,7 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * PowerUpDrop Texture resource path.
+ *
+ */
 public enum PowerUpDropTexture implements Serializable {
+
     /**
      * Default theme, drop powerup texture.
      */
@@ -25,6 +30,7 @@ public enum PowerUpDropTexture implements Serializable {
      * Pacman theme, drop powerup texture.
      */
     DROP_TEXTURE_PACMAN("Images/dropPowerup/pacmanDrop.png", "Pacman"),
+
     /**
      * Crash Bandicoot theme, drop powerup texture.
      */
@@ -44,6 +50,7 @@ public enum PowerUpDropTexture implements Serializable {
     }
 
     /**
+     * 
      * @return the path of PowerUpDropTexture
      */
     public String getPath() {
@@ -51,6 +58,7 @@ public enum PowerUpDropTexture implements Serializable {
     }
 
     /**
+     * 
      * @return the name of PowerUpDropTexture
      */
     public String getTheme() {

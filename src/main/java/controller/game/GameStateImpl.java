@@ -12,7 +12,6 @@ import model.entities.Wall;
 import model.leaderboard.Player;
 import model.leaderboard.PlayerImpl;
 import model.mapeditor.Level;
-import model.mapeditor.LevelSelection;
 import model.settings.SettingLevel;
 import model.settings.SettingLevelManager;
 import model.utilities.ObjectInit;

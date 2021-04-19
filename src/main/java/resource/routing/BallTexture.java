@@ -5,6 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Ball Texture resource path.
+ *
+ */
 public enum BallTexture implements Serializable {
 
     /**
@@ -46,6 +50,7 @@ public enum BallTexture implements Serializable {
     }
 
     /**
+     * 
      * @return the path of ball
      */
     public String getPath() {
@@ -53,6 +58,7 @@ public enum BallTexture implements Serializable {
     }
 
     /**
+     * 
      * @return the name of ball
      */
     public String getTheme() {

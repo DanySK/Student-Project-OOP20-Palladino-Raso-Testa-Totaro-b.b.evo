@@ -115,6 +115,7 @@ public class ControllerCreativeMode implements GUILayout {
      * Loads the currently selected level and starts the gameloop cycle.
      */
     @FXML
+    @SuppressWarnings("PMD.UnusedPrivateMethod")
     private void playLevel() {
         if (!levelSelected.getText().isBlank()) {
             GameStateImpl.setCreativeMode(true);

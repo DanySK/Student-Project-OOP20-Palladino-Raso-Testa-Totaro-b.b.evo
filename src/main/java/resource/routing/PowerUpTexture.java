@@ -5,7 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public enum PowerUpTexture implements Serializable{
+/**
+ * PowerUp Texture resource path.
+ *
+ */
+public enum PowerUpTexture implements Serializable {
+
     /**
      * Default theme, power up texture.
      */
@@ -46,6 +51,7 @@ public enum PowerUpTexture implements Serializable{
     }
 
     /**
+     * 
      * @return the path of PowerUpTexture
      */
     public String getPath() {
@@ -53,6 +59,7 @@ public enum PowerUpTexture implements Serializable{
     }
 
     /**
+     * 
      * @return the name of PowerUpTexture
      */
     public String getTheme() {
@@ -91,5 +98,4 @@ public enum PowerUpTexture implements Serializable{
                 .findFirst()
                 .get();
     }
-
 }

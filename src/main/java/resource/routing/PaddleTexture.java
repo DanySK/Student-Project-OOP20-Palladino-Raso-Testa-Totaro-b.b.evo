@@ -5,7 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public enum PaddleTexture implements Serializable{
+/**
+ * Paddle Texture resource path.
+ *
+ */
+public enum PaddleTexture implements Serializable {
+
     /**
      * Default theme, paddle.
      */
@@ -45,6 +50,7 @@ public enum PaddleTexture implements Serializable{
     }
 
     /**
+     * 
      * @return the path of paddle
      */
     public String getPath() {
@@ -52,6 +58,7 @@ public enum PaddleTexture implements Serializable{
     }
 
     /**
+     * 
      * @return the name of paddle
      */
     public String getTheme() {

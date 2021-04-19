@@ -6,7 +6,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public enum BrickTexture implements Serializable{
+/**
+ * Brick Texture resource path.
+ *
+ */
+public enum BrickTexture implements Serializable {
 
     /**
      * Default theme, brick texture.
@@ -52,6 +56,7 @@ public enum BrickTexture implements Serializable{
     }
 
     /**
+     * 
      * @return the path of brickTexture
      */
     public String getPath() {
@@ -63,6 +68,7 @@ public enum BrickTexture implements Serializable{
     }
 
     /**
+     * 
      * @return the name of brickTexture
      */
     public String getTheme() {

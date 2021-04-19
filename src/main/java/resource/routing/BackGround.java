@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Background resource.
+ * Background resource path.
+ * 
  */
 public enum BackGround implements Serializable {
 
@@ -51,6 +52,7 @@ public enum BackGround implements Serializable {
     }
 
     /**
+     * 
      * @return the path of background
      */
     public String getPath() {
@@ -63,6 +65,7 @@ public enum BackGround implements Serializable {
     }
 
     /**
+     * 
      * @return the  name of background 
      */
     public String getTheme() {
@@ -90,5 +93,4 @@ public enum BackGround implements Serializable {
                                                  .findFirst()
                                                  .get();
     }
-
 }
