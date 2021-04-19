@@ -60,6 +60,7 @@ public class TestBoard {
     private static final int POS_HUNDREDTWENTY = 120;
     private static final int WALL_COST = 600;
     private final List<PowerUp> listPwUp = new ArrayList<>();
+    private final List<Ball> listBall = new ArrayList<>();
 
     private final GameBoard board = new GameBoardImpl(new Wall(200, 200), null);
     private final Brick brick = new Brick.Builder().pos(new Position(STAND_POS_X, STAND_POS_Y))
@@ -93,19 +94,28 @@ public class TestBoard {
     @Test
     public void insertBallTest() {
         final GameBoard board = new GameBoardImpl(new Wall(WALL_COST, WALL_COST), null);
+        ballCreation();
+        assertTrue(board.getSceneEntities().isEmpty());
+        this.listBall.addAll(IntStream.range(MIN_RANGE, MAX_RANGE)
+                                .mapToObj(i -> ballCreation())
+                                .collect(Collectors.toList()));
+        board.setBalls(this.listBall);
+        assertEquals(MAX_RANGE, board.getSceneEntities().size());
+    }
+
+    /**
+     * Method that creates a ball.
+     * @return new PowerUp object
+     */
+    private Ball ballCreation() {
         final Ball.Builder ballBuilder = new Ball.Builder();
         ballBuilder.position(new Position(STAND_POS_X, STAND_POS_Y))
                  .direction(Angle.MIDDLE_LEFT.getAngleVector().mul(-1))
                  .height(ObjectInit.BALL.getInitHeight())
                  .width(ObjectInit.BALL.getInitWidth())
                  .speed(Difficulty.HARD.getBallVelocity())
-                 .path(BallTexture.BALL_DEFAULT.getPath())
-                 .build();
-        assertTrue(board.getSceneEntities().isEmpty());
-        board.setBalls(IntStream.range(0, 100)
-                                .mapToObj(i -> ballBuilder.build())
-                                .collect(Collectors.toList()));
-        assertEquals(100, board.getSceneEntities().size());
+                 .path(BallTexture.BALL_DEFAULT.getPath());
+        return ballBuilder.build();
     }
 
     /**
@@ -123,10 +133,10 @@ public class TestBoard {
                     .build();
         final GameBoard board = new GameBoardImpl(new Wall(WALL_COST, WALL_COST), null);
         assertTrue(board.getSceneEntities().isEmpty());
-        board.setBricks(IntStream.range(0, 100)
+        board.setBricks(IntStream.range(MIN_RANGE, MAX_RANGE)
                                  .mapToObj(i -> brickBuilder.build())
                                  .collect(Collectors.toList()));
-        assertEquals(100, board.getSceneEntities().size());
+        assertEquals(MAX_RANGE, board.getSceneEntities().size());
     }
 
     /**
@@ -143,7 +153,7 @@ public class TestBoard {
         final GameBoard board = new GameBoardImpl(new Wall(WALL_COST, WALL_COST), null);
         assertTrue(board.getSceneEntities().isEmpty());
         board.setPaddle(paddle.build());
-        assertEquals(100, board.getSceneEntities().size());
+        assertEquals(1, board.getSceneEntities().size());
     }
     /**
      * check that by inserting a number of powerUp in the board 
