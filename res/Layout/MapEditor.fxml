@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.7456" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.scene.ControllerMapEditor">
+<SplitPane fx:id="panel" dividerPositions="0.7456" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.scene.ControllerMapEditor">
   <items>
       <Pane prefHeight="700.0" prefWidth="400.0" style="-fx-background-image: url(&quot;/Images/mainMenuImg/background.png&quot;);">
          <children>
@@ -61,7 +61,7 @@
                   <DropShadow />
                </effect>
             </ComboBox>
-            <Label fx:id="brickLbl" layoutX="149.0" layoutY="241.0" text="BRICK  SETUP">
+            <Label fx:id="brickLbl" layoutX="150.0" layoutY="264.0" text="BRICK  SETUP">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

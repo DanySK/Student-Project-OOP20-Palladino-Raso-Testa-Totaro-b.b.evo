@@ -12,6 +12,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -40,6 +41,9 @@ public class ControllerMapEditor implements GUIController {
     private int rowsY;
     private GraphicsContext graphicsContext;
     private LevelBuilder levelBuilder;
+
+    @FXML
+    private SplitPane panel;
 
     @FXML
     private Pane pane;
@@ -194,18 +198,13 @@ public class ControllerMapEditor implements GUIController {
 
 
     /**
-     * @param event when click the button menu the user return to the Main Menu
+     * Click the button menu the user return to the Main Menu.
      */
     @FXML
-    void backToMenu(final MouseEvent event) {
-        final var stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        SceneLoader.switchScene(stage, 
-                PersonalViews.SCENE_CREATIVEMODE.getURL(), 
-                PersonalViews.SCENE_CREATIVEMODE.getTitleScene(), 
-                stage.getWidth(), 
-                stage.getHeight(),
-                PersonalStyle.DEFAULT_STYLE.getStylePath());
-        stage.setResizable(true);
+    void backToMenu() {
+      //MenuButton return to menu
+        this.menu.setOnAction(event -> FXMLMenuController.switchScene((Stage) this.panel.getScene().getWindow(), PersonalViews.SCENE_CREATIVEMODE, PersonalStyle.DEFAULT_STYLE, 
+                ControllerMainMenu.CREATIVE_MODE_WIDTH, ControllerMainMenu.CREATIVE_MODE_HEIGHT, false));
     }
 
     /**

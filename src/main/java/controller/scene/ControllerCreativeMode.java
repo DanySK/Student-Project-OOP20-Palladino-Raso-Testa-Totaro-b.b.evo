@@ -22,9 +22,15 @@ import view.PersonalViews;
 
 public class ControllerCreativeMode implements GUIController {
 
-    private static final double EDITOR_MODE_WIDTH = 800;
+    /**
+     * Dimension of Editor mode width.
+     */
+    private static final double EDITOR_MODE_WIDTH = 1200;
 
-    private static final double EDITOR_MODE_HEIGHT = 500;
+    /**
+     * Dimension of Editor mode height.
+     */
+    private static final double EDITOR_MODE_HEIGHT = 950;
 
     private Level currentLevel;
 
@@ -95,7 +101,7 @@ public class ControllerCreativeMode implements GUIController {
                 ScreenUtilities.SCREEN_WIDTH, ScreenUtilities.SCREEN_HEIGHT, false));
         //BuilderButton go to LevelBuilder
         this.builderBtn.setOnAction(event -> FXMLMenuController.switchScene((Stage) this.panel.getScene().getWindow(), PersonalViews.SCENE_EDITOR_MODE, PersonalStyle.DEFAULT_STYLE, 
-                EDITOR_MODE_WIDTH, EDITOR_MODE_HEIGHT, true));
+                EDITOR_MODE_WIDTH, EDITOR_MODE_HEIGHT, false));
     }
 
     /**

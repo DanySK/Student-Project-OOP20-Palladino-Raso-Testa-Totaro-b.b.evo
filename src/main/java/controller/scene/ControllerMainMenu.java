@@ -27,9 +27,15 @@ import view.PersonalViews;
 
 public class ControllerMainMenu implements Initializable, FXMLMenuController, GUILayout {
 
-    private static final double CREATIVE_MODE_WIDTH = 800;
+    /**
+     * Dimension of Creative mode width, used also in controllerMapEditor.
+     */
+    public static final double CREATIVE_MODE_WIDTH = 800;
 
-    private static final double CREATIVE_MODE_HEIGHT = 500;
+    /**
+     * Dimension of Creative mode height, used also in controllerMapEditor.
+     */
+    public static final double CREATIVE_MODE_HEIGHT = 500;
 
     @FXML
     private AnchorPane window;
