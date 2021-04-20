@@ -10,7 +10,7 @@ import java.util.Iterator;
  * Path of the standard levels.
  *
  */
-public enum LevelSelection implements Iterator<LevelSelection> {
+public enum LevelStandard implements Iterator<LevelStandard> {
 
     /**
      * Level 1 location and the input to fit the iterator interface.
@@ -47,7 +47,7 @@ public enum LevelSelection implements Iterator<LevelSelection> {
     private int index;
     private boolean isLast;
 
-    LevelSelection(final String path, final String name, final int index, final boolean isLast) {
+    LevelStandard(final String path, final String name, final int index, final boolean isLast) {
         this.path = path;
         this.name = name;
         this.index = index;
@@ -117,8 +117,8 @@ public enum LevelSelection implements Iterator<LevelSelection> {
      * {@inheritDoc}
      */
     @Override
-    public LevelSelection next() {
-        return Arrays.asList(LevelSelection.values()).get(index + 1);
+    public LevelStandard next() {
+        return Arrays.asList(LevelStandard.values()).get(index + 1);
     }
 
     /**
@@ -127,7 +127,7 @@ public enum LevelSelection implements Iterator<LevelSelection> {
      * @return if the level is one of the default
      */
     public static boolean isStandardLevel(final String nameLvl) {
-        return Arrays.asList(LevelSelection.values()).stream()
+        return Arrays.asList(LevelStandard.values()).stream()
                                                      .map(j -> j.getName())
                                                      .anyMatch(j -> j.equals(nameLvl));
     }
@@ -137,8 +137,8 @@ public enum LevelSelection implements Iterator<LevelSelection> {
      * @param level to search in this enum
      * @return the corresponding enumeration linked to the standard level.
      */
-    public static LevelSelection getSelectionFromLevel(final Level level) {
-        return Arrays.asList(LevelSelection.values()).stream()
+    public static LevelStandard getSelectionFromLevel(final Level level) {
+        return Arrays.asList(LevelStandard.values()).stream()
                                                      .filter(i -> i.getLevel().equals(level))
                                                      .findFirst()
                                                      .get();

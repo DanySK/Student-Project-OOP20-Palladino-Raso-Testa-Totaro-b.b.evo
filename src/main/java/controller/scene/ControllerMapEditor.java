@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import model.entities.GameObjectEmpty;
 import model.mapeditor.LevelBuilder;
 import model.mapeditor.LevelManager;
-import model.mapeditor.LevelSelection;
+import model.mapeditor.LevelStandard;
 import model.utilities.BrickStatus;
 import model.utilities.CheckCustomAlert;
 import model.utilities.ScreenUtilities;
@@ -213,12 +213,12 @@ public class ControllerMapEditor implements GUILayout {
      */
     @FXML
     public void buildLvl() {
-        if (levelName.getText().isBlank() || soundtrack.getValue() == null || backGround.getValue() == null
-                                          || ballTexture.getValue() == null || paddleTexture.getValue() == null) {
-            CheckCustomAlert.checkAllField();
-        } else if (LevelSelection.isStandardLevel(levelName.getText())) {
-            CheckCustomAlert.checkLevelName();
-        } else {
+        //if (levelName.getText().isBlank() || soundtrack.getValue() == null || backGround.getValue() == null
+          //                                || ballTexture.getValue() == null || paddleTexture.getValue() == null) {
+          //  CheckCustomAlert.checkAllField();
+        //} else if (LevelSelection.isStandardLevel(levelName.getText())) {
+         //   CheckCustomAlert.checkLevelName();
+        //}  else {
             this.levelBuilder.setLevelName(levelName.getText());
             this.levelBuilder.setMusic(soundtrack.getValue());
             this.levelBuilder.setBackGround(backGround.getValue());
@@ -226,7 +226,7 @@ public class ControllerMapEditor implements GUILayout {
             this.levelBuilder.setPaddle(paddleTexture.getValue());
             LevelManager.saveLevel(this.levelBuilder.build());
             CheckCustomAlert.checkLevelCreate();
-        }
+       // }
     }
 
     /**

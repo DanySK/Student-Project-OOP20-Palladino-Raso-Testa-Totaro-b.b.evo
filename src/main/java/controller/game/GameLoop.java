@@ -18,7 +18,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.entities.GameBoard;
 import model.leaderboard.StandardScoreSortingStrategy;
-import model.mapeditor.LevelSelection;
+import model.mapeditor.LevelStandard;
 import model.settings.SettingLevel.SettingLevelBuilder;
 import model.settings.SettingLevelManager;
 import model.utilities.GameUtilities;
@@ -102,11 +102,11 @@ public class GameLoop implements Runnable {
 
         //Check current gameState to set next loop
         if (gameState.getStatus().equals(GameStatus.WIN)
-                && LevelSelection.isStandardLevel(gameState.getLevel().getLevelName()) 
-                && LevelSelection.getSelectionFromLevel(gameState.getLevel()).hasNext()) {
+                && LevelStandard.isStandardLevel(gameState.getLevel().getLevelName()) 
+                && LevelStandard.getSelectionFromLevel(gameState.getLevel()).hasNext()) {
                 saveState(GameStatus.WIN);
             changeView(PersonalViews.SCENE_NEXT_LEVEL);
-        } else if (gameState.getStatus().equals(GameStatus.WIN) && gameState.getLevel().getLevelName().equals(LevelSelection.LEVEL6.getName())) {
+        } else if (gameState.getStatus().equals(GameStatus.WIN) && gameState.getLevel().getLevelName().equals(LevelStandard.LEVEL6.getName())) {
             saveState(GameStatus.LOST);
             changeView(PersonalViews.SCENE_GAME_FINAL);
         } else if (gameState.getStatus().equals(GameStatus.MENU)) {
@@ -169,7 +169,7 @@ public class GameLoop implements Runnable {
         final SettingLevelBuilder levelLoader = new SettingLevelBuilder();
         if (state.equals(GameStatus.WIN)) {
             //Load next level
-            SettingLevelManager.saveOption(levelLoader.selectLevel(LevelSelection.getSelectionFromLevel(gameState.getLevel())
+            SettingLevelManager.saveOption(levelLoader.selectLevel(LevelStandard.getSelectionFromLevel(gameState.getLevel())
                                                         .next()
                                                         .getLevel())
                                                         .build());
@@ -180,9 +180,9 @@ public class GameLoop implements Runnable {
             leaderboard.saveSortLeaderboard(new StandardScoreSortingStrategy());
 
             //If lost load the first level, needed if you play multiple time without close the app.
-            if (LevelSelection.isStandardLevel(gameState.getLevel().getLevelName())) {
+            if (LevelStandard.isStandardLevel(gameState.getLevel().getLevelName())) {
                 SettingLevelManager.saveOption(levelLoader.fromSettings(SettingLevelManager.loadOption())
-                    .selectLevel(LevelSelection.LEVEL1.getLevel())
+                    .selectLevel(LevelStandard.LEVEL1.getLevel())
                     .build());
             }
         }

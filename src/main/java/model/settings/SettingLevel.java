@@ -3,7 +3,7 @@ package model.settings;
 import java.io.Serializable;
 
 import model.mapeditor.Level;
-import model.mapeditor.LevelSelection;
+import model.mapeditor.LevelStandard;
 
 
 /**
@@ -34,7 +34,7 @@ public final class SettingLevel implements Serializable {
         private Level selectedLevel;
 
         public SettingLevelBuilder() {
-            this.selectedLevel = LevelSelection.LEVEL1.getLevel();
+            this.selectedLevel = LevelStandard.LEVEL1.getLevel();
         }
 
         /**

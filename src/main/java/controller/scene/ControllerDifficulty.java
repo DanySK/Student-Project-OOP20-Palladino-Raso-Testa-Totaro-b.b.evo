@@ -23,7 +23,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.mapeditor.LevelSelection;
+import model.mapeditor.LevelStandard;
 import model.settings.SettingLevel.SettingLevelBuilder;
 import model.settings.SettingLevelManager;
 import model.utilities.Difficulty;
@@ -130,7 +130,7 @@ public class ControllerDifficulty implements Initializable, FXMLMenuController {
 
             final SettingLevelBuilder setBuilder = new SettingLevelBuilder();
             setBuilder.fromSettings(SettingLevelManager.loadOption());
-            setBuilder.selectLevel(LevelSelection.LEVEL1.getLevel());
+            setBuilder.selectLevel(LevelStandard.LEVEL1.getLevel());
 
             final Scene scene = this.btnStartGame.getScene();
             scene.getStylesheets().add(PersonalStyle.DEFAULT_STYLE.getStylePath());
