@@ -71,12 +71,12 @@ public class GameLoop implements Runnable {
     @Override
     public void run() {
         long lastTime = System.currentTimeMillis();
-        while (!gameState.getPhase().equals(GameStatus.WIN) 
-            && !gameState.getPhase().equals(GameStatus.LOST)
-            && !gameState.getPhase().equals(GameStatus.MENU)) {
+        while (!gameState.getStatus().equals(GameStatus.WIN) 
+            && !gameState.getStatus().equals(GameStatus.LOST)
+            && !gameState.getStatus().equals(GameStatus.MENU)) {
             final long current = System.currentTimeMillis();
             final int elapsed = (int) (current - lastTime);
-            switch (gameState.getPhase()) {
+            switch (gameState.getStatus()) {
             case START:
                 gameState.init();
                 break;
@@ -100,19 +100,19 @@ public class GameLoop implements Runnable {
         SoundController.stopMusic();
 
         //Check current gameState to set next loop
-        if (gameState.getPhase().equals(GameStatus.WIN)
+        if (gameState.getStatus().equals(GameStatus.WIN)
                 && LevelSelection.isStandardLevel(gameState.getLevel().getLevelName()) 
                 && LevelSelection.getSelectionFromLevel(gameState.getLevel()).hasNext()) {
                 saveState(GameStatus.WIN);
             changeView(PersonalViews.SCENE_NEXT_LEVEL);
-        } else if (gameState.getPhase().equals(GameStatus.WIN) && gameState.getLevel().getLevelName().equals(LevelSelection.LEVEL6.getName())) {
+        } else if (gameState.getStatus().equals(GameStatus.WIN) && gameState.getLevel().getLevelName().equals(LevelSelection.LEVEL6.getName())) {
             saveState(GameStatus.LOST);
             changeView(PersonalViews.SCENE_GAME_FINAL);
-        } else if (gameState.getPhase().equals(GameStatus.MENU)) {
+        } else if (gameState.getStatus().equals(GameStatus.MENU)) {
             changeView(PersonalViews.SCENE_MAIN_MENU);
         } else { 
             //Check for creative mode
-            if (GameStateImpl.isCreativeMode() && gameState.getPhase().equals(GameStatus.WIN)) {
+            if (GameStateImpl.isCreativeMode() && gameState.getStatus().equals(GameStatus.WIN)) {
                 saveState(GameStatus.LOST);
                 changeView(PersonalViews.SCENE_GAME_FINAL);
             } else { 
@@ -130,22 +130,22 @@ public class GameLoop implements Runnable {
         if (layout.equals(PersonalViews.SCENE_NEXT_LEVEL)) {
             final ControllerNextLevel nextLevelController = (ControllerNextLevel) layout.loadScene();
             nextLevelController.update(gameState.getLevel(), gameState.getPlayer());
-        } else if (layout.equals(PersonalViews.SCENE_GAME_OVER) || layout.equals(PersonalViews.SCENE_GAME_FINAL)) {
+        } else if (layout.equals(PersonalViews.SCENE_GAME_OVER) /*|| layout.equals(PersonalViews.SCENE_GAME_FINAL)*/) {
             final LeaderboardController leaderboard = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
             final StandardScoreSortingStrategy ls = new StandardScoreSortingStrategy(); 
 
-            if (layout.equals(PersonalViews.SCENE_GAME_FINAL)) {
+           if (layout.equals(PersonalViews.SCENE_GAME_FINAL)) {
                 // same of gameOver but with final scene.
-            } else {
+           } else {
                 final GameOverController gameOverController = (GameOverController) layout.loadScene();
                 gameOverController.updateScore(this.gameState.getPlayerScore(), leaderboard.getPodium(0, ls).toString());
-            }
+           }
         } 
 
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                if (layout.equals(PersonalViews.SCENE_GAME) || layout.equals(PersonalViews.SCENE_NEXT_LEVEL)) {
+                if (layout.equals(PersonalViews.SCENE_GAME) || layout.equals(PersonalViews.SCENE_NEXT_LEVEL) || layout.equals(PersonalViews.SCENE_GAME_OVER)) {
                     scene.setRoot(layout.getLayout());
                 } else { 
                     SceneLoader.switchScene((Stage) scene.getWindow(), PersonalViews.SCENE_MAIN_MENU.getURL(), 
