@@ -69,7 +69,7 @@ public enum PersonalViews {
     /**
      * Path for load Final Scene before ranking.
      */
-    SCENE_GAME_FINAL("Layout/ ", "FINISH");
+    SCENE_GAME_FINAL("Layout/GameFinal.fxml ", "FINISH");
 
     private String path;
     private String titleScene;
@@ -83,7 +83,7 @@ public enum PersonalViews {
 
         final FXMLLoader loader = new FXMLLoader(this.getURL());
         try {
-            if ("GAME".equals(this.titleScene) || "NEXT_LEVEL".equals(this.titleScene) || "GAMEOVER".equals(this.titleScene)) {
+            if ("GAME".equals(this.titleScene) || "NEXT_LEVEL".equals(this.titleScene) || "GAMEOVER".equals(this.titleScene) || "FINISH".equals(this.titleScene)) {
                 this.layout = loader.load();
             } else if ("BrickBreacker-EVO".equals(this.titleScene)) {
                 this.anchLayout = loader.load();
