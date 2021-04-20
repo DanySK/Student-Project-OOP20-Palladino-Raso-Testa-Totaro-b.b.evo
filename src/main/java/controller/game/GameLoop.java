@@ -155,7 +155,7 @@ public class GameLoop implements Runnable {
                                             scene.getWidth(), 
                                             scene.getHeight(), 
                                             PersonalStyle.DEFAULT_STYLE.getStylePath());
-                    scene.setRoot(null);
+                   scene.setRoot(layout.getAncLayout());
                 }
             }
         });
