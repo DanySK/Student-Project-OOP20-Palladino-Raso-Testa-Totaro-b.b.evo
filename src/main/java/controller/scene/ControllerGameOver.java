@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -25,6 +26,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.utilities.ScreenUtilities;
 import resource.routing.PersonalFonts;
+import resource.routing.PersonalImages;
 import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import view.PersonalViews;
@@ -203,11 +205,7 @@ public class ControllerGameOver implements Initializable, FXMLMenuController, GU
     }
 
     /**
-     * Retrieve from gameLoop the score, the user and the level information.
-     * Set to visible name field to set if the user score value is at least
-     * before the minimum value present on the score list. Update the gui if the
-     * user is not present.
-     * Set label to win if user lives is more than 0, otherwise lost.
+     * Updates Score and Highscore labels.
      * @param playerScore 
      * @param podiumScore 
      */
