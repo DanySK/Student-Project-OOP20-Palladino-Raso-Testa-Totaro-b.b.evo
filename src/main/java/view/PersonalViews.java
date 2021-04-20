@@ -69,7 +69,7 @@ public enum PersonalViews {
     /**
      * Path for load Final Scene before ranking.
      */
-    SCENE_GAME_FINAL("Layout/GameFinal.fxml ", "FINISH");
+    SCENE_GAME_FINAL("Layout/GameFinal.fxml", "FINISH");
 
     private String path;
     private String titleScene;
