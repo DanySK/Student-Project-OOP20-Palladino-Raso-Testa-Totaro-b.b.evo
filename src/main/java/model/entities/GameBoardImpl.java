@@ -284,7 +284,7 @@ public class GameBoardImpl implements GameBoard {
 
     /**
      * 
-     * @param e
+     * @param e Event that is added to the queue
      */
     public void eventListener(final Event e) {
         this.eventHandler.addEvent(e);

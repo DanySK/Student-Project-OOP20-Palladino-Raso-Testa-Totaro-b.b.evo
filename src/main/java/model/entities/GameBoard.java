@@ -87,9 +87,6 @@ public interface GameBoard extends GameBoardEventListeners {
      * 
      * @param type of powerUp
      */
-    /**
-     * @param type
-     */
     void setTypePowerUp(String type);
 
     /**
