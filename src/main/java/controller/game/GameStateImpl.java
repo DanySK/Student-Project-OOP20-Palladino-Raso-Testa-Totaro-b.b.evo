@@ -207,7 +207,7 @@ public class GameStateImpl implements GameState {
      * 
      * @return true if the user are playing the standardMode, false if is playing first level or level custom
      */
-    private static boolean isStandardModeStart() {
+    public static boolean isStandardModeStart() {
         return standardModeStart;
     }
 
@@ -215,7 +215,7 @@ public class GameStateImpl implements GameState {
      * 
      * @param start set true after first level to enable the loading for second level, false as default
      */
-    private static void setStandardModeStart(final boolean start) {
+    public static void setStandardModeStart(final boolean start) {
         standardModeStart = start;
     }
 }

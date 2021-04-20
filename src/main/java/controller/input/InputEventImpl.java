@@ -2,6 +2,7 @@ package controller.input;
 
 import controller.game.GameStatus;
 import controller.game.GameState;
+import controller.game.GameStateImpl;
 import javafx.scene.canvas.Canvas;
 
 public class InputEventImpl implements InputEvent {
@@ -39,6 +40,9 @@ public class InputEventImpl implements InputEvent {
                 break;
             case ESCAPE:
                 this.state.setStatus(GameStatus.MENU);
+                if (GameStateImpl.isStandardModeStart()) {
+                    GameStateImpl.setStandardModeStart(false);
+                }
                 break;
             case SPACE:
                 if (this.state.getStatus().equals(GameStatus.PAUSE)) {
