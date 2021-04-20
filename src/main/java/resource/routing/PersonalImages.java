@@ -44,7 +44,12 @@ public enum PersonalImages {
     /**
      * Path for Settings Video Tutorial.
      */
-    TUTORIAL_SETTINGS("Images/video/prova.gif");
+    TUTORIAL_SETTINGS("Images/video/prova.gif"),
+
+    /**
+     * Path for GameOver view background.
+     */
+    GAMEOVER_BACKGROUND_IMG("Images/background/GameOverBackground.png");
 
     private String path;
 
