@@ -16,7 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -30,10 +30,10 @@ import resource.routing.PersonalStyle;
 import view.PersonalViews;
 import view.SceneLoader;
 
-public class GameOverController implements Initializable, FXMLMenuController, GUILayout {
+public class ControllerGameOver implements Initializable, FXMLMenuController, GUILayout {
 
     @FXML
-    private AnchorPane window;
+    private SplitPane window;
 
     @FXML
     private BorderPane panel;
@@ -61,6 +61,9 @@ public class GameOverController implements Initializable, FXMLMenuController, GU
 
     @FXML
     private Label lblHighscore;
+
+    @FXML
+    private Label lblScore;
 
     /**
      * Initialize all view components.
@@ -163,7 +166,7 @@ public class GameOverController implements Initializable, FXMLMenuController, GU
     @Override
     public void loadFont() {
         this.lblTitle
-                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_NORMAL_LABEL_SIZE));
+                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_LARGE_LABEL_SIZE));
         this.btnMenu
                 .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnRanking
@@ -172,6 +175,8 @@ public class GameOverController implements Initializable, FXMLMenuController, GU
                 .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
         this.lblHighscore
                 .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
+        this.lblScore
+                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_NORMAL_LABEL_SIZE));
     }
 
     /**
@@ -207,7 +212,7 @@ public class GameOverController implements Initializable, FXMLMenuController, GU
      * @param podiumScore 
      */
     public void updateScore(final int playerScore, final String podiumScore) {
-        this.lblHighscore.setText("YOUR SCORE: " + playerScore);
-        this.lblHighscore.setText(podiumScore);
+        this.lblScore.setText("YOUR SCORE: " + playerScore);
+        this.lblHighscore.setText("HIGHSCORE: " + podiumScore);
     }
 }
