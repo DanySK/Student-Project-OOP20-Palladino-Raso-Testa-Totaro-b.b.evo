@@ -8,7 +8,7 @@ import controller.leaderboard.LeaderboardController;
 import controller.leaderboard.LeaderboardControllerImpl;
 import controller.scene.ControllerGame;
 import controller.scene.ControllerNextLevel;
-import controller.scene.GameOverController;
+import controller.scene.ControllerGameOver;
 import controller.settings.SettingsController;
 import controller.settings.SettingsControllerImpl;
 import controller.sound.SoundController;
@@ -137,8 +137,8 @@ public class GameLoop implements Runnable {
            if (layout.equals(PersonalViews.SCENE_GAME_FINAL)) {
                 // same of gameOver but with final scene.
            } else {
-                final GameOverController gameOverController = (GameOverController) layout.loadScene();
-                gameOverController.updateScore(this.gameState.getPlayerScore(), leaderboard.getPodium(0, ls).toString());
+                final ControllerGameOver controllerGameOver = (ControllerGameOver) layout.loadScene();
+                controllerGameOver.updateScore(this.gameState.getPlayerScore(), leaderboard.getPodium(1, ls).toString());
            }
         } 
 
