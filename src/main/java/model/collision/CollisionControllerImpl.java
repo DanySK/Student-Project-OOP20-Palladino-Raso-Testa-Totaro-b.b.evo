@@ -32,6 +32,7 @@ public class CollisionControllerImpl implements CollisionController {
         collision.put(Boundaries.SIDE_RIGHT, checkCollisions(objX(obj) + objWidth(obj), wall.getRightBottomCorner().getX(), Boundaries.SIDE_RIGHT));
         collision.put(Boundaries.LOWER, checkCollisions(objY(obj) + objHeight(obj), wall.getRightBottomCorner().getY(), Boundaries.LOWER));
         collision.put(Boundaries.UPPER, checkCollisions(objY(obj), wall.getUpperLeftCorner().getY(), Boundaries.UPPER));
+
         collision.forEach((k, v) -> {
             if (v.booleanValue()) {
                 side = k;
@@ -48,12 +49,12 @@ public class CollisionControllerImpl implements CollisionController {
         this.isCollision = false;
         this.fillMap(brick, ball);
 
-        for (final Entry<Boundaries, Boolean> entry : this.collision.entrySet()) {
-            if (!entry.getValue() && !this.isCollision) {
-                brick.getHit().put(ball, entry.getKey());
+        this.collision.forEach((k, v) -> {
+            if (!v.booleanValue() && !this.isCollision) {
+                brick.getHit().put(ball, k);
                 this.isCollision = true;
             }
-        }
+        });
 
         if (this.isCollision) {
             return Optional.empty();
@@ -68,16 +69,17 @@ public class CollisionControllerImpl implements CollisionController {
     @Override
     public Optional<Boundaries> checkBallCollisionsWithPaddle(final Ball ball, final Paddle paddle) {
         this.isCollision = false;
-        this.fillMap(paddle, ball);
+        this.fillMap(ball, paddle);
+
         this.collision.forEach((k, v) -> {
             if (!v.booleanValue() && !this.isCollision) {
                 paddle.getHit().put(ball, k);
                 this.isCollision = true;
             }
         });
-       if (this.isCollision) {
-           return Optional.empty();
-       }
+        if (this.isCollision) {
+            return Optional.empty();
+        }
         return Optional.of(paddle.getHit().get(ball));
     }
 
@@ -87,7 +89,8 @@ public class CollisionControllerImpl implements CollisionController {
     @Override
     public Optional<Pair<PowerUp, Boundaries>> checkPwUpCollisionWithPaddle(final PowerUp pwup, final Paddle paddle) {
         this.isCollision = false;
-        this.fillMap(paddle, pwup);
+        this.fillMap(pwup, paddle);
+
         this.collision.forEach((k, v) -> {
             if (!v.booleanValue() && !this.isCollision) {
                 pwup.getHit().put(paddle, k);
@@ -106,10 +109,10 @@ public class CollisionControllerImpl implements CollisionController {
      * @param obj2 second obj to be checked in the collision
      */
     private void fillMap(final GameObject obj1, final GameObject obj2) {
-        this.collision.put(Boundaries.SIDE_RIGHT, checkCollisions(objX(obj2), objX(obj1) + objWidth(obj1), Boundaries.SIDE_LEFT));
-        this.collision.put(Boundaries.SIDE_LEFT, checkCollisions(objX(obj2) + objWidth(obj2), objX(obj1), Boundaries.SIDE_RIGHT));
-        this.collision.put(Boundaries.UPPER, checkCollisions(objY(obj2) + objHeight(obj2), objY(obj1), Boundaries.LOWER));
-        this.collision.put(Boundaries.LOWER, checkCollisions(objY(obj2), objY(obj1) + objHeight(obj1), Boundaries.UPPER));
+        this.collision.put(Boundaries.SIDE_LEFT, checkCollisions(objX(obj2), objX(obj1) + objWidth(obj1), Boundaries.SIDE_LEFT));
+        this.collision.put(Boundaries.SIDE_RIGHT, checkCollisions(objX(obj2) + objWidth(obj2), objX(obj1), Boundaries.SIDE_RIGHT));
+        this.collision.put(Boundaries.LOWER, checkCollisions(objY(obj2) + objHeight(obj2), objY(obj1), Boundaries.LOWER));
+        this.collision.put(Boundaries.UPPER, checkCollisions(objY(obj2), objY(obj1) + objHeight(obj1), Boundaries.UPPER));
     }
 
     /**
