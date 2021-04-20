@@ -123,7 +123,7 @@ public class CollisionControllerImpl implements CollisionController {
 
     /**
      * getter for {@link GameObject} width.
-     * @param obj
+     * @param obj gameObject
      * @return gameobject's width
      */
     private int objWidth(final GameObject obj) {
@@ -132,7 +132,7 @@ public class CollisionControllerImpl implements CollisionController {
 
     /**
      * getter for {@link GameObject} X position.
-     * @param obj
+     * @param obj gameObject
      * @return gameobject's X position
      */
     private double objX(final GameObject obj) {
@@ -141,7 +141,7 @@ public class CollisionControllerImpl implements CollisionController {
 
     /**
      * getter for {@link GameObject} Y position.
-     * @param obj 
+     * @param obj gameObject
      * @return gameobject's Y position
      */
     private double objY(final GameObject obj) {
@@ -152,7 +152,7 @@ public class CollisionControllerImpl implements CollisionController {
      * checks collisions between two gameobjects.
      * @param obj1 first obj to be checked in the collision
      * @param obj2 second obj to be checked in the collision
-     * @param bounds
+     * @param bounds side to check
      * @return true if the collision occurs
      */
     private Boolean checkCollisions(final double obj1, final double obj2, final Boundaries bounds) {
