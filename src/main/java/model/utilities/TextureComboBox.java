@@ -11,7 +11,7 @@ import resource.routing.BrickTexture;
 import resource.routing.PaddleTexture;
 
 /**
- * This class manage the ComboBox on {@link ControllerMapEditor}.
+ * This class manage the ComboBox on ControllerMapEditor.
  * Simple load the texture on it as preview.
  */
 public class TextureComboBox {
