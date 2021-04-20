@@ -34,6 +34,11 @@ public final class ScreenUtilities {
     public static final int FONT_SUB_LABEL_SIZE = 24;
 
     /**
+     * Use to have static font large sized2 label for all view.
+     */
+    public static final int FONT_LARGE_LABEL_SIZE = 70;
+
+    /**
      * This number represent the divider number to center object in scene.
      */
     public static final int CENTER_DIVIDER = 2;
