@@ -21,13 +21,13 @@ public interface GameState {
      * 
      * @return the current game phase
      */
-    GameStatus getPhase();
+    GameStatus getStatus();
 
     /**
      * 
      * @param phase set the game phase
      */
-    void setPhase(GameStatus phase);
+    void setStatus(GameStatus phase);
 
     /**
      * 

@@ -78,7 +78,7 @@ public class EventHandler {
                     if (this.state.getBoard().getBalls().isEmpty()) {
                         this.state.getPlayer().lifeOperation(lifeOperation, -1);
                         addPoints(ScoreAttribute.LOST_LIFE.getValue());
-                        this.state.setPhase(GameStatus.START);
+                        this.state.setStatus(GameStatus.START);
                     }
                 }
                 SoundController.playSoundFx(PersonalSounds.SOUND_WALL.getURL().getPath());    //throw sound for hitting the wall
@@ -125,11 +125,11 @@ public class EventHandler {
      */
     private void checkGameState() {
         if (state.getLives() == 0) {
-            state.setPhase(GameStatus.LOST);
+            state.setStatus(GameStatus.LOST);
         } else if (state.getBoard().getBricks().stream()
                                                 .filter(i -> i.getStatus().equals(BrickStatus.DESTRUCTIBLE) || i.getStatus().equals(BrickStatus.DROP_POWERUP))
                                                 .count() == 0) {
-            state.setPhase(GameStatus.WIN);
+            state.setStatus(GameStatus.WIN);
         }
     }
 }

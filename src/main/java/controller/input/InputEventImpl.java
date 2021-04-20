@@ -38,11 +38,11 @@ public class InputEventImpl implements InputEvent {
                 this.controller.setMoveRight(true);
                 break;
             case ESCAPE:
-                this.state.setPhase(GameStatus.MENU);
+                this.state.setStatus(GameStatus.MENU);
                 break;
             case SPACE:
-                if (this.state.getPhase().equals(GameStatus.PAUSE)) {
-                    this.state.setPhase(GameStatus.RUNNING);
+                if (this.state.getStatus().equals(GameStatus.PAUSE)) {
+                    this.state.setStatus(GameStatus.RUNNING);
                 }
                 break;
             default:

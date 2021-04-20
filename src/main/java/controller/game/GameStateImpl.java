@@ -86,7 +86,7 @@ public class GameStateImpl implements GameState {
      * {@inheritDoc}
      */
     @Override 
-    public GameStatus getPhase() {
+    public GameStatus getStatus() {
         return this.phase;
     }
 
@@ -95,7 +95,7 @@ public class GameStateImpl implements GameState {
      * {@inheritDoc}
      */
     @Override
-    public void setPhase(final GameStatus phase) {
+    public void setStatus(final GameStatus phase) {
         this.phase = phase;
     }
 
@@ -116,8 +116,6 @@ public class GameStateImpl implements GameState {
     public Level getLevel() {
         return this.level;
     }
-
-
 
     /**
      *
