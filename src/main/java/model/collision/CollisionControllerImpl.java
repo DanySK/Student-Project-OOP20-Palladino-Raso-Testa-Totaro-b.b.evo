@@ -2,7 +2,6 @@ package model.collision;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Optional;
 import model.entities.Ball;
 import model.entities.Brick;
