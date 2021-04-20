@@ -7,6 +7,7 @@ import controller.input.InputEventImpl;
 import controller.leaderboard.LeaderboardController;
 import controller.leaderboard.LeaderboardControllerImpl;
 import controller.scene.ControllerGame;
+import controller.scene.ControllerGameFinal;
 import controller.scene.ControllerNextLevel;
 import controller.scene.ControllerGameOver;
 import controller.settings.SettingsController;
@@ -130,12 +131,13 @@ public class GameLoop implements Runnable {
         if (layout.equals(PersonalViews.SCENE_NEXT_LEVEL)) {
             final ControllerNextLevel nextLevelController = (ControllerNextLevel) layout.loadScene();
             nextLevelController.update(gameState.getLevel(), gameState.getPlayer());
-        } else if (layout.equals(PersonalViews.SCENE_GAME_OVER) /*|| layout.equals(PersonalViews.SCENE_GAME_FINAL)*/) {
+        } else if (layout.equals(PersonalViews.SCENE_GAME_OVER) || layout.equals(PersonalViews.SCENE_GAME_FINAL)) {
             final LeaderboardController leaderboard = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
             final StandardScoreSortingStrategy ls = new StandardScoreSortingStrategy(); 
 
            if (layout.equals(PersonalViews.SCENE_GAME_FINAL)) {
-                // same of gameOver but with final scene.
+                final ControllerGameFinal controllerGameFinal = (ControllerGameFinal) layout.loadScene();
+                controllerGameFinal.updateScore(this.gameState.getPlayerScore(), leaderboard.getPodium(1, ls).toString());
            } else {
                 final ControllerGameOver controllerGameOver = (ControllerGameOver) layout.loadScene();
                 controllerGameOver.updateScore(this.gameState.getPlayerScore(), leaderboard.getPodium(1, ls).toString());
@@ -145,7 +147,7 @@ public class GameLoop implements Runnable {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                if (layout.equals(PersonalViews.SCENE_GAME) || layout.equals(PersonalViews.SCENE_NEXT_LEVEL) || layout.equals(PersonalViews.SCENE_GAME_OVER)) {
+                if (layout.equals(PersonalViews.SCENE_GAME) || layout.equals(PersonalViews.SCENE_NEXT_LEVEL) || layout.equals(PersonalViews.SCENE_GAME_OVER) || layout.equals(PersonalViews.SCENE_GAME_FINAL)) {
                     scene.setRoot(layout.getLayout());
                 } else { 
                     SceneLoader.switchScene((Stage) scene.getWindow(), PersonalViews.SCENE_MAIN_MENU.getURL(), 
