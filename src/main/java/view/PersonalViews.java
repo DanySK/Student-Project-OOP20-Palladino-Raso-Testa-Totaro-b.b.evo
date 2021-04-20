@@ -83,9 +83,9 @@ public enum PersonalViews {
 
         final FXMLLoader loader = new FXMLLoader(this.getURL());
         try {
-            if (this.titleScene.equals("GAME") || this.titleScene.equals("NEXT_LEVEL")) {
+            if ("GAME".equals(this.titleScene) || "NEXT_LEVEL".equals(this.titleScene)) {
                 this.layout = loader.load();
-            } else if (this.titleScene.equals("BrickBreacker-EVO") || this.titleScene.equals("GAMEOVER")) {
+            } else if ("BrickBreacker-EVO".equals(this.titleScene) || "GAMEOVER".equals(this.titleScene)) {
                 this.anchLayout = loader.load();
             }
 
