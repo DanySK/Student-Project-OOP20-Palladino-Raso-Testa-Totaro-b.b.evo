@@ -14,14 +14,12 @@ import model.utilities.ScoreAttribute;
 public class PowerUpController {
     private int ballDamage;
     private final PowerUp pwup;
-    private Boolean isActive;
     private final GameState state;
     private final LifeOperationStrategy lifeOperation;
     private final ScoreOperationStrategy scoreOperation;
 
     public PowerUpController(final PowerUp pwup, final GameState state) {
         this.pwup = pwup;
-        this.isActive = false;
         this.state = state;
         this.lifeOperation = new BasicLifeOperationStrategy();
         this.scoreOperation = new BasicScoreOperationStrategy();
@@ -34,8 +32,6 @@ public class PowerUpController {
      * @param pwup {@link PowerUp} that needs to be activated.
      */
     public void activatePowerUp(final PowerUp pwup) {
-        this.setIsActive(true);
-        System.out.println("powerup attivato: " + pwup.getPowerUpType().name());
         if (pwup.getPowerUpType().equals(PowerUpType.DAMAGE_DOWN)) {
             addPoints(ScoreAttribute.NEGATIVE_POWERUP.getValue());
             this.ballDamage = PowerUpUtilities.DEFAULT_BALL_DAMAGE + pwup.getDamageModifier();
@@ -92,28 +88,8 @@ public class PowerUpController {
      * @param pwup powerup that needs to wait 
      */
     public void waitSeconds(final long seconds, final PowerUp pwup) {
-        System.out.println("aspetto " + pwup.getPowerUpType().getActiveTime() + " secondi");
         new PowerUpTimer(seconds, this);
     }
-
-
-    /**
-     * getter for isActive boolean value.
-     * @return true if the powerup has been activated,
-     * false otherwise
-     */
-    public Boolean getIsActive() {
-        return this.pwup.isActive;
-    }
-
-    /**
-     * setter for isActive boolean.
-     * @param value the value to set
-     */
-    public void setIsActive(final Boolean value) {
-        this.pwup.isActive = value;
-    }
-
 
     /**
      * getter for pwup.
