@@ -68,18 +68,38 @@ public class AdapterGraphicsImpl implements AdapterGraphics {
         this.graphics.drawImage(pwupImage, screenPosX, screenPosY, screenWidth, screenHeight);
     }
 
+    /**
+     * Calculates the actual size (X) based on the screen used by the user.
+     * @param posX position of object
+     * @return the calculated X
+     */
     private double getXInPixel(final double posX) {
         return posX * ScreenUtilities.REAL_X;
     }
 
+    /**
+     * Calculates the actual size (Y) based on the screen used by the user.
+     * @param posY position of object
+     * @return the calculated Y
+     */
     private double getYInPixel(final double posY) {
         return posY * ScreenUtilities.REAL_Y;
     }
 
+    /**
+     * Calculates the actual size (Width) based on the screen used by the user.
+     * @param posWidth width of object
+     * @return the calculated width
+     */
     private double getWidthInPixel(final double posWidth) {
         return posWidth * ScreenUtilities.REAL_X;
     }
 
+    /**
+     * Calculates the actual size (Height) based on the screen used by the user.
+     * @param posHeight height of object
+     * @return the calculated height
+     */
     private double getHeightInPixel(final double posHeight) {
         return posHeight * ScreenUtilities.REAL_Y;
     }
