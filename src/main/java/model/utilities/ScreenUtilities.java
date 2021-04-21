@@ -57,15 +57,16 @@ public final class ScreenUtilities {
      * The minimum HEIGHT number that the stage can have.
      */
     public static final int MIN_RESIZE_HEIGHT = 650;
-    /**
-     * Width of the game world (used in model World).
-     */
-    public static final double WORLD_WIDTH = 611;
 
     /**
-     * Height of the game world (used in model World).
+     * Width of the game board (used in model board).
      */
-    public static final double WORLD_HEIGHT = 611;
+    public static final double BOARD_WIDTH = 611;
+
+    /**
+     * Height of the game board (used in model board).
+     */
+    public static final double BOARD_HEIGHT = 611;
 
     /**
      * Width of the canvas in GameController gui (adapted to the height res for make a square).
@@ -80,12 +81,12 @@ public final class ScreenUtilities {
     /**
      * Convert every entity of the game width (adapted to the current resolution).
      */
-    public static final double REAL_X = CANVAS_WIDTH / WORLD_WIDTH;
+    public static final double REAL_X = CANVAS_WIDTH / BOARD_WIDTH;
 
     /**
      * Convert every entity of the game height (adapted to the current resolution).
      */
-    public static final double REAL_Y = CANVAS_HEIGHT / WORLD_HEIGHT;
+    public static final double REAL_Y = CANVAS_HEIGHT / BOARD_HEIGHT;
 
     /**
      * the number of bricks on the x-axis.

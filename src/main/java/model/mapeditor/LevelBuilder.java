@@ -33,8 +33,8 @@ public class LevelBuilder {
 
     private final int builderBrickDimY = (int) (ScreenUtilities.CANVAS_HEIGHT / ScreenUtilities.BRICK_NUMBER_Y);
     private final int builderBrickDimX = (int) (ScreenUtilities.CANVAS_WIDTH / ScreenUtilities.BRICK_NUMBER_X);
-    private final int gameBrickDimY = (int) (ScreenUtilities.WORLD_HEIGHT / ScreenUtilities.BRICK_NUMBER_Y);
-    private final int gameBrickDimX = (int) (ScreenUtilities.WORLD_WIDTH / ScreenUtilities.BRICK_NUMBER_X);
+    private final int gameBrickDimY = (int) (ScreenUtilities.BOARD_HEIGHT / ScreenUtilities.BRICK_NUMBER_Y);
+    private final int gameBrickDimX = (int) (ScreenUtilities.BOARD_WIDTH / ScreenUtilities.BRICK_NUMBER_X);
 
     private String levelName;
     private BackGround background;

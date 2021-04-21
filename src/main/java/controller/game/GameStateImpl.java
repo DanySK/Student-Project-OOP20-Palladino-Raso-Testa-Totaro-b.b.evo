@@ -54,7 +54,7 @@ public class GameStateImpl implements GameState {
                                      setting.getDifficulty().getNumberOfLives(),
                                      setting.getDifficulty().getMaxNumberOfLife());
 
-        this.board = new GameBoardImpl(new Wall(ScreenUtilities.WORLD_WIDTH, ScreenUtilities.WORLD_HEIGHT), this);
+        this.board = new GameBoardImpl(new Wall(ScreenUtilities.BOARD_WIDTH, ScreenUtilities.BOARD_HEIGHT), this);
         this.board.setBricks(level.getBricks());
     }
 
