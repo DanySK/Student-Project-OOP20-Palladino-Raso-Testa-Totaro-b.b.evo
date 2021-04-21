@@ -8,7 +8,6 @@ import model.entities.GameObject;
 import model.entities.PowerUp;
 import model.utilities.Boundaries;
 import model.utilities.DirVector;
-import model.utilities.BrickStatus;
 import model.utilities.Pair;
 
 public class PwUpComponentPhysics implements ComponentPhysics {

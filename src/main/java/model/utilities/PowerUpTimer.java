@@ -4,7 +4,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import controller.event.PowerUpController;
-import model.entities.PowerUp;
 
 /**
  * Simple timer class that uses java.util.Timer to schedule a timer task 

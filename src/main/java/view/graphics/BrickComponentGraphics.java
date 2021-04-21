@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javafx.scene.image.Image;
 import model.entities.Brick;
 import model.entities.GameObject;
-import resource.routing.BrickTexture;
 
 public class BrickComponentGraphics implements ComponentGraphics, Serializable {
 

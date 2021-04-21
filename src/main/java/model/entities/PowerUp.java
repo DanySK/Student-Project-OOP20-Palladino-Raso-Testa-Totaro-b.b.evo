@@ -1,4 +1,3 @@
-
 package model.entities;
 
 import java.util.HashMap;
@@ -25,11 +24,9 @@ public class PowerUp extends GameObjectImpl {
     private final int lifeModifier;
     private final int damageModifier;
 
-    private String texturePath;
+    private final String texturePath;
 
     private final Map<GameObject, Boundaries> hit = new HashMap<>();
-
-    public Boolean isActive;
 
     public PowerUp(final Position pos, final int height, final int width, final String texturePath) {
         super(pos, PowerUpUtilities.POWERUP_DROP_DIR, PowerUpUtilities.POWERUP_DROP_SPEED, height, width,  new PwUpComponentPhysics(),
@@ -40,7 +37,6 @@ public class PowerUp extends GameObjectImpl {
         this.lifeModifier = PowerUpType.valueOf(this.pwtype.toString()).getLifeModifier();
         this.speedModifier = PowerUpType.valueOf(this.pwtype.toString()).getSpeedModifier();
         this.texturePath = texturePath;
-        this.isActive = false;
     }
 
     /**
@@ -113,5 +109,13 @@ public class PowerUp extends GameObjectImpl {
      */
     public Map<GameObject, Boundaries> getHit() {
         return this.hit;
+    }
+
+    /**
+     * getter for texturePath.
+     * @return texturePath texture path.
+     */
+    public String getTexturePath() {
+        return texturePath;
     }
 }

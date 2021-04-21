@@ -1,4 +1,3 @@
-
 package model.entities;
 
 import model.utilities.Position;

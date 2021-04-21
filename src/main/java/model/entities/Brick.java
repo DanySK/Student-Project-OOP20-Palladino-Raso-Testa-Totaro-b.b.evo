@@ -1,4 +1,3 @@
-
 package model.entities;
 
 import java.util.HashMap;
@@ -22,7 +21,7 @@ public class Brick extends GameObjectImpl {
     private int durability;
     private final Map<GameObject, Boundaries> hit = new HashMap<>();
     private final String texturePath;
-    private BrickStatus status;
+    private final BrickStatus status;
 
     protected Brick(final Position pos, final int height, final int width, final int durability, final BrickStatus status, final String texturePath) {
         super(pos, new DirVector(0, 0), 0, height, width, new ComponentPhysicsEmpty(), new ComponentInputEmpty(), new BrickComponentGraphics(texturePath));

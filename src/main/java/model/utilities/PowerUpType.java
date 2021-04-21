@@ -1,4 +1,3 @@
-
 package model.utilities;
 
 import java.util.Arrays;

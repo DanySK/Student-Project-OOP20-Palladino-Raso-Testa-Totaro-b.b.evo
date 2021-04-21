@@ -23,7 +23,7 @@ public class PowerUpController {
         this.state = state;
         this.lifeOperation = new BasicLifeOperationStrategy();
         this.scoreOperation = new BasicScoreOperationStrategy();
-        this.ballDamage = PowerUpUtilities.BALL_DAMAGE;
+        this.setBallDamage(PowerUpUtilities.BALL_DAMAGE);
     }
 
 
@@ -34,11 +34,11 @@ public class PowerUpController {
     public void activatePowerUp(final PowerUp pwup) {
         if (pwup.getPowerUpType().equals(PowerUpType.DAMAGE_DOWN)) {
             addPoints(ScoreAttribute.NEGATIVE_POWERUP.getValue());
-            this.ballDamage = PowerUpUtilities.DEFAULT_BALL_DAMAGE + pwup.getDamageModifier();
+            this.setBallDamage(PowerUpUtilities.DEFAULT_BALL_DAMAGE + pwup.getDamageModifier());
             waitSeconds(pwup.getActiveTime(), pwup);
         } else if (pwup.getPowerUpType().equals(PowerUpType.DAMAGE_UP)) {
             addPoints(ScoreAttribute.POSITIVE_POWERUP.getValue());
-            this.ballDamage = PowerUpUtilities.DEFAULT_BALL_DAMAGE + pwup.getDamageModifier();
+            this.setBallDamage(PowerUpUtilities.DEFAULT_BALL_DAMAGE + pwup.getDamageModifier());
             waitSeconds(pwup.getActiveTime(), pwup);
         } else if (pwup.getPowerUpType().equals(PowerUpType.LIFE_DOWN)) {
             addPoints(ScoreAttribute.NEGATIVE_POWERUP.getValue());
@@ -74,7 +74,7 @@ public class PowerUpController {
     public void deactivatePowerUp(final PowerUp pwup) {
         if (pwup.getPowerUpType().equals(PowerUpType.DAMAGE_DOWN) 
                 ||  pwup.getPowerUpType().equals(PowerUpType.DAMAGE_UP)) {
-            this.ballDamage = PowerUpUtilities.DEFAULT_BALL_DAMAGE;
+            this.setBallDamage(PowerUpUtilities.DEFAULT_BALL_DAMAGE);
         } else if (pwup.getPowerUpType().equals(PowerUpType.SPEED_DOWN) 
                 ||  pwup.getPowerUpType().equals(PowerUpType.SPEED_UP)) {
             this.state.getBoard().getBalls().forEach(e -> e.setSpeed(e.getSpeed() - pwup.getSpeedModifier()));
@@ -97,6 +97,22 @@ public class PowerUpController {
      */
     public PowerUp getPwup() {
         return this.pwup;
+    }
+
+    /**
+     * getter for ball damage.
+     * @return ballDamage the damage dealt by the ball;
+     */
+    public int getBallDamage() {
+        return ballDamage;
+    }
+
+    /**
+     * setter for ball damage.
+     * @param ballDamage ballDamage to set.
+     */
+    public void setBallDamage(final int ballDamage) {
+        this.ballDamage = ballDamage;
     }
 
 }

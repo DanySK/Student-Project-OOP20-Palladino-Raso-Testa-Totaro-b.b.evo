@@ -4,7 +4,6 @@ package model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import model.entities.Brick;
-import model.entities.GameBoard;
 
 import model.utilities.BrickStatus;
 import model.utilities.Position;
@@ -12,15 +11,11 @@ import model.utilities.Position;
 
 public class TestBrick {
     private static final Position BRICK_POS = new Position(50, 50);
-    private static final int WALL_DIM = 600;
     private static final int BRICK_WIDTH = 10;
     private static final int BRICK_HEIGHT = 10;
     private static final int BRICK_DURABILITY = 1;
     private static final String PATH = "Images/dropPowerup/marioDropPowerUp.png";
     private static final BrickStatus STATUS = BrickStatus.DESTRUCTIBLE;
-
-    private GameBoard board;
-    private Brick brick;
 
     /**
      * create a ball and check that the builder sets all the fields correctly.

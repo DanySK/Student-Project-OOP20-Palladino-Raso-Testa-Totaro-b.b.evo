@@ -27,7 +27,7 @@ public final class PowerUpUtilities {
     public static final long POWERUP_ACTIVE_TIME = 5;
 
     /**
-     * default life moodifier used by {@link PowerUp} to increase or decrease player's lives.
+     * default life modifier used by {@link PowerUp} to increase or decrease player's lives.
      */
     public static final int DEFAULT_LIFE_MODIFIER = 1;
 
@@ -48,7 +48,7 @@ public final class PowerUpUtilities {
 
 
     /**
-     * default drop direction for {@link PowerUp}.
+     * default drop direction for {@link PowerUp} on the Y axis.
      */
     public static final DirVector POWERUP_DROP_DIR = new DirVector(0, 1);
 
