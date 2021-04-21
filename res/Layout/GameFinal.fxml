@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane fx:id="window" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.scene.ControllerGameFinal">
+<SplitPane fx:id="window" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.scene.ControllerGameFinal">
    <items>
       <BorderPane fx:id="panel" style="-fx-background-image: url(&quot;/Images/background/GameOverBackground.png&quot;); -fx-background-size: stretch;">
          <top>

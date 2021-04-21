@@ -1,7 +1,6 @@
 package model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -9,22 +8,19 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import model.entities.Ball;
 import model.entities.GameBoard;
 import model.entities.GameBoardImpl;
 import model.entities.PowerUp;
 import model.entities.Wall;
 import model.utilities.Boundaries;
-import model.utilities.Difficulty;
 import model.utilities.DirVector;
-import model.utilities.ObjectInit;
 import model.utilities.Position;
 import resource.routing.PowerUpDropTexture;
 import resource.routing.PowerUpTexture;
 
 public class TestPowerUp {
     private static final Position POWERUP_POS = new Position(50, 50);
+    private static final Position POWERUP_POS_NO_COLLISIONS = new Position(5, 50);
     private static final Position POWERUP_POS_COLLISION_WALL = new Position(50, 95);
     private static final Position NEWPOS = new Position(50, 48);
     private static final int WALL_DIM = 600;
@@ -74,8 +70,8 @@ public class TestPowerUp {
         //set powerUp position to the bottom edge and check for a collision
         this.pwup.setPos(POWERUP_POS_COLLISION_WALL);
         assertEquals(Boundaries.LOWER, board.checkGameObjCollisionsWithWall(this.pwup).get());
-        //set paddle pos to in the middle of the world and check for no collision;
-        this.pwup.setPos(new Position(5,50));
+        //set paddle position to the middle of the board and check for no collision;
+        this.pwup.setPos(POWERUP_POS_NO_COLLISIONS);
         assertEquals(Optional.empty(), board.checkGameObjCollisionsWithWall(this.pwup));
     }
 
