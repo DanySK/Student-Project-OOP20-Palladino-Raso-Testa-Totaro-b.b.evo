@@ -15,6 +15,10 @@ import model.utilities.DirVector;
 import view.graphics.AdapterGraphics;
 import view.graphics.BrickComponentGraphics;
 
+/**
+ * describes a Brick entity.
+ *
+ */
 public class Brick extends GameObjectImpl {
 
     private static final long serialVersionUID = 6692878597912001932L;
@@ -31,8 +35,8 @@ public class Brick extends GameObjectImpl {
     }
 
     /**
-     * drops the {@link PowerUp} if the {@link BrickStatus} is set on DROP_POWERUP and its durability is <= 0.
-     * @return a new PowerUp
+     * drops the powerup if the brick is set on DROP_POWERUP and its durability is <= 0.
+     * @return PowerUp new PowerUp
      */
     public PowerUp dropPowerUp() {
         final String brickTexturePath = PowerUpTexture.getThemeNameByPath(this.texturePath).getTheme();
@@ -70,7 +74,7 @@ public class Brick extends GameObjectImpl {
         }
         /**
          * setter for the position. 
-         * @param pos
+         * @param pos brick's position
          * @return brick builder
          */
         public Builder pos(final Position pos) {
@@ -80,7 +84,7 @@ public class Brick extends GameObjectImpl {
 
         /**
          * setter for the height. 
-         * @param height
+         * @param height brick's height
          * @return brick builder
          */
         public Builder height(final int height) {
@@ -89,7 +93,7 @@ public class Brick extends GameObjectImpl {
         }
         /**
          * setter for the width.
-         * @param width
+         * @param width brick's width
          * @return brick builder
          */
         public Builder width(final int width) {
@@ -103,7 +107,7 @@ public class Brick extends GameObjectImpl {
         }
         /**
          * setter for the status .
-         * @param status
+         * @param status brick's status
          * @return brick builder
          */
         public Builder status(final BrickStatus status) {
@@ -162,7 +166,7 @@ public class Brick extends GameObjectImpl {
 
     /**
      * getter for hit map.
-     * @return map
+     * @return map hit map
      */
     public Map<GameObject, Boundaries> getHit() {
         return this.hit;

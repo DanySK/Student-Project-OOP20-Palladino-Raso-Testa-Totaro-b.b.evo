@@ -1,4 +1,3 @@
-
 package controller.scene;
 
 import java.net.URL;
@@ -204,8 +203,8 @@ public class ControllerGameOver implements Initializable, FXMLMenuController, GU
 
     /**
      * Updates Score and Highscore labels.
-     * @param playerScore 
-     * @param podiumScore 
+     * @param playerScore player's score
+     * @param podiumScore best score from ranking
      */
     public void updateScore(final int playerScore, final String podiumScore) {
         this.lblScore.setText("YOUR SCORE: " + playerScore);

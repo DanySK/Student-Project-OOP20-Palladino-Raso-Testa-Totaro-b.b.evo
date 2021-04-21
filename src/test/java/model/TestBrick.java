@@ -8,7 +8,10 @@ import model.entities.Brick;
 import model.utilities.BrickStatus;
 import model.utilities.Position;
 
-
+/**
+ * test class for Brick.
+ *
+ */
 public class TestBrick {
     private static final Position BRICK_POS = new Position(50, 50);
     private static final int BRICK_WIDTH = 10;

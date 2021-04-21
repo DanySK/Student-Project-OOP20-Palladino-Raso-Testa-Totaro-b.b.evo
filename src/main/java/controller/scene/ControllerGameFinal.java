@@ -59,10 +59,8 @@ public class ControllerGameFinal implements Initializable, FXMLMenuController, G
     private Button btnRanking;
 
     @FXML
-    private Label lblCoins;
+    private Label lblCredits;
 
-    @FXML
-    private Button btnCreative;
 
     /**
      * Initialize all view components.
@@ -89,9 +87,6 @@ public class ControllerGameFinal implements Initializable, FXMLMenuController, G
 
         this.btnRanking.setOnAction(this.switchPage(PersonalViews.SCENE_RANKING, PersonalStyle.DEFAULT_STYLE,
                                                     this.getCurrentWidth(), this.getCurrentHeight(), true));
-
-        this.btnCreative.setOnAction(this.switchPage(PersonalViews.SCENE_CREATIVEMODE, PersonalStyle.DEFAULT_STYLE,
-                this.getCurrentWidth(), this.getCurrentHeight(), true));
     }
 
     /**
@@ -152,10 +147,10 @@ public class ControllerGameFinal implements Initializable, FXMLMenuController, G
      */
     @Override
     public void loadAnimation() {
-        //Blink insert coin label
+        //Blink animation for lblCredits
         final Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(1.00), evt -> this.lblCoins.setVisible(false)),
-                new KeyFrame(Duration.seconds(0.50), evt -> this.lblCoins.setVisible(true)));
+                new KeyFrame(Duration.seconds(1.00), evt -> this.lblCredits.setVisible(false)),
+                new KeyFrame(Duration.seconds(0.50), evt -> this.lblCredits.setVisible(true)));
                 timeline.setCycleCount(Animation.INDEFINITE);
                 timeline.play();
     }
@@ -173,14 +168,12 @@ public class ControllerGameFinal implements Initializable, FXMLMenuController, G
                 .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_NORMAL_LABEL_SIZE));
         this.btnRanking
                 .setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_NORMAL_LABEL_SIZE));
-        this.lblCoins
+        this.lblCredits
                 .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
         this.lblHighscore
                 .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
         this.lblScore
                 .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_NORMAL_LABEL_SIZE));
-        this.lblCoins
-                .setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
     }
 
     /**
@@ -192,7 +185,6 @@ public class ControllerGameFinal implements Initializable, FXMLMenuController, G
     public void resizable() {
         this.btnMenu.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
         this.btnRanking.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
-        this.btnCreative.prefWidthProperty().bind(this.buttonContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
         this.lblTitle.setWrapText(true);
         this.lblHighscore.setWrapText(true);
     }
@@ -209,8 +201,8 @@ public class ControllerGameFinal implements Initializable, FXMLMenuController, G
 
     /**
      * Updates Score and Highscore labels.
-     * @param playerScore 
-     * @param podiumScore 
+     * @param playerScore player's score
+     * @param podiumScore best score from ranking
      */
     public void updateScore(final int playerScore, final String podiumScore) {
         this.lblScore.setText("YOUR SCORE: " + playerScore);

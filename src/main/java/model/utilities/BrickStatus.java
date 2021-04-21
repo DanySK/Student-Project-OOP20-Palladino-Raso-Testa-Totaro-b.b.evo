@@ -31,7 +31,7 @@ public enum BrickStatus {
     /**
      * Used to know all the possible status of a brick.
      * 
-     * @return the list of this {@link BrickStatus}
+     * @return list of this {@link BrickStatus}
      */
     public static List<BrickStatus> getStatusList() {
         return Arrays.asList(BrickStatus.values());

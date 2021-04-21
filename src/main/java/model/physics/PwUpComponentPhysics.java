@@ -10,6 +10,10 @@ import model.utilities.Boundaries;
 import model.utilities.DirVector;
 import model.utilities.Pair;
 
+/**
+ * physics component used by powerups.
+ *
+ */
 public class PwUpComponentPhysics implements ComponentPhysics {
 
     /**

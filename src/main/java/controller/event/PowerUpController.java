@@ -28,8 +28,8 @@ public class PowerUpController {
 
 
     /**
-     * activates the {@link PowerUp}.
-     * @param pwup {@link PowerUp} that needs to be activated.
+     * activates the powerup.
+     * @param pwup powerup that needs to be activated.
      */
     public void activatePowerUp(final PowerUp pwup) {
         if (pwup.getPowerUpType().equals(PowerUpType.DAMAGE_DOWN)) {

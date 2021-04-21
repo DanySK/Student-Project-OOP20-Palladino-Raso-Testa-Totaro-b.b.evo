@@ -18,6 +18,11 @@ import model.utilities.Position;
 import resource.routing.PowerUpDropTexture;
 import resource.routing.PowerUpTexture;
 
+
+/**
+ * test class for PowerUp.
+ *
+ */
 public class TestPowerUp {
     private static final Position POWERUP_POS = new Position(50, 50);
     private static final Position POWERUP_POS_NO_COLLISIONS = new Position(5, 50);
