@@ -213,12 +213,12 @@ public class ControllerMapEditor implements GUILayout {
      */
     @FXML
     public void buildLvl() {
-        //if (levelName.getText().isBlank() || soundtrack.getValue() == null || backGround.getValue() == null
-          //                                || ballTexture.getValue() == null || paddleTexture.getValue() == null) {
-          //  CheckCustomAlert.checkAllField();
-        //} else if (LevelSelection.isStandardLevel(levelName.getText())) {
-         //   CheckCustomAlert.checkLevelName();
-        //}  else {
+        if (levelName.getText().isBlank() || soundtrack.getValue() == null || backGround.getValue() == null
+                                          || ballTexture.getValue() == null || paddleTexture.getValue() == null) {
+            CheckCustomAlert.checkAllField();
+        } else if (LevelStandard.isStandardLevel(levelName.getText())) {
+            CheckCustomAlert.checkLevelName();
+        }  else {
             this.levelBuilder.setLevelName(levelName.getText());
             this.levelBuilder.setMusic(soundtrack.getValue());
             this.levelBuilder.setBackGround(backGround.getValue());
@@ -226,7 +226,7 @@ public class ControllerMapEditor implements GUILayout {
             this.levelBuilder.setPaddle(paddleTexture.getValue());
             LevelManager.saveLevel(this.levelBuilder.build());
             CheckCustomAlert.checkLevelCreate();
-       // }
+        }
     }
 
     /**
