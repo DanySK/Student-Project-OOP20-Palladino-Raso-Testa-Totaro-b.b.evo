@@ -54,7 +54,7 @@ public final class LevelManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new HashSet<Level>();
+        return new HashSet<>();
     }
 
     /**
