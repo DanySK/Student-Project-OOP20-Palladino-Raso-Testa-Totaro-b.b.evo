@@ -103,7 +103,7 @@ public class LevelBuilder {
                     }
                     final Builder brickBuilder = new Builder();
                     final GameObject gameObjectEmpty = this.gameGrid.get(brickSelected).getX();
-                    final Brick brick = brickBuilder.pos(new Position(gameObjectEmpty.getPos().getX(), gameObjectEmpty.getPos().getY()))
+                    final Brick brick = brickBuilder.position(new Position(gameObjectEmpty.getPos().getX(), gameObjectEmpty.getPos().getY()))
                                                      .height(this.gameGrid.get(brickSelected).getX().getHeight())
                                                      .width(this.gameGrid.get(brickSelected).getX().getWidth())
                                                      .status(state)

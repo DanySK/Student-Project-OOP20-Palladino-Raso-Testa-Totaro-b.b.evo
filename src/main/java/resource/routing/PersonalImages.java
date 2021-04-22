@@ -28,27 +28,32 @@ public enum PersonalImages {
     /**
      * Path for the default Video Tutorial.
      */
-    TUTORIAL_DEFAULT("Images/video/prova.gif"),
+    TUTORIAL_DEFAULT("Images/video/DefaultTutorial.gif"),
 
     /**
      * Path for Main menu Video Tutorial.
      */
-    TUTORIAL_MAIN_MENU("Images/video/prova.gif"),
+    TUTORIAL_MAIN_MENU("Images/video/MenuTutorial.gif"),
 
     /**
      * Path for HowToPlay Video Tutorial.
      */
-    TUTORIAL_HOW_TO_PLAY("Images/video/prova.gif"),
+    TUTORIAL_HOW_TO_PLAY("Images/video/HowToPlayTutorial.gif"),
 
     /**
      * Path for Settings Video Tutorial.
      */
-    TUTORIAL_SETTINGS("Images/video/prova.gif"),
+    TUTORIAL_SETTINGS("Images/video/SettingsTutorial.gif"),
 
     /**
      * Path for GameOver view background.
      */
-    GAMEOVER_BACKGROUND_IMG("Images/background/GameOverBackground.png");
+    GAMEOVER_BACKGROUND_IMG("Images/background/GameOverBackground.png"),
+
+    /**
+     * Path for GameFinal view background.
+     */
+    GAMEFINAL_BACKGROUND_IMG("Images/background/GameFinalBackground.png");
 
     private String path;
 

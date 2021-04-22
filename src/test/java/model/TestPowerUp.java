@@ -31,7 +31,7 @@ public class TestPowerUp {
     private static final int WALL_DIM = 600;
     private static final int POWERUP_WIDTH = 10;
     private static final int POWERUP_HEIGHT = 10;
-    private static final String PATH = "Images/powerup/defaultPowerUp.png";
+    private static final String BRICK_PATH = "Images/powerup/defaultPowerUp.png";
     private static final String PATH_POWERUP = "Images/dropPowerup/defaultDrop.png";
     private static final int TIME_ELAPSED = 10;
 
@@ -40,7 +40,7 @@ public class TestPowerUp {
 
     @Test
     private PowerUp createPowerUp() {
-        final String brickTexturePath = PowerUpTexture.getThemeNameByPath(PATH).getTheme();
+        final String brickTexturePath = PowerUpTexture.getThemeNameByPath(BRICK_PATH).getTheme();
         return new PowerUp(POWERUP_POS, POWERUP_HEIGHT, POWERUP_WIDTH, 
                 PowerUpDropTexture.getPowerUpDropTextureByName(brickTexturePath).getPath());
     }
@@ -87,7 +87,7 @@ public class TestPowerUp {
     public void testPowerUpMovement() {
         final GameBoard board = new GameBoardImpl(new Wall(WALL_DIM, WALL_DIM), null);
         assertEquals(POWERUP_POS, pwup.getPos());
-        //Powerup goes south direction
+        //Powerup drops south direction
         final DirVector dir = new DirVector(0, -1);
         pwup.setDirVector(dir);
         board.setPowerUps(Arrays.asList(pwup));

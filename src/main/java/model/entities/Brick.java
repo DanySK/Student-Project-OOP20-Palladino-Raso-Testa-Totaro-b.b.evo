@@ -50,7 +50,7 @@ public class Brick extends GameObjectImpl {
      *
      */
     public static final class Builder {
-        private Position pos;
+        private Position position;
         private int height;
         private int width;
         private int durability;
@@ -62,10 +62,10 @@ public class Brick extends GameObjectImpl {
          * @return brick builder
          */
         public Brick build() {
-            if (this.durability <= 0 || this.height <= 0 || this.width <= 0 || this.pos == null || this.texturePath == null) {
+            if (this.durability <= 0 || this.height <= 0 || this.width <= 0 || this.position == null || this.texturePath == null) {
                 throw new IllegalStateException();
             }
-            return new Brick(this.pos, this.height, this.width, this.durability, this.status, this.texturePath);
+            return new Brick(this.position, this.height, this.width, this.durability, this.status, this.texturePath);
         }
 
         public Builder texture(final String texturePath) {
@@ -77,8 +77,8 @@ public class Brick extends GameObjectImpl {
          * @param pos brick's position
          * @return brick builder
          */
-        public Builder pos(final Position pos) {
-            this.pos = pos;
+        public Builder position(final Position pos) {
+            this.position = pos;
             return this;
         }
 
