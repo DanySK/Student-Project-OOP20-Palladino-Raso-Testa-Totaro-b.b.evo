@@ -54,7 +54,7 @@ public final class LevelManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new HashSet<Level>();
+        return new HashSet<>();
     }
 
     /**
@@ -62,7 +62,7 @@ public final class LevelManager {
      * @param nameLevel 
      * @return the level from name
      */
-    private static Level loadLevel(final String nameLevel) {
+    public static Level loadLevel(final String nameLevel) {
         Level level = null;
         try (ObjectInputStream istream = new ObjectInputStream(
         new BufferedInputStream(new FileInputStream(BrickBreakerEvo.LEVEL_FOLDER + BrickBreakerEvo.SEP + nameLevel)))) {

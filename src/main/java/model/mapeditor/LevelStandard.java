@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Optional;
 
 /**
  * Path of the standard levels.
@@ -135,12 +136,12 @@ public enum LevelStandard implements Iterator<LevelStandard> {
     /**
      * 
      * @param level to search in this enum
-     * @return the corresponding enumeration linked to the standard level.
+     * @return the corresponding enumeration linked to the standard level, if is null return the first level.
      */
     public static LevelStandard getSelectionFromLevel(final Level level) {
-        return Arrays.asList(LevelStandard.values()).stream()
+        return  Arrays.asList(LevelStandard.values()).stream()
                                                      .filter(i -> i.getLevel().equals(level))
                                                      .findFirst()
-                                                     .get();
+                                                     .orElse(LEVEL1);
     }
 }
