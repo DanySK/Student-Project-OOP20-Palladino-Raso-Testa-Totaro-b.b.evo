@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="507.0" styleClass="mainPanelTutorial" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.scene.ControllerTutorial">
+<AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="507.0" style="-fx-background-image: url(&quot;/Images/background/TutorialBackground.png&quot;); -fx-background-size: stretch;" styleClass="mainPanelTutorial" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.scene.ControllerTutorial">
    <children>
       <VBox fx:id="panel" prefHeight="560.0" prefWidth="507.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox fx:id="titleContainer" alignment="CENTER" prefHeight="132.0" prefWidth="788.0">
                <children>
-                  <Label fx:id="lblTitle" text="Tutorial">
+                  <Label fx:id="lblTitle" text="TUTORIAL">
                      <padding>
                         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                      </padding>
@@ -28,7 +28,7 @@
             <VBox fx:id="videoTutorialContainer" alignment="CENTER" prefHeight="233.0" prefWidth="399.0">
                <children>
                   <ImageView fx:id="imgView" fitHeight="250.0" fitWidth="502.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="lblTutorial" prefHeight="21.0" prefWidth="819.0" text="QUI CI SARA' IL TESTO DA VISUALIZZARE CON LE ISTRUZIONI PER IL TUTORIAL" textAlignment="CENTER">
+                  <Label fx:id="lblTutorial" alignment="CENTER" prefHeight="21.0" prefWidth="819.0" text="WELCOME TO OUR TUTORIAL!" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>

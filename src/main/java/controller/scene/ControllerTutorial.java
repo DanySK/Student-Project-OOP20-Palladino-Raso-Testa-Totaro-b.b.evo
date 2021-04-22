@@ -29,7 +29,7 @@ import view.PersonalViews;
 public class ControllerTutorial implements Initializable, FXMLMenuController {
 
 
-    private static final double DIVIDER = 1.25;
+    private static final double DIVIDER = 1.4;
 
     @FXML
     private AnchorPane window;
@@ -108,6 +108,7 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
         this.btnHowToPlay.setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
         this.btnMenuTutorial.setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
         this.btnSettingsTutorial.setFont(Font.loadFont(PersonalFonts.FONT_BUTTON.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
+        this.lblTutorial.setFont(Font.loadFont(PersonalFonts.FONT_TITLE.getResourceAsStream(), ScreenUtilities.FONT_SUB_LABEL_SIZE));
     }
 
     /**
@@ -131,18 +132,21 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
      // button HowToPlay Listener
         this.btnHowToPlay.setOnAction(event -> {
             this.lblTitle.setText("HOW TO PLAY");
+            this.lblTutorial.setText("Use space to throw the ball and directional keys to move the paddle.");
             final Image i = new Image(new File(PersonalImages.TUTORIAL_HOW_TO_PLAY.getURL().getFile()).toURI().toString());
             this.imgView.setImage(i);
         });
      // button MenuTutorial Listener
         this.btnMenuTutorial.setOnAction(event -> {
             this.lblTitle.setText("MENU TUTORIAL");
+            this.lblTutorial.setText("Navigate through menu buttons to play, change settings and other features.");
             final Image i = new Image(new File(PersonalImages.TUTORIAL_MAIN_MENU.getURL().getFile()).toURI().toString());
             this.imgView.setImage(i);
         });
      // button SettingsTutorial Listener
         this.btnSettingsTutorial.setOnAction(event -> {
             this.lblTitle.setText("SETTINGS TUTORIAL");
+            this.lblTutorial.setText("Navigate through buttons to change game settings.");
             final Image i = new Image(new File(PersonalImages.TUTORIAL_SETTINGS.getURL().getFile()).toURI().toString());
             this.imgView.setImage(i);
         });
@@ -182,5 +186,6 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
         this.btnSettingsTutorial.prefWidthProperty().bind(this.buttonsContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
         this.buttonBack.prefWidthProperty().bind(this.buttonsContainer.widthProperty().divide(ScreenUtilities.CENTER_DIVIDER));
         this.lblTitle.setWrapText(true);
+        this.lblTutorial.prefWidthProperty().bind(this.videoTutorialContainer.widthProperty());
     }
 }

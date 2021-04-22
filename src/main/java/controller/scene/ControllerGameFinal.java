@@ -149,8 +149,8 @@ public class ControllerGameFinal implements Initializable, FXMLMenuController, G
     public void loadAnimation() {
         //Blink animation for lblCredits
         final Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(1.00), evt -> this.lblCredits.setVisible(false)),
-                new KeyFrame(Duration.seconds(0.50), evt -> this.lblCredits.setVisible(true)));
+                new KeyFrame(Duration.seconds(1.00), evt -> this.lblScore.setVisible(false)),
+                new KeyFrame(Duration.seconds(0.50), evt -> this.lblScore.setVisible(true)));
                 timeline.setCycleCount(Animation.INDEFINITE);
                 timeline.play();
     }
