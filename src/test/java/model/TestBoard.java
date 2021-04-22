@@ -271,7 +271,7 @@ public class TestBoard {
        //set ball pos on the same axis perpendicular to the brick wall and check the collisions
        collisionResult = board.checkBallCollisionsWithBrick(board.getBalls().stream().findFirst().get());
        assertTrue(collisionResult.isPresent());
-       assertEquals(Boundaries.UPPER, collisionResult.get().getY());
+       assertEquals(Boundaries.LOWER, collisionResult.get().getY());
        assertEquals(this.brick, collisionResult.get().getX());
     }
 
