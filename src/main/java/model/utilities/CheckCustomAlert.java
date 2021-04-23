@@ -10,6 +10,7 @@ import javafx.scene.control.Alert.AlertType;
 public final class CheckCustomAlert {
 
     private static Alert alert;
+    private static final String WAR_STRING = "Warning";
 
     private CheckCustomAlert() {
 
@@ -20,7 +21,7 @@ public final class CheckCustomAlert {
      */
     public static void checkAllField() {
         alert = new Alert(AlertType.WARNING);
-        alert.setHeaderText("Warning");
+        alert.setHeaderText(WAR_STRING);
         alert.setContentText("You must fill all fields!");
         alert.showAndWait();
     }
@@ -30,7 +31,7 @@ public final class CheckCustomAlert {
      */
     public static void checkLevelName() {
         alert = new Alert(AlertType.WARNING);
-        alert.setHeaderText("Warning");
+        alert.setHeaderText(WAR_STRING);
         alert.setContentText("The name you have selected already belongs to a predefined level and cannot be overwritten!");
         alert.showAndWait();
     }
@@ -50,7 +51,7 @@ public final class CheckCustomAlert {
      */
     public static void checkLevelSelected() {
         final Alert alert = new Alert(AlertType.WARNING);
-        alert.setHeaderText("Warning");
+        alert.setHeaderText(WAR_STRING);
         alert.setContentText("No level has been selected");
         alert.showAndWait();
     }

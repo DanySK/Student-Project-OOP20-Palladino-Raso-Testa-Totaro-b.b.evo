@@ -60,7 +60,6 @@ public enum BackGround implements Serializable {
     }
 
     public URL getUrl() {
-        System.out.println(ClassLoader.getSystemResource(this.path));
         return ClassLoader.getSystemResource(this.path);
     }
 

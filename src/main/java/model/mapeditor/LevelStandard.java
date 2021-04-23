@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.Optional;
 
 /**
  * Path of the standard levels.

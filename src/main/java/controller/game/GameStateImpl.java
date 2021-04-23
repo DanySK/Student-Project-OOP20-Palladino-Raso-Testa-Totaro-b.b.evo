@@ -133,7 +133,8 @@ public class GameStateImpl implements GameState {
      */
     private String getPlayerAlias() {
         final LeaderboardController leaderboard = new LeaderboardControllerImpl(GameUtilities.LEADERBOARD_PATH);
-        return leaderboard.viewLeaderboard()
+        return leaderboard
+                .viewLeaderboard()
                           .entrySet()
                           .stream()
                           .filter(x -> x.getValue() == 0)
