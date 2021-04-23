@@ -1,9 +1,6 @@
 package controller.sound;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 
 import javax.sound.sampled.AudioInputStream;
@@ -16,8 +13,6 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.sound.sampled.LineEvent.Type;
 
 import controller.utilities.IOSettings;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import model.utilities.GameUtilities;
 
 public final class SoundController {
@@ -33,19 +28,9 @@ public final class SoundController {
     }
 
     public static void playSoundFx(final URL path) {
-        /*try {
-            if (canPermiseFX) {
-                final Media media = new Media(new File(new URI(path).getPath()).toURI().toString());
-                final MediaPlayer mediaPlayer = new MediaPlayer(media);
-                mediaPlayer.play();
-            }
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }*/
-        
-        
         if (canPermiseFX) {
             try (AudioInputStream audioIn = AudioSystem.getAudioInputStream(path)) {
+                @SuppressWarnings("PMD.CloseResource") // It isn't possible remove the warnings whit try-whit resources.
                 final Clip effectClip = AudioSystem.getClip();
                 effectClip.open(audioIn);
                 effectClip.start();
