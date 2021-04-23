@@ -16,11 +16,11 @@ public class PowerUpTimer {
 
     public PowerUpTimer(final long seconds, final PowerUpController pwupController) {
             timer = new Timer();
-            timer.schedule(new RemindTask(), seconds * 1000);
+            timer.schedule(new PowerUpTask(), seconds * 1000);
             this.pwupController = pwupController;
         }
 
-    class RemindTask extends TimerTask {
+    class PowerUpTask extends TimerTask {
         @Override
         public void run() {
             pwupController.deactivatePowerUp(pwupController.getPwup());
