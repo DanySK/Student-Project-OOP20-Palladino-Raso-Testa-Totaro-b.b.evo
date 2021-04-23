@@ -188,7 +188,7 @@ public class ControllerMainMenu implements Initializable, FXMLMenuController, GU
      */
     private void loadMusic() {
         //Play Button CLick Sound
-        SoundController.playMusic(PersonalSounds.MAIN_THEME.getURL().getPath());
+        SoundController.playMusic(PersonalSounds.MAIN_THEME.getURL());
     }
 
     /**

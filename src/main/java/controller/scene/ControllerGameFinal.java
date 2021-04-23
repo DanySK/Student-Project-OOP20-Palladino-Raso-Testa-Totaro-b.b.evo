@@ -137,7 +137,7 @@ public class ControllerGameFinal implements Initializable, FXMLMenuController, G
      * Method that allow to play the button's sound.
      */
     private void soundClick() {
-        SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+        SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL());
     }
 
     /**
@@ -196,7 +196,7 @@ public class ControllerGameFinal implements Initializable, FXMLMenuController, G
      */
     private void loadMusic() {
         //Play Button CLick Sound
-        SoundController.playMusic(PersonalSounds.MAIN_THEME.getURL().getPath());
+        SoundController.playMusic(PersonalSounds.MAIN_THEME.getURL());
     }
 
     /**

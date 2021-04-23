@@ -56,7 +56,7 @@ public class EventHandler {
                         }
                     }
                 }
-                SoundController.playSoundFx(PersonalSounds.SOUND_BRICK.getURL().getPath());    //throw the sound for hitting the brick
+                SoundController.playSoundFx(PersonalSounds.SOUND_BRICK.getURL());    //throw the sound for hitting the brick
             } else if (hit.getGameObj().get() instanceof PowerUp) {
                 if (hit.getBounds().isPresent()) {
                     this.state.getBoard().removePowerUp((PowerUp) hit.getGameObj().get());
@@ -70,7 +70,7 @@ public class EventHandler {
 
             } else if (hit.getGameObj().get() instanceof Paddle) {
 
-                SoundController.playSoundFx(PersonalSounds.SOUND_PADDLE.getURL().getPath());    //throw sound for hitting the paddle
+                SoundController.playSoundFx(PersonalSounds.SOUND_PADDLE.getURL());    //throw sound for hitting the paddle
 
             } else if (hit.getBounds().isPresent()) {
                 if (hit.getBounds().get().equals(Boundaries.LOWER)) {
@@ -81,7 +81,7 @@ public class EventHandler {
                         this.state.setStatus(GameStatus.START);
                     }
                 }
-                SoundController.playSoundFx(PersonalSounds.SOUND_WALL.getURL().getPath());    //throw sound for hitting the wall
+                SoundController.playSoundFx(PersonalSounds.SOUND_WALL.getURL());    //throw sound for hitting the wall
             }
         });
         checkGameState();

@@ -4,12 +4,16 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 
-
+import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineEvent;
+import javax.sound.sampled.LineListener;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.sound.sampled.LineEvent.Type;
 
 import controller.utilities.IOSettings;
 import javafx.scene.media.Media;
@@ -28,8 +32,8 @@ public final class SoundController {
 
     }
 
-    public static void playSoundFx(final String path) {
-        try {
+    public static void playSoundFx(final URL path) {
+        /*try {
             if (canPermiseFX) {
                 final Media media = new Media(new File(new URI(path).getPath()).toURI().toString());
                 final MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -37,6 +41,29 @@ public final class SoundController {
             }
         } catch (URISyntaxException e) {
             e.printStackTrace();
+        }*/
+        
+        
+        if (canPermiseFX) {
+            try (AudioInputStream audioIn = AudioSystem.getAudioInputStream(path)) {
+                final Clip effectClip = AudioSystem.getClip();
+                effectClip.open(audioIn);
+                effectClip.start();
+                effectClip.addLineListener(new LineListener() {
+                    @Override
+                    public void update(final LineEvent event) {
+                        if (event.getType().equals(Type.STOP)) {
+                            effectClip.close();
+                        }
+                    }
+                });
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            } catch (UnsupportedAudioFileException e2) {
+                e2.printStackTrace();
+            } catch (LineUnavailableException e3) {
+                e3.printStackTrace();
+            }
         }
     }
 
@@ -48,11 +75,11 @@ public final class SoundController {
         canPermiseFX = true;
     }
 
-    public static void playMusic(final String path) {
+    public static void playMusic(final URL url) {
             try {
                     if (!clipIsActived && canPermiseMusic)  {
-                        final File musicPath = new File(path);
-                        final var audio = AudioSystem.getAudioInputStream(musicPath);
+                        //final File musicPath = new File(url);
+                        final var audio = AudioSystem.getAudioInputStream(url);
                         clip = AudioSystem.getClip();
                         clip.open(audio);
                         clip.start();
@@ -66,11 +93,11 @@ public final class SoundController {
             }
     }
 
-    public static void playSound(final String path) {
+    public static void playSound(final URL path) {
         try {
             if (!clipIsActived && canPermiseMusic)  {
-                final File musicPath = new File(path);
-                final var audio = AudioSystem.getAudioInputStream(musicPath);
+                //final File musicPath = new File(path);
+                final var audio = AudioSystem.getAudioInputStream(path);
                 clip = AudioSystem.getClip();
                 clip.open(audio);
                 clip.start();

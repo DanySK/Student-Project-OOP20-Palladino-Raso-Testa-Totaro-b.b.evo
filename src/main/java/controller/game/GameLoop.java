@@ -58,7 +58,7 @@ public class GameLoop implements Runnable {
         this.controllerGame = (ControllerGame) PersonalViews.SCENE_GAME.loadScene(); 
         this.controllerGame.setBackgroundImage(gameState.getLevel().getBackground());
         if (this.setting.isMusicEnable()) {
-            SoundController.playMusic(gameState.getLevel().getMusic().getURL().getPath());
+            SoundController.playMusic(gameState.getLevel().getMusic().getURL());
         }
         this.changeView(PersonalViews.SCENE_GAME);
         this.inputController = new ControllerInputImpl();

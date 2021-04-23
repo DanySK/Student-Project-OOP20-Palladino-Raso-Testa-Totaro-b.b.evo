@@ -139,7 +139,7 @@ public class ControllerSettings implements Initializable, FXMLMenuController {
          * Method that allow to play the button's sound.
          */
         private void soundClick() {
-            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+            SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL());
         }
 
         /**

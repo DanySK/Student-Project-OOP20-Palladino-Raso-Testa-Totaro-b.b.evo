@@ -45,7 +45,7 @@ public interface FXMLMenuController {
         style.getStylePath());
         currentStage.setResizable(resizable);
         //Use to play sound when change scene
-        SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL().getPath());
+        SoundController.playSoundFx(PersonalSounds.TICK_BUTTON.getURL());
     }
 
     /**
