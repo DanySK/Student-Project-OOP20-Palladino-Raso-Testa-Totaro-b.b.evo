@@ -57,12 +57,8 @@ public final class SoundController {
                         }
                     }
                 });
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            } catch (UnsupportedAudioFileException e2) {
-                e2.printStackTrace();
-            } catch (LineUnavailableException e3) {
-                e3.printStackTrace();
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+                e.printStackTrace();
             }
         }
     }
