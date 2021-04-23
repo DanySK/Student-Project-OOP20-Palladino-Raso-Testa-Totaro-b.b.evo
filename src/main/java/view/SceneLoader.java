@@ -13,6 +13,9 @@ import javafx.util.Duration;
 import model.utilities.ScreenUtilities;
 import resource.routing.PersonalImages;
 
+/**
+ * Class that permise switch of the scenes in stage.
+ * */
 public final class SceneLoader {
 
     private SceneLoader() {

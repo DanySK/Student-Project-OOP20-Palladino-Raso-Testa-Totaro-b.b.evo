@@ -1,7 +1,9 @@
 package model.leaderboard;
 
 import java.io.Serializable;
-
+/*
+ * This interface represent the correct method to create the
+ * player of the game. */
 public interface PlayerBuilder extends Serializable {
 
     /**

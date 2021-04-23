@@ -1,7 +1,9 @@
 package model.settings;
 
 import model.utilities.Difficulty;
-
+/*
+ * This interface represent the correct method to create the
+ * settings of the game. */
 public interface GameSettingsBuilder {
 
     /**

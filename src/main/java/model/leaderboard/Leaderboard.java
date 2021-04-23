@@ -1,7 +1,9 @@
 package model.leaderboard;
 
 import java.util.Map;
-
+/**
+ * This interface represent the leaderboard of the game.
+ * */
 public interface Leaderboard {
 
     /**

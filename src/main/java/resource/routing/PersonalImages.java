@@ -2,7 +2,9 @@ package resource.routing;
 
 import java.io.InputStream;
 import java.net.URL;
-
+/**
+ * This enum permise to find the path of the images in the game.
+ * */
 public enum PersonalImages {
 
     /**

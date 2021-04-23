@@ -3,7 +3,9 @@ package model.settings;
 import java.io.Serializable;
 
 import model.utilities.Difficulty;
-
+/**
+ * This interface represent the settings of the game.
+ * */
 public interface Settings extends Serializable {
 
     /**

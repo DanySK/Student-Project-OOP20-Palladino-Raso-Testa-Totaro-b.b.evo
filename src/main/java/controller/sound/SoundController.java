@@ -14,7 +14,8 @@ import javax.sound.sampled.LineEvent.Type;
 
 import controller.utilities.IOSettings;
 import model.utilities.GameUtilities;
-
+/**
+ * This class define an easy method to play effect or music in the game.*/
 public final class SoundController {
 
     private static Clip clip;
