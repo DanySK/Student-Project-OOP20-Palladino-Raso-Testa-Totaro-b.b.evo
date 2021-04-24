@@ -59,7 +59,7 @@ public final class LevelManager {
 
     /**
      * Load the level with name passed.
-     * @param nameLevel 
+     * @param nameLevel the name of the level
      * @return the level from name
      */
     public static Level loadLevel(final String nameLevel) {

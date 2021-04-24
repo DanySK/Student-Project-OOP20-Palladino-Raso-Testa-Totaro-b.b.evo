@@ -133,7 +133,7 @@ public class LevelBuilder {
 
     /**
      * 
-     * @param levelName
+     * @param levelName name of the level
      */
     public void setLevelName(final String levelName) {
         this.levelName = levelName;

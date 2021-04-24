@@ -35,7 +35,7 @@ public class Brick extends GameObjectImpl {
     }
 
     /**
-     * drops the powerup if the brick is set on DROP_POWERUP and its durability is <= 0.
+     * Drops the powerup if the brick is set on DROP_POWERUP and its durability is less or equal to 0.
      * @return PowerUp new PowerUp
      */
     public PowerUp dropPowerUp() {
