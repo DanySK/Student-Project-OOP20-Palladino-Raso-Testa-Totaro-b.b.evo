@@ -1,7 +1,5 @@
 package controller.scene;
 
-import java.io.File;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
