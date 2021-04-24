@@ -1,5 +1,7 @@
 package resource.routing;
-
+/**
+ * This enum permise to find the path of the styles in the game.
+ * */
 public enum PersonalStyle {
 
     /**

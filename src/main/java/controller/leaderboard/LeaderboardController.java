@@ -4,7 +4,8 @@ import java.util.Map;
 
 import model.leaderboard.LeaderboardSortingStrategy;
 import model.leaderboard.Player;
-
+/**
+ * This interface define the correct controller for the leaderboard of the game.*/
 public interface LeaderboardController {
 
     /**

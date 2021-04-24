@@ -6,7 +6,9 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
+/**
+ * This enum permise to find the path of the sounds in the game.
+ * */
 public enum PersonalSounds implements Serializable {
 
     /***

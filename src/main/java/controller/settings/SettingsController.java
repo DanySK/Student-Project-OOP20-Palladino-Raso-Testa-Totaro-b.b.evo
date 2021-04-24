@@ -1,7 +1,8 @@
 package controller.settings;
 
 import model.utilities.Difficulty;
-
+/**
+ * This interface define the correct controller for the settings of the game.*/
 public interface SettingsController {
 
     /**

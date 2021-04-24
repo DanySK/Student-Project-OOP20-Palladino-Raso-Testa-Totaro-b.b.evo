@@ -1,5 +1,7 @@
 package model.leaderboard;
-
+/**
+ *  This interface represent the entity of the player.
+ *  */
 public interface Player {
 
     /**

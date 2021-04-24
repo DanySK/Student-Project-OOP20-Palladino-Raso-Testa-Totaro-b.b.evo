@@ -8,7 +8,9 @@ import controller.utilities.GUILayout;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
-
+/**
+ * This enum permise to find the path of the layouts in the game.
+ * */
 public enum PersonalViews {
 
     /**

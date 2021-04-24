@@ -6,7 +6,8 @@ import resource.routing.PersonalSounds;
 import resource.routing.PersonalStyle;
 import view.PersonalViews;
 import view.SceneLoader;
-
+/**
+ * This interface creates a standards rules for controller in main menu.*/
 public interface FXMLMenuController {
 
     /**
