@@ -1,6 +1,7 @@
 package controller.scene;
 
 import java.io.File;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -89,8 +90,7 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
      */
     private void loadMedia() throws MalformedURLException {
         //Load the animated image
-        final URL videoUrl = new URL(new File(PersonalImages.TUTORIAL_DEFAULT.getURL().getFile()).toURI().toString());
-        final Image image = new Image(videoUrl.toExternalForm());
+        final Image image = new Image(PersonalImages.TUTORIAL_DEFAULT.getResourceAsStream());
         this.imgView.setImage(image);
     }
 
@@ -133,21 +133,21 @@ public class ControllerTutorial implements Initializable, FXMLMenuController {
         this.btnHowToPlay.setOnAction(event -> {
             this.lblTitle.setText("HOW TO PLAY");
             this.lblTutorial.setText("Use space to throw the ball and directional keys to move the paddle.");
-            final Image i = new Image(new File(PersonalImages.TUTORIAL_HOW_TO_PLAY.getURL().getFile()).toURI().toString());
+            final Image i = new Image(PersonalImages.TUTORIAL_HOW_TO_PLAY.getResourceAsStream());
             this.imgView.setImage(i);
         });
      // button MenuTutorial Listener
         this.btnMenuTutorial.setOnAction(event -> {
             this.lblTitle.setText("MENU TUTORIAL");
             this.lblTutorial.setText("Navigate through menu buttons to play, change settings and other features.");
-            final Image i = new Image(new File(PersonalImages.TUTORIAL_MAIN_MENU.getURL().getFile()).toURI().toString());
+            final Image i = new Image(PersonalImages.TUTORIAL_MAIN_MENU.getResourceAsStream());
             this.imgView.setImage(i);
         });
      // button SettingsTutorial Listener
         this.btnSettingsTutorial.setOnAction(event -> {
             this.lblTitle.setText("SETTINGS TUTORIAL");
             this.lblTutorial.setText("Navigate through buttons to change game settings.");
-            final Image i = new Image(new File(PersonalImages.TUTORIAL_SETTINGS.getURL().getFile()).toURI().toString());
+            final Image i = new Image(PersonalImages.TUTORIAL_SETTINGS.getResourceAsStream());
             this.imgView.setImage(i);
         });
     }
