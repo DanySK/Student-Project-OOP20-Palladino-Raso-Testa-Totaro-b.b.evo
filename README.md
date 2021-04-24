@@ -7,7 +7,7 @@ BrickBreaker-Evolution is a Java clone of the historical game [Breakout](https:/
 
 ## Running
 To run successfully in any way the game you must have a Java version >= 11. \
-Download and run the brickbreaker-evolution.jar file, with `java -jar 'brickbreaker-evolution.jar'` from the installation directory from a terminal. \
+Download and run the brickbreaker-evolution.jar file, with `java -jar 'OOP20-B.B.evo.jar'` from the installation directory from a terminal. \
 Start application. \
 Enjoy !
 
