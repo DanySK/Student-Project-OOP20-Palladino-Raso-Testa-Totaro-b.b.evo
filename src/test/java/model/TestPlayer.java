@@ -75,7 +75,7 @@ public class TestPlayer {
     }
 
     @Test
-    void testIncreaseDecreasScore() {
+    void testIncreaseDecreaseScore() {
         this.currentPlayer.scoreOperation(operation, SCORE_OPERATION);
         this.currentPlayer.scoreOperation(operation, -SCORE_OPERATION);
         this.currentPlayer.scoreOperation(operation, SCORE_OPERATION);
