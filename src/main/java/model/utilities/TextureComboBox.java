@@ -48,7 +48,6 @@ public class TextureComboBox {
 
                     @Override
                     //Use suppressWarnings because if try catch generate NullPointerException the icon assume another path
-                    @SuppressWarnings({ "PMD.AvoidCatchingGenericException", "PMD.AvoidCatchingNPE" })
                     protected void updateItem(final String item, final boolean empty) {
                         super.updateItem(item, empty);
                         setText(item);
@@ -87,7 +86,6 @@ public class TextureComboBox {
                 return new ListCell<String>() {
 
                     @Override
-                    @SuppressWarnings({ "PMD.AvoidCatchingGenericException", "PMD.AvoidCatchingNPE" })
                     protected void updateItem(final String item, final boolean empty) {
                         super.updateItem(item, empty);
                         setText(item);

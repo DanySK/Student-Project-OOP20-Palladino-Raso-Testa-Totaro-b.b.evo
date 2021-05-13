@@ -31,7 +31,6 @@ public final class SoundController {
     public static void playSoundFx(final URL path) {
         if (canPermiseFX) {
             try (AudioInputStream audioIn = AudioSystem.getAudioInputStream(path)) {
-                @SuppressWarnings("PMD.CloseResource") // It isn't possible remove the warnings whit try-whit resources.
                 final Clip effectClip = AudioSystem.getClip();
                 effectClip.open(audioIn);
                 effectClip.start();
